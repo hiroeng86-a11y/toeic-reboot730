@@ -1,0 +1,282 @@
+[
+  {
+    "word": "give a presentation",
+    "meaning": "プレゼンテーションを行う",
+    "example": "The marketing lead will give a presentation on the new packaging design.",
+    "example_jp": "マーケティング責任者が新しいパッケージデザインに関するプレゼンテーションを行います。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give permission",
+    "meaning": "許可を与える",
+    "example": "Only the plant manager can give permission to enter the clean room.",
+    "example_jp": "クリーンルームへの立ち入り許可を出せるのは工場長のみです。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give notice",
+    "meaning": "予告・通知をする・退職届を出す",
+    "example": "Employees must give two weeks' notice before leaving the company.",
+    "example_jp": "従業員は退職する2週間前に予告通知を出さなければなりません。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give priority to",
+    "meaning": "〜を最優先する",
+    "example": "The packaging facility must give priority to hygiene regulations.",
+    "example_jp": "包装施設は衛生管理基準を最優先しなければなりません。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give consideration to",
+    "meaning": "〜を考慮・検討する",
+    "example": "The committee will give careful consideration to your proposal.",
+    "example_jp": "委員会はあなたの提案を慎重に検討します。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give advice",
+    "meaning": "助言・アドバイスを与える",
+    "example": "Senior engineers regularly give advice to new technicians.",
+    "example_jp": "熟練の技術者は新任の作業員に定期的に助言を行っています。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give feedback",
+    "meaning": "フィードバック・評価を伝える",
+    "example": "Supervisors will give constructive feedback after each evaluation.",
+    "example_jp": "監督者は各評価の後に建設的なフィードバックを伝えます。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give an explanation",
+    "meaning": "説明を行う",
+    "example": "The vendor failed to give a clear explanation for the shipment delay.",
+    "example_jp": "納入業者は出荷遅延について明確な説明を行うことができませんでした。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give approval",
+    "meaning": "承認・決裁を出す",
+    "example": "The executive director must give approval for equipment upgrades.",
+    "example_jp": "設備更新には専務取締役の承認が必要です。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give a speech",
+    "meaning": "スピーチ・演説をする",
+    "example": "The company president will give a speech at the opening ceremony.",
+    "example_jp": "開会式で社長がスピーチを行います。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give an estimate",
+    "meaning": "見積もりを提示する",
+    "example": "The logistics contractor agreed to give an estimate by noon.",
+    "example_jp": "物流請負業者は正午までに見積もりを提示することに同意しました。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give a refund",
+    "meaning": "返金を行う",
+    "example": "The store policy states that we cannot give a refund without a receipt.",
+    "example_jp": "店舗規定によりレシートがない場合の返金はいたしかねます。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give a demonstration",
+    "meaning": "実演・デモを行う",
+    "example": "The supplier came to give a demonstration of the automatic labeler.",
+    "example_jp": "自動ラベラーの実演デモを行うため業者が来社しました。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give instructions",
+    "meaning": "指示・取扱説明を与える",
+    "example": "Shift leaders give clear instructions before operating the machinery.",
+    "example_jp": "シフトリーダーは機械を稼働させる前に明確な指示を出します。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give reassurance",
+    "meaning": "安心させる・確証を与える",
+    "example": "The quality manager gave reassurance that all tests were passed.",
+    "example_jp": "品質管理マネージャーはすべての検査に合格したことを伝えて安心させました。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give an update",
+    "meaning": "最新状況を報告する",
+    "example": "Please give an update on the conveyor belt maintenance schedule.",
+    "example_jp": "コンベアベルトの保守スケジュールの最新状況を報告してください。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give credit to",
+    "meaning": "〜の功績を認める",
+    "example": "We should give credit to the maintenance crew for zero downtime.",
+    "example_jp": "稼働停止ゼロを達成した保全チームの功績を称えるべきです。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give thought to",
+    "meaning": "〜について考える・思いを巡らす",
+    "example": "Management promised to give thought to improving floor ventilation.",
+    "example_jp": "経営陣は現場の換気設備改善について検討することを約束しました。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give rise to",
+    "meaning": "〜を引き起こす・原因となる",
+    "example": "Sudden temperature changes can give rise to packaging condensation.",
+    "example_jp": "急激な温度変化は包装内部の結露を引き起こす原因となります。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give way to",
+    "meaning": "〜に道を譲る・屈する",
+    "example": "Old manual inspection has given way to advanced optical sensors.",
+    "example_jp": "旧来の目視検査は高度な光学センサーへと道を譲りました。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give an overview",
+    "meaning": "概要を説明する",
+    "example": "The brochure gives an overview of our soy product lineup.",
+    "example_jp": "パンフレットには当社の大豆製品ラインナップの概要が掲載されています。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give a discount",
+    "meaning": "割引を提供する",
+    "example": "We can give a volume discount for wholesale purchasing.",
+    "example_jp": "卸売りの大口購入にはボリュームディスカウントを適用できます。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give an apology",
+    "meaning": "謝罪をする",
+    "example": "The freight carrier sent an officer to give a formal apology.",
+    "example_jp": "貨物運送会社は正式な謝罪を行うため役員を派遣しました。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give a tour",
+    "meaning": "案内・見学ツアーを行う",
+    "example": "Our coordinator will give a tour of the regional distribution hub.",
+    "example_jp": "担当コーディネーターが地域物流拠点の見学案内を行います。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give access to",
+    "meaning": "〜へのアクセス権・利用権を与える",
+    "example": "The IT team will give access to the production database.",
+    "example_jp": "ITチームが生産データベースへのアクセス権を付与します。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give an impression",
+    "meaning": "印象を与える",
+    "example": "Prompt communication will always give a professional impression.",
+    "example_jp": "迅速な連絡は常にプロフェッショナルな好印象を与えます。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give permission for",
+    "meaning": "〜を認可・許可する",
+    "example": "The city refused to give permission for the plant expansion.",
+    "example_jp": "市当局は工場拡張計画の認可を出しませんでした。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give an indication of",
+    "meaning": "〜の兆候・目安を示す",
+    "example": "Early pre-orders give a clear indication of market demand.",
+    "example_jp": "初動の先行予約数は市場需要の明確な目安を示しています。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give a reason for",
+    "meaning": "〜の理由を述べる",
+    "example": "The supplier did not give a plausible reason for the price increase.",
+    "example_jp": "納入業者は値上げについて納得のいく理由を述べませんでした。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give preference to",
+    "meaning": "〜を優遇する・優先する",
+    "example": "Recruiters give preference to applicants with food safety certifications.",
+    "example_jp": "採用担当者は食品安全関連の資格を持つ応募者を優遇します。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give an interview",
+    "meaning": "インタビュー・面談に応じる",
+    "example": "The operations head agreed to give an interview to the trade magazine.",
+    "example_jp": "製造統括責任者は業界紙の取材インタビューに応じることに合意しました。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give support to",
+    "meaning": "〜を支援・サポートする",
+    "example": "The head office will give technical support to regional manufacturing units.",
+    "example_jp": "本社は地方の製造事業所に対して技術サポートを提供します。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give an answer",
+    "meaning": "返答・回答をする",
+    "example": "We promised to give a definitive answer regarding pricing by Monday.",
+    "example_jp": "月曜日までに価格設定に関する最終回答を出すことを約束しました。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give consent",
+    "meaning": "同意・承諾を与える",
+    "example": "Both partners must give consent before amending contract terms.",
+    "example_jp": "契約条件を変更する前に双方が承諾を与えなければなりません。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give a reminder",
+    "meaning": "注意喚起・リマインドをする",
+    "example": "The safety officer posted a sign to give a reminder about protective gear.",
+    "example_jp": "安全衛生責任者は保護具の着用をリマインドする標識を掲示しました。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give guidance",
+    "meaning": "指導・指針を示す",
+    "example": "Veteran packaging leads give practical guidance to trainees.",
+    "example_jp": "熟練の包装リーダーが研修生に対して実践的な指導を行います。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give a warranty",
+    "meaning": "保証をつける",
+    "example": "Manufacturers give a three-year warranty on commercial refrigeration units.",
+    "example_jp": "メーカーは業務用冷凍冷蔵ユニットに3年間の保証をつけています。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give assistance",
+    "meaning": "助力・手助けを提供する",
+    "example": "Floor supervisors are always available to give assistance during peak shifts.",
+    "example_jp": "現場監督者は繁忙シフトの間、いつでも手助けに入れる態勢をとっています。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give a boost to",
+    "meaning": "〜を後押しする・活性化させる",
+    "example": "The television feature gave a massive boost to local natto sales.",
+    "example_jp": "テレビの特集放映が地元での納豆売上を大きく後押ししました。",
+    "category": "基本動詞: give"
+  },
+  {
+    "word": "give in to",
+    "meaning": "〜に屈する・応じる",
+    "example": "The procurement team will not give in to unreasonable price demands.",
+    "example_jp": "調達購買チームは理不尽な価格要求に屈することはありません。",
+    "category": "基本動詞: give"
+  }
+]

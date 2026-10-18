@@ -1,0 +1,317 @@
+[
+  {
+    "word": "make a decision",
+    "meaning": "決定を下す",
+    "example": "The executive committee will make a decision this afternoon.",
+    "example_jp": "役員委員会は今日の午後に決定を下します。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an appointment",
+    "meaning": "予約・アポイントをとる",
+    "example": "Please call the clinic to make an appointment.",
+    "example_jp": "診療所に電話して予約を取ってください。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a reservation",
+    "meaning": "予約をする",
+    "example": "I will make a reservation at the restaurant downtown.",
+    "example_jp": "街中のレストランを予約します。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an effort",
+    "meaning": "努力する",
+    "example": "All staff members must make an effort to reduce waste.",
+    "example_jp": "全従業員が廃棄物削減に努めなければなりません。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make progress",
+    "meaning": "進歩する・進展する",
+    "example": "The engineering team continues to make progress on the project.",
+    "example_jp": "技術チームはプロジェクトを着実に前進させています。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a payment",
+    "meaning": "支払いをする",
+    "example": "You can make a payment online using a credit card.",
+    "example_jp": "クレジットカードでオンライン決済が可能です。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an inquiry",
+    "meaning": "問い合わせる",
+    "example": "Clients often make an inquiry regarding bulk shipping rates.",
+    "example_jp": "大口送料について顧客から問い合わせがよく入ります。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an announcement",
+    "meaning": "発表・告知をする",
+    "example": "The president will make an announcement at the press conference.",
+    "example_jp": "社長は記者会見で発表を行います。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an exception",
+    "meaning": "例外を認める",
+    "example": "The supervisor agreed to make an exception for the urgent case.",
+    "example_jp": "上長はその緊急案件について例外を認めることに同意しました。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an arrangement",
+    "meaning": "手配をする・取り決める",
+    "example": "The secretary will make an arrangement for airport pickup.",
+    "example_jp": "秘書が空港への送迎を手配します。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a proposal",
+    "meaning": "提案をする",
+    "example": "The sales director wants to make a proposal to the new client.",
+    "example_jp": "営業部長は新規顧客に提案を行いたいと考えています。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a complaint",
+    "meaning": "苦情を申し立てる",
+    "example": "The passenger decided to make a complaint about the delay.",
+    "example_jp": "乗客は遅延について苦情を申し立てることにしました。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an adjustment",
+    "meaning": "調整をする",
+    "example": "Technicians must make an adjustment to the conveyor speed.",
+    "example_jp": "技術者はコンベア速度の微調整を行わなければなりません。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a contribution",
+    "meaning": "貢献する・寄付する",
+    "example": "Local enterprises make a contribution to community welfare.",
+    "example_jp": "地元企業は地域社会の福祉に貢献しています。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a purchase",
+    "meaning": "購入する",
+    "example": "Customers who make a purchase over fifty dollars get a gift.",
+    "example_jp": "50ドル以上購入した顧客にはプレゼントが贈られます。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make sure",
+    "meaning": "確実に〜する・確かめる",
+    "example": "Please make sure that all factory doors are locked.",
+    "example_jp": "すべての工場のドアが施錠されているか必ず確認してください。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make sense",
+    "meaning": "理にかなっている・意味をなす",
+    "example": "His explanation does not make sense to the team.",
+    "example_jp": "彼の説明はチームにとって理にかなっていません。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a deposit",
+    "meaning": "手付金を払う・預金する",
+    "example": "Tenants must make a deposit before receiving the keys.",
+    "example_jp": "入居者は鍵を受け取る前に保証金を預託しなければなりません。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a profit",
+    "meaning": "利益を上げる",
+    "example": "The retail division managed to make a profit in its first year.",
+    "example_jp": "小売部門は初年度から利益を上げることができました。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a loss",
+    "meaning": "損失を出す",
+    "example": "The overseas branch began to make a loss due to tariffs.",
+    "example_jp": "関税の影響により海外支社は損失を出し始めました。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a bid",
+    "meaning": "入札する",
+    "example": "Several construction firms decided to make a bid for the project.",
+    "example_jp": "複数の建設会社がその事業に入札することを決定しました。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a recommendation",
+    "meaning": "推薦・提言をする",
+    "example": "The consultant will make a recommendation on cost control.",
+    "example_jp": "コンサルタントはコスト管理に関する提言を行う予定です。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an impression",
+    "meaning": "強い印象を与える",
+    "example": "Her confident speech helped make an impression on investors.",
+    "category": "基本動詞: make",
+    "example_jp": "彼女の堂々としたスピーチは投資家に強い印象を与えました。"
+  },
+  {
+    "word": "make an apology",
+    "meaning": "謝罪する",
+    "example": "The airline had to make an apology for the cancelled flight.",
+    "example_jp": "航空会社は欠航に関して公式に謝罪せざるを得ませんでした。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an agreement",
+    "meaning": "合意に達する・協定を結ぶ",
+    "example": "Both companies worked hard to make an agreement on pricing.",
+    "example_jp": "両社は価格設定に関して合意を形成するために尽力しました。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a commitment",
+    "meaning": "約束・言明をする",
+    "example": "We made a commitment to deliver the goods by Friday.",
+    "example_jp": "当社は金曜日までに商品を納品することを約束しました。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an assessment",
+    "meaning": "評価・査定を行う",
+    "example": "Inspectors will make an assessment of the factory floor safety.",
+    "example_jp": "検査官は工場の現場安全性の査定を実施します。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an error",
+    "meaning": "ミス・間違いをする",
+    "example": "Even experienced clerks can make an error on the invoice.",
+    "example_jp": "経験豊富な事務員であっても請求書でミスをすることがあります。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a speech",
+    "meaning": "演説・スピーチをする",
+    "example": "The founder was invited to make a speech at the conference.",
+    "example_jp": "創業者はカンファレンスで記念スピーチを行うよう招待されました。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a statement",
+    "meaning": "声明を発表する",
+    "example": "The spokesperson will make a statement regarding the merger.",
+    "example_jp": "広報担当者は企業合併に関する声明を発表する予定です。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an attempt",
+    "meaning": "試みる",
+    "example": "The firm will make an attempt to enter the Southeast Asian market.",
+    "example_jp": "その会社は東南アジア市場への参入を試みます。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make room for",
+    "meaning": "〜のために場所・スペースを空ける",
+    "example": "We must clear the storage to make room for new machinery.",
+    "example_jp": "新しい機械の設置スペースを確保するため倉庫を片付ける必要があります。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make way for",
+    "meaning": "〜に道を譲る・取って代わられる",
+    "example": "Old manual conveyors made way for automated sorting lines.",
+    "example_jp": "旧式の手動コンベアは自動仕分けラインへと道を譲りました。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make use of",
+    "meaning": "〜を利用・活用する",
+    "example": "Trainees should make use of the company online learning portal.",
+    "example_jp": "研修生は社内のオンライン学習ポータルを活用すべきです。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make the most of",
+    "meaning": "〜を最大限に活用する",
+    "example": "The team worked overtime to make the most of the seasonal demand.",
+    "example_jp": "チームは季節需要を最大限に活かすため残業体制で臨みました。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make ends meet",
+    "meaning": "収支を合わせる・やりくりする",
+    "example": "Rising ingredient costs made it hard to make ends meet.",
+    "example_jp": "原材料費の高騰により採算を合わせることが難しくなりました。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make reference to",
+    "meaning": "〜に言及する・言及を置く",
+    "example": "The guidelines make reference to international hygiene standards.",
+    "example_jp": "その指針は国際的な衛生管理基準に言及しています。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make sense of",
+    "meaning": "〜を理解する・意味を読み解く",
+    "example": "Engineers tried to make sense of the unexpected sensor readings.",
+    "example_jp": "技術者たちは予期せぬセンサーの測定値を読み解こうと努めました。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a phone call",
+    "meaning": "電話をかける",
+    "example": "I need to make a quick phone call to the distribution center.",
+    "example_jp": "物流センターへ手短に電話を1本かける必要があります。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make acquaintance with",
+    "meaning": "〜と知り合いになる",
+    "example": "Trade shows allow managers to make acquaintance with regional suppliers.",
+    "example_jp": "見本市は地域の取引先と知己を得る絶好の機会となります。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an appearance",
+    "meaning": "出席する・顔を出す",
+    "example": "The director will make an appearance at the welcome party.",
+    "example_jp": "部長は歓迎会に短時間顔を出す予定です。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make preparations for",
+    "meaning": "〜の準備・手配をする",
+    "example": "Staff started to make preparations for the annual exhibition.",
+    "example_jp": "スタッフは年次展示会の準備を開始しました。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make provision for",
+    "meaning": "〜に備える・手当をする",
+    "example": "The contract makes provision for emergency freight delays.",
+    "example_jp": "その契約には緊急時の貨物遅延に備えた条項が設けられています。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make concessions",
+    "meaning": "（交渉で）譲歩する",
+    "example": "Both sides had to make concessions to close the deal.",
+    "example_jp": "取引をまとめるために双方が譲歩しなければなりませんでした。",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an impact",
+    "meaning": "強い影響・成果をもたらす",
+    "example": "The packaging design made an immediate impact on sales numbers.",
+    "example_jp": "新パッケージデザインは売上数字に即座に好影響をもたらしました。",
+    "category": "基本動詞: make"
+  }
+]

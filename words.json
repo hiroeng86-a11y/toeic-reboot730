@@ -1,0 +1,2420 @@
+[
+  {
+    "word": "Miss the deadline",
+    "meaning": "締め切りを逃す",
+    "example": "The team might miss the deadline without extra help.",
+    "category": "スケジュール・納期"
+  },
+  {
+    "word": "Extend the deadline",
+    "meaning": "締め切りを延長する",
+    "example": "The client agreed to extend the deadline by another week.",
+    "category": "スケジュール・納期"
+  },
+  {
+    "word": "Set a date",
+    "meaning": "日程を設定する",
+    "example": "We should set a date for the product kickoff session.",
+    "category": "スケジュール・納期"
+  },
+  {
+    "word": "Schedule an appointment",
+    "meaning": "予約・アポイントを入れる",
+    "example": "Please schedule an appointment with the plant engineer.",
+    "category": "スケジュール・納期"
+  },
+  {
+    "word": "Postpone a meeting",
+    "meaning": "会議を延期する",
+    "example": "They decided to postpone the meeting until Monday morning.",
+    "category": "スケジュール・納期"
+  },
+  {
+    "word": "Confirm a reservation",
+    "meaning": "予約を確認する",
+    "example": "Please call the hotel desk to confirm your reservation.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Make a reservation",
+    "meaning": "予約をする",
+    "example": "I will make a reservation at the restaurant downtown.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Cancel an appointment",
+    "meaning": "予約を取り消す",
+    "example": "The client had to cancel an appointment unexpectedly.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Hold a meeting",
+    "meaning": "会議を開催する",
+    "example": "The committee will hold an emergency meeting this afternoon.",
+    "category": "スケジュール・納期"
+  },
+  {
+    "word": "Attend a seminar",
+    "meaning": "セミナーに出席する",
+    "example": "Several engineers will attend a seminar in Tokyo.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Conduct a survey",
+    "meaning": "調査を実施する",
+    "example": "The marketing team will conduct an online survey soon.",
+    "category": "マーケティング・調査"
+  },
+  {
+    "word": "Provide an estimate",
+    "meaning": "見積もりを出す",
+    "example": "The contractor offered to provide a detailed cost estimate.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Request a quote",
+    "meaning": "見積もりを依頼する",
+    "example": "Buyers sent an email to request a quote from suppliers.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Submit a proposal",
+    "meaning": "提案書を提出する",
+    "example": "The consultant must submit a proposal by Friday afternoon.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Place an order",
+    "meaning": "注文を出す",
+    "example": "The purchasing department decided to place a bulk order.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Process an order",
+    "meaning": "注文を処理する",
+    "example": "The distribution warehouse will process your order today.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Receive a discount",
+    "meaning": "割引を受ける",
+    "example": "Corporate partners receive a substantial volume discount.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Issue a refund",
+    "meaning": "返金を発行する",
+    "example": "The store agreed to issue a refund for the damaged item.",
+    "category": "業務対応・トラブル"
+  },
+  {
+    "word": "Exceed the budget",
+    "meaning": "予算を超える",
+    "example": "Unexpected material price spikes will exceed our budget.",
+    "category": "財務・経営管理"
+  },
+  {
+    "word": "Allocate funds",
+    "meaning": "資金を割り当てる",
+    "example": "Executives plan to allocate additional funds for equipment.",
+    "category": "財務・経営管理"
+  },
+  {
+    "word": "Review a report",
+    "meaning": "報告書に目を通す",
+    "example": "The plant manager will review a report before the audit.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Analyze data",
+    "meaning": "データを分析する",
+    "example": "Our research scientists analyze production data closely.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "File a tax return",
+    "meaning": "確定申告をする",
+    "example": "Independent workers must file a tax return by mid-March.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Apply for a loan",
+    "meaning": "ローンを申し込む",
+    "example": "Small business owners often apply for a commercial loan.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Conduct an interview",
+    "meaning": "面接を行う",
+    "example": "The hiring panel will conduct an interview tomorrow morning.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Submit a resume",
+    "meaning": "履歴書を提出する",
+    "example": "Qualified applicants should submit a resume online.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Fill out a form",
+    "meaning": "用紙に記入する",
+    "example": "Visitors must fill out a registration form at reception.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Fill a position",
+    "meaning": "欠員を補充する",
+    "example": "The recruiter worked quickly to fill a position in sales.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Post a job opening",
+    "meaning": "求人広告を出す",
+    "example": "The HR department plans to post a job opening on the site.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Earn a promotion",
+    "meaning": "昇進を勝ち取る",
+    "example": "Diligent teamwork helped her earn a promotion to manager.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Give a presentation",
+    "meaning": "プレゼンを行う",
+    "example": "The director will give a presentation on overseas sales.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Reach a consensus",
+    "meaning": "合意に達する",
+    "example": "Board members worked hard to reach a consensus on pricing.",
+    "category": "契約・交渉"
+  },
+  {
+    "word": "Make a decision",
+    "meaning": "決定を下す",
+    "example": "The steering committee must make a decision this week.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Offer a position",
+    "meaning": "職を提示する（内定を出す）",
+    "example": "The company chose to offer a position to the top candidate.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Develop a strategy",
+    "meaning": "戦略を練る",
+    "example": "Senior leaders met to develop a competitive market strategy.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Launch a product",
+    "meaning": "製品を発売する",
+    "example": "The factory is ready to launch a new eco-friendly product.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Increase market share",
+    "meaning": "市場シェアを拡大する",
+    "example": "Targeted advertising helped increase market share rapidly.",
+    "category": "マーケティング・調査"
+  },
+  {
+    "word": "Attract customers",
+    "meaning": "顧客を引き付ける",
+    "example": "Eye-catching packaging helps attract retail customers.",
+    "category": "マーケティング・調査"
+  },
+  {
+    "word": "Target an audience",
+    "meaning": "ターゲット層を絞る",
+    "example": "The commercial aims to target an audience of young workers.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Run a campaign",
+    "meaning": "キャンペーンを実施する",
+    "example": "The agency will run an extensive digital campaign.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Conduct research",
+    "meaning": "研究・調査を行う",
+    "example": "Scientists conduct research on sustainable food materials.",
+    "category": "マーケティング・調査"
+  },
+  {
+    "word": "Meet requirements",
+    "meaning": "要件を満たす",
+    "example": "Every applicant must meet requirements for safety training.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Fulfill obligations",
+    "meaning": "義務を果たす",
+    "example": "Both contractors made efforts to fulfill obligations on time.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Sign a contract",
+    "meaning": "契約に署名する",
+    "example": "The vendor arrived today to sign a contract with our firm.",
+    "category": "契約・交渉"
+  },
+  {
+    "word": "Renew a lease",
+    "meaning": "リース契約を更新する",
+    "example": "The regional office chose to renew a lease for two years.",
+    "category": "契約・交渉"
+  },
+  {
+    "word": "Terminate an agreement",
+    "meaning": "契約を終了させる",
+    "example": "Repeated line failures forced them to terminate an agreement.",
+    "category": "契約・交渉"
+  },
+  {
+    "word": "Comply with regulations",
+    "meaning": "規制を遵守する",
+    "example": "Our production facility must comply with food regulations.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Implement a policy",
+    "meaning": "規定・政策を実施する",
+    "example": "Management will implement a policy on remote attendance.",
+    "category": "社内規定・人事"
+  },
+  {
+    "word": "Obtain a permit",
+    "meaning": "許可証を取得する",
+    "example": "Builders must obtain a permit before starting renovations.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Follow instructions",
+    "meaning": "指示に従う",
+    "example": "Machine operators should follow instructions in the manual.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Adhere to standards",
+    "meaning": "基準を遵守する",
+    "example": "Quality inspectors strictly adhere to industry standards.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Grant permission",
+    "meaning": "許可を与える",
+    "example": "The city council refused to grant permission for road work.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Violate a rule",
+    "meaning": "ルールに違反する",
+    "example": "Operating equipment without safety gear will violate a rule.",
+    "category": "社内規定・人事"
+  },
+  {
+    "word": "Solve a problem",
+    "meaning": "問題を解決する",
+    "example": "Maintenance technicians stayed late to solve a problem.",
+    "category": "業務対応・トラブル"
+  },
+  {
+    "word": "Address an issue",
+    "meaning": "課題に取り組む",
+    "example": "The floor supervisor took action to address an issue.",
+    "category": "業務対応・トラブル"
+  },
+  {
+    "word": "Handle a complaint",
+    "meaning": "苦情を処理する",
+    "example": "Trained customer service staff know how to handle a complaint.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Fix a malfunction",
+    "meaning": "故障を直す",
+    "example": "A specialized crew arrived to fix a mechanical malfunction.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Maintain equipment",
+    "meaning": "備品をメンテナンスする",
+    "example": "Daily servicing helps maintain factory equipment properly.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Update a system",
+    "meaning": "システムを更新する",
+    "example": "IT technicians plan to update a system over the weekend.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Install software",
+    "meaning": "ソフトをインストールする",
+    "example": "Support staff will install accounting software on your PC.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Access a database",
+    "meaning": "データベースにアクセスする",
+    "example": "Only registered staff may access a database securely.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Back up files",
+    "meaning": "ファイルをバックアップする",
+    "example": "Engineers back up project files every evening at five.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Reduce costs",
+    "meaning": "コストを削減する",
+    "example": "Redesigning box cartons helped the plant reduce costs.",
+    "category": "財務・経営管理"
+  },
+  {
+    "word": "Improve efficiency",
+    "meaning": "効率を改善する",
+    "example": "New conveyor robotics helped improve factory efficiency.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Gain experience",
+    "meaning": "経験を得る",
+    "example": "Interns gain practical experience on the packaging line.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Provide feedback",
+    "meaning": "フィードバックを与える",
+    "example": "Team supervisors provide feedback during quarterly reviews.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Express interest",
+    "meaning": "関心を示す",
+    "example": "Several retailers expressed strong interest in our brand.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Achieve a goal",
+    "meaning": "目標を達成する",
+    "example": "Persistent effort helped our plant achieve a safety goal.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Perform a task",
+    "meaning": "業務を遂行する",
+    "example": "Robotic sorters perform an automated task with high speed.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Assume responsibility",
+    "meaning": "責任を引き受ける",
+    "example": "The plant manager offered to assume responsibility.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Seek assistance",
+    "meaning": "援助を求める",
+    "example": "Operators should seek assistance whenever errors occur.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Distribute a memo",
+    "meaning": "メモを配布する",
+    "example": "Human resources will distribute an administrative memo today.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Arrange a flight",
+    "meaning": "飛行機を手配する",
+    "example": "The executive secretary helped arrange an overseas flight.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Clear customs",
+    "meaning": "税関を通る",
+    "example": "All imported bulk goods must clear customs without delay.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Reach an agreement",
+    "meaning": "合意に達する",
+    "example": "Both corporate parties managed to reach an agreement.",
+    "category": "契約・交渉"
+  },
+  {
+    "word": "Sign the agreement",
+    "meaning": "契約書に署名する",
+    "example": "The corporate president arrived to sign the agreement.",
+    "category": "契約・交渉"
+  },
+  {
+    "word": "Draft a contract",
+    "meaning": "契約書を起草する",
+    "example": "Our legal department took two days to draft a contract.",
+    "category": "契約・交渉"
+  },
+  {
+    "word": "Execute a contract",
+    "meaning": "契約を締結する",
+    "example": "Authorized partners will execute a contract by next week.",
+    "category": "契約・交渉"
+  },
+  {
+    "word": "Renew the agreement",
+    "meaning": "契約を更新する",
+    "example": "Both retail suppliers were glad to renew the agreement.",
+    "category": "契約・交渉"
+  },
+  {
+    "word": "Terminate the contract",
+    "meaning": "契約を打ち切る",
+    "example": "Persistent manufacturing delays forced them to terminate the contract.",
+    "category": "契約・交渉"
+  },
+  {
+    "word": "Fulfill the requirements",
+    "meaning": "要件を満たす",
+    "example": "This candidate appears to fulfill all the requirements.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Violate the terms",
+    "meaning": "条件に違反する",
+    "example": "Sharing proprietary recipes will violate the license terms.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Grant a request",
+    "meaning": "要望を聞き入れる",
+    "example": "The division head agreed to grant an equipment request.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Seek advice",
+    "meaning": "助言を求める",
+    "example": "Young startup founders frequently seek business advice.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Submit an invoice",
+    "meaning": "請求書を提出する",
+    "example": "Contractors must submit an invoice by the end of each month.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Process a payment",
+    "meaning": "支払いを処理する",
+    "example": "The accounting clerk will process your payment by tomorrow.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Review the budget",
+    "meaning": "予算を検討する",
+    "example": "Department heads gathered to review the quarterly budget.",
+    "category": "財務・経営管理"
+  },
+  {
+    "word": "Approve an expense",
+    "meaning": "経費を承認する",
+    "example": "The supervisor must approve travel expenses over two hundred dollars.",
+    "category": "財務・経営管理"
+  },
+  {
+    "word": "Cut costs",
+    "meaning": "費用を削減する",
+    "example": "Energy-saving lightbulbs helped the facility cut utility costs.",
+    "category": "財務・経営管理"
+  },
+  {
+    "word": "Generate revenue",
+    "meaning": "収益を生み出す",
+    "example": "The new organic product line began to generate steady revenue.",
+    "category": "財務・経営管理"
+  },
+  {
+    "word": "Maximize profit",
+    "meaning": "利益を最大化する",
+    "example": "Optimized production schedules help plants maximize gross profit.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Incur a loss",
+    "meaning": "損失を被る",
+    "example": "The branch may incur a substantial financial loss this season.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Secure funding",
+    "meaning": "資金を確保する",
+    "example": "The development team worked hard to secure project funding.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Close a deal",
+    "meaning": "取引をまとめる",
+    "example": "Our sales representative worked late to close a major deal.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Conduct an audit",
+    "meaning": "監査を行う",
+    "example": "An outside accounting firm will conduct an annual financial audit.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Undergo inspection",
+    "meaning": "検査を受ける",
+    "example": "The plant lines must undergo thorough sanitation inspection.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Provide a reference",
+    "meaning": "照会先（推薦）を提供する",
+    "example": "My previous manager agreed to provide a positive reference.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Check references",
+    "meaning": "照会先を確認する",
+    "example": "HR officers routinely check references before extending an offer.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Update a resume",
+    "meaning": "履歴書を更新する",
+    "example": "Job candidates should update a resume with recent work skills.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Verify employment",
+    "meaning": "就業状況を確認する",
+    "example": "The banking officer called to verify applicant employment status.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Evaluate performance",
+    "meaning": "実績を評価する",
+    "example": "Team supervisors evaluate employee performance every December.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Announce a retirement",
+    "meaning": "退職を発表する",
+    "example": "The veteran line leader will announce a retirement next month.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Fill a vacancy",
+    "meaning": "欠員を埋める",
+    "example": "Recruiters are interviewing applicants to fill a vacancy.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Accept an offer",
+    "meaning": "内定（申し出）を受ける",
+    "example": "She decided to accept an offer from the logistics company.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Decline an invitation",
+    "meaning": "招待を断る",
+    "example": "The director had to decline an invitation to the summit.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Express concern",
+    "meaning": "懸念を表明する",
+    "example": "Union leaders expressed deep concern over plant working hours.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Confirm receipt",
+    "meaning": "受領を確認する",
+    "example": "Please send a quick reply to confirm receipt of the documents.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Acknowledge a contribution",
+    "meaning": "貢献を認める・感謝する",
+    "example": "The company dinner will acknowledge a great contribution.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Praise an achievement",
+    "meaning": "成果を称える",
+    "example": "The executive took time to praise an outstanding team achievement.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Exert effort",
+    "meaning": "努力を傾ける",
+    "example": "All workers exert effort to finish packaging ahead of time.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Launch a campaign",
+    "meaning": "キャンペーンを開始する",
+    "example": "The public relations team will launch a safety campaign.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Capture market",
+    "meaning": "市場を獲得する",
+    "example": "Innovative snack packages helped capture market share.",
+    "category": "マーケティング・調査"
+  },
+  {
+    "word": "Gain a following",
+    "meaning": "支持（フォロワー）を得る",
+    "example": "The organic product quickly began to gain a following.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Promote a brand",
+    "meaning": "ブランドを宣伝する",
+    "example": "Supermarket sample stalls help promote a local food brand.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Analyze trends",
+    "meaning": "傾向を分析する",
+    "example": "Market analysts regularly analyze consumption trends.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Monitor progress",
+    "meaning": "進捗を監視する",
+    "example": "Project tracking software helps monitor daily work progress.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Track expenses",
+    "meaning": "経費を追跡する",
+    "example": "Mobile accounting apps help employees track business expenses.",
+    "category": "財務・経営管理"
+  },
+  {
+    "word": "Post an announcement",
+    "meaning": "告知を掲示する",
+    "example": "The administration will post an announcement on the board.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Distribute materials",
+    "meaning": "資料を配布する",
+    "example": "Helpers arrived early to distribute training materials.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Unpack materials",
+    "meaning": "資材を荷解きする",
+    "example": "Factory handlers unpack raw packaging materials carefully.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Assemble equipment",
+    "meaning": "装置を組み立てる",
+    "example": "Certified engineers will assemble new line equipment.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Clean equipment",
+    "meaning": "装置を清掃する",
+    "example": "Food sanitation staff clean equipment after each work shift.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Install a fixture",
+    "meaning": "設備を取り付ける",
+    "example": "A local contractor came to install a new lighting fixture.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Submit a request",
+    "meaning": "依頼を提出する",
+    "example": "Staff must submit a formal request for scheduled time off.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Address a concern",
+    "meaning": "懸念に対処する",
+    "example": "The factory head held a meeting to address a safety concern.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Resolve a conflict",
+    "meaning": "紛争を解決する",
+    "example": "The HR officer stepped in to resolve a persistent conflict.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Minimize risk",
+    "meaning": "リスクを最小限にする",
+    "example": "Routine sanitation checks help minimize health risk.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Ensure safety",
+    "meaning": "安全を確保する",
+    "example": "Standard protective helmets ensure worker safety on the floor.",
+    "category": "社内規定・人事"
+  },
+  {
+    "word": "Follow procedures",
+    "meaning": "手順に従う",
+    "example": "All factory workers must follow standard packaging procedures.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Observe a rule",
+    "meaning": "規則を守る",
+    "example": "Visitors must observe a strict plant sanitation rule.",
+    "category": "社内規定・人事"
+  },
+  {
+    "word": "Imply a meaning",
+    "meaning": "意味を暗示する",
+    "example": "His diplomatic remarks seemed to imply a deeper meaning.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Resume operations",
+    "meaning": "営業を再開する",
+    "example": "The bottling plant will resume normal operations at eight.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Postpone a trip",
+    "meaning": "旅行を延期する",
+    "example": "Adverse weather forced them to postpone a business trip.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Arrange transportation",
+    "meaning": "交通手段を手配する",
+    "example": "The tour coordinator offered to arrange airport transportation.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Board a ferry",
+    "meaning": "フェリーに乗る",
+    "example": "Commuters board a commuter ferry across the bay.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Check baggage",
+    "meaning": "手荷物を預ける",
+    "example": "Passengers must check baggage at the flight airline counter.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Claim a refund",
+    "meaning": "返金を要求する",
+    "example": "Frustrated travelers may claim a refund for canceled trips.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Clear security",
+    "meaning": "保安検査を通過する",
+    "example": "Arrive two hours early to clear security smoothly.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Deliver a package",
+    "meaning": "小包を届ける",
+    "example": "The delivery courier will deliver a package by two o'clock.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Encounter an issue",
+    "meaning": "問題に直面する",
+    "example": "Packaging staff might encounter an issue with box folding.",
+    "category": "業務対応・トラブル"
+  },
+  {
+    "word": "Identify a problem",
+    "meaning": "問題を特定する",
+    "example": "Optical inspection sensors identify a labeling problem instantly.",
+    "category": "業務対応・トラブル"
+  },
+  {
+    "word": "Suggest a solution",
+    "meaning": "解決策を提案する",
+    "example": "The senior engineer was quick to suggest an efficient solution.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Report a bug",
+    "meaning": "バグを報告する",
+    "example": "Users can report a software bug through the helpdesk app.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Download a file",
+    "meaning": "ファイルをダウンロードする",
+    "example": "Click the portal link to download a spreadsheet file.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Upload a document",
+    "meaning": "文書をアップロードする",
+    "example": "Candidates should upload an identification document online.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Retrieve data",
+    "meaning": "データを取り出す",
+    "example": "The backup system can retrieve lost inventory data quickly.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Preserve forests",
+    "meaning": "森林を保護する",
+    "example": "Sustainable timber sourcing helps preserve local forests.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Reduce waste",
+    "meaning": "廃棄物を減らす",
+    "example": "Using thinner plastic film helps reduce factory waste.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "Collect samples",
+    "meaning": "サンプルを収集する",
+    "example": "QA staff collect food samples from each packaging batch.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "access to",
+    "meaning": "〜へのアクセス",
+    "example": "Plant personnel require badge access to clean rooms.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "addition to",
+    "meaning": "〜に加えて",
+    "example": "The new manager is an outstanding addition to our department.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "contribution to",
+    "meaning": "〜への貢献",
+    "example": "The company acknowledged her long contribution to the project.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "damage to",
+    "meaning": "〜への損害",
+    "example": "The flood caused extensive damage to the processing unit.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "introduction to",
+    "meaning": "〜の導入・紹介",
+    "example": "This orientation provides an introduction to plant operations.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "opposition to",
+    "meaning": "〜への反対",
+    "example": "The proposal met strong opposition to zoning changes.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "reaction to",
+    "meaning": "〜への反応",
+    "example": "Customer reaction to the new natto package was enthusiastic.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "response to",
+    "meaning": "〜への返答・反応",
+    "example": "The firm acted promptly in response to client feedback.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "solution to",
+    "meaning": "〜の解決策",
+    "example": "Engineers discovered an easy solution to line overheating.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "subscription to",
+    "meaning": "〜の購読",
+    "example": "The research lab maintains an annual subscription to science journals.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "approach to",
+    "meaning": "〜へのアプローチ",
+    "example": "Our team took a fresh approach to reducing waste.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "alternative to",
+    "meaning": "〜に代わるもの",
+    "example": "Biodegradable trays are an eco alternative to styrofoam.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "commitment to",
+    "meaning": "〜への献身・公約",
+    "example": "Management demonstrated genuine commitment to safety.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "exposure to",
+    "meaning": "〜にさらされること",
+    "example": "Workers avoid direct skin exposure to chemical cleaners.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "proximity to",
+    "meaning": "〜への近さ",
+    "example": "The warehouse enjoys convenient proximity to expressways.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "key to",
+    "meaning": "〜への鍵・秘訣",
+    "example": "Effective training is the real key to high productivity.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "invitation to",
+    "meaning": "〜への招待",
+    "example": "We sent an invitation to local retail distributors.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "resistance to",
+    "meaning": "〜への抵抗",
+    "example": "Factory staff showed initial resistance to shift adjustments.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "shortcut to",
+    "meaning": "〜への近道",
+    "example": "There is no fast shortcut to mastering quality control.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "similarity to",
+    "meaning": "〜との類似",
+    "example": "The revised recipe bears high similarity to traditional taste.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "adjustment to",
+    "meaning": "〜への適応・調整",
+    "example": "Operators made a minor adjustment to conveyor speeds.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "attachment to",
+    "meaning": "〜への愛着・添付",
+    "example": "Please find the inspection report attachment to this email.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "answer to",
+    "meaning": "〜への回答",
+    "example": "The technical supervisor gave a clear answer to our questions.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "dedication to",
+    "meaning": "〜への専念",
+    "example": "Her outstanding dedication to hygiene earned high praise.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "reference to",
+    "meaning": "〜への言及・参照",
+    "example": "The guidelines make frequent reference to safety protocols.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "agreement with",
+    "meaning": "〜との合意",
+    "example": "The supplier concluded an agreement with local farmers.",
+    "category": "契約・交渉"
+  },
+  {
+    "word": "alliance with",
+    "meaning": "〜との提携",
+    "example": "Our company formed a distribution alliance with an overseas brand.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "collaboration with",
+    "meaning": "〜との協力",
+    "example": "The research was done in close collaboration with the university.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "compliance with",
+    "meaning": "〜の遵守",
+    "example": "The packaging facility maintains compliance with hygiene laws.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "connection with",
+    "meaning": "〜との関連",
+    "example": "Inspectors checked for faults in connection with power lines.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "consultation with",
+    "meaning": "〜との相談",
+    "example": "The shifts were finalized after consultation with staff.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "interaction with",
+    "meaning": "〜との交流",
+    "example": "Customer interaction with store demonstrators was lively.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "negotiation with",
+    "meaning": "〜との交渉",
+    "example": "The union entered negotiation with corporate executives.",
+    "category": "契約・交渉"
+  },
+  {
+    "word": "relationship with",
+    "meaning": "〜との関係",
+    "example": "We cherish a strong business relationship with regional buyers.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "correspondence with",
+    "meaning": "〜とのやり取り",
+    "example": "Keep all email correspondence with external suppliers on file.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "conflict with",
+    "meaning": "〜との衝突",
+    "example": "The rescheduled maintenance date is in conflict with testing.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "association with",
+    "meaning": "〜との連合・交際",
+    "example": "The firm ended association with unreliable transport vendors.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "acquaintance with",
+    "meaning": "〜を知っていること",
+    "example": "A working acquaintance with packaging robotics is desirable.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "comparison with",
+    "meaning": "〜との比較",
+    "example": "In direct comparison with last year, waste dropped by ten percent.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "application for",
+    "meaning": "〜への応募・申請",
+    "example": "Submit your internal application for the transfer by Friday.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "request for",
+    "meaning": "〜の要請・リクエスト",
+    "example": "The plant sent an urgent request for spare conveyor belts.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "demand for",
+    "meaning": "〜の需要",
+    "example": "Consumer demand for fresh konjac products is rising steadily.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "requirement for",
+    "meaning": "〜の必要条件",
+    "example": "Food hygiene training is a requirement for line workers.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "reason for",
+    "meaning": "〜の理由",
+    "example": "A sensor error was the primary reason for the packaging halt.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "reputation for",
+    "meaning": "〜としての評判",
+    "example": "Our Aso factory holds a stellar reputation for product freshness.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "responsibility for",
+    "meaning": "〜への責任",
+    "example": "The team accepted responsibility for the warehouse delay.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "talent for",
+    "meaning": "〜の才能",
+    "example": "She displayed a natural talent for machine operations.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "search for",
+    "meaning": "〜の捜索",
+    "example": "Engineers continue their search for lighter packaging materials.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "compensation for",
+    "meaning": "〜の補償",
+    "example": "The courier paid compensation for spoiled perishable cargo.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "substitute for",
+    "meaning": "〜の代用",
+    "example": "Rice bran serves as a natural substitute for plastic filler.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "candidate for",
+    "meaning": "〜の候補者",
+    "example": "He is the strongest candidate for the line leader post.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "passion for",
+    "meaning": "〜への情熱",
+    "example": "His genuine passion for food quality inspires everyone.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "remedy for",
+    "meaning": "〜の治療法・改善策",
+    "example": "Frequent inspections are an effective remedy for product defects.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "voucher for",
+    "meaning": "〜の引換券",
+    "example": "Visitors received a voucher for factory outlet discounts.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "preference for",
+    "meaning": "〜への好み",
+    "example": "Retail shoppers show a strong preference for domestic tofu.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "allowance for",
+    "meaning": "〜の考慮・手当",
+    "example": "Line planners make an allowance for periodic machine cleaning.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "basis for",
+    "meaning": "〜の基礎・根拠",
+    "example": "Customer feedback provided the firm basis for redesign.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "capacity for",
+    "meaning": "〜の収容能力・才能",
+    "example": "The cool warehouse has ample capacity for storage pallets.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "credit for",
+    "meaning": "〜への功績・称賛",
+    "example": "The line crew deserves credit for keeping the defect rate zero.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "enthusiasm for",
+    "meaning": "〜への熱意",
+    "example": "New employees displayed real enthusiasm for factory work.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "interest in",
+    "meaning": "〜への興味",
+    "example": "Supermarkets have shown renewed interest in traditional foods.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "confidence in",
+    "meaning": "〜への自信・信頼",
+    "example": "Consistent quality builds consumer confidence in our brand.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "decline in",
+    "meaning": "〜の減少",
+    "example": "Automation triggered a marked decline in packaging errors.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "decrease in",
+    "meaning": "〜の減少",
+    "example": "The plant observed a five percent decrease in power usage.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "increase in",
+    "meaning": "〜の増加",
+    "example": "Seasonal demand prompted an increase in weekly shipments.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "experience in",
+    "meaning": "〜での経験",
+    "example": "He brought extensive experience in automated bottling lines.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "investment in",
+    "meaning": "〜への投資",
+    "example": "Corporate investment in sealing machinery boosted output.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "participation in",
+    "meaning": "〜への参加",
+    "example": "Active worker participation in safety drills is essential.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "progress in",
+    "meaning": "〜の進歩",
+    "example": "Technicians reported progress in troubleshooting the motor.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "success in",
+    "meaning": "〜での成功",
+    "example": "Hard work resulted in great success in regional sales.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "delay in",
+    "meaning": "〜の遅れ",
+    "example": "Heavy highway snow caused a delay in material delivery.",
+    "category": "業務対応・トラブル"
+  },
+  {
+    "word": "drop in",
+    "meaning": "〜の下落",
+    "example": "Lower fuel costs triggered a drop in shipping overhead.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "change in",
+    "meaning": "〜の変化",
+    "example": "A sudden change in packaging specs confused line workers.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "difficulty in",
+    "meaning": "〜における困難",
+    "example": "Operators had no difficulty in learning the new controller.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "expert in",
+    "meaning": "〜の専門家",
+    "example": "We consulted an outside expert in industrial fermentation.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "specialist in",
+    "meaning": "〜の専門家",
+    "example": "The plant appointed a specialist in food container hygiene.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "belief in",
+    "meaning": "〜への信頼・信仰",
+    "example": "The brand upholds an unwavering belief in pure ingredients.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "involvement in",
+    "meaning": "〜への関与",
+    "example": "Worker involvement in small quality groups raises productivity.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "insight into",
+    "meaning": "〜への洞察・知見",
+    "example": "The survey offered valuable insight into shopper habits.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "research into",
+    "meaning": "〜の研究",
+    "example": "The lab completed research into airtight tofu film seals.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "inquiry into",
+    "meaning": "〜の調査",
+    "example": "Inspectors opened an inquiry into conveyor motor friction.",
+    "category": "マーケティング・調査"
+  },
+  {
+    "word": "translation into",
+    "meaning": "〜への翻訳",
+    "example": "The export manual needed accurate translation into English.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "investigation into",
+    "meaning": "〜の調査",
+    "example": "QA completed an investigation into temperature fluctuations.",
+    "category": "マーケティング・調査"
+  },
+  {
+    "word": "comment on",
+    "meaning": "〜へのコメント",
+    "example": "The spokesperson chose not to comment on rumor reports.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "effect on",
+    "meaning": "〜への影響",
+    "example": "The temperature change had an effect on fermentation rates.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "impact on",
+    "meaning": "〜への衝撃・影響",
+    "example": "Solar panels made a positive impact on energy expenditure.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "influence on",
+    "meaning": "〜への影響",
+    "example": "Package appearance has a large influence on consumer choice.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "emphasis on",
+    "meaning": "〜への強調",
+    "example": "The plant chief placed emphasis on strict personal hygiene.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "information on",
+    "meaning": "〜に関する情報",
+    "example": "The handbook provides information on annual paid leave.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "report on",
+    "meaning": "〜に関する報告",
+    "example": "The engineer submitted a report on machine wear and tear.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "tax on",
+    "meaning": "〜への税金",
+    "example": "The government raised the sales tax on luxury groceries.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "advice on",
+    "meaning": "〜に関するアドバイス",
+    "example": "The mentor provided practical advice on factory workflows.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "ban on",
+    "meaning": "〜の禁止",
+    "example": "The plant enacted a total ban on smoking in work zones.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "perspective on",
+    "meaning": "〜の見方・視点",
+    "example": "The keynote speaker offered a fresh perspective on logistics.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "restriction on",
+    "meaning": "〜への制限",
+    "example": "City authorities eased the restriction on commercial truck traffic.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "departure from",
+    "meaning": "〜からの出発・逸脱",
+    "example": "The colorful box is a bold departure from traditional style.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "protection from",
+    "meaning": "〜からの保護",
+    "example": "Coated film offers dependable protection from oxygen.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "excerpt from",
+    "meaning": "〜からの抜粋",
+    "example": "The company newsletter included an excerpt from the speech.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "transition from",
+    "meaning": "〜からの移行",
+    "example": "The rapid transition from manual boxing went very smoothly.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "awareness of",
+    "meaning": "〜の認識",
+    "example": "Safety posters promote awareness of slippery floors.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "cause of",
+    "meaning": "〜の原因",
+    "example": "Moisture ingress was identified as the cause of film leaks.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "knowledge of",
+    "meaning": "〜の知識",
+    "example": "Plant leads must possess thorough knowledge of hygiene rules.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "conference call",
+    "meaning": "電話会議",
+    "example": "The sales director set up a weekly conference call.",
+    "category": "スケジュール・納期"
+  },
+  {
+    "word": "brainstorm ideas",
+    "meaning": "アイデアを出し合う",
+    "example": "The packaging team met to brainstorm ideas for box labels.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "unanimous vote",
+    "meaning": "満場一致の投票",
+    "example": "The union committee approved the bonus by unanimous vote.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "call for a break",
+    "meaning": "休憩を求める",
+    "example": "After three intense hours, the chair decided to call for a break.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "keynote speaker",
+    "meaning": "基調講演者",
+    "example": "An esteemed industry executive was the keynote speaker.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "annual convention",
+    "meaning": "年次大会",
+    "example": "Plant representatives attended the food industry annual convention.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "workshop session",
+    "meaning": "ワークショップ",
+    "example": "Supervisors attended a productive workshop session on robotics.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "panel discussion",
+    "meaning": "パネルディスカッション",
+    "example": "Audience members engaged actively during the panel discussion.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "wrap up a meeting",
+    "meaning": "会議を締めくくる",
+    "example": "The leader moved to wrap up a meeting before lunch began.",
+    "category": "スケジュール・納期"
+  },
+  {
+    "word": "point out",
+    "meaning": "指摘する",
+    "example": "Auditors were careful to point out small labeling flaws.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "bring up an issue",
+    "meaning": "問題を提起する",
+    "example": "The operator chose to bring up an issue during the meeting.",
+    "category": "業務対応・トラブル"
+  },
+  {
+    "word": "address a concern",
+    "meaning": "懸念に対処する",
+    "example": "Management held an open talk to address an employee concern.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "follow-up email",
+    "meaning": "フォローアップ（追跡）メール",
+    "example": "The account executive dispatched a polite follow-up email.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "place an order",
+    "meaning": "注文する",
+    "example": "Clients can place an order directly via our sales portal.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "confirm an order",
+    "meaning": "注文を確認する",
+    "example": "Customer support sent an email to confirm an order today.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "cancel a subscription",
+    "meaning": "購読を解約する",
+    "example": "Customers can cancel a subscription online at any time.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "shipping and handling",
+    "meaning": "送料と手数料",
+    "example": "The final invoice listed free shipping and handling.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "in stock",
+    "meaning": "在庫がある",
+    "example": "All standard natto packs are currently in stock.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "out of stock",
+    "meaning": "在庫切れ",
+    "example": "The popular konjac noodles are temporarily out of stock.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "back order",
+    "meaning": "入荷待ち注文",
+    "example": "Replacement sealing heat bars are now on back order.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "estimated delivery time",
+    "meaning": "配達予定時間",
+    "example": "The logistics carrier sent an estimated delivery time notice.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "track a package",
+    "meaning": "荷物を追跡する",
+    "example": "Buyers can track a package easily using tracking numbers.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "invoice the customer",
+    "meaning": "顧客に請求書を送る",
+    "example": "The billing clerk will invoice the customer by Friday.",
+    "category": "マーケティング・調査"
+  },
+  {
+    "word": "make a payment",
+    "meaning": "支払いをする",
+    "example": "Please make a payment within thirty days of delivery.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "request a refund",
+    "meaning": "払い戻しを要求する",
+    "example": "Dissatisfied buyers may request a refund through customer care.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "exchange a product",
+    "meaning": "商品を交換する",
+    "example": "The retail clerk agreed to exchange a product promptly.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "damaged goods",
+    "meaning": "破損品",
+    "example": "Forklift operators separated damaged goods from shipping stock.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "manufacturing defect",
+    "meaning": "製造上の欠陥",
+    "example": "Strict QC caught a minor manufacturing defect before packing.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "assemble a product",
+    "meaning": "製品を組み立てる",
+    "example": "The robotic arm can assemble a product pack in seconds.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "state-of-the-art facility",
+    "meaning": "最新式の施設",
+    "example": "Our Aso plant is proud of its state-of-the-art facility.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "mass production",
+    "meaning": "大量生産",
+    "example": "The line switched over to mass production of fermented beans.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "quality control",
+    "meaning": "品質管理",
+    "example": "Continuous monitoring ensures perfect food quality control.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "inventory management",
+    "meaning": "在庫管理",
+    "example": "Barcode scanning streamlined cold inventory management.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "business trip",
+    "meaning": "出張",
+    "example": "The marketing lead returned from a productive business trip.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "travel expenses",
+    "meaning": "旅費",
+    "example": "Accounting refunded all approved employee travel expenses.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "book a flight",
+    "meaning": "航空便を予約する",
+    "example": "She had to book a flight to Tokyo on short notice.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "check in at the hotel",
+    "meaning": "ホテルにチェックインする",
+    "example": "Tourists check in at the hotel after three o'clock.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "reimburse expenses",
+    "meaning": "経費を精算（払い戻し）する",
+    "example": "The finance group will reimburse expenses by the fifteenth.",
+    "category": "財務・経営管理"
+  },
+  {
+    "word": "itinerary",
+    "meaning": "旅行日程",
+    "example": "The corporate agency provided a complete business itinerary.",
+    "category": "スケジュール・納期"
+  },
+  {
+    "word": "sightseeing tour",
+    "meaning": "観光ツアー",
+    "example": "Foreign guests joined a relaxed sightseeing tour around Aso.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "shuttle service",
+    "meaning": "送迎サービス",
+    "example": "The airport hotel operates a free express shuttle service.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "public transportation",
+    "meaning": "公共交通機関",
+    "example": "Most factory commuters rely on local public transportation.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "local branch",
+    "meaning": "現地支店",
+    "example": "Inquiries should be directed to your local sales branch.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "headquarters",
+    "meaning": "本社",
+    "example": "Strategic marketing directions originate from headquarters.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "subsidiary company",
+    "meaning": "子会社",
+    "example": "The corporation established an overseas subsidiary company.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "merger and acquisition",
+    "meaning": "合併と買収",
+    "example": "Top executives are handling a delicate merger and acquisition.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "press release",
+    "meaning": "プレスリリース",
+    "example": "The company issued an upbeat press release this morning.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "market share",
+    "meaning": "市場シェア",
+    "example": "The brand captured thirty percent of regional market share.",
+    "category": "マーケティング・調査"
+  },
+  {
+    "word": "advertising campaign",
+    "meaning": "広告キャンペーン",
+    "example": "Billboards boosted the television advertising campaign.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "target audience",
+    "meaning": "ターゲット層",
+    "example": "Health-conscious families are the prime target audience.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "potential customer",
+    "meaning": "潜在顧客",
+    "example": "Supermarket food tasting events reach every potential customer.",
+    "category": "マーケティング・調査"
+  },
+  {
+    "word": "customer loyalty",
+    "meaning": "顧客の忠実度",
+    "example": "High ingredient quality generates strong customer loyalty.",
+    "category": "マーケティング・調査"
+  },
+  {
+    "word": "brand awareness",
+    "meaning": "ブランド認知度",
+    "example": "Digital promotion expanded our nationwide brand awareness.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "financial statement",
+    "meaning": "財務諸表",
+    "example": "The board audited the year-end financial statement carefully.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "fiscal year",
+    "meaning": "会計年度",
+    "example": "Sales hit record highs during the preceding fiscal year.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "profit margin",
+    "meaning": "利益率",
+    "example": "Lower bulk transport costs improved our net profit margin.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "budget allocation",
+    "meaning": "予算配分",
+    "example": "The plant received a larger budget allocation for machinery.",
+    "category": "財務・経営管理"
+  },
+  {
+    "word": "tax return",
+    "meaning": "確定申告（納税申告）",
+    "example": "The accountant submitted the company tax return accurately.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "apply for a loan",
+    "meaning": "ローンを申し込む",
+    "example": "Entrepreneurs often apply for a loan to fund factory expansion.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "interest rate",
+    "meaning": "金利",
+    "example": "Commercial banks decided to keep the loan interest rate low.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "bank account statement",
+    "meaning": "銀行口座明細",
+    "example": "Review your monthly bank account statement for extra fees.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "billing cycle",
+    "meaning": "請求サイクル",
+    "example": "Invoices are generated regularly per monthly billing cycle.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "outstanding balance",
+    "meaning": "未払残高",
+    "example": "Customers can clear their outstanding balance online.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "late fee",
+    "meaning": "延滞料金",
+    "example": "The utility company waived the ten-dollar late fee.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "insurance policy",
+    "meaning": "保険証券",
+    "example": "The plant renewed its industrial hazard insurance policy.",
+    "category": "社内規定・人事"
+  },
+  {
+    "word": "claim compensation",
+    "meaning": "補償を請求する",
+    "example": "The shipper filed papers to claim compensation for loss.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "premium payment",
+    "meaning": "保険料の支払い",
+    "example": "The finance team authorizes the annual premium payment.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "real estate agency",
+    "meaning": "不動産業者",
+    "example": "The manager consulted a trusted real estate agency.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "property management",
+    "meaning": "物件管理",
+    "example": "A specialized firm oversees plant property management.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "residential area",
+    "meaning": "住宅街",
+    "example": "Commercial trucks drive slowly through the residential area.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "commercial space",
+    "meaning": "商業スペース",
+    "example": "The downtown building has newly renovated commercial space.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "lease agreement",
+    "meaning": "賃貸契約",
+    "example": "Both signatories initialed the multi-year lease agreement.",
+    "category": "契約・交渉"
+  },
+  {
+    "word": "monthly rent",
+    "meaning": "月極賃料",
+    "example": "Tenants wire their monthly rent by the first of each month.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "security deposit",
+    "meaning": "敷金（保証金）",
+    "example": "The property owner requested a one-month security deposit.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "utility bill",
+    "meaning": "公共料金",
+    "example": "Energy efficiency upgrades lowered our monthly utility bill.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "interior renovation",
+    "meaning": "内装リフォーム",
+    "example": "The factory cafeteria finished its interior renovation.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "maintenance request",
+    "meaning": "修理・メンテナンス依頼",
+    "example": "Floor staff submitted a maintenance request for the conveyor.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "move into a suite",
+    "meaning": "（オフィスの）一室に入居する",
+    "example": "The marketing division will move into a suite next week.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "landlord and tenant",
+    "meaning": "大家と店主",
+    "example": "A clear contract benefits both landlord and tenant.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "office supplies",
+    "meaning": "事務用品",
+    "example": "The administrative clerk ordered essential office supplies.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "purchase order",
+    "meaning": "発注書",
+    "example": "Suppliers received our electronic purchase order today.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "reorder point",
+    "meaning": "再発注のタイミング",
+    "example": "Plastic container inventory reached its critical reorder point.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "bulk purchase",
+    "meaning": "まとめ買い",
+    "example": "The factory saved money through bulk purchase of soybeans.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "clerical error",
+    "meaning": "事務的なミス",
+    "example": "The invoice was delayed because of a minor clerical error.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "filing cabinet",
+    "meaning": "書類整理キャビネット",
+    "example": "Confidential personnel folders stay inside the filing cabinet.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "photocopier maintenance",
+    "meaning": "コピー機のメンテナンス",
+    "example": "Technicians arrived for routine photocopier maintenance.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "shred confidential documents",
+    "meaning": "機密書類を裁断する",
+    "example": "Clerks regularly shred confidential documents in the office.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "postage stamp",
+    "meaning": "郵便切手",
+    "example": "He affixed a postage stamp to the express delivery envelope.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "delivery confirmation",
+    "meaning": "配達確認",
+    "example": "The tracking dashboard provides delivery confirmation.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "technical support",
+    "meaning": "技術サポート",
+    "example": "Contact technical support if the packaging monitor freezes.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "software upgrade",
+    "meaning": "ソフトウェアの更新",
+    "example": "The IT crew will install the software upgrade at midnight.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "troubleshooting guide",
+    "meaning": "トラブルシューティングガイド",
+    "example": "Check the troubleshooting guide when sensor alarms go off.",
+    "category": "業務対応・トラブル"
+  },
+  {
+    "word": "compatible with",
+    "meaning": "〜と互換性がある",
+    "example": "The new filling machine is compatible with existing trays.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "user manual",
+    "meaning": "取扱説明書",
+    "example": "Read the user manual thoroughly before operating robotics.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "system failure",
+    "meaning": "システム障害",
+    "example": "A sudden system failure brought packing lines to a halt.",
+    "category": "業務対応・トラブル"
+  },
+  {
+    "word": "data security",
+    "meaning": "データセキュリティ",
+    "example": "Our internal cloud enforces strict data security policies.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "backup file",
+    "meaning": "バックアップファイル",
+    "example": "Always store the backup file on a separate server drive.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "installation process",
+    "meaning": "インストール手順",
+    "example": "The setup prompt makes the installation process effortless.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "log in to the portal",
+    "meaning": "ポータルにログインする",
+    "example": "Employees log in to the portal using their ID and password.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "reset a password",
+    "meaning": "パワードをリセットする",
+    "example": "Users can click the link to reset a password easily.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "web browsing",
+    "meaning": "ウェブの閲覧",
+    "example": "Unrestricted web browsing is disabled on factory computers.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "customer service representative",
+    "meaning": "カスタマーサービス担当者",
+    "example": "The customer service representative resolved the question.",
+    "category": "マーケティング・調査"
+  },
+  {
+    "word": "handling complaints",
+    "meaning": "苦情処理",
+    "example": "Professional handling complaints training improves ratings.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "resolve a dispute",
+    "meaning": "紛争を解決する",
+    "example": "Mediators worked to resolve a dispute between distributors.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "satisfaction survey",
+    "meaning": "満足度調査",
+    "example": "Shoppers can complete a satisfaction survey after checkout.",
+    "category": "マーケティング・調査"
+  },
+  {
+    "word": "loyal customer",
+    "meaning": "常連客",
+    "example": "Every loyal customer receives special seasonal discount codes.",
+    "category": "マーケティング・調査"
+  },
+  {
+    "word": "inquire about",
+    "meaning": "〜について問い合わせる",
+    "example": "Buyers often inquire about product shelf-life and storage.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "refer to a specialist",
+    "meaning": "専門家に照会する",
+    "example": "General staff will refer to a specialist for motor repairs.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "membership benefits",
+    "meaning": "会員特典",
+    "example": "Express delivery is included among membership benefits.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "subscription fee",
+    "meaning": "購読料（会費）",
+    "example": "The service charges a modest monthly subscription fee.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "frequently asked questions",
+    "meaning": "よくある質問（FAQ）",
+    "example": "Browse frequently asked questions for immediate answers.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "contact information",
+    "meaning": "連絡先情報",
+    "example": "Keep your emergency contact information updated with HR.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "company policy",
+    "meaning": "社内規定",
+    "example": "Company policy prohibits unauthorized photos in the plant.",
+    "category": "社内規定・人事"
+  },
+  {
+    "word": "safety regulations",
+    "meaning": "安全規則",
+    "example": "Protective boots are required by plant safety regulations.",
+    "category": "社内規定・人事"
+  },
+  {
+    "word": "dress code",
+    "meaning": "服装規定",
+    "example": "The factory clean room dress code requires hairnets and masks.",
+    "category": "社内規定・人事"
+  },
+  {
+    "word": "employee handbook",
+    "meaning": "従業員ハンドブック",
+    "example": "Orientation includes reading the updated employee handbook.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "strictly prohibited",
+    "meaning": "厳格に禁止されている",
+    "example": "Eating near the packaging line is strictly prohibited.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "under construction",
+    "meaning": "建設中",
+    "example": "The new cold distribution warehouse is under construction.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "renovation project",
+    "meaning": "改修プロジェクト",
+    "example": "The factory completed its floor renovation project on time.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "architectural firm",
+    "meaning": "建築事務所",
+    "example": "An architectural firm planned the new factory extension.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "blueprint",
+    "meaning": "設計図",
+    "example": "The site supervisor inspected the packaging line blueprint.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "opening ceremony",
+    "meaning": "開会式",
+    "example": "Local leaders were invited to the factory opening ceremony.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "ribbon-cutting",
+    "meaning": "テープカット",
+    "example": "The mayor took part in the store ribbon-cutting event.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "grand opening",
+    "meaning": "グランドオープン",
+    "example": "Shoppers enjoyed big discounts during the grand opening.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "commemorative gift",
+    "meaning": "記念品",
+    "example": "Guests at the anniversary party got a commemorative gift.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "press conference",
+    "meaning": "記者会見",
+    "example": "Executives answered tough queries during the press conference.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "media coverage",
+    "meaning": "メディア報道",
+    "example": "The regional festival earned widespread media coverage.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "public relations",
+    "meaning": "広報（PR）",
+    "example": "The public relations officer released the annual statement.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "charity event",
+    "meaning": "チャリティイベント",
+    "example": "Employees volunteered at an annual community charity event.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "fundraising campaign",
+    "meaning": "資金調達キャンペーン",
+    "example": "The charity launched an online fundraising campaign.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "non-profit organization",
+    "meaning": "非営利団体（NPO）",
+    "example": "The company donated surplus canned goods to a non-profit organization.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "community service",
+    "meaning": "地域奉仕",
+    "example": "The factory team took part in local park community service.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "environmental impact",
+    "meaning": "環境への影響",
+    "example": "Thinner tray film reduces our factory environmental impact.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "sustainable energy",
+    "meaning": "持続可能エネルギー",
+    "example": "Solar installations supply sustainable energy to our plant.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "waste management",
+    "meaning": "廃棄物管理",
+    "example": "Proper waste management keeps plant floors tidy and safe.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "recycle materials",
+    "meaning": "資材をリサイクルする",
+    "example": "Packing lines recycle materials whenever possible.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "energy conservation",
+    "meaning": "省エネ",
+    "example": "Efficient LED lights contribute to factory energy conservation.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "legal action",
+    "meaning": "法的措置",
+    "example": "The enterprise considered legal action against copyright theft.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "comply with the law",
+    "meaning": "法律を遵守する",
+    "example": "All factory operations strictly comply with the law.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "violate a regulation",
+    "meaning": "規制に違反する",
+    "example": "Ignoring waste disposal rules will violate a regulation.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "intellectual property",
+    "meaning": "知的財産",
+    "example": "Proprietary packaging designs are company intellectual property.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "copyright infringement",
+    "meaning": "著作権侵害",
+    "example": "Copying external illustrations constitutes copyright infringement.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "patent application",
+    "meaning": "特許出願",
+    "example": "The R&D group finalized a patent application for easy-open seals.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "authorized dealer",
+    "meaning": "正規販売店",
+    "example": "Buy factory parts solely from an authorized dealer.",
+    "category": "マーケティング・調査"
+  },
+  {
+    "word": "warranty period",
+    "meaning": "保証期間",
+    "example": "Conveyor repairs are fully covered during the warranty period.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "manufacturer's defect",
+    "meaning": "メーカー側の欠陥",
+    "example": "The return policy replaces parts with a manufacturer's defect.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "return policy",
+    "meaning": "返品規定",
+    "example": "The supermarket's return policy allows exchanges for thirty days.",
+    "category": "社内規定・人事"
+  },
+  {
+    "word": "labor union",
+    "meaning": "労働組合",
+    "example": "Management meets quarterly with the local labor union.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "collective bargaining",
+    "meaning": "団体交渉",
+    "example": "Wage adjustments were decided through collective bargaining.",
+    "category": "契約・交渉"
+  },
+  {
+    "word": "salary increase",
+    "meaning": "昇給",
+    "example": "Consistent attendance helped him achieve a salary increase.",
+    "category": "ビジネス一般"
+  },
+  {
+    "word": "retirement plan",
+    "meaning": "退職年金制度",
+    "example": "Employees can contribute monthly to a company retirement plan.",
+    "category": "社内規定・人事"
+  },
+  {
+    "word": "annual leave",
+    "meaning": "年次休暇",
+    "example": "Submit requests for summer annual leave at least two weeks early.",
+    "category": "ビジネス一般"
+  }
+]

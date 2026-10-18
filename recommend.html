@@ -1,0 +1,213 @@
+<!-- 対象ファイル: recommend.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- キャッシュ完全無効化 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <title>おすすめ教材 | TOEIC RE:BOOT 730</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Inter:wght@600;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #f1f5f9;
+      font-family: 'Noto Sans JP', 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    .base-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-slate-950">
+
+  <!-- ヘッダー -->
+  <header class="sticky top-0 z-50 bg-[#0f172a]/95 backdrop-blur border-b border-slate-700 px-4 py-3.5">
+    <div class="max-w-xl mx-auto flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 text-slate-300 hover:text-sky-400 font-bold text-sm transition">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>ポータルへ戻る</span>
+      </a>
+      <span class="text-xs font-mono font-bold text-sky-400 bg-sky-950/80 px-2.5 py-1 rounded border border-sky-800">
+        RECOMMEND
+      </span>
+    </div>
+  </header>
+
+  <!-- メインコンテナ -->
+  <main class="max-w-xl mx-auto px-4 py-6 space-y-6 flex-1 w-full">
+
+    <!-- ページ見出し ＆ 文頭PR表記 -->
+    <div class="space-y-3">
+      <!-- 文頭の控えめなPR表記 -->
+      <div class="inline-flex items-center gap-1.5 text-[11px] text-slate-400 bg-slate-900 px-2.5 py-1 rounded-md border border-slate-800">
+        <span class="font-bold text-amber-400">PR</span>
+        <span>Amazonアソシエイトのリンクを含みます</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-3xl font-black text-white leading-tight">
+        実際に使って役立った教材
+      </h1>
+      <p class="text-sm text-slate-300 leading-relaxed">
+        あれこれ手を出しても消化不良になるだけでした。この本は合わないと思ったら買ってもすぐに本棚へ。これが大人の財力です（笑）。300点台から730点に到達する過程で、最後まで手元に残った4冊です。
+      </p>
+    </div>
+
+    <!-- 教材リスト -->
+    <div class="space-y-5">
+
+      <!-- 1. 公式問題集 -->
+      <section class="base-card p-5 sm:p-6 rounded-2xl border-slate-700 space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-amber-400 bg-amber-950/80 px-2.5 py-0.5 rounded border border-amber-800">
+            軸にした本
+          </span>
+          <span class="text-xs font-mono text-slate-400">ETS公認</span>
+        </div>
+        <h2 class="text-lg font-bold text-white leading-snug">
+          公式TOEIC Listening & Reading 問題集
+        </h2>
+        <div class="text-xs sm:text-sm text-slate-300 space-y-2 leading-relaxed">
+          <p>
+            正解した問題も含めて、必ず何度も使うことを強くお勧めします。満点をとってからも時間を測ってどれだけ回答時間を短縮できるか何度も使いました。
+          </p>
+          <p>
+            本番と同じナレーターの声とイントネーション！！！に慣れておかないと、テスト当日に耳が追いつきません。市販の予想問題集に迷走するくらいなら、公式問題集を最低新しいものから2冊用意してボロボロになるまで回すほうが確実です。
+          </p>
+        </div>
+        <div class="pt-2">
+          <a href="https://link.amazon/B0eyPf0EX" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-400 text-amber-300 hover:text-white text-xs font-bold transition flex items-center justify-between shadow">
+            <span>Amazonで確認する</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- 2. でる1000問 -->
+      <section class="base-card p-5 sm:p-6 rounded-2xl border-slate-700 space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-sky-400 bg-sky-950/80 px-2.5 py-0.5 rounded border border-sky-800">
+            Part 5 対策
+          </span>
+          <span class="text-xs font-mono text-slate-400">アスク出版</span>
+        </div>
+        <h2 class="text-lg font-bold text-white leading-snug">
+          TOEIC L&R テスト 文法問題 でる1000問
+        </h2>
+        <div class="text-xs sm:text-sm text-slate-300 space-y-2 leading-relaxed">
+          <p>
+            Part 5は「1問15秒で見切る」感覚を身体に覚えさせる必要があります。
+          </p>
+          <p>
+            理屈も当然大事ですが、空所の前後を見てパターンで判断する練習に最適でした。分厚いですが、同じ論点を繰り返し出してくるので逆にそこがお勧めポイントの1冊です。
+          </p>
+        </div>
+        <div class="pt-2">
+          <a href="https://link.amazon/B0iwl6Np1" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-sky-400 text-sky-300 hover:text-white text-xs font-bold transition flex items-center justify-between shadow">
+            <span>Amazonで確認する</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- 3. 金のフレーズ -->
+      <section class="base-card p-5 sm:p-6 rounded-2xl border-slate-700 space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-emerald-400 bg-emerald-950/80 px-2.5 py-0.5 rounded border border-emerald-800">
+            単語・語彙
+          </span>
+          <span class="text-xs font-mono text-slate-400">朝日新聞出版</span>
+        </div>
+        <h2 class="text-lg font-bold text-white leading-snug">
+          ［増補改訂版］TOEIC L&R TEST 出る単特急 金のフレーズ
+        </h2>
+        <div class="text-xs sm:text-sm text-slate-300 space-y-2 leading-relaxed">
+          <p>
+            全世代対応の王道の単語集です。今は改訂版に進化しています。かなり助けられました。
+          </p>
+          <p>
+            1単語に時間をかけず、1秒1単語のテンポで何周もめくって目に焼き付けるやり方に合っていました。TOEICに出るフレーズだけが並んでいるので無駄がありません。銀フレもお勧めです。
+          </p>
+        </div>
+        <div class="pt-2">
+          <a href="https://link.amazon/B014hvYYY" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-emerald-400 text-emerald-300 hover:text-white text-xs font-bold transition flex items-center justify-between shadow">
+            <span>Amazonで確認する</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- 4. パート1・2特急II 難問240 -->
+      <section class="base-card p-5 sm:p-6 rounded-2xl border-slate-700 space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-rose-400 bg-rose-950/80 px-2.5 py-0.5 rounded border border-rose-800">
+            Part 2 対策
+          </span>
+          <span class="text-xs font-mono text-slate-400">朝日新聞出版</span>
+        </div>
+        <h2 class="text-lg font-bold text-white leading-snug">
+          TOEIC L&R TEST パート1・2特急Ⅱ 出る問 難問240
+        </h2>
+        <div class="text-xs sm:text-sm text-slate-300 space-y-2 leading-relaxed">
+          <p>
+            最近のPart 2はストレートな返答が少なく、「そんな答え方する？」というひねった応答が増えています。
+          </p>
+          <p>
+            Part 3・4の長文を追いかける前に、まずは短いやり取りで確実に落とさない耳を作るのに公式問題集とこちらの本が一番役立ちました。移動中のスキマ時間に回しやすいサイズ感も助かります。
+          </p>
+        </div>
+        <div class="pt-2">
+          <a href="https://link.amazon/B0cjpTik9" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-rose-400 text-rose-300 hover:text-white text-xs font-bold transition flex items-center justify-between shadow">
+            <span>Amazonで確認する</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- 文末の自然な注記（PR・自腹購入の明記） -->
+    <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-400 leading-relaxed space-y-1">
+      <div class="font-bold text-slate-300 flex items-center gap-1.5">
+        <i class="fa-solid fa-circle-info text-sky-400"></i>
+        <span>リンクについてのおことわり</span>
+      </div>
+      <p>
+        当ページに掲載している本はすべて自腹で購入し、実際にボロボロになるまで使ったものです。上のリンク（Amazonアソシエイト）を経由して購入された場合、運営者に少額の紹介料が入ります。サイトの維持・運用費に充てさせていただきます。
+      </p>
+    </div>
+
+    <!-- ポータルへ戻るボタン -->
+    <div class="pt-1 pb-4">
+      <a href="index.html" class="w-full py-3 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-sky-400 text-slate-300 hover:text-white text-xs font-bold transition flex items-center justify-center gap-2">
+        <i class="fa-solid fa-arrow-left text-sky-400"></i>
+        <span>ポータルへ戻る</span>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="text-center text-xs text-slate-500 py-6 border-t border-slate-800">
+    <p class="font-bold text-slate-400">TOEIC RE:BOOT 730 Architecture &copy; 2026</p>
+  </footer>
+
+</body>
+</html>

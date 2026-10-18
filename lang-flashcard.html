@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collocation Flashcards | Knowledge & Training Hub</title>
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #0a0e17;
+            color: #e2e8f0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            min-height: 100vh;
+        }
+        .glass-card {
+            background: rgba(16, 24, 39, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Top Navigation / Header -->
+    <header class="glass-card sticky top-0 z-40 border-b border-slate-800 px-4 py-3">
+        <div class="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="text-slate-400 hover:text-cyan-400 transition-colors p-1" title="ポータルへ戻る">
+    		<i class="fa-solid fa-arrow-left text-lg"></i>
+		</a>
+                <h1 class="text-lg font-bold text-white tracking-wide flex items-center gap-2">
+                    <i class="fa-solid fa-layer-group text-cyan-400"></i>
+                    <span>コロケーション特訓</span>
+                </h1>
+            </div>
+
+            <!-- Deck Selector -->
+            <div class="flex items-center gap-2">
+                <label for="deckSelector" class="text-xs text-slate-400 font-medium hidden sm:inline">辞書:</label>
+                <select id="deckSelector" class="bg-slate-900 border border-slate-700 text-cyan-300 text-xs sm:text-sm rounded-lg px-2.5 py-1.5 focus:ring-1 focus:ring-cyan-500 focus:outline-none">
+                    <option value="collocation" selected>標準コロケーション</option>
+                    <option value="make">基本動詞: make </option>
+                    <option value="have">基本動詞: have </option>
+                    <option value="get">基本動詞: get </option>
+                    <option value="take">基本動詞: take </option>
+                </select>
+            </div>
+
+            <!-- Controls: Font Resize & List -->
+            <div class="flex items-center space-x-2">
+                <div class="flex items-center bg-slate-800/80 rounded-lg p-0.5 border border-slate-700 text-xs">
+                    <button id="btnFontDown" class="px-2 py-1 text-slate-300 hover:text-white hover:bg-slate-700 rounded transition" title="文字を小さく">A-</button>
+                    <button id="btnFontUp" class="px-2 py-1 text-slate-300 hover:text-white hover:bg-slate-700 rounded transition" title="文字を大きく">A+</button>
+                </div>
+                <button id="btnOpenList" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1.5 rounded-lg border border-slate-700 text-xs flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span class="hidden sm:inline">一覧</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-4xl w-full mx-auto p-4 flex flex-col justify-center">
+
+        <!-- Progress and Filter Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4 text-xs sm:text-sm">
+            <div class="flex items-center gap-2">
+                <span id="progressText" class="font-semibold text-cyan-400">1 / 10</span>
+                <span class="text-slate-500">|</span>
+                <label for="chunkSelect" class="text-slate-400">出題:</label>
+                <select id="chunkSelect" class="bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded px-2 py-1 focus:outline-none">
+                    <option value="10">10問</option>
+                    <option value="20">20問</option>
+                    <option value="50">50問</option>
+                    <option value="all">全問</option>
+                </select>
+            </div>
+
+            <!-- Mode Selector: All vs Only Unmastered -->
+            <div class="flex items-center gap-1.5 bg-slate-900 p-1 rounded-lg border border-slate-800">
+                <button id="btnModeAll" class="px-3 py-1 rounded text-xs font-medium transition bg-cyan-600 text-white">すべて</button>
+                <button id="btnModeUnmastered" class="px-3 py-1 rounded text-xs font-medium transition text-slate-400 hover:text-white flex items-center gap-1">
+                    <i class="fa-solid fa-circle-xmark text-rose-400 text-[11px]"></i>
+                    <span>未習得のみ (<span id="unmasteredCountBadge">0</span>)</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Flashcard Flip Area -->
+        <div class="perspective-1000 w-full mb-4">
+            <div id="cardInner" class="relative w-full h-80 sm:h-96 transform-style-3d transition-transform duration-500 cursor-pointer select-none">
+                
+                <!-- FRONT SIDE (English) -->
+                <div class="absolute inset-0 w-full h-full glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between backface-hidden shadow-2xl border border-slate-700/60">
+                    <div class="flex items-center justify-between">
+                        <span id="cardCategoryFront" class="text-xs px-2.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-800 text-cyan-300 font-medium tracking-wide">
+                            カテゴリ
+                        </span>
+                        <div class="flex items-center space-x-2">
+                            <button id="btnTTSFront" class="text-slate-400 hover:text-cyan-400 p-2 transition text-lg" title="発音を聞く">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </button>
+                            <span id="statusIndicatorFront" class="text-xs px-2 py-0.5 rounded-full border hidden"></span>
+                        </div>
+                    </div>
+
+                    <div class="text-center my-auto px-2">
+                        <div id="cardWord" class="font-bold text-white tracking-wide transition-all duration-200 text-2xl sm:text-3xl mb-4">
+                            Word Loading...
+                        </div>
+                        <div id="cardExampleFront" class="italic text-slate-300 transition-all duration-200 text-sm sm:text-base leading-relaxed">
+                            "Example sentence goes here."
+                        </div>
+                    </div>
+
+                    <div class="text-center text-slate-500 text-xs flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-rotate"></i>
+                        <span>タップ または スペースキー でめくる</span>
+                    </div>
+                </div>
+
+                <!-- BACK SIDE (Japanese) -->
+                <div class="absolute inset-0 w-full h-full glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between backface-hidden rotate-y-180 shadow-2xl border border-cyan-700/50 bg-[#0d1626]">
+                    <div class="flex items-center justify-between">
+                        <span id="cardCategoryBack" class="text-xs px-2.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-800 text-cyan-300 font-medium tracking-wide">
+                            カテゴリ
+                        </span>
+                        <div class="flex items-center space-x-2">
+                            <button id="btnTTSBack" class="text-slate-400 hover:text-cyan-400 p-2 transition text-lg" title="発音を聞く">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </button>
+                            <span id="statusIndicatorBack" class="text-xs px-2 py-0.5 rounded-full border hidden"></span>
+                        </div>
+                    </div>
+
+                    <div class="text-center my-auto px-2">
+                        <div id="cardMeaning" class="font-extrabold text-cyan-300 transition-all duration-200 text-2xl sm:text-3xl mb-3">
+                            和訳読み込み中...
+                        </div>
+                        <div id="cardWordSmall" class="text-slate-400 text-sm tracking-wide mb-3">
+                            Original Collocation
+                        </div>
+                        <!-- Example Japanese Translation (Hidden if not present) -->
+                        <div id="cardExampleBack" class="text-slate-300 text-xs sm:text-sm bg-slate-900/60 p-2.5 rounded-lg border border-slate-800 hidden leading-relaxed">
+                            例文訳
+                        </div>
+                    </div>
+
+                    <div class="text-center text-slate-500 text-xs flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-rotate"></i>
+                        <span>タップ または スペースキー で表面に戻る</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Mastered / Unmastered Action Bar -->
+        <div class="grid grid-cols-2 gap-3 mb-4">
+            <button id="btnMarkUnmastered" class="bg-rose-950/40 hover:bg-rose-900/60 border border-rose-800/80 text-rose-300 py-2.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition active:scale-95 shadow-lg">
+                <i class="fa-solid fa-circle-xmark text-rose-400 text-base"></i>
+                <span>できなかった (↓)</span>
+            </button>
+            <button id="btnMarkMastered" class="bg-emerald-950/40 hover:bg-emerald-900/60 border border-emerald-800/80 text-emerald-300 py-2.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition active:scale-95 shadow-lg">
+                <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+                <span>できた (↑)</span>
+            </button>
+        </div>
+
+        <!-- Controls: Prev, Flip, Next -->
+        <div class="flex items-center justify-center gap-4">
+            <button id="btnPrev" class="glass-card hover:bg-slate-800 text-slate-300 px-5 py-2.5 rounded-xl border border-slate-700 text-xs sm:text-sm font-medium flex items-center gap-2 transition active:scale-95">
+                <i class="fa-solid fa-chevron-left"></i>
+                <span class="hidden sm:inline">前へ (←)</span>
+            </button>
+            <button id="btnFlip" class="bg-cyan-600 hover:bg-cyan-500 text-white px-8 py-2.5 rounded-xl font-bold shadow-lg shadow-cyan-900/40 text-xs sm:text-sm flex items-center gap-2 transition active:scale-95">
+                <i class="fa-solid fa-repeat"></i>
+                <span>めくる (Space)</span>
+            </button>
+            <button id="btnNext" class="glass-card hover:bg-slate-800 text-slate-300 px-5 py-2.5 rounded-xl border border-slate-700 text-xs sm:text-sm font-medium flex items-center gap-2 transition active:scale-95">
+                <span class="hidden sm:inline">次へ (→)</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </main>
+
+    <!-- Modal: Searchable Word List with Checkboxes -->
+    <div id="listModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="glass-card border border-slate-700 rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl">
+            <!-- Modal Header -->
+            <div class="p-4 border-b border-slate-800 flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-book-open text-cyan-400"></i>
+                    <h2 class="text-sm font-bold text-white">語彙一覧（レ点で「できた」切り替え）</h2>
+                </div>
+                <button id="btnCloseList" class="text-slate-400 hover:text-white p-1 text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <!-- Modal Search Input -->
+            <div class="p-3 border-b border-slate-800 bg-slate-900/50">
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-500 text-xs"></i>
+                    <input type="text" id="modalSearchInput" placeholder="英語や日本語で絞り込み..." class="w-full bg-slate-900 border border-slate-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500">
+                </div>
+            </div>
+            <!-- Modal List Content -->
+            <div id="modalListContent" class="p-3 overflow-y-auto custom-scrollbar flex-1 space-y-2 text-xs">
+                <!-- Word items generated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Script: Vanilla JS Logic -->
+    <script>
+        // Data Files Configuration
+        const DECK_CONFIG = {
+            collocation: { file: 'words.json', storageKey: 'deck_progress_collocation' },
+            make:        { file: 'words-make.json', storageKey: 'deck_progress_make' },
+            have:        { file: 'words-have.json', storageKey: 'deck_progress_have' },
+            get:         { file: 'words-get.json', storageKey: 'deck_progress_get' },
+            take:        { file: 'words-take.json', storageKey: 'deck_progress_take' }
+        };
+
+        let currentDeck = 'collocation';
+        let rawWords = [];
+        let activePool = [];
+        let currentIndex = 0;
+        let isFlipped = false;
+        let isOnlyUnmastered = false;
+
+        // Font Size Level (0: normal, 1: large, 2: extra large)
+        let fontSizeLevel = parseInt(localStorage.getItem('quiz_font_level') || '0', 10);
+
+        // Elements
+        const deckSelector = document.getElementById('deckSelector');
+        const cardInner = document.getElementById('cardInner');
+        const cardWord = document.getElementById('cardWord');
+        const cardExampleFront = document.getElementById('cardExampleFront');
+        const cardCategoryFront = document.getElementById('cardCategoryFront');
+        const cardMeaning = document.getElementById('cardMeaning');
+        const cardWordSmall = document.getElementById('cardWordSmall');
+        const cardExampleBack = document.getElementById('cardExampleBack');
+        const cardCategoryBack = document.getElementById('cardCategoryBack');
+        const statusIndicatorFront = document.getElementById('statusIndicatorFront');
+        const statusIndicatorBack = document.getElementById('statusIndicatorBack');
+        const progressText = document.getElementById('progressText');
+        const chunkSelect = document.getElementById('chunkSelect');
+        const btnPrev = document.getElementById('btnPrev');
+        const btnNext = document.getElementById('btnNext');
+        const btnFlip = document.getElementById('btnFlip');
+        const btnModeAll = document.getElementById('btnModeAll');
+        const btnModeUnmastered = document.getElementById('btnModeUnmastered');
+        const unmasteredCountBadge = document.getElementById('unmasteredCountBadge');
+        const btnMarkMastered = document.getElementById('btnMarkMastered');
+        const btnMarkUnmastered = document.getElementById('btnMarkUnmastered');
+        const btnTTSFront = document.getElementById('btnTTSFront');
+        const btnTTSBack = document.getElementById('btnTTSBack');
+        const btnFontUp = document.getElementById('btnFontUp');
+        const btnFontDown = document.getElementById('btnFontDown');
+
+        // Modal Elements
+        const listModal = document.getElementById('listModal');
+        const btnOpenList = document.getElementById('btnOpenList');
+        const btnCloseList = document.getElementById('btnCloseList');
+        const modalSearchInput = document.getElementById('modalSearchInput');
+        const modalListContent = document.getElementById('modalListContent');
+
+        // Storage Helpers: Storing master list of "mastered words"
+        function getMasteredWords() {
+            const key = DECK_CONFIG[currentDeck].storageKey;
+            try {
+                return JSON.parse(localStorage.getItem(key)) || [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveMasteredWords(list) {
+            const key = DECK_CONFIG[currentDeck].storageKey;
+            localStorage.setItem(key, JSON.stringify(list));
+            updateBadges();
+        }
+
+        function isCurrentMastered() {
+            if (!activePool.length) return false;
+            const currentItem = activePool[currentIndex];
+            return getMasteredWords().includes(currentItem.word);
+        }
+
+        function updateBadges() {
+            const mastered = getMasteredWords();
+            const unmasteredCount = Math.max(0, rawWords.length - mastered.length);
+            unmasteredCountBadge.textContent = unmasteredCount;
+        }
+
+        // Apply Font Size
+        function applyFontSize() {
+            const sizesWord = ['text-2xl sm:text-3xl', 'text-3xl sm:text-4xl', 'text-4xl sm:text-5xl'];
+            const sizesExample = ['text-sm sm:text-base', 'text-base sm:text-lg', 'text-lg sm:text-xl'];
+            const sizesMeaning = ['text-2xl sm:text-3xl', 'text-3xl sm:text-4xl', 'text-4xl sm:text-5xl'];
+
+            cardWord.className = `font-bold text-white tracking-wide transition-all duration-200 mb-4 ${sizesWord[fontSizeLevel]}`;
+            cardExampleFront.className = `italic text-slate-300 transition-all duration-200 leading-relaxed ${sizesExample[fontSizeLevel]}`;
+            cardMeaning.className = `font-extrabold text-cyan-300 transition-all duration-200 mb-3 ${sizesMeaning[fontSizeLevel]}`;
+
+            localStorage.setItem('quiz_font_level', fontSizeLevel.toString());
+        }
+
+        // Load Deck JSON
+        async function loadDeck(deckKey) {
+            currentDeck = deckKey;
+            const target = DECK_CONFIG[deckKey];
+            try {
+                const response = await fetch(target.file);
+                if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+                rawWords = await response.json();
+                isOnlyUnmastered = false;
+                btnModeAll.classList.replace('text-slate-400', 'text-white');
+                btnModeAll.classList.add('bg-cyan-600');
+                btnModeUnmastered.classList.remove('bg-cyan-600', 'text-white');
+                btnModeUnmastered.classList.add('text-slate-400');
+                setupPool();
+                updateBadges();
+            } catch (err) {
+                console.error("Failed to load deck:", err);
+                cardWord.textContent = "読み込みエラー";
+                cardMeaning.textContent = `${target.file} が見つかりません。`;
+            }
+        }
+
+        // Setup Pool
+        function setupPool() {
+            const mastered = getMasteredWords();
+            let baseList = isOnlyUnmastered 
+                ? rawWords.filter(item => !mastered.includes(item.word))
+                : [...rawWords];
+
+            if (isOnlyUnmastered && baseList.length === 0) {
+                alert("おめでとうございます！すべての単語を習得済みです。「すべて」モードに戻ります。");
+                isOnlyUnmastered = false;
+                btnModeAll.classList.replace('text-slate-400', 'text-white');
+                btnModeAll.classList.add('bg-cyan-600');
+                btnModeUnmastered.classList.remove('bg-cyan-600', 'text-white');
+                btnModeUnmastered.classList.add('text-slate-400');
+                baseList = [...rawWords];
+            }
+
+            const chunkSize = chunkSelect.value;
+            activePool = (chunkSize === 'all') ? baseList : baseList.slice(0, parseInt(chunkSize, 10));
+
+            currentIndex = 0;
+            renderCard();
+        }
+
+        // Render Card
+        function renderCard() {
+            if (!activePool.length) {
+                cardWord.textContent = "該当なし";
+                cardMeaning.textContent = "単語がありません";
+                cardExampleFront.textContent = "";
+                cardExampleBack.classList.add('hidden');
+                progressText.textContent = "0 / 0";
+                statusIndicatorFront.classList.add('hidden');
+                statusIndicatorBack.classList.add('hidden');
+                return;
+            }
+
+            // Reset Flip State
+            isFlipped = false;
+            cardInner.classList.remove('rotate-y-180');
+
+            const item = activePool[currentIndex];
+            cardWord.textContent = item.word;
+            cardExampleFront.textContent = item.example ? `"${item.example}"` : "";
+            cardCategoryFront.textContent = item.category || "コロケーション";
+
+            cardMeaning.textContent = item.meaning;
+            cardWordSmall.textContent = item.word;
+            cardCategoryBack.textContent = item.category || "コロケーション";
+
+            // Render Japanese translation of example if available
+            if (item.example_jp) {
+                cardExampleBack.textContent = `訳: ${item.example_jp}`;
+                cardExampleBack.classList.remove('hidden');
+            } else {
+                cardExampleBack.classList.add('hidden');
+            }
+
+            progressText.textContent = `${currentIndex + 1} / ${activePool.length}`;
+
+            // Update Mastered Status Indicator Badge
+            const mastered = isCurrentMastered();
+            const badgeClass = mastered 
+                ? 'bg-emerald-950/80 border-emerald-700 text-emerald-300' 
+                : 'bg-rose-950/80 border-rose-800 text-rose-300';
+            const badgeText = mastered 
+                ? '<i class="fa-solid fa-check mr-1"></i>習得済み' 
+                : '<i class="fa-solid fa-xmark mr-1"></i>未習得';
+
+            statusIndicatorFront.className = `text-xs px-2.5 py-0.5 rounded-full border ${badgeClass}`;
+            statusIndicatorFront.innerHTML = badgeText;
+            statusIndicatorFront.classList.remove('hidden');
+
+            statusIndicatorBack.className = `text-xs px-2.5 py-0.5 rounded-full border ${badgeClass}`;
+            statusIndicatorBack.innerHTML = badgeText;
+            statusIndicatorBack.classList.remove('hidden');
+        }
+
+        // Toggle Flip
+        function toggleFlip() {
+            isFlipped = !isFlipped;
+            if (isFlipped) {
+                cardInner.classList.add('rotate-y-180');
+            } else {
+                cardInner.classList.remove('rotate-y-180');
+            }
+        }
+
+        // Navigation
+        function nextCard() {
+            if (currentIndex < activePool.length - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0;
+            }
+            renderCard();
+        }
+
+        function prevCard() {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = activePool.length - 1;
+            }
+            renderCard();
+        }
+
+        // Mark Mastered / Unmastered Actions
+        function markMastered() {
+            if (!activePool.length) return;
+            const word = activePool[currentIndex].word;
+            let list = getMasteredWords();
+            if (!list.includes(word)) {
+                list.push(word);
+                saveMasteredWords(list);
+            }
+            nextCard();
+        }
+
+        function markUnmastered() {
+            if (!activePool.length) return;
+            const word = activePool[currentIndex].word;
+            let list = getMasteredWords();
+            if (list.includes(word)) {
+                list = list.filter(w => w !== word);
+                saveMasteredWords(list);
+            }
+            nextCard();
+        }
+
+        // Web Speech API
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.95;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        // Build Modal List with Checkboxes (レ点)
+        function renderModalList(query = '') {
+            const q = query.toLowerCase().trim();
+            const masteredList = getMasteredWords();
+            const filtered = rawWords.filter(item => 
+                item.word.toLowerCase().includes(q) || 
+                item.meaning.toLowerCase().includes(q)
+            );
+
+            modalListContent.innerHTML = '';
+            if (filtered.length === 0) {
+                modalListContent.innerHTML = '<div class="text-slate-500 text-center py-6">該当する語彙がありません</div>';
+                return;
+            }
+
+            filtered.forEach(item => {
+                const isMastered = masteredList.includes(item.word);
+                const row = document.createElement('div');
+                row.className = "flex items-center justify-between p-2.5 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition gap-3";
+                row.innerHTML = `
+                    <div class="flex items-center gap-3 flex-1 min-w-0">
+                        <!-- Checkbox (レ点) -->
+                        <button class="btn-check-toggle flex-shrink-0 w-6 h-6 rounded-md border flex items-center justify-center transition ${isMastered ? 'bg-emerald-600 border-emerald-500 text-white' : 'border-slate-600 hover:border-slate-500 text-transparent'}" data-word="${item.word}" title="${isMastered ? '習得済み（クリックで解除）' : '未習得（クリックで習得済みにする）'}">
+                            <i class="fa-solid fa-check text-xs"></i>
+                        </button>
+                        <div class="min-w-0">
+                            <div class="font-bold text-white text-sm truncate">${item.word}</div>
+                            <div class="text-cyan-300 text-xs">${item.meaning}</div>
+                            ${item.example_jp ? `<div class="text-slate-400 text-[11px] mt-0.5">${item.example_jp}</div>` : ''}
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1 flex-shrink-0">
+                        <button class="btn-tts-row text-slate-400 hover:text-cyan-300 p-2" data-word="${item.word}">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                    </div>
+                `;
+                modalListContent.appendChild(row);
+            });
+
+            // Bind Checkbox events
+            modalListContent.querySelectorAll('.btn-check-toggle').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const targetWord = btn.getAttribute('data-word');
+                    let list = getMasteredWords();
+                    if (list.includes(targetWord)) {
+                        list = list.filter(w => w !== targetWord);
+                    } else {
+                        list.push(targetWord);
+                    }
+                    saveMasteredWords(list);
+                    renderModalList(modalSearchInput.value);
+                    renderCard();
+                });
+            });
+
+            // Bind TTS events
+            modalListContent.querySelectorAll('.btn-tts-row').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    speakText(btn.getAttribute('data-word'));
+                });
+            });
+        }
+
+        // Event Listeners
+        deckSelector.addEventListener('change', (e) => {
+            loadDeck(e.target.value);
+        });
+
+        cardInner.addEventListener('click', (e) => {
+            if (e.target.closest('button')) return;
+            toggleFlip();
+        });
+
+        btnFlip.addEventListener('click', toggleFlip);
+        btnNext.addEventListener('click', nextCard);
+        btnPrev.addEventListener('click', prevCard);
+
+        btnMarkMastered.addEventListener('click', markMastered);
+        btnMarkUnmastered.addEventListener('click', markUnmastered);
+
+        chunkSelect.addEventListener('change', setupPool);
+
+        btnTTSFront.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (activePool.length) speakText(activePool[currentIndex].word);
+        });
+        btnTTSBack.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (activePool.length) speakText(activePool[currentIndex].word);
+        });
+
+        // Mode Switching
+        btnModeAll.addEventListener('click', () => {
+            if (!isOnlyUnmastered) return;
+            isOnlyUnmastered = false;
+            btnModeAll.classList.replace('text-slate-400', 'text-white');
+            btnModeAll.classList.add('bg-cyan-600');
+            btnModeUnmastered.classList.remove('bg-cyan-600', 'text-white');
+            btnModeUnmastered.classList.add('text-slate-400');
+            setupPool();
+        });
+
+        btnModeUnmastered.addEventListener('click', () => {
+            if (isOnlyUnmastered) return;
+            const mastered = getMasteredWords();
+            const unmastered = rawWords.filter(item => !mastered.includes(item.word));
+            if (unmastered.length === 0) {
+                alert("すべての単語が「できた（習得済み）」になっています！");
+                return;
+            }
+            isOnlyUnmastered = true;
+            btnModeUnmastered.classList.replace('text-slate-400', 'text-white');
+            btnModeUnmastered.classList.add('bg-cyan-600');
+            btnModeAll.classList.remove('bg-cyan-600', 'text-white');
+            btnModeAll.classList.add('text-slate-400');
+            setupPool();
+        });
+
+        // Font Resize Buttons
+        btnFontUp.addEventListener('click', () => {
+            if (fontSizeLevel < 2) {
+                fontSizeLevel++;
+                applyFontSize();
+            }
+        });
+        btnFontDown.addEventListener('click', () => {
+            if (fontSizeLevel > 0) {
+                fontSizeLevel--;
+                applyFontSize();
+            }
+        });
+
+        // Modal Open / Close
+        btnOpenList.addEventListener('click', () => {
+            renderModalList();
+            listModal.classList.remove('hidden');
+        });
+        btnCloseList.addEventListener('click', () => {
+            listModal.classList.add('hidden');
+        });
+        listModal.addEventListener('click', (e) => {
+            if (e.target === listModal) listModal.classList.add('hidden');
+        });
+        modalSearchInput.addEventListener('input', (e) => {
+            renderModalList(e.target.value);
+        });
+
+        // Keyboard Shortcuts
+        window.addEventListener('keydown', (e) => {
+            if (!listModal.classList.contains('hidden')) return;
+            if (e.code === 'Space') {
+                e.preventDefault();
+                toggleFlip();
+            } else if (e.code === 'ArrowRight') {
+                e.preventDefault();
+                nextCard();
+            } else if (e.code === 'ArrowLeft') {
+                e.preventDefault();
+                prevCard();
+            } else if (e.code === 'ArrowUp' || e.key === '1') {
+                e.preventDefault();
+                markMastered();
+            } else if (e.code === 'ArrowDown' || e.key === '2') {
+                e.preventDefault();
+                markUnmastered();
+            }
+        });
+
+        // Initial Initialization
+        applyFontSize();
+        loadDeck('collocation');
+    </script>
+</body>
+</html>

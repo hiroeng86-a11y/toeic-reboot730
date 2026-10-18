@@ -1,0 +1,422 @@
+[
+  {
+    "word": "make a decision",
+    "meaning": "決定を下す",
+    "example": "The executive committee will make a decision this afternoon.",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an appointment",
+    "meaning": "予約・アポイントをとる",
+    "example": "Please call the clinic to make an appointment.",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a reservation",
+    "meaning": "予約をする",
+    "example": "I will make a reservation at the hotel near the station.",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an effort",
+    "meaning": "努力する",
+    "example": "All staff members must make an effort to reduce waste.",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make progress",
+    "meaning": "進歩する・進展する",
+    "example": "The engineering team continues to make progress on the project.",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a payment",
+    "meaning": "支払いをする",
+    "example": "You can make a payment online using a credit card.",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an inquiry",
+    "meaning": "問い合わせる",
+    "example": "Clients often make an inquiry regarding bulk shipping rates.",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an announcement",
+    "meaning": "発表・告知をする",
+    "example": "The president will make an announcement at the press conference.",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an impression",
+    "meaning": "印象を与える",
+    "example": "Her polished presentation managed to make a strong impression.",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an exception",
+    "meaning": "例外を認める",
+    "example": "The supervisor agreed to make an exception for the urgent case.",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an arrangement",
+    "meaning": "手配をする・取り決める",
+    "example": "The secretary will make an arrangement for airport pickup.",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a proposal",
+    "meaning": "提案をする",
+    "example": "The sales director wants to make a proposal to the new client.",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a complaint",
+    "meaning": "苦情を申し立てる",
+    "example": "The passenger decided to make a complaint about the delay.",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make an adjustment",
+    "meaning": "調整をする",
+    "example": "Technicians must make an adjustment to the conveyor speed.",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a contribution",
+    "meaning": "貢献する・寄付する",
+    "example": "Local enterprises make a contribution to community welfare.",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make a purchase",
+    "meaning": "購入する",
+    "example": "Customers who make a purchase over fifty dollars get a gift.",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make sure",
+    "meaning": "確実に〜する・確かめる",
+    "example": "Please make sure that all factory doors are locked.",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "make sense",
+    "meaning": "理にかなっている・意味をなす",
+    "example": "His explanation does not make sense to the team.",
+    "category": "基本動詞: make"
+  },
+  {
+    "word": "have an impact on",
+    "meaning": "〜に影響を与える",
+    "example": "Fuel price hikes have an impact on transportation costs.",
+    "category": "基本動詞: have"
+  },
+  {
+    "word": "have access to",
+    "meaning": "〜を利用・閲覧できる",
+    "example": "Only authorized managers have access to the personnel files.",
+    "category": "基本動詞: have"
+  },
+  {
+    "word": "have an effect on",
+    "meaning": "〜に効果・影響を及ぼす",
+    "example": "Packaging redesign will have an effect on shelf visibility.",
+    "category": "基本動詞: have"
+  },
+  {
+    "word": "have reservations about",
+    "meaning": "〜に懸念・ためらいがある",
+    "example": "Board members have reservations about the rapid expansion.",
+    "category": "基本動詞: have"
+  },
+  {
+    "word": "have an obligation to",
+    "meaning": "〜する義務がある",
+    "example": "Employers have an obligation to provide safe working gear.",
+    "category": "基本動詞: have"
+  },
+  {
+    "word": "have an opportunity to",
+    "meaning": "〜する機会がある",
+    "example": "Attendees will have an opportunity to ask questions later.",
+    "category": "基本動詞: have"
+  },
+  {
+    "word": "have confidence in",
+    "meaning": "〜を信頼・確信している",
+    "example": "Investors have confidence in the company's long-term vision.",
+    "category": "基本動詞: have"
+  },
+  {
+    "word": "have difficulty in",
+    "meaning": "〜するのに苦労する",
+    "example": "The plant had difficulty in procuring raw materials last month.",
+    "category": "基本動詞: have"
+  },
+  {
+    "word": "have an inquiry",
+    "meaning": "問い合わせがある",
+    "example": "Please notify customer care if you have an inquiry.",
+    "category": "基本動詞: have"
+  },
+  {
+    "word": "have an appointment",
+    "meaning": "約束・予約がある",
+    "example": "I have an appointment with the plant inspector at two.",
+    "category": "基本動詞: have"
+  },
+  {
+    "word": "have a discussion",
+    "meaning": "議論・話し合いをする",
+    "example": "The team will have a discussion regarding shift schedules.",
+    "category": "基本動詞: have"
+  },
+  {
+    "word": "have a look at",
+    "meaning": "〜を一瞥する・確認する",
+    "example": "Could you have a look at the revised floor layout?",
+    "category": "基本動詞: have"
+  },
+  {
+    "word": "have a meeting",
+    "meaning": "会議を開く・会議がある",
+    "example": "We will have a meeting with the overseas distributor tomorrow.",
+    "category": "基本動詞: have"
+  },
+  {
+    "word": "have second thoughts",
+    "meaning": "考え直す・再考する",
+    "example": "The buyer began to have second thoughts about the property.",
+    "category": "基本動詞: have"
+  },
+  {
+    "word": "have no hesitation in",
+    "meaning": "躊躇なく〜する",
+    "example": "I have no hesitation in recommending him for the promotion.",
+    "category": "基本動詞: have"
+  },
+  {
+    "word": "have high expectations",
+    "meaning": "大いに期待している",
+    "example": "Consumers have high expectations for the new fermented brand.",
+    "category": "基本動詞: have"
+  },
+  {
+    "word": "have the authority to",
+    "meaning": "〜する権限を持っている",
+    "example": "Only the plant manager has the authority to halt the line.",
+    "category": "基本動詞: have"
+  },
+  {
+    "word": "get permission",
+    "meaning": "許可を得る",
+    "example": "You must get permission from your supervisor beforehand.",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get a refund",
+    "meaning": "返金を受ける",
+    "example": "Shoppers can easily get a refund with their digital receipt.",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get a promotion",
+    "meaning": "昇進する",
+    "example": "Consistent diligence helped her get a promotion to chief.",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get an estimate",
+    "meaning": "見積もりを取る",
+    "example": "We should get an estimate from three different suppliers.",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get in touch with",
+    "meaning": "〜と連絡を取る",
+    "example": "Please get in touch with our customer service department.",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get access to",
+    "meaning": "〜へのアクセスを得る",
+    "example": "The technician could not get access to the secure server room.",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get back to",
+    "meaning": "（返事などのため）折り返し連絡する",
+    "example": "The sales representative promised to get back to me by noon.",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get along with",
+    "meaning": "〜とうまくやっていく",
+    "example": "It is crucial to get along with fellow team members.",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get rid of",
+    "meaning": "〜を処分する・取り除く",
+    "example": "The factory wants to get rid of outdated packaging stock.",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get involved in",
+    "meaning": "〜に関与する・参加する",
+    "example": "Employees are encouraged to get involved in quality circles.",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get through to",
+    "meaning": "〜に電話が通じる・理解させる",
+    "example": "I tried calling all morning but could not get through to him.",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get ready for",
+    "meaning": "〜の準備をする",
+    "example": "Operators must get ready for the upcoming hygiene inspection.",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get started on",
+    "meaning": "〜に取り掛かる",
+    "example": "Let us get started on the monthly inventory check right away.",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get familiar with",
+    "meaning": "〜に慣れ親しむ",
+    "example": "New workers should quickly get familiar with machine controls.",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get an approval",
+    "meaning": "承認を得る",
+    "example": "The buyer had to get an approval before placing the order.",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get a discount",
+    "meaning": "割引を受ける",
+    "example": "Members get a discount on all factory store purchases.",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "take measures",
+    "meaning": "対策・措置を講じる",
+    "example": "Management must take measures to prevent repeated machine failure.",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take an action",
+    "meaning": "行動を起こす",
+    "example": "The company decided to take an action regarding the complaint.",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take advantage of",
+    "meaning": "（好機などを）利用・活用する",
+    "example": "We should take advantage of this high-volume freight rate.",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take responsibility for",
+    "meaning": "〜の責任を取る",
+    "example": "The lead coordinator will take responsibility for the delay.",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take into consideration",
+    "meaning": "〜を考慮・斟酌する",
+    "example": "Designers will take into consideration all client requests.",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take into account",
+    "meaning": "〜を考慮に入れる",
+    "example": "The estimate did not take into account the recent tariff hike.",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take place",
+    "meaning": "開催される・行われる",
+    "example": "The annual safety seminar will take place in the auditorium.",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take part in",
+    "meaning": "〜に参加する",
+    "example": "All shift operators must take part in the evacuation drill.",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take over",
+    "meaning": "（職務・業務を）引き継ぐ",
+    "example": "Mr. Sato will take over the packaging supervisor duties.",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take a break",
+    "meaning": "一息入れる・休憩する",
+    "example": "The team decided to take a break after finishing the run.",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take a look at",
+    "meaning": "〜を見てみる・点検する",
+    "example": "Could an engineer take a look at the sealing mechanism?",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take an initiative",
+    "meaning": "主導権を握る・率先して動く",
+    "example": "Workers who take an initiative improve plant floor morale.",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take effect",
+    "meaning": "（規則などが）発効する・効力を生じる",
+    "example": "The new sanitation policy will take effect next Monday.",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take precaution",
+    "meaning": "予防措置・警戒策をとる",
+    "example": "Staff take precaution against food contamination at all times.",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take notes",
+    "meaning": "メモを取る・記録する",
+    "example": "Trainees should take notes during the machinery instruction.",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take a leave of absence",
+    "meaning": "休職・長期休暇をとる",
+    "example": "He applied to take a leave of absence for personal reasons.",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take an opportunity",
+    "meaning": "機会を利用・活用する",
+    "example": "I will take an opportunity to speak with the division head.",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take steps",
+    "meaning": "一歩を踏み出す・対策を講じる",
+    "example": "The facility will take steps to improve ventilation systems.",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take priority over",
+    "meaning": "〜より優先される",
+    "example": "Factory floor safety must take priority over production speed.",
+    "category": "基本動詞: take"
+  }
+]

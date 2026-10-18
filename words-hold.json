@@ -1,0 +1,282 @@
+[
+  {
+    "word": "hold a meeting",
+    "meaning": "会議を開く・開催する",
+    "example": "The department heads hold a meeting every Monday morning.",
+    "example_jp": "部門長たちは毎週月曜日の朝に会議を開催します。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold a conference",
+    "meaning": "カンファレンス・大会を開催する",
+    "example": "The trade association will hold an annual conference in Osaka.",
+    "example_jp": "業界団体は大阪で年次カンファレンスを開催する予定です。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold an event",
+    "meaning": "イベント・行事を開催する",
+    "example": "Our company will hold a product launch event next month.",
+    "example_jp": "当社は来月、新製品の発表イベントを開催します。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold a position",
+    "meaning": "職・地位に就いている",
+    "example": "She has held the position of packaging director for three years.",
+    "example_jp": "彼女は包装部門の責任者の職を3年間務めています。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold a seminar",
+    "meaning": "セミナー・講習会を開く",
+    "example": "The hygiene team will hold a workshop on food safety tomorrow.",
+    "example_jp": "衛生管理チームは明日、食品安全に関する講習会を開きます。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold responsible for",
+    "meaning": "〜の責任があるとみなす・責任を問う",
+    "example": "The carrier cannot be held responsible for weather-related delivery delays.",
+    "example_jp": "運送業者に天候起因の配送遅延の責任を問うことはできません。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold liable for",
+    "meaning": "〜に対して法的賠償責任を負わせる",
+    "example": "Contractors may be held liable for damages caused by faulty wiring.",
+    "example_jp": "配線不良による損害について請負業者が法的責任を問われる場合があります。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold a discussion",
+    "meaning": "議論・協議を行う",
+    "example": "The committee met to hold a discussion about the annual budget.",
+    "example_jp": "委員会は年間予算についての協議を行うために招集されました。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold an inquiry",
+    "meaning": "調査・審問を実施する",
+    "example": "Inspectors will hold an inquiry into the production line stoppage.",
+    "example_jp": "検査官は製造ライン停止事故に関する調査を実施します。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold a reception",
+    "meaning": "レセプション・歓迎会を催す",
+    "example": "The executive board will hold a reception for overseas guests.",
+    "example_jp": "役員会は海外からの招待客のためにレセプションを催します。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold a view",
+    "meaning": "見解・考えを持つ",
+    "example": "Many food analysts hold the view that organic items will dominate.",
+    "example_jp": "多くの食品アナリストはオーガニック製品が主流になるとの見解を持っています。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold true",
+    "meaning": "当てはまる・有効である",
+    "example": "This strict sanitation rule holds true across all company facilities.",
+    "example_jp": "この厳格な衛生規則は社内のすべての施設に当てはまります。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold office",
+    "meaning": "役職・公職を務めている",
+    "example": "He has held office as committee chairperson for two terms.",
+    "example_jp": "彼は委員会委員長としての職務を2期務めています。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold back",
+    "meaning": "抑える・差し控える",
+    "example": "Do not hold back any questions regarding machinery maintenance.",
+    "example_jp": "機械の保守点検に関する質問は遠慮せず何でも出してください。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold off on",
+    "meaning": "〜を保留する・延期する",
+    "example": "We should hold off on ordering new packaging stock until audit results.",
+    "example_jp": "監査結果が出るまで新しい包装資材の発注は保留すべきです。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold on to",
+    "meaning": "〜を手放さずに維持する・保管する",
+    "example": "Please hold on to all shipping receipts for accounting audits.",
+    "example_jp": "会計監査のため、すべての納品・出荷受領証を保管しておいてください。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold a ceremony",
+    "meaning": "式典を執り行う",
+    "example": "The firm will hold an award ceremony for distinguished veterans.",
+    "example_jp": "会社は功労のあった熟練社員を表彰する式典を執り行います。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold an interview",
+    "meaning": "面接・面談を行う",
+    "example": "Human Resources will hold an interview with candidates on Thursday.",
+    "example_jp": "人事部は木曜日に候補者との面接を実施します。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold a press conference",
+    "meaning": "記者会見を開く",
+    "example": "The executive team will hold a press conference regarding the expansion.",
+    "example_jp": "経営幹部陣は事業拡大に関する記者会見を開きます。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold a debate",
+    "meaning": "討論・ディベートを行う",
+    "example": "The safety council decided to hold a debate on overtime policies.",
+    "example_jp": "安全委員会は残業方針についての討論を行うことを決めました。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold the key to",
+    "meaning": "〜の鍵を握る",
+    "example": "Efficient packaging technology holds the key to longer shelf life.",
+    "example_jp": "効率的な包装技術が賞味期限延長の鍵を握っています。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold someone accountable",
+    "meaning": "〜に説明責任を負わせる",
+    "example": "Supervisors hold workers accountable for adhering to safety guidelines.",
+    "example_jp": "監督者は安全指針の遵守について作業員に責任を持たせています。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold an exhibition",
+    "meaning": "展示会を開催する",
+    "example": "Regional food producers hold an exhibition at the municipal dome.",
+    "example_jp": "地域の食品メーカーが市立ドームで展示会を開催します。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold talks",
+    "meaning": "会談・交渉を行う",
+    "example": "Representatives from both firms met to hold merger talks.",
+    "example_jp": "両社の代表者が企業合併交渉を行うために会合を持ちました。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold sway",
+    "meaning": "支配力・影響力を持つ",
+    "example": "Traditional production techniques still hold sway in the regional plant.",
+    "example_jp": "地域の工場では今なお伝統的な製造技術が大きな影響力を持っています。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold an election",
+    "meaning": "選挙を実施する",
+    "example": "The workers' union will hold an election for floor delegate next week.",
+    "example_jp": "労働組合は来週、職場代表の選出選挙を実施します。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold in high regard",
+    "meaning": "〜を高く評価・敬重する",
+    "example": "Industry peers hold our clean-label processing in high regard.",
+    "example_jp": "業界関係者は当社の無添加クリーン製法を高く評価しています。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold promise",
+    "meaning": "前途有望である・期待が持てる",
+    "example": "The newly formulated fermented drink holds great market promise.",
+    "example_jp": "新配合の発酵飲料は市場での大きな成功が期待されています。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold a record",
+    "meaning": "記録を保持している",
+    "example": "The bottling facility holds the safety record for continuous operations.",
+    "example_jp": "そのボトリング施設は連続無事故稼働の安全記録を保持しています。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold water",
+    "meaning": "筋が通っている・理屈に合う",
+    "example": "His claim regarding conveyor belt wear does not hold water.",
+    "example_jp": "コンベアベルトの摩耗に関する彼の主張は筋が通りません。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold a banquet",
+    "meaning": "祝宴・宴会を催す",
+    "example": "The executive committee will hold a banquet to mark the anniversary.",
+    "example_jp": "役員委員会は創立記念を祝して祝宴を催します。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold a reservation",
+    "meaning": "予約を確保・維持する",
+    "example": "The hotel will hold your room reservation until six in the evening.",
+    "example_jp": "ホテルは夕方6時まで部屋の予約を確保しておきます。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold out for",
+    "meaning": "〜を頑なに要求する・譲らない",
+    "example": "The packaging supplier held out for a long-term supply agreement.",
+    "example_jp": "包装資材メーカーは長期供給契約の締結を強く求めました。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold an inspection",
+    "meaning": "立入検査・点検を実施する",
+    "example": "Sanitation authorities hold an annual inspection of food packaging plants.",
+    "example_jp": "衛生当局は食品包装工場に対する年次立入検査を実施します。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold an auction",
+    "meaning": "競売・オークションを開催する",
+    "example": "The city will hold an auction for surplus warehouse machinery.",
+    "example_jp": "市は余剰となった倉庫機械類の競売を開催します。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold up",
+    "meaning": "耐える・持ちこたえる・（進行を）遅らせる",
+    "example": "Heavy cartons hold up well during long freight shipments.",
+    "example_jp": "強化ダンボール箱は長距離輸送中もしっかりと耐え抜きます。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold title to",
+    "meaning": "〜の所有権を保持している",
+    "example": "The parent corporation holds legal title to the factory real estate.",
+    "example_jp": "親会社が工場不動産の法的所有権を保持しています。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold a session",
+    "meaning": "セッション・講習会を開く",
+    "example": "Instructors hold an orientation session for seasonal staff.",
+    "example_jp": "指導員は季節雇用のスタッフ向けにオリエンテーション講習会を開きます。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold the line on",
+    "meaning": "〜（価格水準など）を維持する・据え置く",
+    "example": "Management decided to hold the line on prices despite rising costs.",
+    "example_jp": "経営陣はコスト高にもかかわらず製品価格を据え置く決断をしました。",
+    "category": "基本動詞: hold"
+  },
+  {
+    "word": "hold power",
+    "meaning": "権力を握っている",
+    "example": "The appointed steering committee holds the ultimate power of approval.",
+    "example_jp": "選任された運営委員会が最終的な決裁権限を握っています。",
+    "category": "基本動詞: hold"
+  }
+]

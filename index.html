@@ -1,0 +1,144 @@
+<!-- 対象ファイル: index.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- キャッシュ完全無効化（アクセス毎に最新版を取得） -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <title>TOEIC RE:BOOT 730 | 40代からの高回転・即決自習ポータル</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: 視認性に優れたUD系・角ゴシック -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Inter:wght@600;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      background-color: #0f172a; /* 落ち着いたダークスレート */
+      color: #f1f5f9;
+      font-family: 'Noto Sans JP', 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    .base-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-slate-950">
+
+  <!-- ヘッダー -->
+  <header class="sticky top-0 z-50 bg-[#0f172a]/95 backdrop-blur border-b border-slate-700 px-4 py-3.5">
+    <div class="max-w-xl mx-auto flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5 shrink-0">
+        <span class="w-2.5 h-6 bg-sky-400 rounded-sm"></span>
+        <span class="font-extrabold text-lg tracking-wide text-white">
+          TOEIC RE:BOOT <span class="text-sky-400">730</span>
+        </span>
+      </div>
+      <div class="flex items-center gap-1.5 text-xs font-bold">
+        <a href="recommend.html" class="text-amber-300 bg-amber-950/70 px-2.5 py-1.5 rounded-lg border border-amber-800 hover:border-amber-400 transition">
+          おすすめ教材
+        </a>
+        <a href="profile.html" class="text-sky-400 bg-sky-950/80 px-2.5 py-1.5 rounded-lg border border-sky-800 hover:border-sky-400 transition truncate">
+          中の人・スコア
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- スマホ・ファーストビュー（強烈なフックと手記への直結導線） -->
+  <div class="max-w-xl mx-auto px-4 pt-6 pb-2 w-full">
+    <div class="base-card rounded-2xl p-5 sm:p-7 border-l-4 border-l-sky-400 space-y-3">
+      <div class="inline-flex items-center gap-1.5 text-xs font-bold text-amber-400 bg-amber-950/60 px-2.5 py-0.5 rounded border border-amber-800">
+        <i class="fa-solid fa-triangle-exclamation"></i> 現役社会人のTOEIC独学
+      </div>
+      
+      <h1 class="text-2xl sm:text-3xl font-black text-white leading-snug">
+        数年前の730点から、<br>
+        英語力が消滅？<br>
+        <span class="text-sky-400">大人の「高回転・即断」奪還録。</span>
+      </h1>
+
+      <p class="text-sm text-slate-300 leading-relaxed">
+        若い頃の丸暗記は当てになりません！通勤の5分、公式問題集の論点をとりあえず回す！AIでコード自作した個人の練習場です。
+      </p>
+
+      <!-- 実数値グラフ手記（profile.html）への誘導ボタン -->
+      <div class="pt-2">
+        <a href="profile.html" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-sky-400 text-slate-300 hover:text-white text-xs font-bold transition flex items-center justify-between shadow">
+          <span><i class="fa-solid fa-chart-line text-sky-400 mr-1.5"></i> 395点から730点までの苦闘の全記録（推移グラフ）</span>
+          <i class="fa-solid fa-chevron-right text-sky-400"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- メインツール選択（スマホの親指で押しやすい大きなカード） -->
+  <main class="max-w-xl mx-auto px-4 py-4 space-y-4 flex-1 w-full">
+    
+    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider pl-1">
+      <i class="fa-solid fa-bolt text-sky-400 mr-1"></i> 無料トレーニングモジュール
+    </div>
+
+    <!-- 1. 文法論点特訓 -->
+    <a href="lang-eng-grammar.html" class="base-card p-5 sm:p-6 rounded-2xl block hover:border-sky-400 transition space-y-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 text-2xl">
+            <i class="fa-solid fa-crosshairs"></i>
+          </div>
+          <div>
+            <h2 class="text-lg font-bold text-white">Part 5 英文法論点特訓</h2>
+            <div class="text-xs font-bold text-sky-400">空所の前後判定 ✕ パターン反復</div>
+          </div>
+        </div>
+        <i class="fa-solid fa-chevron-right text-slate-500"></i>
+      </div>
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        1問10秒で切る。品詞・接続詞・使役などの頻出論点をカード反転で瞬時に判定。
+      </p>
+    </a>
+
+    <!-- 2. コロケーション・単語特訓 -->
+    <a href="lang-flashcard.html" class="base-card p-5 sm:p-6 rounded-2xl block hover:border-emerald-400 transition space-y-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl">
+            <i class="fa-solid fa-layer-group"></i>
+          </div>
+          <div>
+            <h2 class="text-lg font-bold text-white">頻出コロケーション・フレーズ反復</h2>
+            <div class="text-xs font-bold text-emerald-400">1秒1単語 ✕ 高回転フラッシュ</div>
+          </div>
+        </div>
+        <i class="fa-solid fa-chevron-right text-slate-500"></i>
+      </div>
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+        丸暗記不要。1秒テンポでカードを弾き、目と耳（音声合成）で強制刷り込み。
+      </p>
+    </a>
+
+    <!-- 3. おすすめ教材への誘導カード -->
+    <a href="recommend.html" class="base-card p-5 sm:p-6 rounded-2xl block hover:border-amber-400 transition space-y-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl">
+            <i class="fa-solid fa-book-bookmark"></i>
+          </div>
+          <div>
+            <h2 class="text-lg font-bold text-white">実際に使って役立った教材（4選）

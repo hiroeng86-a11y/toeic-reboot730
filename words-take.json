@@ -1,0 +1,317 @@
+[
+  {
+    "word": "take measures",
+    "meaning": "対策・措置を講じる",
+    "example": "Management must take measures to prevent repeated machine failure.",
+    "example_jp": "経営陣は機械故障の再発を防ぐための措置を講じなければなりません。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take an action",
+    "meaning": "行動を起こす",
+    "example": "The company decided to take an action regarding the complaint.",
+    "example_jp": "会社はその苦情に対して具体的な行動を起こすことを決めました。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take advantage of",
+    "meaning": "（好機などを）利用・活用する",
+    "example": "We should take advantage of this high-volume freight rate.",
+    "example_jp": "この大口貨物割引運賃の機会をぜひ活かすべきです。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take responsibility for",
+    "meaning": "〜の責任を取る・引き受ける",
+    "example": "The lead coordinator will take responsibility for the delay.",
+    "example_jp": "現場の統括リーダーが出荷遅延の全責任を負います。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take into consideration",
+    "meaning": "〜を考慮・斟酌する",
+    "example": "Designers will take into consideration all client requests.",
+    "example_jp": "設計担当者は顧客からの要望をすべて考慮に入れます。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take into account",
+    "meaning": "〜を考慮に入れる",
+    "example": "The estimate did not take into account the recent tariff hike.",
+    "example_jp": "その見積もりには最近の関税引き上げが考慮されていませんでした。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take place",
+    "meaning": "開催される・行われる",
+    "example": "The annual safety seminar will take place in the auditorium.",
+    "example_jp": "年次安全講習会は大講堂で開催されます。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take part in",
+    "meaning": "〜に参加する",
+    "example": "All shift operators must take part in the evacuation drill.",
+    "example_jp": "全シフトの作業員が避難訓練に参加しなければなりません。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take over",
+    "meaning": "（職務・業務を）引き継ぐ",
+    "example": "Mr. Sato will take over the packaging supervisor duties.",
+    "example_jp": "佐藤さんが包装ラインの管理者業務を引き継ぎます。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take a break",
+    "meaning": "一息入れる・休憩する",
+    "example": "The team decided to take a break after finishing the run.",
+    "example_jp": "製造ロットを終えたところでチームは休憩を取ることにしました。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take a look at",
+    "meaning": "〜を見てみる・点検する",
+    "example": "Could an engineer take a look at the sealing mechanism?",
+    "example_jp": "技術者の方にシーラー封止機構を点検していただけますか？",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take an initiative",
+    "meaning": "主導権を握る・率先して動く",
+    "example": "Workers who take an initiative improve plant floor morale.",
+    "example_jp": "率先して行動する社員は現場の士気を高めます。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take effect",
+    "meaning": "（規則などが）発効する・効力を生じる",
+    "example": "The new sanitation policy will take effect next Monday.",
+    "example_jp": "新しい衛生管理規程は来週月曜日から発効します。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take precaution",
+    "meaning": "予防措置・警戒策をとる",
+    "example": "Staff take precaution against food contamination at all times.",
+    "example_jp": "スタッフは食品への異物混入を防ぐため常時予防措置を講じています。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take notes",
+    "meaning": "メモを取る・記録する",
+    "example": "Trainees should take notes during the machinery instruction.",
+    "example_jp": "研修生は機械の操作指導中にメモを取るべきです。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take a leave of absence",
+    "meaning": "休職・長期休暇をとる",
+    "example": "He applied to take a leave of absence for personal reasons.",
+    "example_jp": "彼は個人的な理由により休職届を提出しました。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take an opportunity",
+    "meaning": "機会を利用・活用する",
+    "example": "I will take an opportunity to speak with the division head.",
+    "example_jp": "この機を捉えて事業部長と直接お話しするつもりです。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take steps",
+    "meaning": "一歩を踏み出す・対策を講じる",
+    "example": "The facility will take steps to improve ventilation systems.",
+    "example_jp": "工場施設は換気システムの改善に向けた対策を講じます。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take priority over",
+    "meaning": "〜より優先される",
+    "example": "Factory floor safety must take priority over production speed.",
+    "example_jp": "製造速度よりも工場の安全確保が最優先されなければなりません。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take care of",
+    "meaning": "〜を処理する・引き受ける・世話をする",
+    "example": "Our logistics coordinator will take care of shipping documents.",
+    "example_jp": "当社の物流担当者が船積書類の手配を処理します。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take pride in",
+    "meaning": "〜を誇りに思う",
+    "example": "All employees take pride in delivering fresh natto products.",
+    "example_jp": "全従業員が新鮮な納豆製品をお届けすることに誇りを持っています。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take time to",
+    "meaning": "じっくり時間をかけて〜する",
+    "example": "Supervisors take time to explain each packaging step carefully.",
+    "example_jp": "指導員は各包装工程を時間をかけて丁寧に説明します。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take a risk",
+    "meaning": "リスクを冒す",
+    "example": "The executive chose not to take a risk with untested machinery.",
+    "example_jp": "役員は実績のない機械を導入するリスクを冒さない決断をしました。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take a message",
+    "meaning": "伝言・メッセージを預かる",
+    "example": "May I take a message while Mr. Tanaka is on the factory floor?",
+    "example_jp": "田中が工場現場に入っている間、伝言をお預かりしましょうか？",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take a chance",
+    "meaning": "一か八かやってみる・賭けてみる",
+    "example": "The brand decided to take a chance on an innovative package design.",
+    "example_jp": "そのブランドは斬新なパッケージデザインに賭けてみることにしました。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take minutes",
+    "meaning": "議事録をとる",
+    "example": "A junior clerk was assigned to take minutes during the meeting.",
+    "example_jp": "若手事務員が会議中に議事録を取る役目を任されました。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take for granted",
+    "meaning": "〜を当然のことと思う",
+    "example": "We should not take consistent product quality for granted.",
+    "example_jp": "安定した製品品質が保たれていることを当然と思ってはなりません。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take exception to",
+    "meaning": "〜に異議を唱える・腹を立てる",
+    "example": "Union delegates took exception to the proposed overtime schedule.",
+    "example_jp": "組合代表は提案された残業スケジュールに対して異議を唱えました。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take a toll on",
+    "meaning": "〜に打撃・悪影響を与える",
+    "example": "Extreme summer heat can take a toll on perishable food inventory.",
+    "example_jp": "夏の猛暑は生鮮食品の在庫管理に大きな打撃を与えかねません。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take into custody",
+    "meaning": "〜を保管・保護する",
+    "example": "Security officers took the lost access badge into safe custody.",
+    "example_jp": "警備員は拾得された入室証を安全に保管しました。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take notice of",
+    "meaning": "〜に注目・留意する",
+    "example": "Please take notice of the revised clean-room entry rules.",
+    "example_jp": "改訂されたクリーンルームへの入室規程に十分留意してください。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take a stand on",
+    "meaning": "〜について明確な態度・姿勢をとる",
+    "example": "The firm took a strong stand on environmental sustainability.",
+    "example_jp": "その企業は環境の持続可能性に対して断固たる姿勢を示しました。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take credit for",
+    "meaning": "〜の功績を自分のものにする",
+    "example": "A good leader does not take sole credit for team achievements.",
+    "example_jp": "優れたリーダーはチームの成果を自分一人の手柄にはしません。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take a survey",
+    "meaning": "アンケート・調査に回答する",
+    "example": "Shoppers who take a short survey receive discount coupons.",
+    "example_jp": "簡単なアンケートに回答した買い物客には割引クーポンが配られます。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take attendance",
+    "meaning": "出欠をとる",
+    "example": "Instructors take attendance prior to each safety seminar.",
+    "example_jp": "講師は各安全講習の開始前に出席を取ります。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take a turn for the better",
+    "meaning": "好転する",
+    "example": "Factory shipments took a turn for the better in late autumn.",
+    "example_jp": "工場の出荷状況は秋の終わりに好転しました。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take charge of",
+    "meaning": "〜の担当・責任者になる",
+    "example": "Ken will take charge of the automated sorting line project.",
+    "example_jp": "ケンが自動仕分けライン導入プロジェクトの責任者を務めます。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take a closer look at",
+    "meaning": "〜をさらに綿密に調査・点検する",
+    "example": "Engineers decided to take a closer look at the sensor wiring.",
+    "example_jp": "技術者たちはセンサーの配線をより綿密に点検することにしました。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take an oath",
+    "meaning": "誓約する・宣誓を行う",
+    "example": "New hires take a confidentiality oath regarding factory recipes.",
+    "example_jp": "新入社員は工場の製造レシピに関する守秘義務の誓約を行います。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take a tour of",
+    "meaning": "〜を見学する",
+    "example": "School groups often take a tour of our modern packaging floor.",
+    "example_jp": "学校の団体が当社の最新包装ラインの見学によく訪れます。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take something personally",
+    "meaning": "〜を個人的な非難と受け取る",
+    "example": "Do not take constructive quality feedback personally.",
+    "example_jp": "建設的な品質改善の指摘を個人的な当てつけと受け取らないでください。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take a photo",
+    "meaning": "写真を撮る",
+    "example": "Visitors are strictly forbidden to take a photo inside the plant.",
+    "example_jp": "見学者が工場内部で写真を撮影することは固く禁じられています。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take up space",
+    "meaning": "場所・スペースを取る",
+    "example": "Empty pallets should be stacked so they do not take up space.",
+    "example_jp": "空のパレットは場所を取らないよう整然と積み上げる必要があります。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take a seat",
+    "meaning": "着席する・席に着く",
+    "example": "Please take a seat in the conference room while you wait.",
+    "example_jp": "お待ちいただく間、会議室にお掛けになってください。",
+    "category": "基本動詞: take"
+  },
+  {
+    "word": "take time off",
+    "meaning": "休みを取る・有給を使う",
+    "example": "He decided to take time off to attend his son's school event.",
+    "example_jp": "彼は息子の学校行事に参加するため休暇を取ることにしました。",
+    "category": "基本動詞: take"
+  }
+]

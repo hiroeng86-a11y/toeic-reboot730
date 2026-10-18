@@ -1,0 +1,318 @@
+<!-- 対象ファイル: profile.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>開発者手記 ＆ スコア奪還の全記録 | TOEIC RE:BOOT 730</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: 視認性に優れたUD系・角ゴシック -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@600;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #f1f5f9;
+      font-family: 'Noto Sans JP', 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+    .base-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-slate-950">
+
+  <!-- ヘッダー（戻るボタン ＆ おすすめ教材リンク配置） -->
+  <header class="sticky top-0 z-50 bg-[#0f172a]/95 backdrop-blur border-b border-slate-700 px-4 py-3.5">
+    <div class="max-w-2xl mx-auto flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 text-slate-300 hover:text-sky-400 font-bold text-sm transition">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>ポータルへ戻る</span>
+      </a>
+      <div class="flex items-center gap-2">
+        <a href="recommend.html" class="text-xs font-bold text-amber-300 bg-amber-950/70 px-2.5 py-1 rounded border border-amber-800 hover:border-amber-400 transition">
+          おすすめ教材
+        </a>
+        <span class="text-xs font-mono font-bold text-sky-400 bg-sky-950/80 px-2.5 py-1 rounded border border-sky-800">
+          PRODUCER LOG
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- メイン手記コンテナ -->
+  <main class="max-w-2xl mx-auto px-4 py-8 space-y-8 flex-1 w-full">
+
+    <!-- タイトルエリア -->
+    <div class="space-y-3">
+      <div class="inline-flex items-center gap-2 text-xs font-bold text-amber-400 bg-amber-950/60 px-3 py-1 rounded-full border border-amber-800">
+        <i class="fa-solid fa-chart-line"></i> 実数値データ公開 
+      </div>
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-white leading-tight">
+        395点から730点までの悪戦苦闘、<br>
+        そして再度の錆びつき。<br>
+        <span class="text-sky-400">大人のTOEIC奪還・全記録。</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-slate-400 font-mono">
+        First Test: 2021.03 ➔ Peak: 730 (2024.02) ➔ Current: Re:Booting
+      </p>
+    </div>
+
+    <!-- 実績グラフエリア（Chart.jsで完全再現） -->
+    <section class="base-card p-5 sm:p-7 rounded-2xl border-slate-700 space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-700 pb-3">
+        <div>
+          <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">Official Score History</span>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            TOEIC公式スコアの実際の推移
+          </h2>
+        </div>
+        <div class="flex items-center gap-3 text-xs font-mono">
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 bg-sky-500 rounded-sm"></span>L</span>
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 bg-amber-500 rounded-sm"></span>R</span>
+          <span class="flex items-center gap-1.5"><span class="w-3 h-3 bg-slate-400 rounded-sm"></span>Total</span>
+        </div>
+      </div>
+
+      <!-- グラフ描画キャンバス -->
+      <div class="relative h-64 sm:h-72 w-full pt-2">
+        <canvas id="scoreChart"></canvas>
+      </div>
+
+      <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 text-xs text-slate-400 leading-relaxed">
+        <i class="fa-solid fa-circle-info text-sky-400 mr-1"></i>
+        <strong>グラフの真実：</strong> 2021年の300点台からスタートし、2022年に一度710点に到達。しかしそこから長い停滞と点数急落（600点台の泥沼）を味わい、2024年初頭にようやく730点を記録。語学学習に単純な「右肩上がり」などあり得ません。
+      </div>
+    </section>
+
+    <!-- 手記本文（地味なリアルと高回転学習へ） -->
+    <article class="base-card p-6 sm:p-8 rounded-2xl border-slate-700 space-y-6 text-slate-300 text-sm sm:text-base leading-relaxed">
+      
+      <div class="space-y-3">
+        <h3 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2.5">
+          <span class="w-2 h-6 bg-sky-400 rounded-sm"></span>
+          1. 300点台からのスタートと、最初の壁
+        </h3>
+        <p>
+          世の中の英語学習本を見れば、「3ヶ月で700点突破！」「スキマ時間で無理なく合格」といった耳触りの良いフレーズばかりが並んでいます。しかし、実際に40代を過ぎてからTOEICに向き合った私の現実は、上のグラフの通り過酷そのものでした。
+        </p>
+        <p>
+          最初の受験（2021年3月）はわずか395点。学生時代の記憶など完全に消え去り、リスニングは呪文にしか聞こえず、リーディングはPart 7の途中でタイムアップ。そこから必死で問題集を開き、2022年春になんとか710点にタッチした時は「あと一息！」と思いました。しかし、本当の試練はそこからでした。
+        </p>
+      </div>
+
+      <div class="space-y-3 pt-2">
+        <h3 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2.5">
+          <span class="w-2 h-6 bg-amber-400 rounded-sm"></span>
+          2. 600点台の長期停滞と、大人の脳の限界
+        </h3>
+        <p>
+          700点を一度超えた安心感から惰性の学習になったんでしょう・・・、スコアはあっという間に620点〜630点台へと急降下しました。グラフを見ていただければ分かる通り、2022年後半から2023年にかけて、受けども受けども600点台後半の天井を破れない「長期の停滞期」が続きました。
+        </p>
+        <p>
+          40代の脳は、時間をかけて理解しても翌日には綺麗さっぱり抜けていくのです。平日の仕事で疲れ果てた頭に、長時間の学習時間も取れず厳しい時期がありました。
+        </p>
+      </div>
+
+      <div class="space-y-3 pt-2">
+        <h3 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2.5">
+          <span class="w-2 h-6 bg-emerald-400 rounded-sm"></span>
+          3. 行き着いた「公式問題集 ✕ 高回転・即断」の結論
+        </h3>
+        <p>
+          そこで勉強法を根本から破壊しました。自分に合わないと思った難問集をすべて撤去し、<strong class="text-white font-bold">「ETS公式問題集を集中して正解しても何度も解き潰す」</strong>ことだけに絞り込みました。
+        </p>
+        <p>
+          Part 5の文法は「１問回答までに15秒で見切る」。単語帳は「1秒1単語のテンポで何十周もカードを弾く」。思考を介さずにパターン認識で反射させる<strong class="text-sky-400 font-bold">「高回転ループ学習」</strong>に切り替えたのです。
+        </p>
+        <p>
+          その結果、2024年2月に**念願の730点**を奪取することができました。
+        </p>
+      </div>
+
+      <!-- おすすめ教材ページ（recommend.html）への誘導バナー -->
+      <div class="pt-2">
+        <a href="recommend.html" class="p-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-400 block transition group">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <i class="fa-solid fa-book-bookmark text-amber-400 text-lg"></i>
+              <div>
+                <div class="text-xs font-bold text-amber-400">実体験から厳選</div>
+                <div class="text-sm font-bold text-white group-hover:text-amber-300">
+                  実際に使って役立った教材（最後まで手元に残った4冊）
+                </div>
+              </div>
+            </div>
+            <i class="fa-solid fa-arrow-right text-xs text-slate-500 group-hover:text-amber-300 group-hover:translate-x-1 transition"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="space-y-3 pt-2">
+        <h3 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2.5">
+          <span class="w-2 h-6 bg-rose-400 rounded-sm"></span>
+          4. なぜいま、自作ツールを公開したのか？（RE:BOOT）
+        </h3>
+        <p>
+          しかし、英語は残酷です。730点を取ってから実務で使わない時期が続くと、直近（2025年〜2026年）のテストでは再びスコアが下がり始め、英語力が錆びついていくのを実感しました。
+        </p>
+        <p>
+          「このままでは全てが水泡に帰す。もう一度、奪還するしかない」。そう決意した時、仕事の合間に分厚い公式問題集を開く物理的な限界を痛感しました。だからこそ、頻出語彙だけをスマホで1秒単位で高回転させるために、このWebポータルをAIと共同で自作しました。
+        </p>
+        <p>
+          このサイトは、同じように仕事や家庭を抱えながら、衰えゆく記憶力と闘ってスコアを奪取したい大人のための「実践の道場」です。
+        </p>
+      </div>
+
+      <!-- noteへの出口 -->
+      <div class="mt-8 pt-6 border-t border-slate-700/80 space-y-3">
+        <div class="text-sm text-slate-300 font-bold">
+          <i class="fa-solid fa-book-open text-amber-400 mr-1.5"></i> さらに詳細な教材の周回スケジュール・回し方
+        </div>
+        <p class="text-xs sm:text-sm text-slate-400">
+          私がボロボロになるまで使い倒した公式問題集の具体的なテスト回し方や、停滞期を脱出した際の決め手になった出来事は、noteに詳しく書き残します（作成中）。
+        </p>
+        <a href="https://note.com/" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm transition flex items-center justify-between shadow-lg shadow-emerald-900/30">
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-pen-nib"></i>
+            <span>公式問題集・高回転奪還手記を読む（note）（作成中）</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+        </a>
+      </div>
+
+    </article>
+
+    <!-- ポータルへ戻る特大ボタン -->
+    <div class="pt-2 pb-6">
+      <a href="index.html" class="w-full py-3.5 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-sky-400 text-slate-300 hover:text-white text-sm font-bold transition flex items-center justify-center gap-2 shadow-lg">
+        <i class="fa-solid fa-bolt text-sky-400"></i>
+        <span>高回転トレーニングを開始する（ポータルへ）</span>
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="text-center text-xs text-slate-500 py-6 border-t border-slate-800">
+    <p class="font-bold text-slate-400">TOEIC RE:BOOT 730 Architecture &copy; 2026</p>
+  </footer>
+
+  <!-- Chart.js グラフ描画スクリプト（ご提示のスコアデータを完全プロット） -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const ctx = document.getElementById('scoreChart').getContext('2d');
+
+      const labels = [
+        '21/03', '21/04', '21/05', '21/10', '21/11', '21/12',
+        '22/01', '22/02', '22/03', '22/04', '22/06', '22/10', '22/11', '22/12',
+        '23/01', '23/02', '23/03', '23/10', '23/12',
+        '24/01', '24/02', '24/03', '24/04', '25/07', '25/12', '26/01', '26/02'
+      ];
+
+      const listeningScores = [
+        205, 260, 305, 245, 315, 345,
+        335, 340, 315, 385, 390, 330, 355, 350,
+        380, 370, 370, 345, 355,
+        410, 395, 385, 385, 350, 405, 365, 420
+      ];
+
+      const readingScores = [
+        190, 260, 280, 260, 295, 280,
+        225, 295, 315, 325, 235, 305, 310, 320,
+        310, 315, 295, 335, 330,
+        315, 335, 315, 300, 310, 270, 320, 260
+      ];
+
+      const totalScores = [
+        395, 520, 585, 505, 610, 625,
+        560, 635, 630, 710, 625, 635, 665, 670,
+        690, 685, 665, 680, 685,
+        725, 730, 700, 685, 660, 675, 685, 680
+      ];
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              type: 'line',
+              label: 'Total Score',
+              data: totalScores,
+              borderColor: '#94a3b8',
+              backgroundColor: '#94a3b8',
+              borderWidth: 2,
+              tension: 0.2,
+              pointRadius: 3,
+              pointHoverRadius: 5,
+              yAxisID: 'y'
+            },
+            {
+              type: 'bar',
+              label: 'Listening',
+              data: listeningScores,
+              backgroundColor: '#0284c7',
+              borderRadius: 3,
+              yAxisID: 'y'
+            },
+            {
+              type: 'bar',
+              label: 'Reading',
+              data: readingScores,
+              backgroundColor: '#d97706',
+              borderRadius: 3,
+              yAxisID: 'y'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#0f172a',
+              titleColor: '#fff',
+              bodyColor: '#e2e8f0',
+              borderColor: '#334155',
+              borderWidth: 1,
+              padding: 10
+            }
+          },
+          scales: {
+            x: {
+              ticks: { color: '#64748b', font: { size: 10 } },
+              grid: { display: false }
+            },
+            y: {
+              min: 200,
+              max: 800,
+              ticks: { color: '#64748b', stepSize: 100, font: { size: 10 } },
+              grid: { color: '#1e293b' }
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,317 @@
+[
+  {
+    "word": "get permission",
+    "meaning": "許可を得る",
+    "example": "You must get permission from your supervisor beforehand.",
+    "example_jp": "事前に上司から許可を得る必要があります。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get a refund",
+    "meaning": "返金を受ける",
+    "example": "Shoppers can easily get a refund with their digital receipt.",
+    "example_jp": "購入者は電子レシートがあれば簡単に返金を受けられます。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get a promotion",
+    "meaning": "昇進する",
+    "example": "Consistent diligence helped her get a promotion to chief.",
+    "example_jp": "日頃の真面目な働きぶりが評価され、彼女は主任へ昇進しました。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get an estimate",
+    "meaning": "見積もりを取る",
+    "example": "We should get an estimate from three different suppliers.",
+    "example_jp": "3社の異なる業者から相見積もりを取るべきです。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get in touch with",
+    "meaning": "〜と連絡を取る",
+    "example": "Please get in touch with our customer service department.",
+    "example_jp": "カスタマーサービス部門までご連絡をお願いします。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get access to",
+    "meaning": "〜へのアクセス権を得る",
+    "example": "The technician could not get access to the secure server room.",
+    "example_jp": "技術者は厳重なサーバースペースへ入室できませんでした。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get back to",
+    "meaning": "（返答のため）折り返し連絡する",
+    "example": "The sales representative promised to get back to me by noon.",
+    "example_jp": "営業担当者は正午までに折り返し連絡すると約束しました。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get along with",
+    "meaning": "〜とうまくやっていく",
+    "example": "It is crucial to get along with fellow team members.",
+    "example_jp": "職場のチームメンバーと円滑な関係を築くことは重要です。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get rid of",
+    "meaning": "〜を処分する・取り除く",
+    "example": "The factory wants to get rid of outdated packaging stock.",
+    "example_jp": "工場は旧仕様の包装資材在庫を処分したいと考えています。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get involved in",
+    "meaning": "〜に関与する・参加する",
+    "example": "Employees are encouraged to get involved in quality circles.",
+    "example_jp": "社員は品質改善サークルへの積極的な参加が推奨されています。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get through to",
+    "meaning": "〜に電話が通じる・理解させる",
+    "example": "I tried calling all morning but could not get through to him.",
+    "example_jp": "午前中ずっと電話をかけましたが彼には繋がりませんでした。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get ready for",
+    "meaning": "〜の準備をする",
+    "example": "Operators must get ready for the upcoming hygiene inspection.",
+    "example_jp": "作業員は間近に迫った衛生検査の準備を整えなければなりません。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get started on",
+    "meaning": "〜に取り掛かる",
+    "example": "Let us get started on the monthly inventory check right away.",
+    "example_jp": "すぐに月次の棚卸作業に取り掛かりましょう。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get familiar with",
+    "meaning": "〜に慣れ親しむ・習熟する",
+    "example": "New workers should quickly get familiar with machine controls.",
+    "example_jp": "新任作業員は機械の操作方法に早く慣れる必要があります。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get an approval",
+    "meaning": "承認・決裁を得る",
+    "example": "The buyer had to get an approval before placing the order.",
+    "example_jp": "購買担当者は発注を行う前に決裁を得る必要がありました。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get a discount",
+    "meaning": "割引を受ける",
+    "example": "Members get a discount on all factory store purchases.",
+    "example_jp": "会員は工場直売所での買い物がすべて割引になります。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get a receipt",
+    "meaning": "領収書を受け取る",
+    "example": "Make sure to get a receipt for business travel expenses.",
+    "example_jp": "出張経費の領収書を必ず受け取ってください。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get a quote",
+    "meaning": "見積もりを取る",
+    "example": "We contacted three shipping carriers to get a quote.",
+    "example_jp": "見積もりを取るために配送業者3社へ連絡しました。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get confirmation",
+    "meaning": "確認・確証を得る",
+    "example": "Please wait until you get confirmation from the airline.",
+    "example_jp": "航空会社からの確認通知を受け取るまでお待ちください。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get feedback",
+    "meaning": "フィードバックを得る",
+    "example": "The survey allowed us to get feedback from actual consumers.",
+    "example_jp": "アンケート調査により実際の消費者から意見を得ることができました。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get results",
+    "meaning": "成果・結果を出す",
+    "example": "The new marketing strategy began to get results quickly.",
+    "example_jp": "新しいマーケティング戦略はすぐに成果を出し始めました。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get an impression",
+    "meaning": "印象を受ける",
+    "example": "Clients get a positive impression from clean facilities.",
+    "example_jp": "清潔な施設は顧客に好印象を与えます。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get a replacement",
+    "meaning": "交換品を受け取る・後任を得る",
+    "example": "The factory will get a replacement for the damaged motor.",
+    "example_jp": "工場は破損したモーターの交換品を受け取る予定です。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get a warranty",
+    "meaning": "保証を受ける",
+    "example": "Buyers get a two-year warranty with every purchase.",
+    "example_jp": "購入者は商品購入ごとに2年間の保証を受けられます。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get acquainted with",
+    "meaning": "〜と知り合いになる・〜に精通する",
+    "example": "Take time to get acquainted with local plant regulations.",
+    "example_jp": "工場の所内規程をしっかりと把握してください。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get accustomed to",
+    "meaning": "〜に慣れる",
+    "example": "Trainees gradually get accustomed to shift schedules.",
+    "example_jp": "研修生は徐々にシフト勤務の日程に慣れていきます。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get used to",
+    "meaning": "〜に慣れる",
+    "example": "It took a few weeks to get used to the noisy equipment.",
+    "example_jp": "騒音のある機械設備に慣れるまでに数週間かかりました。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get in the way of",
+    "meaning": "〜の邪魔になる・妨げになる",
+    "example": "Clutter should not get in the way of emergency exits.",
+    "example_jp": "物が非常口の妨げになってはなりません。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get out of hand",
+    "meaning": "手に負えなくなる・収拾がつかなくなる",
+    "example": "Address safety complaints before they get out of hand.",
+    "example_jp": "安全に関する苦情は収拾がつかなくなる前に対処してください。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get down to business",
+    "meaning": "本題に入る",
+    "example": "After brief greetings, the team will get down to business.",
+    "example_jp": "簡単な挨拶の後、チームは本題に入ります。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get a hold of",
+    "meaning": "〜と連絡を取る・〜を手に入れる",
+    "example": "I tried to get a hold of the warehouse supervisor.",
+    "example_jp": "倉庫の責任者と連絡を取ろうと試みました。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get ahead of",
+    "meaning": "〜をリードする・先手を打つ",
+    "example": "Automation helps the company get ahead of competitors.",
+    "example_jp": "自動化により企業は競合他社を一歩リードできます。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get behind schedule",
+    "meaning": "予定より遅れる",
+    "example": "Material shortages caused the plant to get behind schedule.",
+    "example_jp": "資材不足により工場の製造予定に遅れが生じました。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get back on track",
+    "meaning": "軌道に戻す・立て直す",
+    "example": "Extra shifts helped the packaging line get back on track.",
+    "example_jp": "追加シフトにより包装ラインの稼働を正常な軌道に戻しました。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get word from",
+    "meaning": "〜から連絡を受ける・一報が入る",
+    "example": "We expect to get word from the supplier this afternoon.",
+    "example_jp": "今日の午後、業者から連絡が入る見込みです。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get a raise",
+    "meaning": "昇給する",
+    "example": "Employees who hit performance targets will get a raise.",
+    "example_jp": "業績目標を達成した従業員は昇給を受けられます。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get compensation",
+    "meaning": "補償金を受け取る",
+    "example": "Travelers can get compensation for damaged luggage.",
+    "example_jp": "旅行者は破損した手荷物に対する補償を受けられます。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get advice",
+    "meaning": "助言・アドバイスを受ける",
+    "example": "It is wise to get advice from financial experts.",
+    "example_jp": "金融の専門家から助言を受けるのが賢明です。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get credit for",
+    "meaning": "〜の功績を認められる",
+    "example": "The engineering group should get credit for the redesign.",
+    "example_jp": "設計刷新の功績は技術グループに認められるべきです。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get an update on",
+    "meaning": "〜の最新報告を受ける",
+    "example": "The manager called to get an update on shipment status.",
+    "example_jp": "管理職は出荷状況の最新報告を受けるために電話をかけました。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get clearance",
+    "meaning": "承認・許可（通関等）を得る",
+    "example": "Imported containers must get clearance before transport.",
+    "example_jp": "輸入コンテナは輸送前に通関許可を得なければなりません。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get underway",
+    "meaning": "始まる・進行中である",
+    "example": "The new plant inspection is scheduled to get underway at nine.",
+    "example_jp": "新工場の点検は9時に開始される予定です。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get an overview",
+    "meaning": "概要をつかむ・説明を受ける",
+    "example": "Trainees get an overview of operations on their first day.",
+    "example_jp": "研修生は初日に業務全体の概要を把握します。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get a perspective on",
+    "meaning": "〜についての見解を得る",
+    "example": "The keynote speech helped us get a perspective on market shifts.",
+    "example_jp": "基調講演により市場の変化に対する見解を得ることができました。",
+    "category": "基本動詞: get"
+  },
+  {
+    "word": "get off to a good start",
+    "meaning": "順調なスタートを切る",
+    "example": "The new product launch managed to get off to a good start.",
+    "example_jp": "新商品の発売は幸先の良いスタートを切ることができました。",
+    "category": "基本動詞: get"
+  }
+]
