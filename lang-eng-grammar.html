@@ -36,35 +36,45 @@
 <body class="min-h-screen flex flex-col justify-between p-3 sm:p-5 selection:bg-cyan-500 selection:text-slate-950">
 
   <!-- ================= 最上部ヘッダー ================= -->
-  <header class="w-full max-w-4xl mx-auto flex items-center justify-between pb-3 border-b border-slate-800/80">
+  <header class="w-full max-w-4xl mx-auto flex items-center justify-between pb-3 border-b border-slate-800/80 gap-2">
     <!-- 左：戻る + タイトル -->
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2.5 shrink-0">
       <a href="index.html" class="text-slate-400 hover:text-white transition text-base" title="ポータルへ戻る">
         <i class="fa-solid fa-arrow-left"></i>
       </a>
       <div class="flex items-center gap-2">
         <span class="text-cyan-400 text-lg"><i class="fa-solid fa-layer-group"></i></span>
-        <h1 class="text-base sm:text-lg font-black tracking-wide text-white">英文法論点特訓</h1>
+        <h1 class="text-sm sm:text-base font-black tracking-wide text-white">文法論点特訓</h1>
       </div>
     </div>
 
-    <!-- 中央：辞書・チャプター選択 -->
-    <div class="flex items-center gap-2 text-xs">
-      <span class="text-slate-400 hidden sm:inline">論点集:</span>
+    <!-- 中央：自社論点ブロック切り替えプルダウン -->
+    <div class="flex items-center gap-1.5 text-xs flex-1 max-w-xs sm:max-w-md justify-center">
       <select id="chapterSelect" onchange="changeChapter(this.value)" 
-        class="bg-slate-900/90 text-cyan-300 border border-slate-700 rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-cyan-400">
-        <option value="all">全収録論点</option>
-        <option value="Block 1-1" selected>Block 1-1: 文型・主要素</option>
+        class="w-full bg-slate-900 text-cyan-300 border border-slate-700 rounded-lg px-2 py-1 text-xs focus:outline-none focus:border-cyan-400 truncate">
+        <option value="all">全論点（一括読み込み）</option>
+        <option value="block1_1" selected>Block 1-1: 5文型と主要素 (50問)</option>
+        <option value="block1_2">Block 1-2: 名詞・代名詞 (50問)</option>
+        <option value="block1_3">Block 1-3: 形容詞・副詞 (50問)</option>
+        <option value="block1_4">Block 1-4: 前置詞の基礎 (50問)</option>
+        <option value="block2_1">Block 2-1: 主述の一致 (50問)</option>
+        <option value="block2_2">Block 2-2: 時制 (50問)</option>
+        <option value="block2_3">Block 2-3: 受動態 (50問)</option>
+        <option value="block2_4">Block 2-4: 助動詞・仮定法 (50問)</option>
+        <option value="block3_1">Block 3-1: 不定詞 (50問)</option>
+        <option value="block3_2">Block 3-2: 動名詞 (50問)</option>
+        <option value="block3_3">Block 3-3: 分詞 (50問)</option>
+        <option value="block3_4">Block 3-4: 分詞構文 (50問)</option>
       </select>
     </div>
 
     <!-- 右：文字サイズ + 一覧ボタン -->
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-1.5 shrink-0">
       <div class="flex items-center bg-slate-900 border border-slate-800 rounded-lg overflow-hidden text-xs">
-        <button onclick="adjustFontSize(-1)" class="px-2.5 py-1 text-slate-300 hover:text-white hover:bg-slate-800 transition">A-</button>
-        <button onclick="adjustFontSize(1)" class="px-2.5 py-1 text-slate-300 hover:text-white hover:bg-slate-800 transition border-l border-slate-800">A+</button>
+        <button onclick="adjustFontSize(-1)" class="px-2 py-1 text-slate-300 hover:text-white hover:bg-slate-800 transition">A-</button>
+        <button onclick="adjustFontSize(1)" class="px-2 py-1 text-slate-300 hover:text-white hover:bg-slate-800 transition border-l border-slate-800">A+</button>
       </div>
-      <button onclick="openListModal()" class="px-3 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs flex items-center gap-1.5 transition">
+      <button onclick="openListModal()" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs flex items-center gap-1 transition">
         <i class="fa-solid fa-list-ul text-cyan-400"></i> 一覧
       </button>
     </div>
@@ -76,7 +86,7 @@
     <!-- サブコントロールバー -->
     <div class="w-full flex items-center justify-between mb-3 text-xs">
       <div class="flex items-center gap-2 font-mono">
-        <span class="text-cyan-400 font-bold" id="progressIndex">1 / 8</span>
+        <span class="text-cyan-400 font-bold" id="progressIndex">1 / 50</span>
         <span class="text-slate-600">|</span>
         <span class="text-slate-400">出題:</span>
         <select id="deckSizeSelect" onchange="changeDeckSize(this.value)" 
@@ -107,7 +117,7 @@
         <div class="card-frame rounded-2xl p-5 sm:p-7 flex flex-col justify-between items-center text-center min-h-[380px] sm:min-h-[400px]">
           <div class="w-full flex items-center justify-between">
             <span id="cardCategoryBadge" class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800/80">
-              第1文型（SV）
+              文法論点
             </span>
             <div class="flex items-center gap-2">
               <button onclick="playSpeech(event)" class="text-slate-400 hover:text-cyan-300 transition text-sm p-1" title="音声再生">
@@ -120,6 +130,7 @@
           </div>
 
           <div class="my-auto py-3 w-full space-y-4">
+            <!-- 例文エリア -->
             <div class="bg-slate-900/60 rounded-xl p-3 border border-slate-800/80 text-left space-y-1">
               <div class="text-[10px] text-amber-400 font-bold uppercase tracking-wider flex items-center gap-1">
                 <i class="fa-solid fa-lightbulb"></i> <span id="cardTopicTitle">コア論点</span>
@@ -132,12 +143,13 @@
               </div>
             </div>
 
+            <!-- 問題文エリア -->
             <div class="space-y-2 pt-1">
               <div id="cardQuestion" class="font-bold text-white tracking-tight leading-relaxed transition-all duration-200">
-                The train ______ promptly at 7:00 AM from platform 3.
+                Loading question...
               </div>
               <div id="cardOptions" class="inline-block px-3 py-1.5 rounded-lg bg-slate-950/90 border border-slate-800 text-xs sm:text-sm font-mono text-cyan-300">
-                [ departs / departure / departing ]
+                [ - ]
               </div>
             </div>
           </div>
@@ -160,7 +172,7 @@
             <div>
               <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">正解</div>
               <div id="cardAnswer" class="text-2xl sm:text-3xl font-black text-emerald-300 font-mono tracking-wide">
-                departs
+                -
               </div>
             </div>
 
@@ -169,14 +181,14 @@
                 <i class="fa-solid fa-key"></i> 判断のキモ（解法ルール）
               </div>
               <div id="cardRule" class="text-xs sm:text-sm font-bold text-slate-200 leading-relaxed">
-                主語に対応する本動詞（V）が必要。
+                -
               </div>
             </div>
 
             <div class="bg-slate-900/40 p-2.5 rounded-lg border border-slate-800/60">
               <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">完成した文</div>
               <div id="cardFullSentence" class="text-xs text-slate-300 italic leading-relaxed">
-                The train departs promptly at 7:00 AM from platform 3.
+                -
               </div>
             </div>
           </div>
@@ -244,7 +256,7 @@
       <div class="flex items-center justify-between pb-3 border-b border-slate-800">
         <div class="flex items-center gap-2">
           <i class="fa-solid fa-layer-group text-cyan-400"></i>
-          <h3 class="text-base font-bold text-white">文法論点一覧</h3>
+          <h3 class="text-base font-bold text-white">収録論点一覧</h3>
           <span class="text-xs text-slate-500 font-mono" id="modalListCount"></span>
         </div>
         <button onclick="closeListModal()" class="text-slate-400 hover:text-white text-base p-1">
@@ -264,7 +276,7 @@
     </div>
   </div>
 
-  <!-- フッター（Amazonアソシエイト指定規約文言を追加） -->
+  <!-- フッター -->
   <footer class="mt-8 text-center text-xs text-slate-500 py-6 border-t border-slate-800 space-y-2">
     <p class="font-bold text-slate-400">&copy; 2026 TOEIC RE:BOOT 730</p>
     <p class="text-[11px] text-slate-600">40代後半・50代からの高回転・即断自習トレーニング環境</p>
@@ -273,104 +285,21 @@
 
   <!-- ================= スクリプト制御 ================= -->
   <script>
-    const fallbackData = [
-      {
-        "id": 101,
-        "block": "Block 1-1",
-        "category": "第1文型（SV）",
-        "topic": "第1文型（SV）と修飾語（M）の判別",
-        "example_en": "The new branch opened successfully last Monday.",
-        "example_ja": "その新しい支店は先週の月曜日に無事オープンした。（S=branch, V=opened, 後ろは修飾語句）",
-        "question": "The train ______ promptly at 7:00 AM from platform 3.",
-        "options": "[ departs / departure / departing ]",
-        "answer": "departs",
-        "rule": "主語（The train）に対応する本動詞（V）が必要。後ろの副詞句（promptly...）は修飾語（M）。"
-      },
-      {
-        "id": 102,
-        "block": "Block 1-1",
-        "category": "第2文型（SVC）",
-        "topic": "第2文型（SVC）における補語（形容詞）",
-        "example_en": "The financial forecast remains stable despite inflation.",
-        "example_ja": "インフレにもかかわらず、財務見通しは安定したままである。（remain + 形容詞C）",
-        "question": "The laboratory conditions must remain ______ during the testing process.",
-        "options": "[ sterile / sterilely / sterility ]",
-        "answer": "sterile",
-        "rule": "remain / keep / stay などの不完全自動詞の後ろには、主語の状態を説明する「補語（形容詞）」が来る。"
-      },
-      {
-        "id": 103,
-        "block": "Block 1-1",
-        "category": "第3文型（SVO）",
-        "topic": "第3文型（SVO）における他動詞と目的語",
-        "example_en": "The CEO discussed the merger with reporters.",
-        "example_ja": "CEOは記者たちとその合併について議論した。（discuss は他動詞なので前置詞不要で目的語O）",
-        "question": "Please ______ the application form by Friday afternoon.",
-        "options": "[ submit / submission / submissive ]",
-        "answer": "submit",
-        "rule": "命令文の文頭には動詞の原形（V）が必要。直後の the application form（名詞句）が目的語（O）。"
-      },
-      {
-        "id": 104,
-        "block": "Block 1-1",
-        "category": "第4文型（SVOO）",
-        "topic": "第4文型（SVOO）の授与動詞パターン",
-        "example_en": "The company offered him a senior position.",
-        "example_ja": "会社は彼に上級職のポストを提示した。（offer + 人(O1) + モノ(O2)）",
-        "question": "The HR director granted ______ a two-week extension on the project.",
-        "options": "[ them / their / theirs ]",
-        "answer": "them",
-        "rule": "grant + 人（目的格代名詞：O1）+ モノ（O2）。第4文型の第1目的語には目的格（them）が入る。"
-      },
-      {
-        "id": 105,
-        "block": "Block 1-1",
-        "category": "第5文型（SVOC）",
-        "topic": "第5文型（SVOC）：補語に形容詞をとる動詞",
-        "example_en": "We found the instructions extremely helpful.",
-        "example_ja": "私たちはその指示書が極めて役に立つと分かった。（find + O + C(形容詞)）",
-        "question": "The survey results make the upcoming campaign ______.",
-        "options": "[ necessary / necessarily / necessity ]",
-        "answer": "necessary",
-        "rule": "make + O + C（形容詞）。目的語（the upcoming campaign）の状態を表す補語(C)には形容詞が必要。"
-      },
-      {
-        "id": 106,
-        "block": "Block 1-1",
-        "category": "第5文型（SVOC）",
-        "topic": "第5文型（SVOC）：補語に to 不定詞をとる動詞",
-        "example_en": "The supervisor asked the staff to attend the workshop.",
-        "example_ja": "主任はスタッフに研修会へ参加するよう求めた。（ask + O + to do）",
-        "question": "The revised safety regulations require all employees ______ hard hats.",
-        "options": "[ wear / wearing / to wear ]",
-        "answer": "to wear",
-        "rule": "require / allow / enable / advise + O + to do（Oに〜するよう要求・可能にする）。"
-      },
-      {
-        "id": 107,
-        "block": "Block 1-1",
-        "category": "使役動詞",
-        "topic": "第5文型（SVOC）：使役動詞の原形不定詞",
-        "example_en": "The manager let the intern leave early today.",
-        "example_ja": "マネージャーは今日、実習生を早く帰らせてあげた。（let + O + 原形不定詞）",
-        "question": "The system upgrade helped the team ______ errors significantly.",
-        "options": "[ reduce / reduction / reduced ]",
-        "answer": "reduce",
-        "rule": "help + O + (to) 原形動詞。help は目的語の後ろに原形不定詞（またはto不定詞）をとる特殊な動詞。"
-      },
-      {
-        "id": 108,
-        "block": "Block 1-1",
-        "category": "動詞の語法",
-        "topic": "自動詞と他動詞の峻別（紛らわしい動詞）",
-        "example_en": "Prices rose by five percent last quarter.",
-        "example_ja": "価格は前期に5％上昇した。（rise は目的語をとらない自動詞）",
-        "question": "The management decided to ______ wages to retain talented engineers.",
-        "options": "[ rise / raise / arising ]",
-        "answer": "raise",
-        "rule": "直後に名詞（wages：賃金）があるため、他動詞「raise（〜を上げる）」が必要。自動詞「rise（上がる）」は不可。"
-      }
-    ];
+    // 自社制作JSONファイルの完全マッピング（Block 3-3, 3-4を追加）
+    const GRAMMAR_FILES = {
+      block1_1: 'eng_grammar-block1_1_sentence_patterns.json',
+      block1_2: 'eng_grammar-block1_2_nouns_pronouns.json',
+      block1_3: 'eng_grammar-block1_3_adjectives_adverbs.json',
+      block1_4: 'eng_grammar-block1_4_prepositions.json',
+      block2_1: 'eng_grammar-block2_1_number_agreement.json',
+      block2_2: 'eng_grammar-block2_2_tense_aspect.json',
+      block2_3: 'eng_grammar-block2_3_passive_voice.json',
+      block2_4: 'eng_grammar-block2_4_subjunctive_modals.json',
+      block3_1: 'eng_grammar-block3_1_infinitive.json',
+      block3_2: 'eng_grammar-block3_2_gerund.json',
+      block3_3: 'eng_grammar-block3_3_participle.json',
+      block3_4: 'eng_grammar-block3_4_participle_clauses.json'
+    };
 
     let allData = [];
     let activeDeck = [];
@@ -403,38 +332,38 @@
 
     async function initApp() {
       applyFontClasses();
+      await changeChapter('block1_1');
+    }
+
+    async function changeChapter(key) {
+      const cacheBuster = '?t=' + new Date().getTime();
+      allData = [];
+
       try {
-        // キャッシュバスター(?t=...)を付与して常に最新のJSONを取得
-        const cacheBuster = '?t=' + new Date().getTime();
-        const res = await fetch('eng_grammar.json' + cacheBuster);
-        if (!res.ok) throw new Error('Network error');
-        allData = await res.json();
-      } catch (e) {
-        allData = fallbackData;
+        if (key === 'all') {
+          // 全ブロックを一括並列読み込み
+          const promises = Object.values(GRAMMAR_FILES).map(file => 
+            fetch(file + cacheBuster).then(r => r.ok ? r.json() : [])
+          );
+          const results = await Promise.all(promises);
+          allData = results.flat();
+        } else {
+          const file = GRAMMAR_FILES[key];
+          const res = await fetch(file + cacheBuster);
+          if (!res.ok) throw new Error('File load error');
+          allData = await res.json();
+        }
+      } catch (err) {
+        console.error('JSON読み込み失敗:', err);
+        allData = [];
       }
 
-      setupChapterSelect();
       rebuildDeck();
     }
 
-    function setupChapterSelect() {
-      const select = document.getElementById('chapterSelect');
-      const blocks = [];
-      allData.forEach(d => {
-        const b = d.block || 'その他';
-        if (!blocks.includes(b)) blocks.push(b);
-      });
-
-      select.innerHTML = '<option value="all">全収録論点</option>' + 
-        blocks.map(b => `<option value="${b}">${b}</option>`).join('');
-      
-      if (blocks.length > 0) {
-        select.value = blocks[0];
-      }
+    function changeDeckSize(val) {
+      rebuildDeck();
     }
-
-    function changeChapter(val) { rebuildDeck(); }
-    function changeDeckSize(val) { rebuildDeck(); }
 
     function setFilterMode(mode) {
       filterMode = mode;
@@ -452,8 +381,7 @@
     }
 
     function rebuildDeck() {
-      const chapter = document.getElementById('chapterSelect').value;
-      let pool = (chapter === 'all') ? [...allData] : allData.filter(d => d.block === chapter);
+      let pool = [...allData];
 
       if (filterMode === 'review') {
         pool = pool.filter(d => stats.review[d.id]);
@@ -481,9 +409,9 @@
         progressIndex.textContent = "0 / 0";
         cardCategoryBadge.textContent = "なし";
         cardTopicTitle.textContent = "対象の論点はありません";
-        cardExampleEn.textContent = "未習得の論点がありません。";
+        cardExampleEn.textContent = "問題データが見つからないか、すべて習得済みです。";
         cardExampleJa.textContent = "";
-        cardQuestion.textContent = "別のチャプターを選択してください。";
+        cardQuestion.textContent = "上のプルダウンから別の論点ブロックを選択してください。";
         cardOptions.textContent = "[ - ]";
         cardAnswer.textContent = "-";
         cardRule.textContent = "-";
@@ -496,15 +424,15 @@
       flashCard.classList.remove('rotate-y-180');
 
       const item = activeDeck[index];
-      cardCategoryBadge.textContent = item.category || item.block || "文法論点";
+      cardCategoryBadge.textContent = item.block || item.category || "文法論点";
       cardTopicTitle.textContent = item.topic;
-      cardExampleEn.textContent = `"${item.example_en}"`;
-      cardExampleJa.textContent = item.example_ja;
+      cardExampleEn.textContent = item.example_en ? `"${item.example_en}"` : "";
+      cardExampleJa.textContent = item.example_ja || "";
       cardQuestion.textContent = item.question;
       cardOptions.textContent = item.options;
       cardAnswer.textContent = item.answer;
       cardRule.textContent = item.rule;
-      cardFullSentence.textContent = `"${item.question.replace('______', item.answer)}"`;
+      cardFullSentence.textContent = item.question ? `"${item.question.replace('______', item.answer)}"` : "";
 
       if (stats.review[item.id]) {
         cardStatusBadge.classList.remove('hidden');
@@ -534,6 +462,9 @@
       if (currentIndex < activeDeck.length - 1) {
         currentIndex++;
         loadCard(currentIndex);
+      } else {
+        currentIndex = 0;
+        loadCard(0);
       }
     }
 
@@ -600,11 +531,10 @@
     function filterList() {
       const q = document.getElementById('listSearchInput').value.toLowerCase();
       const filtered = allData.filter(item => 
-        item.topic.toLowerCase().includes(q) ||
-        item.question.toLowerCase().includes(q) ||
-        item.answer.toLowerCase().includes(q) ||
-        item.rule.toLowerCase().includes(q) ||
-        (item.category && item.category.toLowerCase().includes(q))
+        (item.topic && item.topic.toLowerCase().includes(q)) ||
+        (item.question && item.question.toLowerCase().includes(q)) ||
+        (item.answer && item.answer.toLowerCase().includes(q)) ||
+        (item.rule && item.rule.toLowerCase().includes(q))
       );
       renderList(filtered);
     }
@@ -627,7 +557,7 @@
         row.innerHTML = `
           <div class="flex items-center justify-between gap-2">
             <span class="text-[10px] font-mono text-cyan-400 font-bold px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-800">
-              ${item.category || item.block || 'Grammar'}
+              ${item.block || 'Grammar'}
             </span>
             <div class="flex items-center gap-1.5">
               ${isMastered ? '<span class="text-[9px] px-1.5 py-0.2 rounded bg-emerald-950 text-emerald-400 border border-emerald-800 font-bold">済</span>' : ''}
@@ -636,8 +566,8 @@
           </div>
           <div class="text-xs font-bold text-amber-300">${item.topic}</div>
           <div class="text-[11px] text-slate-400 bg-slate-950/50 p-2 rounded-lg">
-            <span class="text-slate-300 font-semibold">${item.example_en}</span><br>
-            <span class="text-slate-500">${item.example_ja}</span>
+            <span class="text-slate-300 font-semibold">${item.example_en || ''}</span><br>
+            <span class="text-slate-500">${item.example_ja || ''}</span>
           </div>
           <div class="text-xs font-bold text-white pt-0.5">${item.question}</div>
           <div class="text-xs font-mono font-bold text-emerald-300">正解: ${item.answer}</div>
