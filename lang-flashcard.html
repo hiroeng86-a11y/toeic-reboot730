@@ -1,9 +1,14 @@
+<!-- 対象ファイル: lang-flashcard.html -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collocation Flashcards | Knowledge & Training Hub</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <title>頻出フレーズ・単語反復 | TOEIC RE:BOOT 730</title>
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome 6 -->
@@ -46,15 +51,15 @@
         }
     </style>
 </head>
-<body class="flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen justify-between selection:bg-cyan-500 selection:text-slate-950">
 
     <!-- Top Navigation / Header -->
     <header class="glass-card sticky top-0 z-40 border-b border-slate-800 px-4 py-3">
         <div class="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3">
             <div class="flex items-center space-x-3">
                 <a href="index.html" class="text-slate-400 hover:text-cyan-400 transition-colors p-1" title="ポータルへ戻る">
-    		<i class="fa-solid fa-arrow-left text-lg"></i>
-		</a>
+                    <i class="fa-solid fa-arrow-left text-lg"></i>
+                </a>
                 <h1 class="text-lg font-bold text-white tracking-wide flex items-center gap-2">
                     <i class="fa-solid fa-layer-group text-cyan-400"></i>
                     <span>コロケーション特訓</span>
@@ -168,7 +173,6 @@
                         <div id="cardWordSmall" class="text-slate-400 text-sm tracking-wide mb-3">
                             Original Collocation
                         </div>
-                        <!-- Example Japanese Translation (Hidden if not present) -->
                         <div id="cardExampleBack" class="text-slate-300 text-xs sm:text-sm bg-slate-900/60 p-2.5 rounded-lg border border-slate-800 hidden leading-relaxed">
                             例文訳
                         </div>
@@ -196,7 +200,7 @@
         </div>
 
         <!-- Controls: Prev, Flip, Next -->
-        <div class="flex items-center justify-center gap-4">
+        <div class="flex items-center justify-center gap-4 mb-5">
             <button id="btnPrev" class="glass-card hover:bg-slate-800 text-slate-300 px-5 py-2.5 rounded-xl border border-slate-700 text-xs sm:text-sm font-medium flex items-center gap-2 transition active:scale-95">
                 <i class="fa-solid fa-chevron-left"></i>
                 <span class="hidden sm:inline">前へ (←)</span>
@@ -210,12 +214,34 @@
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
         </div>
+
+        <!-- 【教材導線・アフィリエイト枠】金のフレーズの紹介カード -->
+        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+            <div class="space-y-1 text-center sm:text-left">
+                <div class="flex items-center justify-center sm:justify-start gap-1.5 text-emerald-400 font-bold">
+                    <i class="fa-solid fa-book-bookmark"></i>
+                    <span>この頻出フレーズを網羅するベース単語帳</span>
+                </div>
+                <p class="text-slate-400 text-[11px] leading-relaxed">
+                    本ツールのコロケーション反復と合わせて、机上で体系的に回すなら『金のフレーズ』1冊で十分です。
+                </p>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+                <a href="recommend.html" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-bold transition">
+                    解説を見る
+                </a>
+                <a href="https://link.amazon/B014hvYYY" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition flex items-center gap-1 shadow">
+                    <span>Amazonで確認</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </a>
+            </div>
+        </div>
+
     </main>
 
     <!-- Modal: Searchable Word List with Checkboxes -->
     <div id="listModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
         <div class="glass-card border border-slate-700 rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl">
-            <!-- Modal Header -->
             <div class="p-4 border-b border-slate-800 flex items-center justify-between gap-3">
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-book-open text-cyan-400"></i>
@@ -225,23 +251,25 @@
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            <!-- Modal Search Input -->
             <div class="p-3 border-b border-slate-800 bg-slate-900/50">
                 <div class="relative">
                     <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-500 text-xs"></i>
                     <input type="text" id="modalSearchInput" placeholder="英語や日本語で絞り込み..." class="w-full bg-slate-900 border border-slate-700 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500">
                 </div>
             </div>
-            <!-- Modal List Content -->
-            <div id="modalListContent" class="p-3 overflow-y-auto custom-scrollbar flex-1 space-y-2 text-xs">
-                <!-- Word items generated here -->
-            </div>
+            <div id="modalListContent" class="p-3 overflow-y-auto custom-scrollbar flex-1 space-y-2 text-xs"></div>
         </div>
     </div>
 
+    <!-- フッター（Amazonアソシエイト指定規約文言を追加） -->
+    <footer class="mt-8 text-center text-xs text-slate-500 py-6 border-t border-slate-800 space-y-2">
+        <p class="font-bold text-slate-400">&copy; 2026 TOEIC RE:BOOT 730</p>
+        <p class="text-[11px] text-slate-600">40代後半・50代からの高回転・即断自習トレーニング環境</p>
+        <p class="text-[10px] text-slate-500 pt-1">Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。</p>
+    </footer>
+
     <!-- Script: Vanilla JS Logic -->
     <script>
-        // Data Files Configuration
         const DECK_CONFIG = {
             collocation: { file: 'words.json', storageKey: 'deck_progress_collocation' },
             make:        { file: 'words-make.json', storageKey: 'deck_progress_make' },
@@ -257,10 +285,8 @@
         let isFlipped = false;
         let isOnlyUnmastered = false;
 
-        // Font Size Level (0: normal, 1: large, 2: extra large)
         let fontSizeLevel = parseInt(localStorage.getItem('quiz_font_level') || '0', 10);
 
-        // Elements
         const deckSelector = document.getElementById('deckSelector');
         const cardInner = document.getElementById('cardInner');
         const cardWord = document.getElementById('cardWord');
@@ -287,14 +313,12 @@
         const btnFontUp = document.getElementById('btnFontUp');
         const btnFontDown = document.getElementById('btnFontDown');
 
-        // Modal Elements
         const listModal = document.getElementById('listModal');
         const btnOpenList = document.getElementById('btnOpenList');
         const btnCloseList = document.getElementById('btnCloseList');
         const modalSearchInput = document.getElementById('modalSearchInput');
         const modalListContent = document.getElementById('modalListContent');
 
-        // Storage Helpers: Storing master list of "mastered words"
         function getMasteredWords() {
             const key = DECK_CONFIG[currentDeck].storageKey;
             try {
@@ -322,7 +346,6 @@
             unmasteredCountBadge.textContent = unmasteredCount;
         }
 
-        // Apply Font Size
         function applyFontSize() {
             const sizesWord = ['text-2xl sm:text-3xl', 'text-3xl sm:text-4xl', 'text-4xl sm:text-5xl'];
             const sizesExample = ['text-sm sm:text-base', 'text-base sm:text-lg', 'text-lg sm:text-xl'];
@@ -335,12 +358,12 @@
             localStorage.setItem('quiz_font_level', fontSizeLevel.toString());
         }
 
-        // Load Deck JSON
         async function loadDeck(deckKey) {
             currentDeck = deckKey;
             const target = DECK_CONFIG[deckKey];
             try {
-                const response = await fetch(target.file);
+                // キャッシュバスター(?t=...)を付与して常に最新のJSONを取得
+                const response = await fetch(target.file + '?t=' + new Date().getTime());
                 if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
                 rawWords = await response.json();
                 isOnlyUnmastered = false;
@@ -357,7 +380,6 @@
             }
         }
 
-        // Setup Pool
         function setupPool() {
             const mastered = getMasteredWords();
             let baseList = isOnlyUnmastered 
@@ -381,7 +403,6 @@
             renderCard();
         }
 
-        // Render Card
         function renderCard() {
             if (!activePool.length) {
                 cardWord.textContent = "該当なし";
@@ -394,7 +415,6 @@
                 return;
             }
 
-            // Reset Flip State
             isFlipped = false;
             cardInner.classList.remove('rotate-y-180');
 
@@ -407,7 +427,6 @@
             cardWordSmall.textContent = item.word;
             cardCategoryBack.textContent = item.category || "コロケーション";
 
-            // Render Japanese translation of example if available
             if (item.example_jp) {
                 cardExampleBack.textContent = `訳: ${item.example_jp}`;
                 cardExampleBack.classList.remove('hidden');
@@ -417,7 +436,6 @@
 
             progressText.textContent = `${currentIndex + 1} / ${activePool.length}`;
 
-            // Update Mastered Status Indicator Badge
             const mastered = isCurrentMastered();
             const badgeClass = mastered 
                 ? 'bg-emerald-950/80 border-emerald-700 text-emerald-300' 
@@ -435,17 +453,11 @@
             statusIndicatorBack.classList.remove('hidden');
         }
 
-        // Toggle Flip
         function toggleFlip() {
             isFlipped = !isFlipped;
-            if (isFlipped) {
-                cardInner.classList.add('rotate-y-180');
-            } else {
-                cardInner.classList.remove('rotate-y-180');
-            }
+            cardInner.classList.toggle('rotate-y-180', isFlipped);
         }
 
-        // Navigation
         function nextCard() {
             if (currentIndex < activePool.length - 1) {
                 currentIndex++;
@@ -464,7 +476,6 @@
             renderCard();
         }
 
-        // Mark Mastered / Unmastered Actions
         function markMastered() {
             if (!activePool.length) return;
             const word = activePool[currentIndex].word;
@@ -487,7 +498,6 @@
             nextCard();
         }
 
-        // Web Speech API
         function speakText(text) {
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
@@ -498,7 +508,6 @@
             }
         }
 
-        // Build Modal List with Checkboxes (レ点)
         function renderModalList(query = '') {
             const q = query.toLowerCase().trim();
             const masteredList = getMasteredWords();
@@ -519,7 +528,6 @@
                 row.className = "flex items-center justify-between p-2.5 rounded-lg bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition gap-3";
                 row.innerHTML = `
                     <div class="flex items-center gap-3 flex-1 min-w-0">
-                        <!-- Checkbox (レ点) -->
                         <button class="btn-check-toggle flex-shrink-0 w-6 h-6 rounded-md border flex items-center justify-center transition ${isMastered ? 'bg-emerald-600 border-emerald-500 text-white' : 'border-slate-600 hover:border-slate-500 text-transparent'}" data-word="${item.word}" title="${isMastered ? '習得済み（クリックで解除）' : '未習得（クリックで習得済みにする）'}">
                             <i class="fa-solid fa-check text-xs"></i>
                         </button>
@@ -538,7 +546,6 @@
                 modalListContent.appendChild(row);
             });
 
-            // Bind Checkbox events
             modalListContent.querySelectorAll('.btn-check-toggle').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -555,7 +562,6 @@
                 });
             });
 
-            // Bind TTS events
             modalListContent.querySelectorAll('.btn-tts-row').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -564,7 +570,6 @@
             });
         }
 
-        // Event Listeners
         deckSelector.addEventListener('change', (e) => {
             loadDeck(e.target.value);
         });
@@ -592,7 +597,6 @@
             if (activePool.length) speakText(activePool[currentIndex].word);
         });
 
-        // Mode Switching
         btnModeAll.addEventListener('click', () => {
             if (!isOnlyUnmastered) return;
             isOnlyUnmastered = false;
@@ -619,7 +623,6 @@
             setupPool();
         });
 
-        // Font Resize Buttons
         btnFontUp.addEventListener('click', () => {
             if (fontSizeLevel < 2) {
                 fontSizeLevel++;
@@ -633,7 +636,6 @@
             }
         });
 
-        // Modal Open / Close
         btnOpenList.addEventListener('click', () => {
             renderModalList();
             listModal.classList.remove('hidden');
@@ -648,7 +650,6 @@
             renderModalList(e.target.value);
         });
 
-        // Keyboard Shortcuts
         window.addEventListener('keydown', (e) => {
             if (!listModal.classList.contains('hidden')) return;
             if (e.code === 'Space') {
@@ -669,7 +670,6 @@
             }
         });
 
-        // Initial Initialization
         applyFontSize();
         loadDeck('collocation');
     </script>

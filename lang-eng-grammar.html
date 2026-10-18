@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>英文法論点特訓 | TOEIC RE:BOOT 730</title>
   
   <!-- Tailwind CSS CDN -->
@@ -199,7 +202,7 @@
     </div>
 
     <!-- ================= ナビゲーション操作ボタン ================= -->
-    <div class="w-full flex items-center justify-center gap-2 sm:gap-3 mt-3">
+    <div class="w-full flex items-center justify-center gap-2 sm:gap-3 mt-3 mb-5">
       <button onclick="prevCard()" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-slate-300 text-xs sm:text-sm font-semibold transition flex items-center gap-1.5">
         <i class="fa-solid fa-chevron-left text-xs"></i> 前へ (←)
       </button>
@@ -209,6 +212,28 @@
       <button onclick="nextCard()" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-slate-300 text-xs sm:text-sm font-semibold transition flex items-center gap-1.5">
         次へ (→) <i class="fa-solid fa-chevron-right text-xs"></i>
       </button>
+    </div>
+
+    <!-- 【教材導線・アフィリエイト枠】でる1000問の紹介カード -->
+    <div class="w-full p-4 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+      <div class="space-y-1 text-center sm:text-left">
+        <div class="flex items-center justify-center sm:justify-start gap-1.5 text-sky-400 font-bold">
+          <i class="fa-solid fa-book-bookmark"></i>
+          <span>Part 5を15秒で切るための文法演習本</span>
+        </div>
+        <p class="text-slate-400 text-[11px] leading-relaxed">
+          本ツールで扱っている論点の基礎を、1,000問の物量で反射に落とし込むなら『でる1000問』が最適です。
+        </p>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="recommend.html" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-bold transition">
+          解説を見る
+        </a>
+        <a href="https://link.amazon/B0iwl6Np1" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold transition flex items-center gap-1 shadow">
+          <span>Amazonで確認</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        </a>
+      </div>
     </div>
 
   </main>
@@ -239,8 +264,11 @@
     </div>
   </div>
 
-  <footer class="w-full text-center text-[10px] text-slate-600 py-2">
-    TOEIC RE:BOOT 730 Architecture • Space: めくる / ↑: できた / ↓: できなかった / ←: 前へ / →: 次へ
+  <!-- フッター（Amazonアソシエイト指定規約文言を追加） -->
+  <footer class="mt-8 text-center text-xs text-slate-500 py-6 border-t border-slate-800 space-y-2">
+    <p class="font-bold text-slate-400">&copy; 2026 TOEIC RE:BOOT 730</p>
+    <p class="text-[11px] text-slate-600">40代後半・50代からの高回転・即断自習トレーニング環境</p>
+    <p class="text-[10px] text-slate-500 pt-1">Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。</p>
   </footer>
 
   <!-- ================= スクリプト制御 ================= -->
@@ -376,7 +404,9 @@
     async function initApp() {
       applyFontClasses();
       try {
-        const res = await fetch('eng_grammar.json');
+        // キャッシュバスター(?t=...)を付与して常に最新のJSONを取得
+        const cacheBuster = '?t=' + new Date().getTime();
+        const res = await fetch('eng_grammar.json' + cacheBuster);
         if (!res.ok) throw new Error('Network error');
         allData = await res.json();
       } catch (e) {

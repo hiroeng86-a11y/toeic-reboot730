@@ -109,7 +109,7 @@
           1. 300点台からのスタートと、最初の壁
         </h3>
         <p>
-          世の中の英語学習本を見れば、「3ヶ月で700点突破！」「スキマ時間で無理なく合格」といった耳触りの良いフレーズばかりが並んでいます。しかし、実際に40代を過ぎてからTOEICに向き合った私の現実は、上のグラフの通り過酷そのものでした。
+          世の中の英語学習本を見れば、「3ヶ月で700点突破！」「スキマ時間で無理なく合格」といった耳触りの良いフレーズばかりが並んでいます。しかし、実際に40代後半を過ぎてからTOEICに向き合った私の現実は、上のグラフの通り過酷そのものでした。
         </p>
         <p>
           最初の受験（2021年3月）はわずか395点。学生時代の記憶など完全に消え去り、リスニングは呪文にしか聞こえず、リーディングはPart 7の途中でタイムアップ。そこから必死で問題集を開き、2022年春になんとか710点にタッチした時は「あと一息！」と思いました。しかし、本当の試練はそこからでした。
@@ -125,7 +125,7 @@
           700点を一度超えた安心感から惰性の学習になったんでしょう・・・、スコアはあっという間に620点〜630点台へと急降下しました。グラフを見ていただければ分かる通り、2022年後半から2023年にかけて、受けども受けども600点台後半の天井を破れない「長期の停滞期」が続きました。
         </p>
         <p>
-          40代の脳は、時間をかけて理解しても翌日には綺麗さっぱり抜けていくのです。平日の仕事で疲れ果てた頭に、長時間の学習時間も取れず厳しい時期がありました。
+          大人の脳は、時間をかけて理解しても翌日には綺麗さっぱり抜けていくのです。平日の仕事で疲れ果てた頭に、長時間の学習時間も取れず厳しい時期がありました。
         </p>
       </div>
 
@@ -179,21 +179,23 @@
         </p>
       </div>
 
-      <!-- noteへの出口 -->
+      <!-- note案内（行き止まりリンクを排除した準備中表示） -->
       <div class="mt-8 pt-6 border-t border-slate-700/80 space-y-3">
         <div class="text-sm text-slate-300 font-bold">
           <i class="fa-solid fa-book-open text-amber-400 mr-1.5"></i> さらに詳細な教材の周回スケジュール・回し方
         </div>
         <p class="text-xs sm:text-sm text-slate-400">
-          私がボロボロになるまで使い倒した公式問題集の具体的なテスト回し方や、停滞期を脱出した際の決め手になった出来事は、noteに詳しく書き残します（作成中）。
+          私がボロボロになるまで使い倒した公式問題集の具体的なテスト回し方や、停滞期を脱出した際の決め手になった出来事は、noteに詳しく書き残します。
         </p>
-        <a href="https://note.com/" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm transition flex items-center justify-between shadow-lg shadow-emerald-900/30">
+        <div class="w-full py-3 px-4 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-400 text-sm font-bold flex items-center justify-between">
           <span class="flex items-center gap-2">
-            <i class="fa-solid fa-pen-nib"></i>
-            <span>公式問題集・高回転奪還手記を読む（note）（作成中）</span>
+            <i class="fa-solid fa-pen-nib text-slate-500"></i>
+            <span>公式問題集・高回転奪還手記（note）</span>
           </span>
-          <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-        </a>
+          <span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-amber-400 border border-slate-700 font-mono">
+            準備中
+          </span>
+        </div>
       </div>
 
     </article>
@@ -208,11 +210,14 @@
 
   </main>
 
-  <footer class="text-center text-xs text-slate-500 py-6 border-t border-slate-800">
-    <p class="font-bold text-slate-400">TOEIC RE:BOOT 730 Architecture &copy; 2026</p>
+  <!-- フッター（Amazonアソシエイト指定規約文言を追加） -->
+  <footer class="mt-8 text-center text-xs text-slate-500 py-6 border-t border-slate-800 space-y-2">
+    <p class="font-bold text-slate-400">&copy; 2026 TOEIC RE:BOOT 730</p>
+    <p class="text-[11px] text-slate-600">40代後半・50代からの高回転・即断自習トレーニング環境</p>
+    <p class="text-[10px] text-slate-500 pt-1">Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。</p>
   </footer>
 
-  <!-- Chart.js グラフ描画スクリプト（ご提示のスコアデータを完全プロット） -->
+  <!-- Chart.js グラフ描画スクリプト（実データプロット） -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const ctx = document.getElementById('scoreChart').getContext('2d');
