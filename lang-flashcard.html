@@ -66,15 +66,17 @@
                 </h1>
             </div>
 
-            <!-- Deck Selector -->
+            <!-- Deck Selector（holdとgiveを確実に配置） -->
             <div class="flex items-center gap-2">
                 <label for="deckSelector" class="text-xs text-slate-400 font-medium hidden sm:inline">辞書:</label>
                 <select id="deckSelector" class="bg-slate-900 border border-slate-700 text-cyan-300 text-xs sm:text-sm rounded-lg px-2.5 py-1.5 focus:ring-1 focus:ring-cyan-500 focus:outline-none">
                     <option value="collocation" selected>標準コロケーション</option>
-                    <option value="make">基本動詞: make </option>
-                    <option value="have">基本動詞: have </option>
-                    <option value="get">基本動詞: get </option>
-                    <option value="take">基本動詞: take </option>
+                    <option value="make">基本動詞: make</option>
+                    <option value="have">基本動詞: have</option>
+                    <option value="get">基本動詞: get</option>
+                    <option value="take">基本動詞: take</option>
+                    <option value="hold">基本動詞: hold</option>
+                    <option value="give">基本動詞: give</option>
                 </select>
             </div>
 
@@ -270,12 +272,15 @@
 
     <!-- Script: Vanilla JS Logic -->
     <script>
+        // hold および give を含めた完全な辞書マッピング
         const DECK_CONFIG = {
             collocation: { file: 'words.json', storageKey: 'deck_progress_collocation' },
             make:        { file: 'words-make.json', storageKey: 'deck_progress_make' },
             have:        { file: 'words-have.json', storageKey: 'deck_progress_have' },
             get:         { file: 'words-get.json', storageKey: 'deck_progress_get' },
-            take:        { file: 'words-take.json', storageKey: 'deck_progress_take' }
+            take:        { file: 'words-take.json', storageKey: 'deck_progress_take' },
+            hold:        { file: 'words-hold.json', storageKey: 'deck_progress_hold' },
+            give:        { file: 'words-give.json', storageKey: 'deck_progress_give' }
         };
 
         let currentDeck = 'collocation';

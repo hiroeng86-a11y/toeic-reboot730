@@ -17,7 +17,7 @@
   <!-- Google Fonts: 視認性に優れたUD系・角ゴシック -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Inter:wght@600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Inter:wght@600;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
   <!-- FontAwesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -61,11 +61,16 @@
     </div>
   </header>
 
-  <!-- スマホ・ファーストビュー（強烈なフックと手記への直結導線） -->
+  <!-- スマホ・ファーストビュー -->
   <div class="max-w-xl mx-auto px-4 pt-6 pb-2 w-full">
     <div class="base-card rounded-2xl p-5 sm:p-7 border-l-4 border-l-sky-400 space-y-3">
-      <div class="inline-flex items-center gap-1.5 text-xs font-bold text-amber-400 bg-amber-950/60 px-2.5 py-0.5 rounded border border-amber-800">
-        <i class="fa-solid fa-triangle-exclamation"></i> 現役社会人のTOEIC独学
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-xs font-bold text-amber-400 bg-amber-950/60 px-2.5 py-0.5 rounded border border-amber-800">
+          <i class="fa-solid fa-unlock-keyhole mr-1"></i> だれでも完全無料・登録不要
+        </span>
+        <span class="text-xs font-bold text-emerald-400 bg-emerald-950/60 px-2.5 py-0.5 rounded border border-emerald-800 font-mono">
+          文法1,000問超 ＋ 頻出語彙
+        </span>
       </div>
       
       <h1 class="text-2xl sm:text-3xl font-black text-white leading-snug">
@@ -75,7 +80,7 @@
       </h1>
 
       <p class="text-sm text-slate-300 leading-relaxed">
-        若い頃の丸暗記は当てになりません！通勤の5分、公式問題集の論点をとりあえず回す！AIでコード自作した個人の練習場です。
+        若い頃の丸暗記は当てになりません！通勤の5分、公式問題集の論点をとりあえず回す。1,000問を超える演習データと頻出フレーズをAIと自作した個人の練習道場です。
       </p>
 
       <!-- 実数値グラフ手記（profile.html）への誘導ボタン -->
@@ -88,37 +93,52 @@
     </div>
   </div>
 
-  <!-- メインツール選択（スマホの親指で押しやすい大きなカード） -->
+  <!-- メインツール選択 -->
   <main class="max-w-xl mx-auto px-4 py-4 space-y-4 flex-1 w-full">
     
-    <div class="text-xs font-bold text-slate-400 uppercase tracking-wider pl-1">
-      <i class="fa-solid fa-bolt text-sky-400 mr-1"></i> 無料トレーニングモジュール
+    <div class="flex items-center justify-between px-1">
+      <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">
+        <i class="fa-solid fa-bolt text-sky-400 mr-1"></i> 無料トレーニングモジュール
+      </span>
+      <span class="text-[11px] font-bold text-sky-400 font-mono">
+        全問いつでも開放中
+      </span>
     </div>
 
     <!-- 1. 文法論点特訓 -->
-    <a href="lang-eng-grammar.html" class="base-card p-5 sm:p-6 rounded-2xl block hover:border-sky-400 transition space-y-3">
-      <div class="flex items-center justify-between">
+    <a href="lang-eng-grammar.html" class="base-card p-5 sm:p-6 rounded-2xl block hover:border-sky-400 transition space-y-3 relative overflow-hidden">
+      <div class="absolute top-0 right-0 bg-gradient-to-l from-sky-600 to-cyan-600 text-[10px] font-bold text-white px-3 py-1 rounded-bl-xl font-mono shadow">
+        1,000問超 収録
+      </div>
+
+      <div class="flex items-center justify-between pt-1">
         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 text-2xl">
+          <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 text-2xl shrink-0">
             <i class="fa-solid fa-crosshairs"></i>
           </div>
           <div>
-            <h2 class="text-lg font-bold text-white">Part 5 英文法論点特訓</h2>
-            <div class="text-xs font-bold text-sky-400">空所の前後判定 ✕ パターン反復</div>
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              Part 5 英文法論点特訓
+            </h2>
+            <div class="text-xs font-bold text-sky-400">空所の前後判定 ✕ 1,000問超の高回転ループ</div>
           </div>
         </div>
         <i class="fa-solid fa-chevron-right text-slate-500"></i>
       </div>
       <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-        1問10秒で切る。品詞・接続詞・使役などの頻出論点をカード反転で瞬時に判定。
+        1問10秒で切る。5文型から接続詞・仮定法まで、市販本を超える大ボリュームを完全無料で即座に特訓。
       </p>
     </a>
 
-    <!-- 2. コロケーション・単語特訓 -->
-    <a href="lang-flashcard.html" class="base-card p-5 sm:p-6 rounded-2xl block hover:border-emerald-400 transition space-y-3">
-      <div class="flex items-center justify-between">
+    <!-- 2. コロケーション・単語特訓（ぼかし表現適用） -->
+    <a href="lang-flashcard.html" class="base-card p-5 sm:p-6 rounded-2xl block hover:border-emerald-400 transition space-y-3 relative overflow-hidden">
+      <div class="absolute top-0 right-0 bg-gradient-to-l from-emerald-600 to-teal-600 text-[10px] font-bold text-white px-3 py-1 rounded-bl-xl font-mono shadow">
+        頻出フレーズ網羅
+      </div>
+
+      <div class="flex items-center justify-between pt-1">
         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl shrink-0">
             <i class="fa-solid fa-layer-group"></i>
           </div>
           <div>
@@ -129,7 +149,7 @@
         <i class="fa-solid fa-chevron-right text-slate-500"></i>
       </div>
       <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-        丸暗記不要。1秒テンポでカードを弾き、目と耳（音声合成）で強制刷り込み。
+        丸暗記不要。標準コロケーションや基本動詞（make, have, take, get等）の連語を目と耳（音声合成）で強制刷り込み。
       </p>
     </a>
 
@@ -137,7 +157,7 @@
     <a href="recommend.html" class="base-card p-5 sm:p-6 rounded-2xl block hover:border-amber-400 transition space-y-3">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl shrink-0">
             <i class="fa-solid fa-book-bookmark"></i>
           </div>
           <div>
@@ -187,7 +207,7 @@
         </p>
       </div>
 
-      <!-- note案内（行き止まりリンクを排除した準備中表示） -->
+      <!-- note案内（準備中表示） -->
       <div class="mt-6 pt-5 border-t border-slate-700/80 space-y-2">
         <div class="text-xs text-slate-400 font-bold">
           <i class="fa-solid fa-book-open text-amber-400 mr-1"></i> より詳しいノウハウと公式問題集の解体録
