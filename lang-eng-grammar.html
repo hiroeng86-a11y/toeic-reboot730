@@ -7,7 +7,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <title>英文法論点特訓 | TOEIC RE:BOOT 730</title>
+  <title>英文法論点特訓（全1,150問・完全無料） | TOEIC RE:BOOT 730</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@700&display=swap');
     body {
       font-family: 'Noto Sans JP', 'Inter', sans-serif;
       background-color: #080c14;
@@ -31,6 +31,13 @@
       border: 1px solid rgba(56, 189, 248, 0.2);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
+    .tab-btn.active {
+      background-color: #0284c7;
+      color: #ffffff;
+      border-color: #38bdf8;
+    }
+    .custom-scroll::-webkit-scrollbar { height: 4px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 2px; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between p-3 sm:p-5 selection:bg-cyan-500 selection:text-slate-950">
@@ -48,29 +55,14 @@
       </div>
     </div>
 
-    <!-- 中央：自社論点ブロック切り替えプルダウン -->
-    <div class="flex items-center gap-1.5 text-xs flex-1 max-w-xs sm:max-w-md justify-center">
-      <select id="chapterSelect" onchange="changeChapter(this.value)" 
-        class="w-full bg-slate-900 text-cyan-300 border border-slate-700 rounded-lg px-2 py-1 text-xs focus:outline-none focus:border-cyan-400 truncate">
-        <option value="all">全論点（一括読み込み）</option>
-        <option value="block1_1" selected>Block 1-1: 5文型と主要素 (50問)</option>
-        <option value="block1_2">Block 1-2: 名詞・代名詞 (50問)</option>
-        <option value="block1_3">Block 1-3: 形容詞・副詞 (50問)</option>
-        <option value="block1_4">Block 1-4: 前置詞の基礎 (50問)</option>
-        <option value="block2_1">Block 2-1: 主述の一致 (50問)</option>
-        <option value="block2_2">Block 2-2: 時制 (50問)</option>
-        <option value="block2_3">Block 2-3: 受動態 (50問)</option>
-        <option value="block2_4">Block 2-4: 助動詞・仮定法 (50問)</option>
-        <option value="block3_1">Block 3-1: 不定詞 (50問)</option>
-        <option value="block3_2">Block 3-2: 動名詞 (50問)</option>
-        <option value="block3_3">Block 3-3: 分詞 (50問)</option>
-        <option value="block3_4">Block 3-4: 分詞構文 (50問)</option>
-        <option value="block4_1">Block 4-1: 等位・相関接続詞 (50問)</option>
-        <option value="block4_2">Block 4-2: 接続詞 vs 前置詞 (50問)</option>
-        <option value="block4_3">Block 4-3: 関係代名詞 (50問)</option>
-        <option value="block4_4">Block 4-4: 関係副詞・複合関係詞 (50問)</option>
-        <option value="block4_5">Block 4-5: 名詞節を導く接続詞 (50問)</option>
-      </select>
+    <!-- 中央：無料・全問バッジ -->
+    <div class="hidden sm:flex items-center gap-2 text-xs font-mono">
+      <span class="px-2.5 py-1 rounded-full bg-emerald-950 border border-emerald-800 text-emerald-400 font-bold">
+        <i class="fa-solid fa-check-double mr-1"></i>完全無料
+      </span>
+      <span class="px-2.5 py-1 rounded-full bg-sky-950 border border-sky-800 text-sky-300 font-bold">
+        全23ブロック・1,150問
+      </span>
     </div>
 
     <!-- 右：文字サイズ + 一覧ボタン -->
@@ -85,8 +77,54 @@
     </div>
   </header>
 
+  <!-- ================= タブ切り替え＆辞書セレクター ================= -->
+  <section class="w-full max-w-4xl mx-auto pt-3 pb-2 space-y-2">
+    
+    <!-- 1. 大分類タブ（横スクロール可能） -->
+    <div class="flex items-center gap-1.5 overflow-x-auto pb-1 custom-scroll text-xs">
+      <button onclick="selectCategory('all')" id="tab-all" class="tab-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-bold shrink-0 transition active">
+        全1,150問一括
+      </button>
+      <button onclick="selectCategory('cat1')" id="tab-cat1" class="tab-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-bold shrink-0 transition">
+        基礎 (5文型・品詞)
+      </button>
+      <button onclick="selectCategory('cat2')" id="tab-cat2" class="tab-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-bold shrink-0 transition">
+        時制・態・仮定法
+      </button>
+      <button onclick="selectCategory('cat3')" id="tab-cat3" class="tab-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-bold shrink-0 transition">
+        準動詞 (不定詞・動名詞・分詞)
+      </button>
+      <button onclick="selectCategory('cat4')" id="tab-cat4" class="tab-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-bold shrink-0 transition">
+        接続詞・関係詞
+      </button>
+      <button onclick="selectCategory('cat5')" id="tab-cat5" class="tab-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-bold shrink-0 transition">
+        比較・倒置・強調
+      </button>
+      <button onclick="selectCategory('cat6')" id="tab-cat6" class="tab-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-bold shrink-0 transition">
+        動詞語法・前置詞句
+      </button>
+    </div>
+
+    <!-- 2. サブ辞書セレクター（タブに応じて選択肢が動的更新） -->
+    <div class="flex items-center justify-between gap-2 bg-slate-950/80 p-2 rounded-xl border border-slate-800">
+      <div class="flex items-center gap-2 flex-1 min-w-0">
+        <label for="chapterSelect" class="text-xs text-slate-400 shrink-0 font-bold">
+          <i class="fa-solid fa-folder-open text-sky-400 mr-1"></i>論点ブロック:
+        </label>
+        <select id="chapterSelect" onchange="changeChapter(this.value)" 
+          class="bg-slate-900 text-cyan-300 border border-slate-700 rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-cyan-400 flex-1 truncate">
+          <!-- JSで動的生成 -->
+        </select>
+      </div>
+      <div class="text-[11px] font-mono text-slate-400 shrink-0 px-2 py-0.5 rounded bg-slate-900 border border-slate-800">
+        対象: <span id="deckTotalCount" class="text-sky-300 font-bold">1,150</span>問
+      </div>
+    </div>
+
+  </section>
+
   <!-- ================= メインエリア ================= -->
-  <main class="w-full max-w-4xl mx-auto my-auto py-2 flex flex-col items-center">
+  <main class="w-full max-w-4xl mx-auto my-auto py-1 flex flex-col items-center">
     
     <!-- サブコントロールバー -->
     <div class="w-full flex items-center justify-between mb-3 text-xs">
@@ -99,6 +137,7 @@
           <option value="all">全問</option>
           <option value="10">10問</option>
           <option value="20">20問</option>
+          <option value="50">50問</option>
         </select>
       </div>
 
@@ -236,10 +275,10 @@
       <div class="space-y-1 text-center sm:text-left">
         <div class="flex items-center justify-center sm:justify-start gap-1.5 text-sky-400 font-bold">
           <i class="fa-solid fa-book-bookmark"></i>
-          <span>Part 5を15秒で切るための文法演習本</span>
+          <span>1,000問超を紙とペンで体系周回するなら</span>
         </div>
         <p class="text-slate-400 text-[11px] leading-relaxed">
-          本ツールで扱っている論点の基礎を、1,000問の物量で反射に落とし込むなら『でる1000問』が最適です。
+          当ツールの1,150問を解きつつ、机上で全論点を網羅するなら『でる1000問』が定番にして最強の演習書です。
         </p>
       </div>
       <div class="flex items-center gap-2 shrink-0">
@@ -290,7 +329,7 @@
 
   <!-- ================= スクリプト制御 ================= -->
   <script>
-    // 自社制作JSONファイルの完全マッピング（Block 1〜Block 4全編完備）
+    // 全23ブロック（1,150問）の完全マッピング
     const GRAMMAR_FILES = {
       block1_1: 'eng_grammar-block1_1_sentence_patterns.json',
       block1_2: 'eng_grammar-block1_2_nouns_pronouns.json',
@@ -308,9 +347,58 @@
       block4_2: 'eng_grammar-block4_2_conjunction_vs_preposition.json',
       block4_3: 'eng_grammar-block4_3_relative_pronouns.json',
       block4_4: 'eng_grammar-block4_4_relative_adverbs_compounds.json',
-      block4_5: 'eng_grammar-block4_5_noun_clauses.json'
+      block4_5: 'eng_grammar-block4_5_noun_clauses.json',
+      block5_1: 'eng_grammar-block5_1_comparison.json',
+      block5_2: 'eng_grammar-block5_2_inversion.json',
+      block5_3: 'eng_grammar-block5_3_emphasis_negation.json',
+      block6_1: 'eng_grammar-block6_1_verb_patterns.json',
+      block6_2: 'eng_grammar-block6_2_prepositional_phrases.json',
+      block6_3: 'eng_grammar-block6_3_conjunctive_adverbs.json'
     };
 
+    // タブ別カテゴリの定義
+    const CATEGORIES = {
+      all: [
+        { key: 'all', label: '★ 全1,150問一括ランダム特訓' }
+      ],
+      cat1: [
+        { key: 'block1_1', label: 'Block 1-1: 5文型と主要素 (50問)' },
+        { key: 'block1_2', label: 'Block 1-2: 名詞・代名詞 (50問)' },
+        { key: 'block1_3', label: 'Block 1-3: 形容詞・副詞 (50問)' },
+        { key: 'block1_4', label: 'Block 1-4: 前置詞の基礎 (50問)' }
+      ],
+      cat2: [
+        { key: 'block2_1', label: 'Block 2-1: 主述の一致 (50問)' },
+        { key: 'block2_2', label: 'Block 2-2: 時制 (50問)' },
+        { key: 'block2_3', label: 'Block 2-3: 受動態 (50問)' },
+        { key: 'block2_4', label: 'Block 2-4: 助動詞・仮定法 (50問)' }
+      ],
+      cat3: [
+        { key: 'block3_1', label: 'Block 3-1: 不定詞 (50問)' },
+        { key: 'block3_2', label: 'Block 3-2: 動名詞 (50問)' },
+        { key: 'block3_3', label: 'Block 3-3: 分詞 (50問)' },
+        { key: 'block3_4', label: 'Block 3-4: 分詞構文 (50問)' }
+      ],
+      cat4: [
+        { key: 'block4_1', label: 'Block 4-1: 等位・相関接続詞 (50問)' },
+        { key: 'block4_2', label: 'Block 4-2: 接続詞 vs 前置詞 (50問)' },
+        { key: 'block4_3', label: 'Block 4-3: 関係代名詞 (50問)' },
+        { key: 'block4_4', label: 'Block 4-4: 関係副詞・複合関係詞 (50問)' },
+        { key: 'block4_5', label: 'Block 4-5: 名詞節を導く接続詞 (50問)' }
+      ],
+      cat5: [
+        { key: 'block5_1', label: 'Block 5-1: 比較表現 (50問)' },
+        { key: 'block5_2', label: 'Block 5-2: 倒置 (50問)' },
+        { key: 'block5_3', label: 'Block 5-3: 強調・否定 (50問)' }
+      ],
+      cat6: [
+        { key: 'block6_1', label: 'Block 6-1: 動詞の型 (50問)' },
+        { key: 'block6_2', label: 'Block 6-2: 前置詞句・群前置詞 (50問)' },
+        { key: 'block6_3', label: 'Block 6-3: 頻出接続副詞 (50問)' }
+      ]
+    };
+
+    let currentCategory = 'all';
     let allData = [];
     let activeDeck = [];
     let currentIndex = 0;
@@ -325,6 +413,8 @@
     let currentFontIndex = parseInt(localStorage.getItem('grammar_font_level') || '1', 10);
     let stats = JSON.parse(localStorage.getItem('eng_grammar_stats') || '{"mastered":{}, "review":{}}');
 
+    const chapterSelect = document.getElementById('chapterSelect');
+    const deckTotalCount = document.getElementById('deckTotalCount');
     const flashCard = document.getElementById('flashCard');
     const cardCategoryBadge = document.getElementById('cardCategoryBadge');
     const cardStatusBadge = document.getElementById('cardStatusBadge');
@@ -342,16 +432,34 @@
 
     async function initApp() {
       applyFontClasses();
-      await changeChapter('block1_1');
+      selectCategory('all');
     }
 
+    // タブ選択
+    function selectCategory(catKey) {
+      currentCategory = catKey;
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById('tab-' + catKey);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      // プルダウンのオプションを更新
+      const items = CATEGORIES[catKey] || [];
+      chapterSelect.innerHTML = items.map(item => `<option value="${item.key}">${item.label}</option>`).join('');
+
+      // 先頭のブロックを読み込む
+      if (items.length > 0) {
+        changeChapter(items[0].key);
+      }
+    }
+
+    // ブロック変更
     async function changeChapter(key) {
       const cacheBuster = '?t=' + new Date().getTime();
       allData = [];
 
       try {
         if (key === 'all') {
-          // 全ブロックを一括並列読み込み
+          // 全23ブロック（1,150問）を一括並列フェッチ
           const promises = Object.values(GRAMMAR_FILES).map(file => 
             fetch(file + cacheBuster).then(r => r.ok ? r.json() : [])
           );
@@ -368,6 +476,7 @@
         allData = [];
       }
 
+      deckTotalCount.textContent = allData.length;
       rebuildDeck();
     }
 
@@ -421,7 +530,7 @@
         cardTopicTitle.textContent = "対象の論点はありません";
         cardExampleEn.textContent = "問題データが見つからないか、すべて習得済みです。";
         cardExampleJa.textContent = "";
-        cardQuestion.textContent = "上のプルダウンから別の論点ブロックを選択してください。";
+        cardQuestion.textContent = "上のタブや論点ブロックから別の出題を選択してください。";
         cardOptions.textContent = "[ - ]";
         cardAnswer.textContent = "-";
         cardRule.textContent = "-";
