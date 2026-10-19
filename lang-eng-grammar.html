@@ -27,217 +27,198 @@
     .backface-hidden { backface-visibility: hidden; }
     .rotate-y-180 { transform: rotateY(180deg); }
     .card-frame {
-      background: rgba(14, 21, 37, 0.9);
-      border: 1px solid rgba(56, 189, 248, 0.2);
+      background: rgba(14, 21, 37, 0.95);
+      border: 1px solid rgba(56, 189, 248, 0.25);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
-    .tab-btn.active {
-      background-color: #0284c7;
-      color: #ffffff;
-      border-color: #38bdf8;
-    }
-    .custom-scroll::-webkit-scrollbar { height: 4px; }
-    .custom-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 2px; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between p-3 sm:p-5 selection:bg-cyan-500 selection:text-slate-950">
 
   <!-- ================= 最上部ヘッダー ================= -->
-  <header class="w-full max-w-4xl mx-auto flex items-center justify-between pb-3 border-b border-slate-800/80 gap-2">
+  <header class="w-full max-w-xl mx-auto flex items-center justify-between pb-3 border-b border-slate-800/80 gap-2">
     <!-- 左：戻る + タイトル -->
     <div class="flex items-center gap-2.5 shrink-0">
-      <a href="index.html" class="text-slate-400 hover:text-white transition text-base" title="ポータルへ戻る">
+      <a href="index.html" class="text-slate-400 hover:text-white transition text-lg p-1" title="ポータルへ戻る">
         <i class="fa-solid fa-arrow-left"></i>
       </a>
-      <div class="flex items-center gap-2">
-        <span class="text-cyan-400 text-lg"><i class="fa-solid fa-layer-group"></i></span>
-        <h1 class="text-sm sm:text-base font-black tracking-wide text-white">文法論点特訓</h1>
-      </div>
-    </div>
-
-    <!-- 中央：無料・全問バッジ -->
-    <div class="hidden sm:flex items-center gap-2 text-xs font-mono">
-      <span class="px-2.5 py-1 rounded-full bg-emerald-950 border border-emerald-800 text-emerald-400 font-bold">
-        <i class="fa-solid fa-check-double mr-1"></i>完全無料
-      </span>
-      <span class="px-2.5 py-1 rounded-full bg-sky-950 border border-sky-800 text-sky-300 font-bold">
-        全23ブロック・1,150問
-      </span>
+      <h1 class="text-base sm:text-lg font-black tracking-wide text-white flex items-center gap-2">
+        <span class="text-cyan-400"><i class="fa-solid fa-layer-group"></i></span>
+        <span>文法論点特訓</span>
+      </h1>
     </div>
 
     <!-- 右：文字サイズ + 一覧ボタン -->
     <div class="flex items-center gap-1.5 shrink-0">
       <div class="flex items-center bg-slate-900 border border-slate-800 rounded-lg overflow-hidden text-xs">
-        <button onclick="adjustFontSize(-1)" class="px-2 py-1 text-slate-300 hover:text-white hover:bg-slate-800 transition">A-</button>
-        <button onclick="adjustFontSize(1)" class="px-2 py-1 text-slate-300 hover:text-white hover:bg-slate-800 transition border-l border-slate-800">A+</button>
+        <button onclick="adjustFontSize(-1)" class="px-2.5 py-1.5 text-slate-300 hover:text-white hover:bg-slate-800 transition font-bold">A-</button>
+        <button onclick="adjustFontSize(1)" class="px-2.5 py-1.5 text-slate-300 hover:text-white hover:bg-slate-800 transition border-l border-slate-800 font-bold">A+</button>
       </div>
-      <button onclick="openListModal()" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs flex items-center gap-1 transition">
+      <button onclick="openListModal()" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs font-bold flex items-center gap-1 transition">
         <i class="fa-solid fa-list-ul text-cyan-400"></i> 一覧
       </button>
     </div>
   </header>
 
-  <!-- ================= タブ切り替え＆辞書セレクター ================= -->
-  <section class="w-full max-w-4xl mx-auto pt-3 pb-2 space-y-2">
+  <!-- ================= 直感的セレクター（初見でも迷わない2段セレクト） ================= -->
+  <section class="w-full max-w-xl mx-auto pt-3 pb-1 space-y-2.5">
     
-    <!-- 1. 大分類タブ（横スクロール可能） -->
-    <div class="flex items-center gap-1.5 overflow-x-auto pb-1 custom-scroll text-xs">
-      <button onclick="selectCategory('all')" id="tab-all" class="tab-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-bold shrink-0 transition active">
-        全1,150問一括
-      </button>
-      <button onclick="selectCategory('cat1')" id="tab-cat1" class="tab-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-bold shrink-0 transition">
-        基礎 (5文型・品詞)
-      </button>
-      <button onclick="selectCategory('cat2')" id="tab-cat2" class="tab-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-bold shrink-0 transition">
-        時制・態・仮定法
-      </button>
-      <button onclick="selectCategory('cat3')" id="tab-cat3" class="tab-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-bold shrink-0 transition">
-        準動詞 (不定詞・動名詞・分詞)
-      </button>
-      <button onclick="selectCategory('cat4')" id="tab-cat4" class="tab-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-bold shrink-0 transition">
-        接続詞・関係詞
-      </button>
-      <button onclick="selectCategory('cat5')" id="tab-cat5" class="tab-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-bold shrink-0 transition">
-        比較・倒置・強調
-      </button>
-      <button onclick="selectCategory('cat6')" id="tab-cat6" class="tab-btn px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 font-bold shrink-0 transition">
-        動詞語法・前置詞句
-      </button>
-    </div>
-
-    <!-- 2. サブ辞書セレクター（タブに応じて選択肢が動的更新） -->
-    <div class="flex items-center justify-between gap-2 bg-slate-950/80 p-2 rounded-xl border border-slate-800">
-      <div class="flex items-center gap-2 flex-1 min-w-0">
-        <label for="chapterSelect" class="text-xs text-slate-400 shrink-0 font-bold">
-          <i class="fa-solid fa-folder-open text-sky-400 mr-1"></i>論点ブロック:
+    <div class="bg-slate-900/90 p-3 rounded-2xl border border-slate-800 space-y-2">
+      <!-- 1段目：大分類カテゴリ選択 -->
+      <div class="flex items-center gap-2">
+        <label for="categorySelect" class="text-xs text-sky-400 font-bold shrink-0 w-16">
+          <i class="fa-solid fa-layer-group mr-1"></i>ジャンル:
         </label>
-        <select id="chapterSelect" onchange="changeChapter(this.value)" 
-          class="bg-slate-900 text-cyan-300 border border-slate-700 rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-cyan-400 flex-1 truncate">
-          <!-- JSで動的生成 -->
+        <select id="categorySelect" onchange="onCategoryChange(this.value)" 
+          class="bg-slate-950 text-white border border-slate-700 rounded-xl px-3 py-2 text-xs sm:text-sm font-bold focus:outline-none focus:border-cyan-400 flex-1">
+          <option value="all">★ 全1,150問一括ランダム特訓</option>
+          <option value="cat1">1. 基礎 (5文型・名詞・代名詞・前置詞)</option>
+          <option value="cat2">2. 動詞 (時制・受動態・仮定法)</option>
+          <option value="cat3">3. 準動詞 (不定詞・動名詞・分詞)</option>
+          <option value="cat4">4. 複文 (接続詞・関係代名詞・名詞節)</option>
+          <option value="cat5">5. 発展構文 (比較・倒置・強調否定)</option>
+          <option value="cat6">6. 語法・群前置詞・接続副詞</option>
         </select>
       </div>
-      <div class="text-[11px] font-mono text-slate-400 shrink-0 px-2 py-0.5 rounded bg-slate-900 border border-slate-800">
-        対象: <span id="deckTotalCount" class="text-sky-300 font-bold">1,150</span>問
+
+      <!-- 2段目：論点ブロック選択 -->
+      <div class="flex items-center gap-2">
+        <label for="chapterSelect" class="text-xs text-amber-400 font-bold shrink-0 w-16">
+          <i class="fa-solid fa-bookmark mr-1"></i>論点集:
+        </label>
+        <select id="chapterSelect" onchange="changeChapter(this.value)" 
+          class="bg-slate-950 text-cyan-300 border border-slate-700 rounded-xl px-3 py-2 text-xs sm:text-sm font-bold focus:outline-none focus:border-cyan-400 flex-1 truncate">
+          <!-- JSで動的生成 -->
+        </select>
       </div>
     </div>
 
   </section>
 
   <!-- ================= メインエリア ================= -->
-  <main class="w-full max-w-4xl mx-auto my-auto py-1 flex flex-col items-center">
+  <main class="w-full max-w-xl mx-auto my-auto py-1 flex flex-col items-center flex-1 justify-center">
     
-    <!-- サブコントロールバー -->
-    <div class="w-full flex items-center justify-between mb-3 text-xs">
+    <!-- サブコントロールバー（出題数・進捗・未習得フィルター） -->
+    <div class="w-full flex items-center justify-between mb-2.5 text-xs px-1">
       <div class="flex items-center gap-2 font-mono">
-        <span class="text-cyan-400 font-bold" id="progressIndex">1 / 50</span>
+        <span class="text-cyan-400 font-bold text-sm" id="progressIndex">1 / 50</span>
         <span class="text-slate-600">|</span>
-        <span class="text-slate-400">出題:</span>
+        <label for="deckSizeSelect" class="text-slate-400">出題:</label>
         <select id="deckSizeSelect" onchange="changeDeckSize(this.value)" 
-          class="bg-slate-900 text-slate-300 border border-slate-800 rounded px-1.5 py-0.5 text-xs focus:outline-none">
-          <option value="all">全問</option>
+          class="bg-slate-900 text-slate-200 border border-slate-700 rounded-lg px-2 py-1 text-xs focus:outline-none font-bold">
           <option value="10">10問</option>
           <option value="20">20問</option>
           <option value="50">50問</option>
+          <option value="all" selected>全問</option>
         </select>
       </div>
 
       <div class="flex items-center gap-1.5">
         <button onclick="setFilterMode('all')" id="btnFilterAll" 
-          class="px-2.5 py-1 rounded text-[11px] font-semibold bg-cyan-600 text-white transition">
+          class="px-3 py-1 rounded-lg text-xs font-bold bg-cyan-600 text-white transition">
           すべて
         </button>
         <button onclick="setFilterMode('review')" id="btnFilterReview" 
-          class="px-2.5 py-1 rounded text-[11px] font-semibold bg-slate-900 border border-slate-800 text-slate-400 hover:text-rose-400 transition flex items-center gap-1">
-          <i class="fa-solid fa-xmark text-rose-500"></i> 未習得のみ (<span id="unmasteredBadge">0</span>)
+          class="px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-900 border border-slate-800 text-slate-400 hover:text-rose-400 transition flex items-center gap-1">
+          <i class="fa-solid fa-xmark text-rose-500"></i> 未習得 (<span id="unmasteredBadge">0</span>)
         </button>
       </div>
     </div>
 
-    <!-- ================= 3Dカード本体 ================= -->
-    <div class="w-full min-h-[380px] sm:min-h-[400px] perspective-1000 cursor-pointer" onclick="flipCard()">
+    <!-- ================= 3Dカード本体（文字サイズ大幅底上げ版） ================= -->
+    <div class="w-full min-h-[410px] sm:min-h-[420px] perspective-1000 cursor-pointer" onclick="flipCard()">
       <div id="flashCard" class="w-full h-full relative transform-style-3d transition-transform duration-500 rounded-2xl">
 
         <!-- 【表面】論点・例文・問題文 -->
-        <div class="card-frame rounded-2xl p-5 sm:p-7 flex flex-col justify-between items-center text-center min-h-[380px] sm:min-h-[400px]">
-          <div class="w-full flex items-center justify-between">
-            <span id="cardCategoryBadge" class="text-xs font-semibold px-3 py-1 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800/80">
+        <div class="card-frame rounded-2xl p-5 sm:p-6 flex flex-col justify-between items-center text-center min-h-[410px] sm:min-h-[420px]">
+          <!-- 上部バッジ行 -->
+          <div class="w-full flex items-center justify-between gap-2">
+            <span id="cardCategoryBadge" class="text-xs font-bold px-3 py-1 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800 truncate max-w-[240px]">
               文法論点
             </span>
-            <div class="flex items-center gap-2">
-              <button onclick="playSpeech(event)" class="text-slate-400 hover:text-cyan-300 transition text-sm p-1" title="音声再生">
+            <div class="flex items-center gap-2 shrink-0">
+              <button onclick="playSpeech(event)" class="text-slate-400 hover:text-cyan-300 transition text-base p-1" title="音声再生">
                 <i class="fa-solid fa-volume-high"></i>
               </button>
-              <span id="cardStatusBadge" class="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-950/80 text-rose-400 border border-rose-900 hidden">
-                <i class="fa-solid fa-xmark mr-0.5"></i> 未習得
+              <span id="cardStatusBadge" class="text-xs font-bold px-2 py-0.5 rounded bg-rose-950 text-rose-400 border border-rose-900 hidden">
+                未習得
               </span>
             </div>
           </div>
 
-          <div class="my-auto py-3 w-full space-y-4">
-            <!-- 例文エリア -->
-            <div class="bg-slate-900/60 rounded-xl p-3 border border-slate-800/80 text-left space-y-1">
-              <div class="text-[10px] text-amber-400 font-bold uppercase tracking-wider flex items-center gap-1">
+          <!-- 中央：例文 ＆ 問題文（文字を大きくハッキリ） -->
+          <div class="my-auto py-2 w-full space-y-3.5">
+            <!-- 例文エリア（14px〜15pxへ拡大） -->
+            <div class="bg-slate-900/80 rounded-xl p-3 sm:p-3.5 border border-slate-800 text-left space-y-1.5">
+              <div class="text-xs text-amber-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
                 <i class="fa-solid fa-lightbulb"></i> <span id="cardTopicTitle">コア論点</span>
               </div>
-              <div id="cardExampleEn" class="text-xs sm:text-sm font-semibold text-slate-200 italic">
+              <div id="cardExampleEn" class="text-sm sm:text-base font-semibold text-slate-100 leading-relaxed italic">
                 "Example sentence in English."
               </div>
-              <div id="cardExampleJa" class="text-[11px] text-slate-400">
+              <div id="cardExampleJa" class="text-xs sm:text-sm text-slate-400 leading-normal">
                 例文の日本語訳
               </div>
             </div>
 
-            <!-- 問題文エリア -->
-            <div class="space-y-2 pt-1">
-              <div id="cardQuestion" class="font-bold text-white tracking-tight leading-relaxed transition-all duration-200">
+            <!-- 問題文エリア（特大表示） -->
+            <div class="space-y-2 pt-1 text-left">
+              <div class="text-[11px] font-bold text-sky-400 uppercase tracking-wider">
+                <i class="fa-solid fa-crosshairs mr-1"></i> Part 5 実践問題:
+              </div>
+              <div id="cardQuestion" class="font-bold text-white text-base sm:text-lg tracking-tight leading-relaxed transition-all duration-200">
                 Loading question...
               </div>
-              <div id="cardOptions" class="inline-block px-3 py-1.5 rounded-lg bg-slate-950/90 border border-slate-800 text-xs sm:text-sm font-mono text-cyan-300">
+              <div id="cardOptions" class="block p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs sm:text-sm font-mono text-cyan-300 text-center tracking-wide">
                 [ - ]
               </div>
             </div>
           </div>
 
-          <div class="text-[11px] text-slate-500 font-mono">
-            <i class="fa-solid fa-rotate mr-1"></i> タップ または スペースキー でめくる
+          <!-- 最下部操作案内 -->
+          <div class="text-xs text-slate-400 font-bold">
+            <i class="fa-solid fa-rotate mr-1"></i> タップして解説・解答を確認
           </div>
         </div>
 
-        <!-- 【裏面】解答・解法ルール -->
-        <div class="absolute inset-0 backface-hidden rotate-y-180 card-frame rounded-2xl p-5 sm:p-7 flex flex-col justify-between items-center text-center min-h-[380px] sm:min-h-[400px] border-emerald-500/40 bg-slate-950/95">
-          <div class="w-full flex items-center justify-between pb-2 border-b border-slate-800/80">
-            <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest flex items-center gap-1">
-              <i class="fa-solid fa-check-circle"></i> 正解 ＆ 解法ルール
+        <!-- 【裏面】解答・解法ルール（太字・高視認性） -->
+        <div class="absolute inset-0 backface-hidden rotate-y-180 card-frame rounded-2xl p-5 sm:p-6 flex flex-col justify-between items-center text-center min-h-[410px] sm:min-h-[420px] border-emerald-500/40 bg-slate-950">
+          <div class="w-full flex items-center justify-between pb-2 border-b border-slate-800">
+            <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-check"></i> 正解 ＆ 解法ルール
             </span>
-            <span class="text-[10px] text-slate-500 font-mono">タップで問題に戻る</span>
+            <span class="text-xs text-slate-400">タップで問題面へ戻る</span>
           </div>
 
-          <div class="my-auto py-2 w-full space-y-3.5 text-left">
+          <!-- 解答本体 -->
+          <div class="my-auto py-2 w-full space-y-3 text-left">
             <div>
-              <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">正解</div>
+              <div class="text-xs text-slate-400 font-bold uppercase tracking-wider mb-0.5">正解</div>
               <div id="cardAnswer" class="text-2xl sm:text-3xl font-black text-emerald-300 font-mono tracking-wide">
                 -
               </div>
             </div>
 
-            <div class="bg-slate-900/90 p-3.5 rounded-xl border border-slate-800/90 space-y-1">
-              <div class="text-[10px] text-amber-400 font-bold uppercase tracking-wider flex items-center gap-1">
-                <i class="fa-solid fa-key"></i> 判断のキモ（解法ルール）
+            <!-- 解法ルール（14px〜15pxへ拡大） -->
+            <div class="bg-slate-900 p-3 sm:p-4 rounded-xl border border-slate-800 space-y-1">
+              <div class="text-xs text-amber-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
+                <i class="fa-solid fa-key"></i> 10秒で見切る判断基準:
               </div>
-              <div id="cardRule" class="text-xs sm:text-sm font-bold text-slate-200 leading-relaxed">
+              <div id="cardRule" class="text-sm sm:text-base font-bold text-slate-200 leading-relaxed">
                 -
               </div>
             </div>
 
-            <div class="bg-slate-900/40 p-2.5 rounded-lg border border-slate-800/60">
-              <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">完成した文</div>
-              <div id="cardFullSentence" class="text-xs text-slate-300 italic leading-relaxed">
+            <!-- 完成文 -->
+            <div class="bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80">
+              <div class="text-[11px] text-slate-400 font-bold mb-0.5">完成した文:</div>
+              <div id="cardFullSentence" class="text-xs sm:text-sm text-slate-300 italic leading-relaxed">
                 -
               </div>
             </div>
           </div>
 
-          <div class="text-[11px] text-slate-500 font-mono">
+          <div class="text-xs text-slate-400 font-bold">
             下のボタンで自己評価してください
           </div>
         </div>
@@ -245,33 +226,35 @@
       </div>
     </div>
 
-    <!-- ================= 判定ボタン ================= -->
-    <div class="w-full grid grid-cols-2 gap-3 mt-4">
+    <!-- ================= 判定ボタン（特大タップ領域・親指直結） ================= -->
+    <div class="w-full grid grid-cols-2 gap-3 mt-3.5">
       <button onclick="handleGrade(false)" 
-        class="py-3 px-4 rounded-xl bg-rose-950/20 hover:bg-rose-950/50 border border-rose-900/60 hover:border-rose-500 text-rose-300 font-bold text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-lg">
-        <i class="fa-solid fa-xmark text-rose-500 text-base"></i> できなかった (↓)
+        class="py-4 px-4 rounded-2xl bg-rose-950/40 hover:bg-rose-900/60 border border-rose-800 text-rose-300 font-black text-sm sm:text-base transition flex items-center justify-center gap-2 shadow-lg active:scale-95">
+        <i class="fa-solid fa-xmark text-rose-500 text-lg"></i>
+        <span>できなかった (↓)</span>
       </button>
       <button onclick="handleGrade(true)" 
-        class="py-3 px-4 rounded-xl bg-emerald-950/20 hover:bg-emerald-950/50 border border-emerald-900/60 hover:border-emerald-500 text-emerald-300 font-bold text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-lg">
-        <i class="fa-solid fa-check text-emerald-400 text-base"></i> できた (↑)
+        class="py-4 px-4 rounded-2xl bg-emerald-950/40 hover:bg-emerald-900/60 border border-emerald-800 text-emerald-300 font-black text-sm sm:text-base transition flex items-center justify-center gap-2 shadow-lg active:scale-95">
+        <i class="fa-solid fa-check text-emerald-400 text-lg"></i>
+        <span>できた (↑)</span>
       </button>
     </div>
 
-    <!-- ================= ナビゲーション操作ボタン ================= -->
-    <div class="w-full flex items-center justify-center gap-2 sm:gap-3 mt-3 mb-5">
-      <button onclick="prevCard()" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-slate-300 text-xs sm:text-sm font-semibold transition flex items-center gap-1.5">
-        <i class="fa-solid fa-chevron-left text-xs"></i> 前へ (←)
+    <!-- ================= ナビゲーション操作ボタン（大きめ） ================= -->
+    <div class="w-full flex items-center justify-center gap-3 mt-2.5 mb-4">
+      <button onclick="prevCard()" class="px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs sm:text-sm font-bold transition flex items-center gap-1.5 active:scale-95">
+        <i class="fa-solid fa-chevron-left text-xs"></i> 前へ
       </button>
-      <button onclick="flipCard()" class="px-6 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs sm:text-sm font-bold transition flex items-center gap-1.5 shadow-lg shadow-cyan-600/30">
+      <button onclick="flipCard()" class="flex-1 max-w-[200px] py-3 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs sm:text-sm font-black transition flex items-center justify-center gap-2 shadow-lg shadow-cyan-900/30 active:scale-95">
         <i class="fa-solid fa-rotate"></i> めくる (Space)
       </button>
-      <button onclick="nextCard()" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-slate-300 text-xs sm:text-sm font-semibold transition flex items-center gap-1.5">
-        次へ (→) <i class="fa-solid fa-chevron-right text-xs"></i>
+      <button onclick="nextCard()" class="px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs sm:text-sm font-bold transition flex items-center gap-1.5 active:scale-95">
+        次へ <i class="fa-solid fa-chevron-right text-xs"></i>
       </button>
     </div>
 
     <!-- 【教材導線・アフィリエイト枠】でる1000問の紹介カード -->
-    <div class="w-full p-4 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+    <div class="w-full p-4 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
       <div class="space-y-1 text-center sm:text-left">
         <div class="flex items-center justify-center sm:justify-start gap-1.5 text-sky-400 font-bold">
           <i class="fa-solid fa-book-bookmark"></i>
@@ -282,10 +265,10 @@
         </p>
       </div>
       <div class="flex items-center gap-2 shrink-0">
-        <a href="recommend.html" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-bold transition">
+        <a href="recommend.html" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-bold transition">
           解説を見る
         </a>
-        <a href="https://link.amazon/B0iwl6Np1" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold transition flex items-center gap-1 shadow">
+        <a href="https://link.amazon/B0iwl6Np1" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold transition flex items-center gap-1.5 shadow">
           <span>Amazonで確認</span>
           <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
         </a>
@@ -295,15 +278,15 @@
   </main>
 
   <!-- ================= 問題・答えの一覧モーダル ================= -->
-  <div id="listModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
-    <div class="max-w-2xl w-full h-[85vh] card-frame rounded-2xl p-5 flex flex-col border border-slate-800 shadow-2xl">
+  <div id="listModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4 z-50">
+    <div class="max-w-xl w-full h-[85vh] card-frame rounded-2xl p-4 sm:p-5 flex flex-col border border-slate-800 shadow-2xl">
       <div class="flex items-center justify-between pb-3 border-b border-slate-800">
         <div class="flex items-center gap-2">
           <i class="fa-solid fa-layer-group text-cyan-400"></i>
-          <h3 class="text-base font-bold text-white">収録論点一覧</h3>
+          <h3 class="text-sm sm:text-base font-bold text-white">収録論点一覧</h3>
           <span class="text-xs text-slate-500 font-mono" id="modalListCount"></span>
         </div>
-        <button onclick="closeListModal()" class="text-slate-400 hover:text-white text-base p-1">
+        <button onclick="closeListModal()" class="text-slate-400 hover:text-white text-lg p-1">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
@@ -312,7 +295,7 @@
         <div class="relative">
           <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-xs text-slate-500"></i>
           <input type="text" id="listSearchInput" oninput="filterList()" placeholder="論点、問題、正解、キーワードで検索..." 
-            class="w-full pl-8 pr-3 py-2 rounded-xl bg-slate-900/90 border border-slate-700 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-cyan-500">
+            class="w-full pl-8 pr-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs text-white placeholder:text-slate-600 focus:outline-none focus:border-cyan-500">
         </div>
       </div>
 
@@ -321,7 +304,7 @@
   </div>
 
   <!-- フッター -->
-  <footer class="mt-8 text-center text-xs text-slate-500 py-6 border-t border-slate-800 space-y-2">
+  <footer class="mt-6 text-center text-xs text-slate-500 py-6 border-t border-slate-800 space-y-2">
     <p class="font-bold text-slate-400">&copy; 2026 TOEIC RE:BOOT 730</p>
     <p class="text-[11px] text-slate-600">40代後半・50代からの高回転・即断自習トレーニング環境</p>
     <p class="text-[10px] text-slate-500 pt-1">Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。</p>
@@ -356,7 +339,7 @@
       block6_3: 'eng_grammar-block6_3_conjunctive_adverbs.json'
     };
 
-    // タブ別カテゴリの定義
+    // ジャンル別カテゴリ
     const CATEGORIES = {
       all: [
         { key: 'all', label: '★ 全1,150問一括ランダム特訓' }
@@ -398,7 +381,6 @@
       ]
     };
 
-    let currentCategory = 'all';
     let allData = [];
     let activeDeck = [];
     let currentIndex = 0;
@@ -406,15 +388,15 @@
     let filterMode = 'all';
 
     const fontSizes = [
-      { q: 'text-sm sm:text-base', opt: 'text-xs' },
-      { q: 'text-base sm:text-lg', opt: 'text-xs sm:text-sm' },
-      { q: 'text-lg sm:text-xl', opt: 'text-sm sm:text-base' }
+      { q: 'text-base sm:text-lg', opt: 'text-xs' },
+      { q: 'text-lg sm:text-xl', opt: 'text-xs sm:text-sm' }, // 標準
+      { q: 'text-xl sm:text-2xl', opt: 'text-sm sm:text-base' }
     ];
     let currentFontIndex = parseInt(localStorage.getItem('grammar_font_level') || '1', 10);
     let stats = JSON.parse(localStorage.getItem('eng_grammar_stats') || '{"mastered":{}, "review":{}}');
 
+    const categorySelect = document.getElementById('categorySelect');
     const chapterSelect = document.getElementById('chapterSelect');
-    const deckTotalCount = document.getElementById('deckTotalCount');
     const flashCard = document.getElementById('flashCard');
     const cardCategoryBadge = document.getElementById('cardCategoryBadge');
     const cardStatusBadge = document.getElementById('cardStatusBadge');
@@ -432,21 +414,13 @@
 
     async function initApp() {
       applyFontClasses();
-      selectCategory('all');
+      onCategoryChange('all');
     }
 
-    // タブ選択
-    function selectCategory(catKey) {
-      currentCategory = catKey;
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      const activeBtn = document.getElementById('tab-' + catKey);
-      if (activeBtn) activeBtn.classList.add('active');
-
-      // プルダウンのオプションを更新
+    // 大分類カテゴリ変更
+    function onCategoryChange(catKey) {
       const items = CATEGORIES[catKey] || [];
       chapterSelect.innerHTML = items.map(item => `<option value="${item.key}">${item.label}</option>`).join('');
-
-      // 先頭のブロックを読み込む
       if (items.length > 0) {
         changeChapter(items[0].key);
       }
@@ -476,7 +450,6 @@
         allData = [];
       }
 
-      deckTotalCount.textContent = allData.length;
       rebuildDeck();
     }
 
@@ -490,11 +463,11 @@
       const btnRev = document.getElementById('btnFilterReview');
 
       if (mode === 'all') {
-        btnAll.className = 'px-2.5 py-1 rounded text-[11px] font-semibold bg-cyan-600 text-white transition';
-        btnRev.className = 'px-2.5 py-1 rounded text-[11px] font-semibold bg-slate-900 border border-slate-800 text-slate-400 hover:text-rose-400 transition flex items-center gap-1';
+        btnAll.className = 'px-3 py-1 rounded-lg text-xs font-bold bg-cyan-600 text-white transition';
+        btnRev.className = 'px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-900 border border-slate-800 text-slate-400 hover:text-rose-400 transition flex items-center gap-1';
       } else {
-        btnRev.className = 'px-2.5 py-1 rounded text-[11px] font-semibold bg-rose-600 text-white transition flex items-center gap-1';
-        btnAll.className = 'px-2.5 py-1 rounded text-[11px] font-semibold bg-slate-900 border border-slate-800 text-slate-400 hover:text-cyan-400 transition';
+        btnRev.className = 'px-2.5 py-1 rounded-lg text-xs font-bold bg-rose-600 text-white transition flex items-center gap-1';
+        btnAll.className = 'px-3 py-1 rounded-lg text-xs font-bold bg-slate-900 border border-slate-800 text-slate-400 hover:text-cyan-400 transition';
       }
       rebuildDeck();
     }
@@ -530,7 +503,7 @@
         cardTopicTitle.textContent = "対象の論点はありません";
         cardExampleEn.textContent = "問題データが見つからないか、すべて習得済みです。";
         cardExampleJa.textContent = "";
-        cardQuestion.textContent = "上のタブや論点ブロックから別の出題を選択してください。";
+        cardQuestion.textContent = "上のジャンルや論点集から別の出題を選択してください。";
         cardOptions.textContent = "[ - ]";
         cardAnswer.textContent = "-";
         cardRule.textContent = "-";
