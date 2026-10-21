@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英語リスニング学習ツール</title>
+<style>
+  :root{
+    --bg-page:#11151c;
+    --bg-panel:#1c222d;
+    --bg-well:#242c39;
+    --bg-input:#161b24;
+    --text-primary:#ECE8DD;
+    --text-secondary:#8B93A3;
+    --text-muted:#5B6373;
+    --amber:#E3A63E;
+    --teal:#4FADA0;
+    --coral:#D8674A;
+    --border:#323b4a;
+    --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Roboto,sans-serif;
+    --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+    --script-size:20px;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    min-height:100vh;
+    background:var(--bg-page);
+    font-family:var(--font-sans);
+    color:var(--text-primary);
+    padding:20px 12px 60px;
+  }
+  .wrap{ max-width:560px; margin:0 auto; }
+  header{ margin-bottom:16px; }
+  .eyebrow{ font-size:11px; letter-spacing:.14em; color:var(--amber); font-weight:600; margin:0 0 2px; }
+  h1{ font-size:19px; font-weight:500; margin:0; }
+
+  .card{
+    background:var(--bg-panel);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:16px;
+    margin-bottom:14px;
+  }
+  .card h2{ font-size:13px; font-weight:600; color:var(--text-secondary); margin:0 0 10px; letter-spacing:.03em; }
+
+  button{
+    font-family:var(--font-sans);
+    cursor:pointer;
+    border:1px solid var(--border);
+    background:var(--bg-well);
+    color:var(--text-primary);
+    border-radius:8px;
+    font-size:13px;
+    padding:8px 10px;
+    transition:background .15s, border-color .15s;
+  }
+  button:hover:not(:disabled){ background:#2c3546; border-color:#455063; }
+  button:active:not(:disabled){ transform:scale(0.97); }
+  button:disabled{ opacity:.4; cursor:not-allowed; }
+
+  /* ---- Script panel ---- */
+  .script-toolbar{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+  .script-toolbar button{ flex:0 0 auto; }
+  .script-box{
+    background:var(--bg-input);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:14px;
+    min-height:160px;
+    max-height:340px;
+    overflow-y:auto;
+    font-size:var(--script-size);
+    line-height:1.7;
+    white-space:pre-wrap;
+    word-break:break-word;
+  }
+  .script-box.empty{ color:var(--text-muted); font-size:14px; }
+  .script-box textarea{
+    width:100%;
+    min-height:200px;
+    background:transparent;
+    border:none;
+    outline:none;
+    color:var(--text-primary);
+    font-family:var(--font-sans);
+    font-size:var(--script-size);
+    line-height:1.7;
+    resize:vertical;
+  }
+
+  /* ---- Now playing / transport ---- */
+  .now-playing{ font-size:13px; color:var(--text-secondary); margin-bottom:8px; min-height:16px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .counter-row{ display:flex; align-items:baseline; gap:8px; font-family:var(--font-mono); margin-bottom:8px; }
+  .counter{ font-size:26px; font-weight:500; }
+  .counter-total{ font-size:14px; color:var(--text-muted); }
+
+  .scrub-wrap{ position:relative; margin-bottom:6px; }
+  input[type=range]{ -webkit-appearance:none; width:100%; height:4px; border-radius:2px; background:var(--border); outline:none; }
+  input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; width:16px; height:16px; border-radius:50%; background:var(--amber); cursor:pointer; margin-top:-6px; }
+  input[type=range]::-moz-range-thumb{ width:16px; height:16px; border:none; border-radius:50%; background:var(--amber); cursor:pointer; }
+  .marker{ position:absolute; top:-4px; width:2px; height:12px; pointer-events:none; }
+  .marker.a{ background:var(--teal); }
+  .marker.b{ background:var(--coral); }
+  .ab-labels{ display:flex; justify-content:space-between; font-size:11px; color:var(--text-muted); margin-bottom:16px; font-family:var(--font-mono); }
+  .ab-labels .a-val{ color:var(--teal); }
+  .ab-labels .b-val{ color:var(--coral); }
+
+  .transport{ display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:16px; }
+  .btn-skip{ width:46px; height:40px; font-size:12px; font-weight:500; }
+  .btn-skip[aria-label="前の曲"], .btn-skip[aria-label="次の曲"]{ font-size:18px; }
+  .btn-play{
+    width:56px; height:56px; border-radius:50%;
+    background:var(--amber); border-color:var(--amber); color:#1c1405;
+    position:relative; flex-shrink:0;
+  }
+  .btn-play:hover:not(:disabled){ background:#eeb757; }
+  .btn-play::before{
+    content:''; position:absolute; top:50%; left:50%;
+    border-top:9px solid transparent; border-bottom:9px solid transparent;
+    border-left:15px solid #1c1405; transform:translate(-40%,-50%);
+  }
+  .btn-play.playing::before{
+    border:none; width:5px; height:16px; background:#1c1405;
+    box-shadow:8px 0 0 #1c1405; transform:translate(-50%,-50%);
+  }
+
+  .field-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+  .field-row:last-child{ margin-bottom:0; }
+  .field-label{ font-size:12px; color:var(--text-secondary); width:64px; flex-shrink:0; }
+  .field-val{ font-family:var(--font-mono); font-size:13px; width:46px; text-align:right; flex-shrink:0; }
+
+  .ab-buttons{ display:flex; gap:8px; flex:1; }
+  .ab-buttons button{ flex:1; }
+  .btn-a{ border-color:var(--teal); color:var(--teal); }
+  .btn-b{ border-color:var(--coral); color:var(--coral); }
+  .btn-clear{ color:var(--text-secondary); }
+
+  .switch-row{ display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text-secondary); }
+  .switch{ width:34px; height:19px; border-radius:10px; background:var(--bg-input); border:1px solid var(--border); position:relative; cursor:pointer; flex-shrink:0; }
+  .switch::after{ content:''; position:absolute; width:13px; height:13px; border-radius:50%; background:var(--text-muted); top:2px; left:2px; transition:left .15s, background .15s; }
+  .switch.on{ border-color:var(--amber); }
+  .switch.on::after{ left:17px; background:var(--amber); }
+
+  /* ---- Playlist ---- */
+  .playlist-toolbar{ display:flex; gap:8px; margin-bottom:10px; }
+  .playlist-toolbar button{ flex:1; }
+  .track-row{
+    display:flex; align-items:center; gap:8px;
+    padding:9px 6px; border-bottom:1px solid var(--border);
+  }
+  .track-row:last-child{ border-bottom:none; }
+  .track-row.active{ background:var(--bg-well); border-radius:6px; }
+  .track-info{
+    flex:1; display:flex; align-items:center; gap:8px;
+    background:none; border:none; color:var(--text-primary);
+    text-align:left; padding:4px; font-size:13px; cursor:pointer;
+    overflow:hidden;
+  }
+  .track-name{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .track-dot{ width:7px; height:7px; border-radius:50%; background:var(--border); flex-shrink:0; }
+  .track-dot.has-script{ background:var(--teal); }
+  .track-actions{ display:flex; gap:4px; flex-shrink:0; }
+  .tiny{ width:30px; height:30px; padding:0; font-size:13px; }
+  .empty-msg{ font-size:13px; color:var(--text-muted); padding:8px 4px; }
+
+  input[type=file]{ display:none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <p class="eyebrow">LISTENING LAB</p>
+  <h1>英語リスニング学習ツール</h1>
+</header>
+
+<div class="card">
+  <h2>スクリプト</h2>
+  <div class="script-toolbar">
+    <button id="toggleScript">非表示</button>
+    <button id="fontMinus">文字 -</button>
+    <button id="fontPlus">文字 +</button>
+    <button id="editScript" disabled>編集</button>
+    <button id="saveScript" disabled>.txtで保存</button>
+    <button id="loadScriptBtn">.txtだけを後から追加</button>
+    <input type="file" id="scriptInput" accept=".txt" multiple>
+  </div>
+  <div class="script-box empty" id="scriptBox">音声ファイルを選択すると、対応するスクリプトがあればここに表示されます。</div>
+</div>
+
+<div class="card">
+  <p class="now-playing" id="nowPlaying">未読み込み</p>
+  <div class="counter-row">
+    <span class="counter" id="counter">00:00</span>
+    <span class="counter-total" id="counterTotal">/ 00:00</span>
+  </div>
+  <div class="scrub-wrap">
+    <input type="range" id="scrub" min="0" max="100" value="0" step="0.1" disabled>
+    <div class="marker a" id="markerA" style="display:none;"></div>
+    <div class="marker b" id="markerB" style="display:none;"></div>
+  </div>
+  <div class="ab-labels">
+    <span>A: <span class="a-val" id="aVal">--:--</span></span>
+    <span>B: <span class="b-val" id="bVal">--:--</span></span>
+  </div>
+
+  <div class="transport">
+    <button class="btn-skip" id="prevTrack" disabled aria-label="前の曲">&#9198;</button>
+    <button class="btn-skip" id="back5" disabled>-5s</button>
+    <button class="btn-play" id="playBtn" disabled aria-label="再生"></button>
+    <button class="btn-skip" id="fwd5" disabled>+5s</button>
+    <button class="btn-skip" id="nextTrack" disabled aria-label="次の曲">&#9197;</button>
+  </div>
+
+  <div class="field-row">
+    <span class="field-label">音量</span>
+    <input type="range" id="volume" min="0" max="1" step="0.01" value="1">
+    <span class="field-val" id="volumeVal">100%</span>
+  </div>
+  <div class="field-row">
+    <span class="field-label">速度</span>
+    <input type="range" id="speed" min="0.5" max="2" step="0.05" value="1" disabled>
+    <span class="field-val" id="speedVal">1.00x</span>
+  </div>
+  <div class="field-row">
+    <span class="field-label">区間</span>
+    <div class="ab-buttons">
+      <button class="btn-a" id="setA" disabled>A地点</button>
+      <button class="btn-b" id="setB" disabled>B地点</button>
+      <button class="btn-clear" id="clearAB" disabled>クリア</button>
+    </div>
+  </div>
+  <div class="field-row">
+    <span class="field-label">ループ</span>
+    <div class="switch-row">
+      <div class="switch" id="loopSwitch"></div>
+      <span id="loopStatus">A-B未設定</span>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>プレイリスト</h2>
+  <div class="playlist-toolbar">
+    <button id="addAudioBtn">音声+スクリプトをまとめて追加</button>
+    <input type="file" id="audioInput" accept="audio/*,.mp3,.txt,text/plain" multiple>
+  </div>
+  <div class="field-row" style="margin-bottom:10px;">
+    <span class="field-label">自動再生</span>
+    <div class="switch-row">
+      <div class="switch on" id="autoAdvanceSwitch"></div>
+      <span>次のトラックへ自動で進む</span>
+    </div>
+  </div>
+  <div id="playlistBox">
+    <p class="empty-msg" id="playlistEmpty">まだ音声ファイルがありません。</p>
+  </div>
+</div>
+
+</div>
+
+<audio id="audio"></audio>
+
+<script>
+const audio = document.getElementById('audio');
+const playBtn = document.getElementById('playBtn');
+const back5 = document.getElementById('back5');
+const fwd5 = document.getElementById('fwd5');
+const prevTrackBtn = document.getElementById('prevTrack');
+const nextTrackBtn = document.getElementById('nextTrack');
+const scrub = document.getElementById('scrub');
+const counter = document.getElementById('counter');
+const counterTotal = document.getElementById('counterTotal');
+const nowPlaying = document.getElementById('nowPlaying');
+const speed = document.getElementById('speed');
+const speedVal = document.getElementById('speedVal');
+const volume = document.getElementById('volume');
+const volumeVal = document.getElementById('volumeVal');
+const setAbtn = document.getElementById('setA');
+const setBbtn = document.getElementById('setB');
+const clearAB = document.getElementById('clearAB');
+const markerA = document.getElementById('markerA');
+const markerB = document.getElementById('markerB');
+const aVal = document.getElementById('aVal');
+const bVal = document.getElementById('bVal');
+const loopSwitch = document.getElementById('loopSwitch');
+const loopStatus = document.getElementById('loopStatus');
+
+const scriptBox = document.getElementById('scriptBox');
+const toggleScript = document.getElementById('toggleScript');
+const fontMinus = document.getElementById('fontMinus');
+const fontPlus = document.getElementById('fontPlus');
+const editScript = document.getElementById('editScript');
+const saveScript = document.getElementById('saveScript');
+const loadScriptBtn = document.getElementById('loadScriptBtn');
+const scriptInput = document.getElementById('scriptInput');
+
+const addAudioBtn = document.getElementById('addAudioBtn');
+const audioInput = document.getElementById('audioInput');
+const playlistBox = document.getElementById('playlistBox');
+const playlistEmpty = document.getElementById('playlistEmpty');
+const autoAdvanceSwitch = document.getElementById('autoAdvanceSwitch');
+
+let tracks = [];
+let trackIdSeq = 0;
+let currentIndex = -1;
+let scrubbing = false;
+let editingScript = false;
+let scriptVisible = true;
+let autoAdvance = true;
+let scriptFontSize = 20;
+
+function fmt(sec){
+  if(!isFinite(sec) || sec < 0) sec = 0;
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+}
+function stripExt(name){ return name.replace(/\.[^/.]+$/, ''); }
+function current(){ return currentIndex >= 0 ? tracks[currentIndex] : null; }
+
+// ファイル名(拡張子なし)をキーに、まだ対応する音声が見つかっていないスクリプトを一時保管する
+let pendingScripts = {};
+
+function addAudioTracks(files){
+  files.forEach(file => {
+    const name = stripExt(file.name);
+    const track = {
+      id: trackIdSeq++,
+      file,
+      url: URL.createObjectURL(file),
+      name,
+      script: '',
+      pointA: null,
+      pointB: null,
+      loopEnabled: false
+    };
+    // 先に読み込み済みのスクリプトが待機していれば自動で紐付ける
+    if(Object.prototype.hasOwnProperty.call(pendingScripts, name)){
+      track.script = pendingScripts[name];
+      delete pendingScripts[name];
+    }
+    tracks.push(track);
+  });
+}
+
+function loadScriptFiles(files, callback){
+  const unmatched = [];
+  let remaining = files.length;
+  if(remaining === 0){ if(callback) callback(unmatched); return; }
+  files.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base = stripExt(file.name);
+      const track = tracks.find(t => t.name === base);
+      if(track){
+        track.script = reader.result;
+        if(current() === track) renderScript();
+      } else {
+        // 対応する音声がまだ無い場合は保留しておき、後で同名の音声が追加されたら自動で紐付く
+        pendingScripts[base] = reader.result;
+        unmatched.push(file.name);
+      }
+      remaining--;
+      if(remaining === 0 && callback) callback(unmatched);
+    };
+    reader.readAsText(file);
+  });
+}
+
+/* ---------- Playlist ---------- */
+addAudioBtn.addEventListener('click', () => audioInput.click());
+audioInput.addEventListener('change', (e) => {
+  const files = Array.from(e.target.files);
+  const audioFiles = files.filter(f => f.type.startsWith('audio/') || /\.(mp3|m4a|wav|aac|ogg)$/i.test(f.name));
+  const txtFiles = files.filter(f => /\.txt$/i.test(f.name));
+
+  addAudioTracks(audioFiles);
+  audioInput.value = '';
+  renderPlaylist();
+  if(currentIndex === -1 && tracks.length > 0) selectTrack(0);
+
+  if(txtFiles.length > 0){
+    loadScriptFiles(txtFiles, (unmatched) => {
+      renderPlaylist();
+      if(unmatched.length){
+        alert('スクリプトを一時保管しました(対応する音声がまだありません。同じ名前の音声を追加すると自動で紐付きます):\n' + unmatched.join('\n'));
+      }
+    });
+  }
+});
+
+loadScriptBtn.addEventListener('click', () => scriptInput.click());
+scriptInput.addEventListener('change', (e) => {
+  const files = Array.from(e.target.files);
+  if(files.length === 0) return;
+  loadScriptFiles(files, (unmatched) => {
+    renderPlaylist();
+    scriptInput.value = '';
+    if(unmatched.length){
+      alert('対応する音声ファイルが見つかりませんでした(保留し、同じ名前の音声を追加すると自動で紐付きます):\n' + unmatched.join('\n'));
+    }
+  });
+});
+
+function refreshTrackNavButtons(){
+  prevTrackBtn.disabled = !(currentIndex > 0);
+  nextTrackBtn.disabled = !(currentIndex >= 0 && currentIndex < tracks.length - 1);
+}
+
+function renderPlaylist(){
+  playlistBox.innerHTML = '';
+  refreshTrackNavButtons();
+  if(tracks.length === 0){
+    playlistEmpty.style.display = 'block';
+    playlistBox.appendChild(playlistEmpty);
+    return;
+  }
+  playlistEmpty.style.display = 'none';
+  tracks.forEach((t, i) => {
+    const row = document.createElement('div');
+    row.className = 'track-row' + (i === currentIndex ? ' active' : '');
+
+    const info = document.createElement('button');
+    info.className = 'track-info';
+    info.type = 'button';
+    info.innerHTML = '<span class="track-dot' + (t.script ? ' has-script' : '') + '"></span><span class="track-name"></span>';
+    info.querySelector('.track-name').textContent = t.name;
+    info.addEventListener('click', () => selectTrack(i));
+
+    const actions = document.createElement('div');
+    actions.className = 'track-actions';
+
+    const up = document.createElement('button');
+    up.className = 'tiny'; up.type = 'button'; up.textContent = '\u2191';
+    up.disabled = i === 0;
+    up.addEventListener('click', () => moveTrack(i, -1));
+
+    const down = document.createElement('button');
+    down.className = 'tiny'; down.type = 'button'; down.textContent = '\u2193';
+    down.disabled = i === tracks.length - 1;
+    down.addEventListener('click', () => moveTrack(i, 1));
+
+    const remove = document.createElement('button');
+    remove.className = 'tiny'; remove.type = 'button'; remove.textContent = '\u2715';
+    remove.addEventListener('click', () => removeTrack(i));
+
+    actions.appendChild(up);
+    actions.appendChild(down);
+    actions.appendChild(remove);
+    row.appendChild(info);
+    row.appendChild(actions);
+    playlistBox.appendChild(row);
+  });
+}
+
+function moveTrack(i, dir){
+  const j = i + dir;
+  if(j < 0 || j >= tracks.length) return;
+  [tracks[i], tracks[j]] = [tracks[j], tracks[i]];
+  if(currentIndex === i) currentIndex = j;
+  else if(currentIndex === j) currentIndex = i;
+  renderPlaylist();
+}
+
+function removeTrack(i){
+  const t = tracks[i];
+  URL.revokeObjectURL(t.url);
+  tracks.splice(i, 1);
+  if(i === currentIndex){
+    audio.pause();
+    audio.removeAttribute('src');
+    currentIndex = -1;
+    resetPlayerUI();
+  } else if(i < currentIndex){
+    currentIndex--;
+  }
+  renderPlaylist();
+}
+
+function selectTrack(i){
+  currentIndex = i;
+  const t = tracks[i];
+  audio.src = t.url;
+  audio.load();
+  audio.playbackRate = parseFloat(speed.value);
+  nowPlaying.textContent = t.name;
+  setControlsEnabled(true);
+  updateMarkers();
+  renderScript();
+  renderPlaylist();
+  audio.play().then(() => {
+    playBtn.classList.add('playing');
+  }).catch(() => {});
+}
+
+function resetPlayerUI(){
+  nowPlaying.textContent = '未読み込み';
+  counter.textContent = '00:00';
+  counterTotal.textContent = '/ 00:00';
+  scrub.value = 0;
+  setControlsEnabled(false);
+  markerA.style.display = 'none';
+  markerB.style.display = 'none';
+  aVal.textContent = '--:--';
+  bVal.textContent = '--:--';
+  loopStatus.textContent = 'A-B未設定';
+  playBtn.classList.remove('playing');
+  renderScript();
+}
+
+function setControlsEnabled(on){
+  [playBtn, back5, fwd5, scrub, speed, setAbtn, setBbtn, clearAB, editScript, saveScript].forEach(el => el.disabled = !on);
+}
+
+/* ---------- Transport ---------- */
+audio.addEventListener('loadedmetadata', () => {
+  scrub.max = audio.duration;
+  counterTotal.textContent = '/ ' + fmt(audio.duration);
+  updateMarkers();
+});
+audio.addEventListener('timeupdate', () => {
+  if(!scrubbing){
+    scrub.value = audio.currentTime;
+    counter.textContent = fmt(audio.currentTime);
+  }
+  const t = current();
+  if(t && t.loopEnabled && t.pointB !== null && audio.currentTime >= t.pointB){
+    audio.currentTime = t.pointA !== null ? t.pointA : 0;
+  }
+});
+audio.addEventListener('ended', () => {
+  playBtn.classList.remove('playing');
+  if(autoAdvance && currentIndex < tracks.length - 1){
+    selectTrack(currentIndex + 1);
+  }
+});
+
+playBtn.addEventListener('click', () => {
+  if(audio.paused){
+    audio.play();
+    playBtn.classList.add('playing');
+  } else {
+    audio.pause();
+    playBtn.classList.remove('playing');
+  }
+});
+back5.addEventListener('click', () => { audio.currentTime = Math.max(0, audio.currentTime - 5); });
+fwd5.addEventListener('click', () => { audio.currentTime = Math.min(audio.duration, audio.currentTime + 5); });
+prevTrackBtn.addEventListener('click', () => { if(currentIndex > 0) selectTrack(currentIndex - 1); });
+nextTrackBtn.addEventListener('click', () => { if(currentIndex < tracks.length - 1) selectTrack(currentIndex + 1); });
+
+scrub.addEventListener('input', () => { scrubbing = true; counter.textContent = fmt(scrub.value); });
+scrub.addEventListener('change', () => { audio.currentTime = scrub.value; scrubbing = false; });
+
+volume.addEventListener('input', () => {
+  audio.volume = parseFloat(volume.value);
+  volumeVal.textContent = Math.round(audio.volume * 100) + '%';
+});
+audio.volume = 1;
+
+speed.addEventListener('input', () => {
+  const v = parseFloat(speed.value);
+  audio.playbackRate = v;
+  speedVal.textContent = v.toFixed(2) + 'x';
+});
+
+/* ---------- A-B repeat ---------- */
+function updateMarkers(){
+  const t = current();
+  if(!t || !audio.duration){
+    markerA.style.display = 'none';
+    markerB.style.display = 'none';
+    aVal.textContent = '--:--';
+    bVal.textContent = '--:--';
+    loopStatus.textContent = 'A-B未設定';
+    return;
+  }
+  const dur = audio.duration || 1;
+  if(t.pointA !== null){
+    markerA.style.display = 'block';
+    markerA.style.left = (t.pointA / dur * 100) + '%';
+    aVal.textContent = fmt(t.pointA);
+  } else {
+    markerA.style.display = 'none';
+    aVal.textContent = '--:--';
+  }
+  if(t.pointB !== null){
+    markerB.style.display = 'block';
+    markerB.style.left = (t.pointB / dur * 100) + '%';
+    bVal.textContent = fmt(t.pointB);
+  } else {
+    markerB.style.display = 'none';
+    bVal.textContent = '--:--';
+  }
+  loopSwitch.classList.toggle('on', t.loopEnabled);
+  if(t.pointA !== null && t.pointB !== null){
+    loopStatus.textContent = t.loopEnabled ? 'ループ中' : 'A-B設定済み';
+  } else {
+    loopStatus.textContent = 'A-B未設定';
+  }
+}
+setAbtn.addEventListener('click', () => {
+  const t = current(); if(!t) return;
+  t.pointA = audio.currentTime;
+  if(t.pointB !== null && t.pointA >= t.pointB) t.pointB = null;
+  autoEnableLoop(t);
+});
+setBbtn.addEventListener('click', () => {
+  const t = current(); if(!t) return;
+  t.pointB = audio.currentTime;
+  if(t.pointA !== null && t.pointB <= t.pointA) t.pointA = null;
+  autoEnableLoop(t);
+});
+clearAB.addEventListener('click', () => {
+  const t = current(); if(!t) return;
+  t.pointA = null; t.pointB = null; t.loopEnabled = false;
+  updateMarkers();
+});
+function autoEnableLoop(t){
+  if(t.pointA !== null && t.pointB !== null) t.loopEnabled = true;
+  updateMarkers();
+}
+loopSwitch.addEventListener('click', () => {
+  const t = current(); if(!t || t.pointA === null || t.pointB === null) return;
+  t.loopEnabled = !t.loopEnabled;
+  updateMarkers();
+});
+
+/* ---------- Script panel ---------- */
+function renderScript(){
+  const t = current();
+  scriptBox.innerHTML = '';
+  if(editingScript && t){
+    const textarea = document.createElement('textarea');
+    textarea.value = t.script;
+    textarea.style.fontSize = scriptFontSize + 'px';
+    scriptBox.classList.remove('empty');
+    scriptBox.appendChild(textarea);
+    textarea.focus();
+    return;
+  }
+  scriptBox.style.fontSize = scriptFontSize + 'px';
+  if(!t){
+    scriptBox.classList.add('empty');
+    scriptBox.textContent = '音声ファイルを選択すると、対応するスクリプトがあればここに表示されます。';
+  } else if(!t.script){
+    scriptBox.classList.add('empty');
+    scriptBox.textContent = 'このトラックにはまだスクリプトがありません。「.txtを読み込む」または「編集」から追加できます。';
+  } else {
+    scriptBox.classList.remove('empty');
+    scriptBox.textContent = t.script;
+  }
+}
+toggleScript.addEventListener('click', () => {
+  scriptVisible = !scriptVisible;
+  scriptBox.style.display = scriptVisible ? 'block' : 'none';
+  toggleScript.textContent = scriptVisible ? '非表示' : '表示';
+});
+fontMinus.addEventListener('click', () => {
+  scriptFontSize = Math.max(14, scriptFontSize - 2);
+  renderScript();
+});
+fontPlus.addEventListener('click', () => {
+  scriptFontSize = Math.min(36, scriptFontSize + 2);
+  renderScript();
+});
+editScript.addEventListener('click', () => {
+  const t = current(); if(!t) return;
+  if(editingScript){
+    const textarea = scriptBox.querySelector('textarea');
+    if(textarea) t.script = textarea.value;
+    editingScript = false;
+    editScript.textContent = '編集';
+    renderPlaylist();
+  } else {
+    editingScript = true;
+    editScript.textContent = '保存';
+  }
+  renderScript();
+});
+saveScript.addEventListener('click', () => {
+  const t = current(); if(!t) return;
+  const text = editingScript ? (scriptBox.querySelector('textarea')?.value ?? t.script) : t.script;
+  const blob = new Blob([text], { type: 'text/plain' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = t.name + '.txt';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+});
+
+autoAdvanceSwitch.addEventListener('click', () => {
+  autoAdvance = !autoAdvance;
+  autoAdvanceSwitch.classList.toggle('on', autoAdvance);
+});
+
+resetPlayerUI();
+</script>
+</body>
+</html>

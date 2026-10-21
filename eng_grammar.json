@@ -1,0 +1,90 @@
+[
+  {
+    "id": 101,
+    "block": "Block 1-1 文の5文型と主要素",
+    "topic": "第1文型（SV）と修飾語（M）の判別",
+    "example_en": "The new branch opened successfully last Monday.",
+    "example_ja": "その新しい支店は先週の月曜日に無事オープンした。（S=branch, V=opened, 後ろは修飾語句）",
+    "question": "The train ______ promptly at 7:00 AM from platform 3.",
+    "options": "[ departs / departure / departing ]",
+    "answer": "departs",
+    "rule": "主語（The train）に対応する本動詞（V）が必要。後ろの副詞句（promptly...）は修飾語（M）。"
+  },
+  {
+    "id": 102,
+    "block": "Block 1-1 文の5文型と主要素",
+    "topic": "第2文型（SVC）における補語（形容詞）",
+    "example_en": "The financial forecast remains stable despite inflation.",
+    "example_ja": "インフレにもかかわらず、財務見通しは安定したままである。（remain + 形容詞C）",
+    "question": "The laboratory conditions must remain ______ during the testing process.",
+    "options": "[ sterile / sterilely / sterility ]",
+    "answer": "sterile",
+    "rule": "remain / keep / stay などの不完全自動詞の後ろには、主語の状態を説明する「補語（形容詞）」が来る。"
+  },
+  {
+    "id": 103,
+    "block": "Block 1-1 文の5文型と主要素",
+    "topic": "第3文型（SVO）における他動詞と目的語",
+    "example_en": "The CEO discussed the merger with reporters.",
+    "example_ja": "CEOは記者たちとその合併について議論した。（discuss は他動詞なので前置詞不要で目的語O）",
+    "question": "Please ______ the application form by Friday afternoon.",
+    "options": "[ submit / submission / submissive ]",
+    "answer": "submit",
+    "rule": "命令文の文頭には動詞の原形（V）が必要。直後の the application form（名詞句）が目的語（O）。"
+  },
+  {
+    "id": 104,
+    "block": "Block 1-1 文の5文型と主要素",
+    "topic": "第4文型（SVOO）の授与動詞パターン",
+    "example_en": "The company offered him a senior position.",
+    "example_ja": "会社は彼に上級職のポストを提示した。（offer + 人(O1) + モノ(O2)）",
+    "question": "The HR director granted ______ a two-week extension on the project.",
+    "options": "[ them / their / theirs ]",
+    "answer": "them",
+    "rule": "grant + 人（目的格代名詞：O1）+ モノ（O2）。第4文型の第1目的語には目的格（them）が入る。"
+  },
+  {
+    "id": 105,
+    "block": "Block 1-1 文の5文型と主要素",
+    "topic": "第5文型（SVOC）：補語に形容詞をとる動詞",
+    "example_en": "We found the instructions extremely helpful.",
+    "example_ja": "私たちはその指示書が極めて役に立つと分かった。（find + O + C(形容詞)）",
+    "question": "The survey results make the upcoming campaign ______.",
+    "options": "[ necessary / necessarily / necessity ]",
+    "answer": "necessary",
+    "rule": "make + O + C（形容詞）。目的語（the upcoming campaign）の状態を表す補語(C)には形容詞が必要。"
+  },
+  {
+    "id": 106,
+    "block": "Block 1-1 文の5文型と主要素",
+    "topic": "第5文型（SVOC）：補語に to 不定詞をとる動詞",
+    "example_en": "The supervisor asked the staff to attend the workshop.",
+    "example_ja": "主任はスタッフに研修会へ参加するよう求めた。（ask + O + to do）",
+    "question": "The revised safety regulations require all employees ______ hard hats.",
+    "options": "[ wear / wearing / to wear ]",
+    "answer": "to wear",
+    "rule": "require / allow / enable / advise + O + to do（Oに〜するよう要求・可能にする）。"
+  },
+  {
+    "id": 107,
+    "block": "Block 1-1 文の5文型と主要素",
+    "topic": "第5文型（SVOC）：使役動詞の原形不定詞",
+    "example_en": "The manager let the intern leave early today.",
+    "example_ja": "マネージャーは今日、実習生を早く帰らせてあげた。（let + O + 原形不定詞）",
+    "question": "The system upgrade helped the team ______ errors significantly.",
+    "options": "[ reduce / reduction / reduced ]",
+    "answer": "reduce",
+    "rule": "help + O + (to) 原形動詞。help は目的語の後ろに原形不定詞（またはto不定詞）をとる特殊な動詞。"
+  },
+  {
+    "id": 108,
+    "block": "Block 1-1 文の5文型と主要素",
+    "topic": "自動詞と他動詞の峻別（紛らわしい動詞）",
+    "example_en": "Prices rose by five percent last quarter.",
+    "example_ja": "価格は前期に5％上昇した。（rise は目的語をとらない自動詞）",
+    "question": "The management decided to ______ wages to retain talented engineers.",
+    "options": "[ rise / raise / arising ]",
+    "answer": "raise",
+    "rule": "直後に名詞（wages：賃金）があるため、他動詞「raise（〜を上げる）」が必要。自動詞「rise（上がる）」は不可。"
+  }
+]

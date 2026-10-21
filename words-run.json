@@ -1,0 +1,317 @@
+[
+  {
+    "word": "run a business",
+    "meaning": "事業・会社を経営する",
+    "example": "She decided to run a business selling local organic produce.",
+    "example_jp": "彼女は地元の有機農産物を販売する事業を経営することに決めました。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run out of",
+    "meaning": "（在庫や資源を）使い果たす・切らす",
+    "example": "The factory will run out of raw materials by tomorrow.",
+    "example_jp": "工場は明日までに原材料を使い果たしてしまいます。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run into",
+    "meaning": "（問題などに）直面する・偶然出くわす",
+    "example": "The design team may run into technical difficulties during testing.",
+    "example_jp": "設計チームは試験中に技術的な困難に直面する可能性があります。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run short of",
+    "meaning": "〜が不足する・足りなくなる",
+    "example": "We are running short of spare parts for the packaging line.",
+    "example_jp": "包装ラインの予備部品が不足しつつあります。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run smoothly",
+    "meaning": "円滑に進む・順調に稼働する",
+    "example": "All assembly lines must run smoothly to meet customer deadlines.",
+    "example_jp": "顧客の納期に間に合わせるため、すべての組み立てラインは円滑に稼働しなければなりません。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run a test",
+    "meaning": "試験・テストを実施する",
+    "example": "Engineers will run a test on the newly installed sensor.",
+    "example_jp": "技術者たちは新しく設置されたセンサーの試験を実施します。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run an errand",
+    "meaning": "使い走りをする・所用で出かける",
+    "example": "The administrative assistant had to run an errand to the post office.",
+    "example_jp": "総務アシスタントは郵便局へ所用で出かけなければなりませんでした。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run a campaign",
+    "meaning": "キャンペーンを展開・実施する",
+    "example": "Marketing will run a campaign to promote the seasonal product.",
+    "example_jp": "マーケティング部門は季節限定商品を宣伝するキャンペーンを展開します。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run the risk of",
+    "meaning": "〜の危険を冒す・リスクを伴う",
+    "example": "Companies run the risk of losing market share without innovation.",
+    "example_jp": "企業は革新を怠ると市場シェアを失うリスクを冒すことになります。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run a simulation",
+    "meaning": "シミュレーションを行う",
+    "example": "We should run a simulation before changing the production schedule.",
+    "example_jp": "生産計画を変更する前にシミュレーションを行うべきです。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "in the long run",
+    "meaning": "長い目で見れば・結局は",
+    "example": "Energy-efficient machinery saves substantial costs in the long run.",
+    "example_jp": "省エネ機械は長い目で見れば大幅な経費節減につながります。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "in the short run",
+    "meaning": "短期的には・当面は",
+    "example": "The structural change may reduce output in the short run.",
+    "example_jp": "構造改革は短期的には生産高を減少させるかもしれません。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run behind schedule",
+    "meaning": "予定・日程より遅れる",
+    "example": "The construction project began to run behind schedule due to rain.",
+    "example_jp": "雨天の影響により、建設プロジェクトは予定より遅れ始めました。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run on time",
+    "meaning": "定刻通りに運行・進行する",
+    "example": "Freight shuttles between warehouse hubs usually run on time.",
+    "example_jp": "倉庫拠点間の定期貨物便は通常定刻通りに運行しています。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run over budget",
+    "meaning": "予算を超過する",
+    "example": "Careful oversight prevented the software renovation from running over budget.",
+    "example_jp": "細心の管理によってソフトウェア改修が予算超過となるのを防ぎました。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run across",
+    "meaning": "〜に偶然出会う・見つける",
+    "example": "Auditors run across accounting discrepancies during quarterly checks.",
+    "example_jp": "監査担当者は四半期検査中に会計上の不一致を偶然見つけることがあります。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run through",
+    "meaning": "〜にざっと目を通す・確認する",
+    "example": "Let us run through the presentation slides one more time.",
+    "example_jp": "プレゼンテーションのスライドにもう一度ざっと目を通しましょう。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run up costs",
+    "meaning": "（費用などを）かさませる",
+    "example": "Frequent design changes can quickly run up production costs.",
+    "example_jp": "頻繁な設計変更は製造コストを急速にかさませる要因になります。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run a check on",
+    "meaning": "〜の点検・確認を行う",
+    "example": "Technicians must run a check on the emergency generator weekly.",
+    "example_jp": "技術者は非常用発電機の点検を毎週実施しなければなりません。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run counter to",
+    "meaning": "〜に逆行する・反する",
+    "example": "The proposed measure runs counter to current safety standards.",
+    "example_jp": "提案された施策は現在の安全基準に逆行しています。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run parallel to",
+    "meaning": "〜と並行して進む・並行する",
+    "example": "Internal staff training will run parallel to the system rollout.",
+    "example_jp": "社内スタッフの研修はシステム導入と並行して進められます。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run an analysis",
+    "meaning": "分析を実施する",
+    "example": "Data specialists run an analysis on customer purchase records.",
+    "example_jp": "データ専門家が顧客の購買記録に関する分析を実施します。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run a background check",
+    "meaning": "身元・経歴調査を行う",
+    "example": "Human resources will run a background check on shortlisted applicants.",
+    "example_jp": "人事部は最終候補に残った応募者の身元調査を行います。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run a diagnostic",
+    "meaning": "診断プログラムを実行する",
+    "example": "Please run a diagnostic to identify the network disruption.",
+    "example_jp": "ネットワーク障害の原因を特定するため診断プログラムを実行してください。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run a workshop",
+    "meaning": "研修・ワークショップを開催する",
+    "example": "The department plans to run a workshop on quality control.",
+    "example_jp": "部門は品質管理に関するワークショップを開催する予定です。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run an inspection",
+    "meaning": "検査・点検を実施する",
+    "example": "Inspectors run an inspection on all export containers at the dock.",
+    "example_jp": "検査官は埠頭ですべての輸出コンテナの検査を実施します。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run low",
+    "meaning": "（残高や備蓄が）底をつきかける・減る",
+    "example": "Paper supplies in the central office are running low.",
+    "example_jp": "本社オフィスの用紙類の備蓄が底をつきかけています。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run high",
+    "meaning": "（感情・情勢などが）高まる・激しくなる",
+    "example": "Tensions can run high during intense contract negotiations.",
+    "example_jp": "激しい契約交渉の最中は緊張感が高まりやすくなります。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run deep",
+    "meaning": "（関係や影響が）根深い・深く根ざしている",
+    "example": "Trust between the logistics partners runs deep after decades.",
+    "example_jp": "数十年にわたる物流提携企業同士の信頼関係は深く根ざしています。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run a trial",
+    "meaning": "試行・試験運用を行う",
+    "example": "The factory will run a trial using sustainable packaging wrap.",
+    "example_jp": "工場は環境配慮型の包装ラップを用いた試行を実施します。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run dry",
+    "meaning": "（資金や資源が）枯渇する・尽きる",
+    "example": "The venture capital reserves could run dry without fresh funding.",
+    "example_jp": "新たな資金調達がなければベンチャー資金の蓄えが枯渇しかねません。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run out of steam",
+    "meaning": "勢いを失う・息切れする",
+    "example": "The early sales boom began to run out of steam by autumn.",
+    "example_jp": "初動の販売ブームは秋になる頃には息切れし始めました。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run out of time",
+    "meaning": "時間がなくなる・時間切れになる",
+    "example": "The committee ran out of time before voting on the proposal.",
+    "example_jp": "委員会は議案への投票を行う前に時間切れになってしまいました。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run a search",
+    "meaning": "検索・照会を行う",
+    "example": "The clerk will run a search in the digital inventory database.",
+    "example_jp": "担当職員が電子在庫データベースで検索を行います。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run off with",
+    "meaning": "〜を持ち去る・持ち逃げする",
+    "example": "Security protocols ensure unauthorized visitors cannot run off with prototypes.",
+    "example_jp": "部外者が試作品を持ち去ることができないよう保安手順が確立されています。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run a pilot program",
+    "meaning": "試験的プログラム・実証実験を実施する",
+    "example": "The city will run a pilot program testing automated transit shuttles.",
+    "example_jp": "市は自動運転シャトルの運行を検証する実証実験を実施します。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run into debt",
+    "meaning": "借金・負債を抱える",
+    "example": "Firms run into debt when capital outlays exceed incoming revenue.",
+    "example_jp": "設備投資額が受取収益を上回ると企業は負債を抱えることになります。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run a seminar",
+    "meaning": "講習会・セミナーを運営・開催する",
+    "example": "Senior specialists run a seminar for newly certified electricians.",
+    "example_jp": "上級専門技術者が新たに資格を取得した電気技師向けに講習会を開催します。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run a clean operation",
+    "meaning": "清潔・透明性の高い運営を行う",
+    "example": "Food packaging plants must run a clean operation to prevent contamination.",
+    "example_jp": "食品包装工場は異物混入を防ぐため清潔な作業運営を行わなければなりません。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run an update",
+    "meaning": "アップデート・更新プログラムを実行する",
+    "example": "Technicians schedule to run an update on firewall servers overnight.",
+    "example_jp": "技術者は夜間にファイアウォールサーバーの更新プログラムを実行する予定です。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run down the battery",
+    "meaning": "バッテリー・電池を消耗させる",
+    "example": "Leaving thermal monitors active overnight will run down the battery.",
+    "example_jp": "温度監視モニターを一晩中作動させたままにするとバッテリーを消耗させてしまいます。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run a audit",
+    "meaning": "監査を実施する",
+    "example": "Third-party reviewers run an audit on workplace safety compliance.",
+    "example_jp": "第三者監査機関が職場安全基準の遵守状況に関する監査を実施します。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run on batteries",
+    "meaning": "電池・バッテリーで駆動する",
+    "example": "Portable packaging scanners can run on batteries for eight hours.",
+    "example_jp": "携帯型包装スキャナーはバッテリー駆動で8時間動作します。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run a survey",
+    "meaning": "アンケート・意識調査を実施する",
+    "example": "HR decided to run a survey regarding workplace cafeteria satisfaction.",
+    "example_jp": "人事部は社員食堂の満足度に関する意識調査を実施することにしました。",
+    "category": "基本動詞: run"
+  },
+  {
+    "word": "run the show",
+    "meaning": "仕切る・全体を取り仕切る",
+    "example": "The chief operations officer will run the show during the regional expo.",
+    "example_jp": "最高執行責任者が地方エキスポ開催中の全体を取り仕切ります。",
+    "category": "基本動詞: run"
+  }
+]
