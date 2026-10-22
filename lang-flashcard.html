@@ -65,7 +65,6 @@
           <select id="dictSelect" class="bg-slate-800 border border-slate-600 text-amber-300 font-semibold text-xs rounded-lg px-2 py-1.5 focus:outline-none focus:border-amber-500 flex-1 sm:flex-none">
             <option value="ALL">★ すべての辞書を結合 (全データ)</option>
             <option value="words.json">一般ビジネス・頻出コロケーション</option>
-            <option value="words-verbs.json">重要動詞まとめ (混合版)</option>
             <option value="words-run.json">基本動詞: run</option>
             <option value="words-take.json">基本動詞: take</option>
             <option value="words-get.json">基本動詞: get</option>
@@ -73,6 +72,7 @@
             <option value="words-have.json">基本動詞: have</option>
             <option value="words-hold.json">基本動詞: hold</option>
             <option value="words-give.json">基本動詞: give</option>
+            <option value="words-verbs.json">重要動詞まとめ (混合版)</option>
           </select>
         </div>
 
@@ -101,8 +101,8 @@
       <div id="progressBar" class="bg-amber-500 h-full w-0 transition-all duration-300"></div>
     </div>
 
-    <!-- フラッシュカード -->
-    <div class="perspective-1000 w-full h-88 sm:h-96 cursor-pointer" id="cardContainer">
+    <!-- フラッシュカード（スマホで高さ350px、PCで384pxを確保） -->
+    <div class="perspective-1000 w-full h-[350px] sm:h-96 cursor-pointer" id="cardContainer">
       <div id="cardInner" class="relative w-full h-full transform-style-3d transition-transform duration-500 rounded-3xl shadow-2xl">
         
         <!-- 表面 -->
