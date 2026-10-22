@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>福岡県「食・農水産・物流」構造インフォグラフィック</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0a0e17',
+              card: 'rgba(21, 29, 47, 0.88)',
+              accent: '#38bdf8',
+              fukuoka: '#06b6d4',
+              crimson: '#ef4444',
+              emerald: '#10b981',
+              amber: '#f59e0b',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0a0e17;
+      color: #e2e8f0;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    }
+    .glass-card {
+      background: rgba(21, 29, 47, 0.88);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(51, 65, 85, 0.6);
+      transition: all 0.25s ease-in-out;
+    }
+    .glass-card:hover {
+      border-color: rgba(6, 182, 212, 0.7);
+      transform: translateY(-2px);
+    }
+    .metric-card.dimmed {
+      opacity: 0.2;
+      filter: grayscale(80%);
+      transform: scale(0.98);
+    }
+    .metric-card.highlighted {
+      border-color: #06b6d4 !important;
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.35);
+      background: rgba(30, 41, 69, 0.95);
+      transform: scale(1.02);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen p-4 md:p-8 custom-scrollbar">
+
+  <!-- HEADER & NAVIGATION -->
+  <header class="max-w-7xl mx-auto mb-8 border-b border-slate-800 pb-6">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-800 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-2">
+          <i class="fa-solid fa-hubspot"></i> Kyushu Mega-Hub & Culinary Network
+        </div>
+        <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight flex items-center gap-3">
+          福岡県「食・農水産・物流」30の基幹数字
+        </h1>
+        <p class="text-slate-400 text-sm mt-1 max-w-2xl">
+          筑紫平野の高度輪作、玄界灘・有明海の二大海域、510万人都市圏の屋台外食エコシステム、そして東アジア・全国をつなぐ物流大動脈の構造的急所。
+        </p>
+      </div>
+      <!-- FILTER BUTTONS -->
+      <div class="flex flex-wrap items-center gap-2" id="filterContainer">
+        <button onclick="filterCategory('all')" class="filter-btn active px-3.5 py-1.5 text-xs font-medium rounded-lg bg-cyan-600 text-white shadow-sm transition">すべて (30)</button>
+        <button onclick="filterCategory('macro')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">マクロ・基盤</button>
+        <button onclick="filterCategory('agri')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">農産・畜産・水産</button>
+        <button onclick="filterCategory('food')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">醸造・食文化・外食</button>
+        <button onclick="filterCategory('logistics')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">物流・サプライチェーン</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto space-y-8">
+
+    <!-- KPI SUMMARY BAR (4 CARDS) -->
+    <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="glass-card rounded-xl p-4 border-l-4 border-l-rose-500">
+        <span class="text-xs text-slate-400 font-medium">あまおう苺 全国品種シェア</span>
+        <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">約99 <span class="text-base font-normal text-rose-400">%</span></div>
+        <div class="text-xs text-rose-400 mt-1 flex items-center gap-1"><i class="fa-solid fa-certificate"></i> 県内限定栽培・ブランド防衛</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 border-l-4 border-l-cyan-500">
+        <span class="text-xs text-slate-400 font-medium">博多港 外貿コンテナ取扱量</span>
+        <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">約100 <span class="text-base font-normal text-cyan-400">万TEU</span></div>
+        <div class="text-xs text-cyan-400 mt-1 flex items-center gap-1"><i class="fa-solid fa-ship"></i> 九州断トツ首位・アジア直行門戸</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 border-l-4 border-l-emerald-500">
+        <span class="text-xs text-slate-400 font-medium">農業産出額（九州第2位規模）</span>
+        <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">約2,285 <span class="text-base font-normal text-emerald-400">億円</span></div>
+        <div class="text-xs text-slate-400 mt-1">米麦・野菜・鶏卵の三位一体高効率型</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 border-l-4 border-l-amber-500">
+        <span class="text-xs text-slate-400 font-medium">辛子明太子 年間原料加工量</span>
+        <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">約3万 <span class="text-base font-normal text-amber-400">t</span></div>
+        <div class="text-xs text-amber-400 mt-1"><i class="fa-solid fa-industry"></i> 国内最大規模の都市型水産加工</div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE CARD GRID (30 NUMBERS) -->
+    <section>
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-diagram-project text-cyan-400"></i>
+          基幹数字マトリクス（クリックで因果関係・連鎖ハイライト）
+        </h2>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-400 hidden sm:inline">※カード選択で関連指標が点灯</span>
+          <button onclick="resetHighlight()" class="text-xs text-slate-400 hover:text-white px-2.5 py-1 rounded bg-slate-800 border border-slate-700">選択解除</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3" id="cardsGrid">
+        <!-- Javascript dynamically renders 30 cards here -->
+      </div>
+    </section>
+
+    <!-- 2 COMPARATIVE CHART AREAS -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- CHART 1: 規模・産出額の構造比較 (縦棒) -->
+      <div class="glass-card rounded-xl p-5 border border-slate-800 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-chart-column text-cyan-400"></i>
+              福岡県 主要農水産部門の産出・生産規模（億円）
+            </h3>
+            <span class="text-xs bg-slate-800 text-slate-400 px-2 py-0.5 rounded">縦棒チャート</span>
+          </div>
+          <p class="text-xs text-slate-400 mb-4">野菜と畜産が二大巨頭を形成し、水田裏作の麦・大豆、水産が支えるバランス構造。</p>
+        </div>
+        <div class="h-64 relative">
+          <canvas id="outputScaleChart"></canvas>
+        </div>
+      </div>
+
+      <!-- CHART 2: 独立比率・全国特化度 (水平バー 上限100%) -->
+      <div class="glass-card rounded-xl p-5 border border-slate-800 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-chart-bar text-amber-400"></i>
+              福岡県 主要指標の全国比率・特化度（上限100%基準）
+            </h3>
+            <span class="text-xs bg-slate-800 text-amber-400/80 px-2 py-0.5 rounded">水平バーチャート</span>
+          </div>
+          <p class="text-xs text-slate-400 mb-4">母集団が異なるシェア・自給率を個別に横並び評価（円グラフ誤用の完全防止）。</p>
+        </div>
+        <div class="h-64 relative">
+          <canvas id="dependencyRatioChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- STRUCTURAL CALCULATOR / SIMULATOR -->
+    <section class="glass-card rounded-xl p-6 border border-slate-800">
+      <div class="flex items-center gap-2 mb-2">
+        <i class="fa-solid fa-calculator text-emerald-400"></i>
+        <h3 class="text-base font-bold text-white">福岡発サプライチェーン & 物流負荷方程式シミュレーター</h3>
+      </div>
+      <p class="text-xs text-slate-400 mb-4">
+        九州のメガハブ・福岡から大消費地（関西・関東）への幹線チルド輸送における輸送距離・トラック台数と、CO2排出量およびドライバー拘束リスクを試算。
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center bg-slate-900/60 p-4 rounded-lg border border-slate-800 text-sm">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">仕向地・輸送ルート</label>
+          <select id="calcDestination" class="w-full bg-slate-800 border border-slate-700 rounded p-2 text-white text-xs focus:ring-1 focus:ring-cyan-500" onchange="runSimulation()">
+            <option value="1080" selected>首都圏・豊洲市場（約1,080km / 山陽道・東名直行陸送）</option>
+            <option value="600">関西・大阪中央市場（約600km / 山陽道夜間直行）</option>
+            <option value="60">新門司〜泉大津/横須賀（海上フェリー・RORO船シフト）</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">輸送規模（チルド10t車換算台数）</label>
+          <input type="number" id="calcTrucks" min="1" max="100" value="10" class="w-full bg-slate-800 border border-slate-700 rounded p-2 text-white text-xs focus:ring-1 focus:ring-cyan-500" onchange="runSimulation()">
+        </div>
+        <div class="p-3 bg-slate-950/80 rounded border border-slate-800/80">
+          <div class="text-xs text-slate-400">試算：輸送CO2排出量 & ドライバー拘束リスク</div>
+          <div class="text-base font-bold text-cyan-400 mt-1" id="calcResultDisplay">計算中...</div>
+          <div class="text-[11px] text-slate-500 mt-0.5" id="calcInsight">...</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="max-w-7xl mx-auto mt-12 pt-6 border-t border-slate-800/80 text-center text-xs text-slate-500">
+    <p>福岡県食料・水産・農業・物流構造インフォグラフィック | 農林水産統計・水産白書・福岡県庁・博多港港湾統計に基づく体系的整理</p>
+  </footer>
+
+  <!-- DATA & JAVASCRIPT LOGIC -->
+  <script>
+    // 30 Core Metrics Data Definition for Fukuoka
+    const metricsData = [
+      { id: 1, num: "2,285億", unit: "円", title: "農業産出額（九州2位）", cat: "macro", rel: [2, 3, 4, 11], desc: "米麦・野菜・鶏卵が均衡。筑紫平野の大規模水田と都市近郊園芸が強固な基盤を形成。" },
+      { id: 2, num: "約99%", unit: "", title: "「あまおう」生産比率", cat: "agri", rel: [1, 18, 20, 21], desc: "福岡県限定生産・品種保護。「あかい・まるい・おおきい・うまい」でプレミアム青果市場を席巻。" },
+      { id: 3, num: "2位", unit: "", title: "小麦生産量（全国2位）", cat: "agri", rel: [1, 14, 25], desc: "「ラー麦」などラーメン専用小麦を産学官で開発。水田裏作による高度な土地利用輪作体系。" },
+      { id: 4, num: "1位", unit: "", title: "二条大麦（ビール原料首位）", cat: "agri", rel: [1, 3, 10], desc: "水田転作の大麦栽培。アサヒビール博多工場等の巨大飲料プラント群と直結。" },
+      { id: 5, num: "約100万TEU", unit: "", title: "博多港 コンテナ取扱量", cat: "logistics", rel: [18, 20, 24], desc: "九州最大の国際貿易港。釜山・上海と定期コンテナ船で直結し、農水産品の輸出入ゲートを担う。" },
+      { id: 6, num: "513万人", unit: "", title: "県内人口（九州最大内需）", cat: "macro", rel: [1, 14, 15, 25], desc: "巨大な都市胃袋。周辺九州各県から青果・畜産物を吸い上げ、仕分ける最大の消費拠点。" },
+      { id: 7, num: "約3万t", unit: "", title: "辛子明太子 年間原料加工量", cat: "food", rel: [5, 16, 21], desc: "アラスカ・ロシア産スケトウダラ卵を博多で調味加工。年商1,000億円超の都市型水産加工クラスター。" },
+      { id: 8, num: "2大海洋", unit: "", title: "玄界灘 & 有明海", cat: "agri", rel: [9, 12, 17], desc: "荒波の玄界灘（イカ・天然真鯛）と広大な干潟の有明海（海苔・アサリ）を併せ持つ特異な生態系。" },
+      { id: 9, num: "1位", unit: "", title: "天然真鯛 漁獲量（全国首位）", cat: "agri", rel: [8, 12, 17], desc: "糸島・玄界灘の吾智網漁。筑前海産ブランド鯛として関西・首都圏へ活魚出荷。" },
+      { id: 10, num: "約60蔵", unit: "", title: "日本酒酒蔵数（全国5位）", cat: "food", rel: [4, 13, 20], desc: "城島・久留米（筑後川流域）を中心に大醸造地帯を形成。「繁桝」「庭のうぐいす」等銘酒が林立。" },
+      { id: 11, num: "37%", unit: "", title: "カロリーベース食料自給率", cat: "macro", rel: [1, 6, 22], desc: "500万人都市圏を抱えるため自給率は低いが、野菜・鶏卵の生産額自給率は高水準を維持。" },
+      { id: 12, num: "約15%", unit: "", title: "有明海産海苔 全国シェア", cat: "agri", rel: [8, 9, 27], desc: "柳川・大牟田沿岸の支柱式養殖。柔らかく濃厚な旨味を持つ最高級焼き海苔の主産地。" },
+      { id: 13, num: "1位", unit: "", title: "八女茶（高級玉露シェア）", cat: "agri", rel: [1, 10, 20], desc: "伝統本玉露で全国シェア50%超。八女丘陵地の朝霧と激しい寒暖差が生む極上の芳醇緑茶。" },
+      { id: 14, num: "約1,200軒", unit: "", title: "豚骨ラーメン店舗網", cat: "food", rel: [3, 6, 25], desc: "長浜・博多・久留米の3大系統。極細ストレート麺と高回転替玉システムを確立した巨大外食産業。" },
+      { id: 15, num: "約100軒", unit: "", title: "公認屋台営業数（日本一）", cat: "food", rel: [6, 14, 16], desc: "天神・中洲・長浜に残る日本唯一の屋台基本条例。食の観光資源と深夜消費の強力な牽引役。" },
+      { id: 16, num: "3大ご当地鍋", unit: "", title: "もつ鍋・水炊き・炊き餃子", cat: "food", rel: [6, 7, 23], desc: "牛白モツ、博多地鶏、豚肉加工品をフル活用する独自の鍋料理クラスターが外食を席巻。" },
+      { id: 17, num: "1位", unit: "", title: "鐘崎・呼子の活イカ輸送技術", cat: "food", rel: [8, 9, 18], desc: "極めて繊細なケンサキイカを活魚トラックで都心生簀へ届ける超低温・酸素管理技術の粋。" },
+      { id: 18, num: "鳥栖JCT", unit: "隣接", title: "九州縦貫物流の最大結節点", cat: "logistics", rel: [1, 5, 19, 24], desc: "九州道・長崎道・大分道の交差点。全九州の生鮮品が集約・再仕分けされる一大ハブ。" },
+      { id: 19, num: "2024年", unit: "問題", title: "ドライバー時間外拘束規制", cat: "logistics", rel: [18, 21, 22], desc: "福岡発・関西便（約600km）は日帰り限界線、東京（1,000km超）はワンマン直行トラックが不可。" },
+      { id: 20, num: "約200億円", unit: "", title: "農水産品・加工品輸出額", cat: "logistics", rel: [2, 5, 13, 28], desc: "あまおう・八女茶・日本酒・明太子の香港・台湾・北米向け輸出が過去最高を更新中。" },
+      { id: 21, num: "翌朝着", unit: "", title: "あまおう 首都圏航空便", cat: "logistics", rel: [2, 18, 28], desc: "福岡空港から羽田・成田へ旅客便床下（ベリー便）を活用した即日・翌朝店頭陳列システム。" },
+      { id: 22, num: "新門司港", unit: "", title: "長距離フェリーモーダルシフト", cat: "logistics", rel: [18, 19, 27], desc: "阪神（泉大津・神戸）および関東（横須賀）へのRORO船網。ドライバー拘束ゼロの海上輸送。" },
+      { id: 23, num: "1位", unit: "", title: "「はかた地どり」出荷規模", cat: "agri", rel: [1, 16, 26], desc: "水炊き・がめ煮（筑前煮）専用に開発。サクッとした歯切れと濃厚な旨味成分を両立。" },
+      { id: 24, num: "福岡IC/粕屋", unit: "", title: "巨大冷凍・冷蔵倉庫ベルト", cat: "logistics", rel: [5, 18, 22], desc: "都市高速・九州道直結エリアに冷凍チルド大型物流拠点が密集。西日本の生鮮統括基地。" },
+      { id: 25, num: "300軒超", unit: "", title: "博多うどんチェーン発祥地", cat: "food", rel: [3, 6, 14], desc: "うどん発祥の地（承天寺）。柔らかいコシとアゴ出汁、ごぼう天・丸天が根付いた大衆食文化。" },
+      { id: 26, num: "450万羽", unit: "", title: "採卵鶏飼養羽数", cat: "agri", rel: [1, 6, 14], desc: "飯塚・八女・糸島等での大規模養鶏。ラーメンの味玉から製菓まで域内自給を高度に維持。" },
+      { id: 27, num: "新幹線貨物", unit: "", title: "山陽・九州新幹線「ことむすび」", cat: "logistics", rel: [8, 17, 19], desc: "JR博多駅から新大阪・東京へ生鮮魚介・朝採れ野菜を新幹線旅客便で超高速輸送。" },
+      { id: 28, num: "2本化", unit: "滑走路", title: "福岡空港 国際航空貨物拡張", cat: "logistics", rel: [2, 5, 20], desc: "第2滑走路増設により発着枠拡大。東アジア各都市へ3時間圏内の生鮮コールドチェーン展開。" },
+      { id: 29, num: "67.8歳", unit: "", title: "基幹的農業従事者平均年齢", cat: "macro", rel: [1, 11, 30], desc: "全国共通の高齢化。都市近郊での兼業農家減少と大規模法人化・アグリテック化が急務。" },
+      { id: 30, num: "約2,800", unit: "経営体", title: "認定農業者・法人数", cat: "macro", rel: [1, 29], desc: "あまおう農家の高収益パッケージ化や大規模水稲・麦作法人の育成が進展。" }
+    ];
+
+    // Render Cards
+    const grid = document.getElementById('cardsGrid');
+    function renderCards(filter = 'all') {
+      grid.innerHTML = '';
+      metricsData.forEach(item => {
+        if (filter !== 'all' && item.cat !== filter) return;
+
+        const card = document.createElement('div');
+        card.className = `metric-card glass-card rounded-lg p-3 cursor-pointer border border-slate-800 flex flex-col justify-between`;
+        card.setAttribute('data-id', item.id);
+        card.setAttribute('data-rel', JSON.stringify(item.rel));
+        card.onclick = () => handleCardClick(item.id);
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
+              <span class="font-mono text-cyan-400 font-bold">#${item.id < 10 ? '0' + item.id : item.id}</span>
+              <span class="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">${item.cat}</span>
+            </div>
+            <div class="text-xl font-black text-white tracking-tight flex items-baseline gap-0.5">
+              ${item.num} <span class="text-xs font-normal text-slate-400">${item.unit}</span>
+            </div>
+            <div class="text-xs font-bold text-slate-200 mt-1 line-clamp-1">${item.title}</div>
+            <p class="text-[11px] text-slate-400 mt-1 leading-relaxed line-clamp-2">${item.desc}</p>
+          </div>
+          <div class="mt-2 pt-2 border-t border-slate-800/80 flex items-center justify-between text-[10px] text-slate-500">
+            <span>連動: ${item.rel.map(r => '#' + (r < 10 ? '0' + r : r)).join(' ')}</span>
+            <i class="fa-solid fa-circle-nodes text-slate-600"></i>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Filter Logic
+    function filterCategory(cat) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('bg-cyan-600', 'text-white');
+        btn.classList.add('bg-slate-800', 'text-slate-300');
+      });
+      event.target.classList.remove('bg-slate-800', 'text-slate-300');
+      event.target.classList.add('bg-cyan-600', 'text-white');
+      renderCards(cat);
+      resetHighlight();
+    }
+
+    // Interactive Highlight Logic
+    let selectedId = null;
+    function handleCardClick(id) {
+      if (selectedId === id) {
+        resetHighlight();
+        return;
+      }
+      selectedId = id;
+      const target = metricsData.find(m => m.id === id);
+      const relatedIds = [id, ...(target ? target.rel : [])];
+
+      document.querySelectorAll('.metric-card').forEach(card => {
+        const cardId = parseInt(card.getAttribute('data-id'));
+        if (relatedIds.includes(cardId)) {
+          card.classList.remove('dimmed');
+          card.classList.add('highlighted');
+        } else {
+          card.classList.remove('highlighted');
+          card.classList.add('dimmed');
+        }
+      });
+    }
+
+    function resetHighlight() {
+      selectedId = null;
+      document.querySelectorAll('.metric-card').forEach(card => {
+        card.classList.remove('dimmed', 'highlighted');
+      });
+    }
+
+    // Initialize Charts
+    let chart1, chart2;
+    function initCharts() {
+      // Chart 1: 規模・産出額（縦棒グラフ）
+      const ctx1 = document.getElementById('outputScaleChart').getContext('2d');
+      chart1 = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+          labels: ['野菜（あまおう等）', '畜産（鶏・豚・牛）', '米・穀類', '水産業（真鯛・海苔）', '麦・大豆・その他'],
+          datasets: [{
+            label: '産出規模（億円）',
+            data: [780, 680, 420, 260, 145],
+            backgroundColor: [
+              'rgba(6, 182, 212, 0.75)',
+              'rgba(239, 68, 68, 0.75)',
+              'rgba(16, 185, 129, 0.75)',
+              'rgba(245, 158, 11, 0.75)',
+              'rgba(148, 163, 184, 0.65)'
+            ],
+            borderColor: '#0f172a',
+            borderWidth: 1,
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#1e293b',
+              titleColor: '#fff',
+              bodyColor: '#cbd5e1'
+            }
+          },
+          scales: {
+            x: {
+              ticks: { color: '#94a3b8', font: { size: 10 } },
+              grid: { display: false }
+            },
+            y: {
+              beginAtZero: true,
+              ticks: { color: '#94a3b8', font: { size: 10 } },
+              grid: { color: 'rgba(51, 65, 85, 0.4)' }
+            }
+          }
+        }
+      });
+
+      // Chart 2: 比率・全国シェア特化度（水平バーチャート 上限100%厳格固定）
+      const ctx2 = document.getElementById('dependencyRatioChart').getContext('2d');
+      chart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+          labels: [
+            'あまおう苺 国内品種シェア',
+            '八女伝統本玉露 シェア',
+            'カロリーベース食料自給率',
+            '二条大麦 生産シェア',
+            '有明海苔 全国シェア',
+            '天然真鯛 漁獲シェア'
+          ],
+          datasets: [{
+            label: '比率・シェア (%)',
+            data: [99.0, 52.0, 37.0, 24.2, 15.0, 14.5],
+            backgroundColor: 'rgba(6, 182, 212, 0.75)',
+            borderColor: '#06b6d4',
+            borderWidth: 1,
+            borderRadius: 4
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(context) { return `${context.parsed.x}%`; }
+              }
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              max: 100, // 厳格な100%上限ルール適用
+              ticks: {
+                color: '#94a3b8',
+                callback: function(value) { return value + "%"; }
+              },
+              grid: { color: 'rgba(51, 65, 85, 0.4)' }
+            },
+            y: {
+              ticks: { color: '#cbd5e1', font: { size: 10 } },
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    }
+
+    // Simulator Logic
+    function runSimulation() {
+      const distance = parseFloat(document.getElementById('calcDestination').value);
+      const trucks = parseInt(document.getElementById('calcTrucks').value) || 1;
+      
+      // 10tチルド車 1台・1kmあたりのCO2排出量試算（約0.48kg-CO2/km）
+      const co2TotalTon = ((distance * trucks * 0.48) / 1000).toFixed(2);
+      
+      let constraintText = "";
+      let insightText = "";
+      if (distance >= 1000) {
+        constraintText = "拘束時間 約28〜32時間（2名運行または中間中継必須）";
+        insightText = "※東京へ1,000km超。2024年時間外規制により単独トラック陸送は不可。航空ベリー便・フェリーシフトが必須。";
+      } else if (distance >= 500) {
+        constraintText = "拘束時間 約14〜16時間（ワンマン夜間直行の限界域）";
+        insightText = "※関西市場向けは翌朝卸しが標準。山陽自動車道の連続運転4時間制限管理が最重要課題。";
+      } else {
+        constraintText = "ドライバー拘束時間 0時間（無人シャーシ航送）";
+        insightText = "※新門司港からフェリー積込。ドライバー不足を根本解決する最も現実的なモーダルシフト形態。";
+      }
+
+      document.getElementById('calcResultDisplay').innerText = `CO₂ 約 ${co2TotalTon} t ／ ${constraintText}`;
+      document.getElementById('calcInsight').innerText = insightText;
+    }
+
+    // Initial Execution
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCards();
+      initCharts();
+      runSimulation();
+    });
+  </script>
+</body>
+</html>

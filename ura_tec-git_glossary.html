@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Git & CI/CD 開発用語・コマンド実践事典 | Knowledge & Training Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #0b1120;
+      color: #e2e8f0;
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .cmd-badge {
+      font-family: 'Consolas', 'Courier New', monospace;
+    }
+  </style>
+  <!-- キャッシュを常に再確認させるメタタグ -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+</head>
+<body class="min-h-screen p-4 sm:p-8">
+  <div class="max-w-6xl mx-auto space-y-8">
+    
+    <!-- ヘッダー -->
+    <header class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-l-4 border-sky-500">
+      <div>
+        <div class="flex items-center gap-3">
+          <span class="p-2.5 bg-sky-500/20 text-sky-400 rounded-xl"><i class="fa-solid fa-terminal fa-lg"></i></span>
+          <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Git & 開発コマンド実践事典</h1>
+        </div>
+        <p class="text-slate-400 text-sm mt-1">作業で頻出した技術用語とコマンド体系をDOS/通信の視点で徹底解説</p>
+      </div>
+      <a href="index.html" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-sm border border-slate-700 transition flex items-center gap-2">
+        <i class="fa-solid fa-arrow-left"></i> ポータルへ戻る
+      </a>
+    </header>
+
+    <!-- コマンドセクション -->
+    <section class="space-y-4">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <i class="fa-solid fa-code text-cyan-400"></i> 実戦で使用したコマンド一覧
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
+        <!-- git init -->
+        <div class="glass-card rounded-xl p-5 hover:border-sky-500/40 transition">
+          <div class="flex items-center justify-between mb-2">
+            <span class="cmd-badge bg-sky-950/80 text-sky-300 px-3 py-1 rounded text-sm font-semibold border border-sky-800/50">git init</span>
+            <span class="text-xs text-slate-400 uppercase tracking-wider">初期化</span>
+          </div>
+          <p class="text-slate-300 text-sm mb-2">現在の作業フォルダに隠しフォルダ（<code class="text-sky-300">.git</code>）を作り、台帳記録を開始する。</p>
+          <div class="text-xs bg-slate-900/80 p-2.5 rounded text-slate-400 border border-slate-800">
+            <span class="text-sky-400 font-bold">直感理解:</span> 「このフォルダをGit管理区にする」と宣言する初期化フォーマット。
+          </div>
+        </div>
+
+        <!-- git branch -M main -->
+        <div class="glass-card rounded-xl p-5 hover:border-sky-500/40 transition">
+          <div class="flex items-center justify-between mb-2">
+            <span class="cmd-badge bg-sky-950/80 text-sky-300 px-3 py-1 rounded text-sm font-semibold border border-sky-800/50">git branch -M main</span>
+            <span class="text-xs text-slate-400 uppercase tracking-wider">幹の命名</span>
+          </div>
+          <p class="text-slate-300 text-sm mb-2">基本となる記録ライン（本流ブランチ）の名前を「main」に統一する。</p>
+          <div class="text-xs bg-slate-900/80 p-2.5 rounded text-slate-400 border border-slate-800">
+            <span class="text-sky-400 font-bold">直感理解:</span> メインの保存ツリーに公式の「本幹」というラベルを貼る作業。
+          </div>
+        </div>
+
+        <!-- git add . -->
+        <div class="glass-card rounded-xl p-5 hover:border-sky-500/40 transition">
+          <div class="flex items-center justify-between mb-2">
+            <span class="cmd-badge bg-sky-950/80 text-sky-300 px-3 py-1 rounded text-sm font-semibold border border-sky-800/50">git add .</span>
+            <span class="text-xs text-amber-400 uppercase tracking-wider">送信トレイ詰め</span>
+          </div>
+          <p class="text-slate-300 text-sm mb-2">変更・新規作成したファイルすべて（末尾の「.」が全指定）を送信待機状態にする。</p>
+          <div class="text-xs bg-slate-900/80 p-2.5 rounded text-slate-400 border border-slate-800">
+            <span class="text-amber-400 font-bold">直感理解:</span> 送信したいフロッピーや荷物を全部まとめて「送信箱」に放り込む動作。
+          </div>
+        </div>
+
+        <!-- git commit -->
+        <div class="glass-card rounded-xl p-5 hover:border-sky-500/40 transition">
+          <div class="flex items-center justify-between mb-2">
+            <span class="cmd-badge bg-sky-950/80 text-sky-300 px-3 py-1 rounded text-sm font-semibold border border-sky-800/50">git commit -m "メモ"</span>
+            <span class="text-xs text-emerald-400 uppercase tracking-wider">確定封緘</span>
+          </div>
+          <p class="text-slate-300 text-sm mb-2">送信箱に入れたデータに「更新メッセージ（-m）」を付与し、履歴として確定記録する。</p>
+          <div class="text-xs bg-slate-900/80 p-2.5 rounded text-slate-400 border border-slate-800">
+            <span class="text-emerald-400 font-bold">直感理解:</span> 小包に「単語データ追加」と荷札を貼り、ガムテープで封緘する作業。
+          </div>
+        </div>
+
+        <!-- git remote add origin -->
+        <div class="glass-card rounded-xl p-5 hover:border-sky-500/40 transition">
+          <div class="flex items-center justify-between mb-2">
+            <span class="cmd-badge bg-sky-950/80 text-sky-300 px-3 py-1 rounded text-sm font-semibold border border-sky-800/50">git remote add origin &lt;URL&gt;</span>
+            <span class="text-xs text-slate-400 uppercase tracking-wider">宛先登録（初回のみ）</span>
+          </div>
+          <p class="text-slate-300 text-sm mb-2">自分のPCに、通信相手であるGitHubの保管庫アドレスを「origin」という愛称で記憶させる。</p>
+          <div class="text-xs bg-slate-900/80 p-2.5 rounded text-slate-400 border border-slate-800">
+            <span class="text-sky-400 font-bold">直感理解:</span> 電話帳に「GitHub倉庫の直通電話番号」をワンタッチ登録する動作。
+          </div>
+        </div>
+
+        <!-- git push origin main -->
+        <div class="glass-card rounded-xl p-5 hover:border-sky-500/40 transition">
+          <div class="flex items-center justify-between mb-2">
+            <span class="cmd-badge bg-sky-950/80 text-sky-300 px-3 py-1 rounded text-sm font-semibold border border-sky-800/50">git push origin main</span>
+            <span class="text-xs text-purple-400 uppercase tracking-wider">ファイル送信</span>
+          </div>
+          <p class="text-slate-300 text-sm mb-2">ローカルで封緘したコミットデータを、GitHub側の「main」ブランチへ一括アップロードする。</p>
+          <div class="text-xs bg-slate-900/80 p-2.5 rounded text-slate-400 border border-slate-800">
+            <span class="text-purple-400 font-bold">直感理解:</span> 回線を接続してFTPの <code class="text-purple-300">put</code> コマンドを一発実行する瞬間。
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 用語セクション -->
+    <section class="space-y-4">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <i class="fa-solid fa-book-bookmark text-indigo-400"></i> 頻出テクノロジー用語集
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+        <div class="glass-card rounded-xl p-5 space-y-2 border-t-2 border-indigo-500">
+          <h3 class="font-bold text-white text-base flex items-center gap-2">
+            <i class="fa-brands fa-git-alt text-orange-500"></i> リポジトリ (Repository)
+          </h3>
+          <p class="text-slate-300 text-xs leading-relaxed">
+            ファイルそのものだけでなく、過去の変更履歴やすべてのバージョン情報を保管・管理する「金庫・倉庫」。
+          </p>
+        </div>
+
+        <div class="glass-card rounded-xl p-5 space-y-2 border-t-2 border-sky-500">
+          <h3 class="font-bold text-white text-base flex items-center gap-2">
+            <i class="fa-solid fa-code-commit text-sky-400"></i> ステージング (Staging)
+          </h3>
+          <p class="text-slate-300 text-xs leading-relaxed">
+            編集したファイルの中から、「次回の記録に含めるもの」を選んで一時待機させる場所。<code class="text-sky-300">git add</code> でここに入る。
+          </p>
+        </div>
+
+        <div class="glass-card rounded-xl p-5 space-y-2 border-t-2 border-emerald-500">
+          <h3 class="font-bold text-white text-base flex items-center gap-2">
+            <i class="fa-solid fa-rocket text-emerald-400"></i> デプロイ (Deploy)
+          </h3>
+          <p class="text-slate-300 text-xs leading-relaxed">
+            HTMLやJSなどの完成データを本番のWebサーバーへ配置し、全世界（インターネット上）で閲覧可能な状態にすること。
+          </p>
+        </div>
+
+        <div class="glass-card rounded-xl p-5 space-y-2 border-t-2 border-amber-500">
+          <h3 class="font-bold text-white text-base flex items-center gap-2">
+            <i class="fa-solid fa-rotate text-amber-400"></i> CI / CD パイプライン
+          </h3>
+          <p class="text-slate-300 text-xs leading-relaxed">
+            「Gitへ送信（Push）」した瞬間、人間が何もしなくてもクラウド側が自動で検知し、即座にサイトを更新・公開する自動連携の仕組み。
+          </p>
+        </div>
+
+        <div class="glass-card rounded-xl p-5 space-y-2 border-t-2 border-pink-500">
+          <h3 class="font-bold text-white text-base flex items-center gap-2">
+            <i class="fa-solid fa-shield-halved text-pink-400"></i> 静的ホスティング (Pages)
+          </h3>
+          <p class="text-slate-300 text-xs leading-relaxed">
+            サーバー側で複雑なプログラムを動かさず、純粋なHTML/JS/JSONファイルをそのまま高速配信する仕組み。高速・堅牢・維持費ゼロ。
+          </p>
+        </div>
+
+        <div class="glass-card rounded-xl p-5 space-y-2 border-t-2 border-blue-500">
+          <h3 class="font-bold text-white text-base flex items-center gap-2">
+            <i class="fa-solid fa-globe text-blue-400"></i> CORS (オリジン間制約)
+          </h3>
+          <p class="text-slate-300 text-xs leading-relaxed">
+            ブラウザが「ローカルファイル直開き（file:///）」から別ファイル（words.json等）を勝手に読み込むことを防ぐセキュリティ規則。
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

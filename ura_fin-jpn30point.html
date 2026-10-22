@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="ja" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本を俯瞰する30の基幹数字 | Japan Macro & Structural Matrix</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        jp: {
+                            red: '#ef4444',
+                            dark: '#0a0e17',
+                            card: '#151d2f',
+                            border: '#26344d'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            background-color: #0a0e17;
+            color: #e2e8f0;
+        }
+        .glass-card {
+            background: rgba(21, 29, 47, 0.88);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(239, 68, 68, 0.45);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 15px rgba(239, 68, 68, 0.15);
+        }
+        .glow-active {
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+            border-color: #ef4444 !important;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0a0e17;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #26344d;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col custom-scrollbar text-slate-200">
+
+    <!-- Header -->
+    <header class="border-b border-slate-800 bg-slate-950/85 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 via-red-600 to-amber-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-rose-500/30">
+                    <i class="fa-solid fa-mountain-sun"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-white tracking-wide flex items-center gap-2">
+                        日本を俯瞰する 30の基幹数字
+                        <span class="text-xs font-normal px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 border border-rose-500/30">Japan Structural Matrix</span>
+                    </h1>
+                    <p class="text-xs text-slate-400">強大なストック（資産）と衰退するフロー（人口・生産性）の構造連動マップ</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 text-sm">
+                <button id="view-all-btn" onclick="filterCategory('all')" class="px-3 py-1.5 rounded-lg font-medium text-xs bg-rose-600 text-white shadow-sm transition">すべて表示</button>
+                <button onclick="toggleCalcModal()" class="px-3 py-1.5 rounded-lg font-medium text-xs bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-600/50 transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-calculator"></i> 構造試算シミュレーター
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+
+        <!-- Top Overview Stats (4 Key Anchors) -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 text-xl">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-400 block font-medium">総人口（土台）</span>
+                    <span class="text-2xl font-extrabold text-white tracking-tight">1.24<span class="text-base font-normal text-slate-400 ml-1">億人</span></span>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl">
+                    <i class="fa-solid fa-landmark"></i>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-400 block font-medium">国・地方の借金</span>
+                    <span class="text-2xl font-extrabold text-white tracking-tight">1,300<span class="text-base font-normal text-slate-400 ml-1">兆円</span></span>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-xl">
+                    <i class="fa-solid fa-vault"></i>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-400 block font-medium">個人金融資産（防壁）</span>
+                    <span class="text-2xl font-extrabold text-white tracking-tight">2,100<span class="text-base font-normal text-slate-400 ml-1">兆円</span></span>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-xl">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-400 block font-medium">対外純資産（外貨の砦）</span>
+                    <span class="text-2xl font-extrabold text-white tracking-tight">500<span class="text-base font-normal text-slate-400 ml-1">兆円超</span></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Nav Filters -->
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4">
+            <div class="flex flex-wrap items-center gap-2" id="category-filters">
+                <!-- Dynamically populated -->
+            </div>
+            <div class="text-xs text-slate-400">
+                カードをクリックすると関連する構造指標が自動ハイライトされます
+            </div>
+        </div>
+
+        <!-- 30 Core Numbers Grid -->
+        <section id="cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <!-- Cards populated via JS -->
+        </section>
+
+        <!-- Comparative Charts & Structural Indicators -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-4">
+            <!-- Balance Sheet of Japan (Stock Comparison) -->
+            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-scale-balanced text-emerald-400"></i> 日本の巨大ストック vs 債務規模（兆円）
+                    </h3>
+                    <span class="text-xs text-slate-500">数字 #5, #9, #10, #21, #22</span>
+                </div>
+                <div class="h-64">
+                    <canvas id="stockBalanceChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Vulnerability & Dependency Levels (Corrected Horizontal Bar) -->
+            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-triangle-exclamation text-rose-400"></i> 生存・社会構造の脆弱性指標（%）
+                    </h3>
+                    <span class="text-xs text-slate-500">数字 #3, #11, #12, #15, #28</span>
+                </div>
+                <div class="h-64">
+                    <canvas id="vulnerabilityChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Interactive Simulator / Calculator Modal -->
+    <div id="calc-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl">
+            <div class="p-5 border-b border-slate-800 flex justify-between items-center bg-slate-950">
+                <h3 class="font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-calculator text-emerald-400"></i> 30の数字から解く「日本の構造計算」
+                </h3>
+                <button onclick="toggleCalcModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="p-6 space-y-5 max-h-[80vh] overflow-y-auto custom-scrollbar">
+
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-2">
+                    <h4 class="text-xs font-bold text-rose-400 uppercase tracking-wider">① 社会保障費と国家予算の食い合い</h4>
+                    <div class="text-sm font-semibold text-slate-200">
+                        社会保障関係費(37兆円 / #14) ÷ 国の予算(115兆円 / #7) ＝ <span class="text-rose-400">約 32.2%</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        予算の3割強が社会保障で固定化。高齢化率（約30% / #3）の上昇に伴い自動膨張し、教育・防衛・インフラ修繕（#20）の予算を圧迫し続ける構造。
+                    </p>
+                </div>
+
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-2">
+                    <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider">② 国家債務と金利1%上昇のインパクト</h4>
+                    <div class="text-sm font-semibold text-slate-200">
+                        国債残高(約1,100兆円) × 金利1%上昇 ＝ <span class="text-amber-400">利払い年約11兆円増</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        債務比率260%（#6）を抱えるため、世界標準の金利に戻そうとすると防衛費（#18：約8〜9兆円）以上の利払い費が毎年発生するバインド状態。
+                    </p>
+                </div>
+
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-2">
+                    <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-wider">③ 「ストックのクッション」と「フローの衰退」</h4>
+                    <div class="text-sm font-semibold text-slate-200">
+                        対外純資産(500兆円 / #22) ＋ 個人金融資産(2,100兆円 / #21) vs 労働生産性(OECD 28位 / #23)
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        巨額の貯蓄があるため財政破綻は起きにくいが、稼ぐ力（労働生産性やIT人材不足 #24）が低いため、ストックを取り崩すカウントダウンが進む。
+                    </p>
+                </div>
+
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-2">
+                    <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider">④ 生存インフラの外部依存度</h4>
+                    <div class="text-sm font-semibold text-slate-200">
+                        エネルギー輸入依存(88% / #11) ＋ 食料輸入依存(62% / #12)
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        生活必需物資の大部分を海外に依存。為替が円安（#8）に振れるだけで国民生活・実質賃金・企業コストが直撃を受ける構造的弱点。
+                    </p>
+                </div>
+
+            </div>
+            <div class="p-4 border-t border-slate-800 bg-slate-950 text-right">
+                <button onclick="toggleCalcModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-bold transition">閉じる</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-900 bg-slate-950 py-6 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>Top 30 Japan Macro Indicators & Structural Dilemmas | Comprehensive National Matrix</p>
+        </div>
+    </footer>
+
+    <!-- Data Script -->
+    <script>
+        const numbersData = [
+            // 人口・超高齢社会 (1-4, 28)
+            {
+                id: 1,
+                number: "約1億2,400万人",
+                title: "日本の総人口",
+                category: "demographics",
+                categoryName: "人口・超高齢化",
+                icon: "fa-users",
+                color: "blue",
+                related: [2, 3, 4, 9, 20, 28],
+                desc: "国内市場・国力の基本母数。毎年80万人規模（鳥取県や島根県の全人口以上）のペースで減少が続く。"
+            },
+            {
+                id: 2,
+                number: "約80万人割れ",
+                title: "年間の出生数",
+                category: "demographics",
+                categoryName: "人口・超高齢化",
+                icon: "fa-baby",
+                color: "blue",
+                related: [1, 3, 14, 15],
+                desc: "政府推計を10年以上前倒しして加速する少子化。将来の納税者・社会保障の支え手供給の確定値。"
+            },
+            {
+                id: 3,
+                number: "約30%",
+                title: "高齢化率（65歳以上）",
+                category: "demographics",
+                categoryName: "人口・超高齢化",
+                icon: "fa-person-cane",
+                color: "blue",
+                related: [1, 2, 7, 14],
+                desc: "世界最高水準。現役世代1.5人で高齢者1人を支える「騎馬戦社会」を形成し、社会保障費を自動拡大させる。"
+            },
+            {
+                id: 4,
+                number: "約1,400万人 / 3割",
+                title: "東京一極集中（都人口・首都圏比率）",
+                category: "demographics",
+                categoryName: "人口・超高齢化",
+                icon: "fa-city",
+                color: "blue",
+                related: [1, 19, 27, 28],
+                desc: "国土の数%に人口と機能の約30%が集中。地方の空洞化を促し、巨大災害時の単一障害点（SPOF）となる。"
+            },
+            {
+                id: 28,
+                number: "約40%",
+                title: "消滅可能性自治体の割合",
+                category: "demographics",
+                categoryName: "人口・超高齢化",
+                icon: "fa-map-location",
+                color: "blue",
+                related: [1, 4, 20, 27],
+                desc: "2050年までに若年女性が激減し、行政インフラ維持が困難になる自治体。インフラ撤退判断の現実。"
+            },
+
+            // 財政・金融・通貨 (5-8, 21, 22)
+            {
+                id: 5,
+                number: "約1,300兆円",
+                title: "国と地方の借金残高",
+                category: "fiscal",
+                categoryName: "財政・金融・資産",
+                icon: "fa-landmark",
+                color: "amber",
+                related: [6, 7, 8, 21],
+                desc: "GDPの2倍を超える債務残高。超低金利政策に依存せざるを得ない構造的制約の根源。"
+            },
+            {
+                id: 6,
+                number: "約260%",
+                title: "対GDP比の政府債務比率",
+                category: "fiscal",
+                categoryName: "財政・金融・資産",
+                icon: "fa-scale-unbalanced-flip",
+                color: "amber",
+                related: [5, 7, 9],
+                desc: "主要先進国（G7）で突出して最悪の水準。金利正常化が国家財政の利払い危機に直結する理由。"
+            },
+            {
+                id: 7,
+                number: "約115兆円",
+                title: "国の年間一般会計予算",
+                category: "fiscal",
+                categoryName: "財政・金融・資産",
+                icon: "fa-file-invoice-dollar",
+                color: "amber",
+                related: [5, 14, 18],
+                desc: "税収（約70兆円前後）では賄えず、毎年数十兆円の借金（国債）発行で補填する構造的赤字。"
+            },
+            {
+                id: 8,
+                number: "150円前後",
+                title: "対ドル円相場水準",
+                category: "fiscal",
+                categoryName: "財政・金融・資産",
+                icon: "fa-yen-sign",
+                color: "amber",
+                related: [11, 12, 17, 22, 29],
+                desc: "内外金利差が生んだ歴史的円安。インバウンドや外貨資産には追い風だが、エネルギー・食料輸入価格を暴騰させる。"
+            },
+            {
+                id: 21,
+                number: "約2,100兆円",
+                title: "家計の個人金融資産",
+                category: "fiscal",
+                categoryName: "財政・金融・資産",
+                icon: "fa-piggy-bank",
+                color: "amber",
+                related: [5, 6, 8],
+                desc: "国民が保有する現預金・株式の総額。借金（1,300兆円）を国内で吸収し、国債暴落を防いでいる最大の防壁。"
+            },
+            {
+                id: 22,
+                number: "500兆円以上",
+                title: "対外純資産残高",
+                category: "fiscal",
+                categoryName: "財政・金融・資産",
+                icon: "fa-vault",
+                color: "amber",
+                related: [8, 9, 21],
+                desc: "日本が海外に保有する資産の純額。世界トップクラスの債権国であり、海外からの利子・配当収入の源泉。"
+            },
+
+            // 産業・生産性・技術 (9, 10, 13, 23, 24, 25)
+            {
+                id: 9,
+                number: "約600兆円",
+                title: "日本の名目GDP",
+                category: "economy",
+                categoryName: "産業・生産性・技術",
+                icon: "fa-chart-pie",
+                color: "emerald",
+                related: [1, 5, 6, 10, 23],
+                desc: "日本経済全体の年間のパイ。ドイツに抜かれ世界4位に後退した経済規模の実力値。"
+            },
+            {
+                id: 10,
+                number: "約600兆円",
+                title: "企業の内部留保（利益剰余金）",
+                category: "economy",
+                categoryName: "産業・生産性・技術",
+                icon: "fa-briefcase",
+                color: "emerald",
+                related: [9, 15, 17, 25],
+                desc: "日本企業が内部に蓄積した利益。国内設備投資や積極的な賃上げに回りにくい資本停滞の象徴。"
+            },
+            {
+                id: 13,
+                number: "約16%",
+                title: "トヨタの世界車生産シェア",
+                category: "economy",
+                categoryName: "産業・生産性・技術",
+                icon: "fa-car",
+                color: "emerald",
+                related: [9, 23, 24],
+                desc: "日本の全就業者・製造業・輸出の最後の牙城。自動車産業の電動化・知能化競争の成否が国運に直結。"
+            },
+            {
+                id: 23,
+                number: "G7最低 / 28位",
+                title: "時間当たり労働生産性",
+                category: "economy",
+                categoryName: "産業・生産性・技術",
+                icon: "fa-stopwatch",
+                color: "emerald",
+                related: [9, 10, 17, 24],
+                desc: "OECD加盟国中の順位。「長時間真面目に働いても付加価値を生みにくい」日本経済の最大の病巣。"
+            },
+            {
+                id: 24,
+                number: "約80万人不足",
+                title: "2030年のIT人材不足予測",
+                category: "economy",
+                categoryName: "産業・生産性・技術",
+                icon: "fa-laptop-code",
+                color: "emerald",
+                related: [13, 23, 25],
+                desc: "DXやAI実装を急ぐ日本を阻むボトルネック。デジタル赤字（海外クラウド等への支払い超過）拡大の主因。"
+            },
+            {
+                id: 25,
+                number: "約20兆円",
+                title: "日本の官民研究開発費",
+                category: "economy",
+                categoryName: "産業・生産性・技術",
+                icon: "fa-flask",
+                color: "emerald",
+                related: [9, 13, 23],
+                desc: "投資規模は世界トップ級だが、基礎研究の劣化と実用化・事業化の遅れで論文数や世界的特許のシェアが低下。"
+            },
+
+            // 社会保障・雇用・格差 (14-17, 26, 30)
+            {
+                id: 14,
+                number: "約37兆円",
+                title: "社会保障関係費（国の予算内）",
+                category: "social",
+                categoryName: "社会保障・労働・格差",
+                icon: "fa-hand-holding-heart",
+                color: "rose",
+                related: [3, 7, 16],
+                desc: "医療・介護・年金に充てられる国家予算の約3分の1。高齢化に伴い毎年数千億円規模で自動増。"
+            },
+            {
+                id: 15,
+                number: "約40%",
+                title: "非正規雇用の割合",
+                category: "social",
+                categoryName: "社会保障・労働・格差",
+                icon: "fa-user-clock",
+                color: "rose",
+                related: [2, 10, 16, 17],
+                desc: "労働者の4割が不安定な非正規。賃金格差、結婚難（少子化要因）、将来不安を生む二重労働市場の歪み。"
+            },
+            {
+                id: 16,
+                number: "約15.4%",
+                title: "相対的貧困率",
+                category: "social",
+                categoryName: "社会保障・労働・格差",
+                icon: "fa-children",
+                color: "rose",
+                related: [14, 15, 17],
+                desc: "およそ7人に1人が中央値の半分未満の所得で暮らす。特にひとり親世帯や単身高齢女性に集中。"
+            },
+            {
+                id: 17,
+                number: "550万〜600万円",
+                title: "世帯年収の中央値",
+                category: "social",
+                categoryName: "社会保障・労働・格差",
+                icon: "fa-wallet",
+                color: "rose",
+                related: [8, 15, 16, 23],
+                desc: "平均値（高所得者に引き上げられる）ではなく「真ん中の実態」。物価高に賃金が追いつかない生活実感の基準。"
+            },
+            {
+                id: 26,
+                number: "110位台",
+                title: "ジェンダーギャップ指数",
+                category: "social",
+                categoryName: "社会保障・労働・格差",
+                icon: "fa-venus-mars",
+                color: "rose",
+                related: [1, 15, 23],
+                desc: "世界経済フォーラムの順位。政治・経済の意思決定層における女性比率の極端な低さと人材の死蔵。"
+            },
+            {
+                id: 30,
+                number: "約2.5%",
+                title: "完全失業率",
+                category: "social",
+                categoryName: "社会保障・労働・格差",
+                icon: "fa-user-check",
+                color: "rose",
+                related: [1, 15, 23],
+                desc: "人口減少による超低失業率。治安安定の土台である一方、不採算企業の延命と産業新陳代謝の停滞を招く一面も。"
+            },
+
+            // エネルギー・食料・インフラ安全保障 (11, 12, 18-20, 27, 29)
+            {
+                id: 11,
+                number: "約12%",
+                title: "エネルギー自給率",
+                category: "security",
+                categoryName: "資源・インフラ・安保",
+                icon: "fa-oil-well",
+                color: "cyan",
+                related: [8, 9, 18],
+                desc: "化石燃料のほぼ100%を輸入に依存。シーレーン封鎖や円安がダイレクトに電気・燃料費を高騰させる。"
+            },
+            {
+                id: 12,
+                number: "約38%",
+                title: "カロリーベース食料自給率",
+                category: "security",
+                categoryName: "資源・インフラ・安保",
+                icon: "fa-wheat-awn",
+                color: "cyan",
+                related: [8, 11, 19],
+                desc: "先進国で最低水準。肥料・飼料の海外依存を含めると実質自給率はさらに低く、有事の生存ラインの弱点。"
+            },
+            {
+                id: 18,
+                number: "約8〜9兆円",
+                title: "防衛予算（対GDP比2%水準）",
+                category: "security",
+                categoryName: "資源・インフラ・安保",
+                icon: "fa-shield-halved",
+                color: "cyan",
+                related: [7, 9, 11],
+                desc: "GDP比1%枠を撤廃し増額。東アジア（中・朝・露）の地政学緊張の高まりに伴う安全保障コスト。"
+            },
+            {
+                id: 19,
+                number: "約80%",
+                title: "南海トラフ30年以内発生確率",
+                category: "security",
+                categoryName: "資源・インフラ・安保",
+                icon: "fa-house-crack",
+                color: "cyan",
+                related: [4, 5, 20],
+                desc: "太平洋ベルト地帯の製造業・インフラ・首都機能を直撃する巨大地震リスク。想定経済損失は数百兆円。"
+            },
+            {
+                id: 20,
+                number: "約50%",
+                title: "建設後50年超の老朽インフラ率",
+                category: "security",
+                categoryName: "資源・インフラ・安保",
+                icon: "fa-bridge",
+                color: "cyan",
+                related: [1, 7, 28],
+                desc: "高度成長期に作られた橋・トンネル・水道が一斉に寿命。維持財源不足による「インフラ撤退」の迫り。"
+            },
+            {
+                id: 27,
+                number: "約900万戸 / 13.8%",
+                title: "全国の空き家数・空き家率",
+                category: "security",
+                categoryName: "資源・インフラ・安保",
+                icon: "fa-house-lock",
+                color: "cyan",
+                related: [1, 4, 28],
+                desc: "およそ7軒に1軒が空き家。人口減と新築優遇政策が生んだ資産価値崩落・景観治安悪化の温床。"
+            },
+            {
+                id: 29,
+                number: "3,500万〜4,000万人",
+                title: "年間訪日外国人旅行者数",
+                category: "security",
+                categoryName: "資源・インフラ・安保",
+                icon: "fa-plane-arrival",
+                color: "cyan",
+                related: [8, 9, 13],
+                desc: "円安（#8）を背景とした最大の成長分野。外貨獲得手段として自動車に次ぐ基幹産業へと変貌。"
+            }
+        ];
+
+        const categories = [
+            { id: 'all', name: 'すべて (30)', icon: 'fa-border-all' },
+            { id: 'demographics', name: '人口・超高齢化', icon: 'fa-users' },
+            { id: 'fiscal', name: '財政・金融・資産', icon: 'fa-landmark' },
+            { id: 'economy', name: '産業・生産性・技術', icon: 'fa-chart-pie' },
+            { id: 'social', name: '社会保障・労働・格差', icon: 'fa-hand-holding-heart' },
+            { id: 'security', name: '資源・インフラ・安保', icon: 'fa-shield-halved' }
+        ];
+
+        let activeCategory = 'all';
+        let activeSelectedId = null;
+
+        const colorStyles = {
+            blue: { border: 'border-blue-500/30', bg: 'bg-blue-500/10', text: 'text-blue-400', badge: 'bg-blue-500/20 text-blue-300' },
+            amber: { border: 'border-amber-500/30', bg: 'bg-amber-500/10', text: 'text-amber-400', badge: 'bg-amber-500/20 text-amber-300' },
+            emerald: { border: 'border-emerald-500/30', bg: 'bg-emerald-500/10', text: 'text-emerald-400', badge: 'bg-emerald-500/20 text-emerald-300' },
+            rose: { border: 'border-rose-500/30', bg: 'bg-rose-500/10', text: 'text-rose-400', badge: 'bg-rose-500/20 text-rose-300' },
+            cyan: { border: 'border-cyan-500/30', bg: 'bg-cyan-500/10', text: 'text-cyan-400', badge: 'bg-cyan-500/20 text-cyan-300' }
+        };
+
+        function renderCategoryButtons() {
+            const container = document.getElementById('category-filters');
+            container.innerHTML = categories.map(cat => `
+                <button onclick="filterCategory('${cat.id}')"
+                    class="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 border transition ${
+                        activeCategory === cat.id
+                            ? 'bg-rose-600 border-rose-500 text-white shadow-md'
+                            : 'bg-slate-900 border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-slate-200'
+                    }">
+                    <i class="fa-solid ${cat.icon}"></i> ${cat.name}
+                </button>
+            `).join('');
+        }
+
+        function renderCards() {
+            const container = document.getElementById('cards-grid');
+            const filtered = activeCategory === 'all' 
+                ? numbersData 
+                : numbersData.filter(d => d.category === activeCategory);
+
+            container.innerHTML = filtered.map(item => {
+                const style = colorStyles[item.color];
+                const isSelected = activeSelectedId === item.id;
+                const isRelated = activeSelectedId && numbersData.find(d => d.id === activeSelectedId)?.related.includes(item.id);
+                const isDeepTier = item.id > 20;
+
+                let highlightClass = 'glass-card';
+                if (isSelected) highlightClass += ' glow-active ring-2 ring-rose-500 bg-slate-800/95';
+                else if (isRelated) highlightClass += ' border-rose-400/80 bg-rose-950/30';
+                else if (activeSelectedId) highlightClass += ' opacity-35 grayscale-[25%]';
+
+                return `
+                    <div onclick="selectCard(${item.id})" class="${highlightClass} rounded-2xl p-4 cursor-pointer relative flex flex-col justify-between space-y-3">
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="text-[10px] font-bold px-2 py-0.5 rounded border ${style.badge} uppercase tracking-wider">
+                                        #${item.id} ${item.categoryName}
+                                    </span>
+                                    ${isDeepTier ? '<span class="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">深層/21-30</span>' : ''}
+                                </div>
+                                <div class="w-7 h-7 rounded-lg ${style.bg} ${style.text} flex items-center justify-center text-xs">
+                                    <i class="fa-solid ${item.icon}"></i>
+                                </div>
+                            </div>
+
+                            <h4 class="text-xl font-black tracking-tight text-white font-mono pt-1">
+                                ${item.number}
+                            </h4>
+                            <p class="text-xs font-bold text-slate-200">
+                                ${item.title}
+                            </p>
+                        </div>
+
+                        <p class="text-xs text-slate-400 leading-relaxed border-t border-slate-800/80 pt-2.5">
+                            ${item.desc}
+                        </p>
+
+                        <div class="flex items-center justify-between text-[10px] text-slate-500 pt-1">
+                            <span>連動: ${item.related.map(r => `#${r}`).join(', ')}</span>
+                            <i class="fa-solid fa-link text-slate-600"></i>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterCategory(catId) {
+            activeCategory = catId;
+            activeSelectedId = null;
+            renderCategoryButtons();
+            renderCards();
+        }
+
+        function selectCard(id) {
+            activeSelectedId = (activeSelectedId === id) ? null : id;
+            renderCards();
+        }
+
+        function toggleCalcModal() {
+            const modal = document.getElementById('calc-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function initCharts() {
+            // Chart 1: Stock vs Debt (Comparison Bar)
+            const ctxStock = document.getElementById('stockBalanceChart').getContext('2d');
+            new Chart(ctxStock, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        '個人金融資産 (#21)',
+                        '国・地方の借金 (#5)',
+                        '企業の内部留保 (#10)',
+                        '年間名目GDP (#9)',
+                        '対外純資産 (#22)'
+                    ],
+                    datasets: [{
+                        label: '兆円',
+                        data: [2100, 1300, 600, 600, 500],
+                        backgroundColor: [
+                            'rgba(16, 185, 129, 0.85)', // 個人資産
+                            'rgba(244, 63, 94, 0.85)',  // 借金
+                            'rgba(59, 130, 246, 0.85)',  // 内部留保
+                            'rgba(100, 116, 139, 0.85)', // GDP
+                            'rgba(6, 182, 212, 0.85)'   // 対外純資産
+                        ],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { display: false } },
+                        y: { 
+                            ticks: { 
+                                color: '#94a3b8', 
+                                font: { size: 10 },
+                                callback: val => val + '兆円'
+                            }, 
+                            grid: { color: 'rgba(255,255,255,0.05)' } 
+                        }
+                    }
+                }
+            });
+
+            // Chart 2: Vulnerability Rates (Horizontal Bar Chart with Max 100%)
+            const ctxVuln = document.getElementById('vulnerabilityChart').getContext('2d');
+            new Chart(ctxVuln, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'エネルギー海外依存 (#11)',
+                        '南海トラフ30年確率 (#19)',
+                        '食料海外依存 (100-#12)',
+                        'インフラ老朽化率 (#20)',
+                        '非正規雇用比率 (#15)',
+                        '消滅可能性自治体 (#28)',
+                        '高齢化率 (#3)'
+                    ],
+                    datasets: [{
+                        label: '比率 (%)',
+                        data: [88, 80, 62, 50, 40, 40, 30],
+                        backgroundColor: [
+                            'rgba(244, 63, 94, 0.85)',
+                            'rgba(239, 68, 68, 0.85)',
+                            'rgba(245, 158, 11, 0.85)',
+                            'rgba(245, 158, 11, 0.85)',
+                            'rgba(14, 165, 233, 0.85)',
+                            'rgba(99, 102, 241, 0.85)',
+                            'rgba(100, 116, 139, 0.85)'
+                        ],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            min: 0,
+                            max: 100,
+                            ticks: { 
+                                color: '#94a3b8', 
+                                font: { size: 10 },
+                                callback: val => val + '%'
+                            },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        },
+                        y: {
+                            ticks: { color: '#94a3b8', font: { size: 10 } },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        window.onload = function() {
+            renderCategoryButtons();
+            renderCards();
+            initCharts();
+        };
+    </script>
+</body>
+</html>

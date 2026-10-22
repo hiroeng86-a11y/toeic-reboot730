@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>RALLY-X RETRO ESCAPE</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: none;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #030408;
+      color: #fff;
+      font-family: 'Courier New', Courier, monospace;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    #game-container {
+      position: relative;
+      background: #000;
+      box-shadow: 0 0 30px rgba(255, 176, 0, 0.4);
+      border: 3px solid #ffb000;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+    }
+
+    /* CRT scanline arcade overlay */
+    #game-container::after {
+      content: " ";
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+      background-size: 100% 3px, 6px 100%;
+      pointer-events: none;
+      z-index: 40;
+    }
+
+    canvas {
+      display: block;
+      background: #000;
+      image-rendering: pixelated;
+    }
+
+    /* Virtual Controls for Mobile / Touch */
+    #mobile-controls {
+      display: none;
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      pointer-events: none;
+      justify-content: space-between;
+      align-items: flex-end;
+      z-index: 50;
+    }
+
+    .dpad {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      pointer-events: auto;
+    }
+
+    .dbtn {
+      position: absolute;
+      width: 46px;
+      height: 46px;
+      background: rgba(255, 255, 255, 0.22);
+      border: 2px solid #ffb000;
+      border-radius: 10px;
+      color: #ffb000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+      touch-action: none;
+    }
+    .dbtn:active, .dbtn.active {
+      background: rgba(255, 176, 0, 0.7);
+      color: #000;
+    }
+    #btn-up    { top: 0; left: 47px; }
+    #btn-down  { bottom: 0; left: 47px; }
+    #btn-left  { top: 47px; left: 0; }
+    #btn-right { top: 47px; right: 0; }
+
+    .action-panel {
+      pointer-events: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .smoke-btn {
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ff4757 20%, #b31217 90%);
+      border: 3px solid #fff;
+      color: #fff;
+      font-weight: bold;
+      font-size: 15px;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 12px rgba(255,0,0,0.6);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      touch-action: none;
+    }
+    .smoke-btn:active, .smoke-btn.active {
+      background: #ff6b81;
+      transform: scale(0.93);
+    }
+
+    #audio-toggle {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.7);
+      border: 1px solid #ffb000;
+      color: #ffb000;
+      padding: 5px 10px;
+      font-size: 13px;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      z-index: 60;
+    }
+  </style>
+</head>
+<body>
+
+<div id="game-container">
+  <button id="audio-toggle">🔊 BGM/SE: ON</button>
+  <canvas id="gameCanvas" width="900" height="600"></canvas>
+  <div id="mobile-controls">
+    <div class="dpad">
+      <div class="dbtn" id="btn-up">▲</div>
+      <div class="dbtn" id="btn-left">◀</div>
+      <div class="dbtn" id="btn-right">▶</div>
+      <div class="dbtn" id="btn-down">▼</div>
+    </div>
+    <div class="action-panel">
+      <button class="smoke-btn" id="btn-smoke">SMOKE<span style="font-size:10px; opacity:0.8;">(SPACE)</span></button>
+    </div>
+  </div>
+</div>
+
+<script>
+class SoundEngine {
+  constructor() {
+    this.ctx = null;
+    this.muted = false;
+    this.bgmPlaying = false;
+    this.bgmTimer = null;
+    this.bgmStep = 0;
+  }
+
+  init() {
+    if (!this.ctx) {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      this.ctx = new AudioCtx();
+    }
+    if (this.ctx && this.ctx.state === 'suspended') {
+      this.ctx.resume();
+    }
+  }
+
+  // Dual oscillator tone for richer arcade chip timbre
+  tone(freq, type = 'square', duration = 0.1, gainVal = 0.15, bendTo = 0) {
+    if (this.muted || !this.ctx || freq <= 0) return;
+    try {
+      const t = this.ctx.currentTime;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, t);
+      if (bendTo > 0) {
+        osc.frequency.exponentialRampToValueAtTime(bendTo, t + duration);
+      }
+      gain.gain.setValueAtTime(gainVal, t);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + duration);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start(t);
+      osc.stop(t + duration);
+    } catch(e) {}
+  }
+
+  // Dynamic drum voices
+  drumKick() {
+    if (this.muted || !this.ctx) return;
+    try {
+      const t = this.ctx.currentTime;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.frequency.setValueAtTime(130, t);
+      osc.frequency.exponentialRampToValueAtTime(32, t + 0.1);
+      gain.gain.setValueAtTime(0.24, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.1);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start(t);
+      osc.stop(t + 0.1);
+    } catch(e) {}
+  }
+
+  drumSnare() {
+    if (this.muted || !this.ctx) return;
+    try {
+      const t = this.ctx.currentTime;
+      // Tone body
+      const osc = this.ctx.createOscillator();
+      const oGain = this.ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(180, t);
+      oGain.gain.setValueAtTime(0.12, t);
+      oGain.gain.exponentialRampToValueAtTime(0.01, t + 0.08);
+      osc.connect(oGain);
+      oGain.connect(this.ctx.destination);
+      osc.start(t);
+      osc.stop(t + 0.08);
+
+      // Snappy noise
+      const bufSize = this.ctx.sampleRate * 0.06;
+      const buffer = this.ctx.createBuffer(1, bufSize, this.ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufSize; i++) data[i] = Math.random() * 2 - 1;
+      const noise = this.ctx.createBufferSource();
+      noise.buffer = buffer;
+      const filter = this.ctx.createBiquadFilter();
+      filter.type = 'highpass';
+      filter.frequency.setValueAtTime(2200, t);
+      const nGain = this.ctx.createGain();
+      nGain.gain.setValueAtTime(0.12, t);
+      nGain.gain.exponentialRampToValueAtTime(0.001, t + 0.06);
+      noise.connect(filter);
+      filter.connect(nGain);
+      nGain.connect(this.ctx.destination);
+      noise.start(t);
+    } catch(e) {}
+  }
+
+  hihat() {
+    if (this.muted || !this.ctx) return;
+    try {
+      const t = this.ctx.currentTime;
+      const bufSize = this.ctx.sampleRate * 0.022;
+      const buffer = this.ctx.createBuffer(1, bufSize, this.ctx.sampleRate);
+      const output = buffer.getChannelData(0);
+      for (let i = 0; i < bufSize; i++) output[i] = Math.random() * 2 - 1;
+      const noise = this.ctx.createBufferSource();
+      noise.buffer = buffer;
+      const filter = this.ctx.createBiquadFilter();
+      filter.type = 'highpass';
+      filter.frequency.setValueAtTime(6500, t);
+      const gain = this.ctx.createGain();
+      gain.gain.setValueAtTime(0.045, t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.022);
+      noise.connect(filter);
+      filter.connect(gain);
+      gain.connect(this.ctx.destination);
+      noise.start(t);
+    } catch(e) {}
+  }
+
+  // Rich New Rally-X inspired 4-track funky arcade BGM
+  startBGM() {
+    if (this.bgmPlaying || this.muted) return;
+    this.init();
+    this.bgmPlaying = true;
+    this.bgmStep = 0;
+
+    // 32-step funky syncopated melody in G Major
+    const melodySeq = [
+      783.99, 0, 783.99, 880.0, 987.77, 0, 783.99, 0,
+      659.25, 659.25, 0, 783.99, 880.0, 0, 587.33, 0,
+      783.99, 0, 783.99, 880.0, 987.77, 1046.5, 987.77, 783.99,
+      880.0,  0, 659.25, 783.99, 880.0, 987.77, 783.99, 0
+    ];
+
+    // Harmony / Arpeggio Chords
+    const chordSeq = [
+      392.00, 493.88, 392.00, 493.88, 392.00, 493.88, 392.00, 493.88,
+      329.63, 392.00, 329.63, 392.00, 293.66, 369.99, 293.66, 369.99,
+      392.00, 493.88, 392.00, 493.88, 392.00, 523.25, 493.88, 392.00,
+      440.00, 523.25, 329.63, 392.00, 440.00, 493.88, 392.00, 0
+    ];
+
+    // Slap / Walking Funky Bassline
+    const bassSeq = [
+      98.00, 196.00, 98.00, 146.83, 98.00, 196.00, 123.47, 146.83,
+      82.41, 164.81, 82.41, 130.81, 73.42, 146.83, 110.00, 130.81,
+      98.00, 196.00, 98.00, 146.83, 98.00, 220.00, 196.00, 146.83,
+      110.00, 220.00, 82.41, 164.81, 110.00, 146.83, 98.00, 0
+    ];
+
+    const tempoMs = 120; // Fast upbeat arcade swing
+
+    this.bgmTimer = setInterval(() => {
+      if (this.muted || !this.bgmPlaying) return;
+
+      const step = this.bgmStep % 32;
+      const mel = melodySeq[step];
+      const chd = chordSeq[step];
+      const bass = bassSeq[step];
+
+      // Track 1: Square Lead with slight bite
+      if (mel > 0) {
+        this.tone(mel, 'square', 0.085, 0.09);
+      }
+      // Track 2: Softer Pulse / Harmony
+      if (chd > 0 && step % 2 === 1) {
+        this.tone(chd, 'square', 0.065, 0.045);
+      }
+      // Track 3: Bouncing Triangle/Saw Bass
+      if (bass > 0) {
+        this.tone(bass, 'sawtooth', 0.09, 0.13, bass * 0.95);
+      }
+
+      // Track 4: Drum Machine
+      if (step % 4 === 0) {
+        this.drumKick();
+      } else if (step % 4 === 2) {
+        this.drumSnare();
+      } else {
+        this.hihat();
+      }
+
+      this.bgmStep++;
+    }, tempoMs);
+  }
+
+  stopBGM() {
+    this.bgmPlaying = false;
+    if (this.bgmTimer) {
+      clearInterval(this.bgmTimer);
+      this.bgmTimer = null;
+    }
+  }
+
+  flagCollect(isSpecial = false, isLucky = false) {
+    if (this.muted || !this.ctx) return;
+    const freqs = isLucky ? [523, 659, 783, 1046, 1318, 1568] : isSpecial ? [587, 740, 880, 1174] : [659, 987];
+    freqs.forEach((f, idx) => {
+      setTimeout(() => this.tone(f, 'sine', 0.08, 0.22), idx * 45);
+    });
+  }
+
+  smoke() {
+    if (this.muted || !this.ctx) return;
+    try {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(320, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(45, this.ctx.currentTime + 0.24);
+      gain.gain.setValueAtTime(0.24, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.24);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.24);
+    } catch(e) {}
+  }
+
+  crash() {
+    if (this.muted || !this.ctx) return;
+    try {
+      const bufSize = this.ctx.sampleRate * 0.45;
+      const buffer = this.ctx.createBuffer(1, bufSize, this.ctx.sampleRate);
+      const output = buffer.getChannelData(0);
+      for (let i = 0; i < bufSize; i++) output[i] = Math.random() * 2 - 1;
+      const whiteNoise = this.ctx.createBufferSource();
+      whiteNoise.buffer = buffer;
+      const filter = this.ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(800, this.ctx.currentTime);
+      filter.frequency.exponentialRampToValueAtTime(60, this.ctx.currentTime + 0.45);
+      const gain = this.ctx.createGain();
+      gain.gain.setValueAtTime(0.42, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.45);
+      whiteNoise.connect(filter);
+      filter.connect(gain);
+      gain.connect(this.ctx.destination);
+      whiteNoise.start();
+    } catch(e) {}
+  }
+
+  spin() {
+    if (this.muted || !this.ctx) return;
+    this.tone(360, 'sawtooth', 0.18, 0.22, 120);
+  }
+
+  stageClear() {
+    this.stopBGM();
+    if (this.muted || !this.ctx) return;
+    const fanfare = [523.25, 659.25, 783.99, 1046.5, 987.77, 1046.5, 1318.5];
+    fanfare.forEach((f, i) => {
+      setTimeout(() => this.tone(f, 'square', 0.18, 0.22), i * 110);
+    });
+  }
+
+  gameOver() {
+    this.stopBGM();
+    if (this.muted || !this.ctx) return;
+    const notes = [440, 415, 392, 349];
+    notes.forEach((f, i) => {
+      setTimeout(() => this.tone(f, 'sawtooth', 0.26, 0.24, f * 0.8), i * 180);
+    });
+  }
+}
+const sound = new SoundEngine();
+
+const STAGE_CONFIGS = [
+  { round: 1, enemies: 1, enemySpeed: 1.8, flags: 5,  rocks: 0,  fuelDrain: 0.020, name: "ROUND 1 - TUTORIAL RUN", desc: "敵は1台のみ！操作に慣れよう" },
+  { round: 2, enemies: 2, enemySpeed: 2.3, flags: 7,  rocks: 5,  fuelDrain: 0.028, name: "ROUND 2 - SUBURBAN CRUISE", desc: "岩が出現！煙幕をうまく使え" },
+  { round: 3, enemies: 3, enemySpeed: 2.8, flags: 8,  rocks: 9,  fuelDrain: 0.035, name: "ROUND 3 - DENSE METRO", desc: "敵が増加！レーダーを注視せよ" },
+  { round: 4, enemies: 4, enemySpeed: 3.2, flags: 10, rocks: 13, fuelDrain: 0.040, name: "ROUND 4 - CANYON LABYRINTH", desc: "猛追するパトロールカー！" },
+  { round: 5, enemies: 5, enemySpeed: 3.6, flags: 10, rocks: 16, fuelDrain: 0.045, name: "ROUND 5 - FINAL ESCAPE", desc: "全速力で逃げ切れ！最終決戦" }
+];
+
+// Grid dimensions: Tile is 40px, fitting car tightly with zero wall-stuck bugs
+const TILE_SIZE = 40;
+const MAP_COLS = 36;
+const MAP_ROWS = 36;
+
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+let gameState = 'TITLE'; // TITLE, PLAYING, ROUND_CLEAR, GAME_OVER, ENDING
+let currentStageIndex = 0;
+let score = 0;
+let highScore = 20000;
+let lives = 3;
+let fuel = 100;
+let maxFuel = 100;
+let doubleScoreActive = false;
+let stateTimer = 0;
+let gameStartTime = 0;
+let totalClearTime = 0;
+
+let map = []; // 0 = Road, 1 = Wall Block, 2 = Rock
+let flags = [];
+let smokes = [];
+let particles = [];
+
+// Directions: 0: UP, 1: RIGHT, 2: DOWN, 3: LEFT
+const DIRS = [
+  { dx: 0, dy: -1, angle: 0 },
+  { dx: 1, dy: 0, angle: Math.PI / 2 },
+  { dx: 0, dy: 1, angle: Math.PI },
+  { dx: -1, dy: 0, angle: -Math.PI / 2 }
+];
+
+/* Player Car: Auto-forward on road lanes with grid-intersection turn queue */
+const player = {
+  x: 0,
+  y: 0,
+  dir: 1,          // Currently moving direction
+  nextDir: 1,      // Queued direction for next intersection
+  speed: 3.6,      // Normal Rally-X driving speed
+  radius: 13,
+  dead: false,
+  invulnerableTime: 0
+};
+
+let enemies = [];
+
+function generateMaze(stageIdx) {
+  map = [];
+  const cfg = STAGE_CONFIGS[stageIdx];
+
+  // Initialize outer borders as solid walls, interior as roads
+  for (let r = 0; r < MAP_ROWS; r++) {
+    map[r] = [];
+    for (let c = 0; c < MAP_COLS; c++) {
+      if (r === 0 || r === MAP_ROWS - 1 || c === 0 || c === MAP_COLS - 1) {
+        map[r][c] = 1;
+      } else {
+        map[r][c] = 0;
+      }
+    }
+  }
+
+  // Create grid wall blocks (even row & even column blocks form arcade road corridors)
+  for (let r = 2; r < MAP_ROWS - 2; r += 2) {
+    for (let c = 2; c < MAP_COLS - 2; c += 2) {
+      map[r][c] = 1;
+      // Connect some blocks to make interesting dead-ends and chicanes
+      const dirs = [ [0, 1], [1, 0], [0, -1], [-1, 0] ];
+      const choice = dirs[Math.floor(Math.random() * dirs.length)];
+      if (Math.random() < 0.58) {
+        map[r + choice[0]][c + choice[1]] = 1;
+      }
+    }
+  }
+
+  // Clear starting area around center to avoid instant traps
+  const startC = Math.floor(MAP_COLS / 2);
+  const startR = Math.floor(MAP_ROWS / 2);
+  for (let dy = -2; dy <= 2; dy++) {
+    for (let dx = -2; dx <= 2; dx++) {
+      if (startR + dy > 0 && startR + dy < MAP_ROWS - 1 && startC + dx > 0 && startC + dx < MAP_COLS - 1) {
+        if ((startR + dy) % 2 !== 0 || (startC + dx) % 2 !== 0) {
+          map[startR + dy][startC + dx] = 0;
+        }
+      }
+    }
+  }
+
+  // Scatter rocks based on stage configuration (0 rocks for stage 1 tutorial)
+  const rockCount = cfg.rocks;
+  let placedRocks = 0;
+  let attempts = 0;
+  while (placedRocks < rockCount && attempts < 200) {
+    attempts++;
+    const rx = Math.floor(Math.random() * (MAP_COLS - 4)) + 2;
+    const ry = Math.floor(Math.random() * (MAP_ROWS - 4)) + 2;
+    if (map[ry][rx] === 0 && Math.hypot(rx - startC, ry - startR) > 5) {
+      map[ry][rx] = 2; // Rock
+      placedRocks++;
+    }
+  }
+}
+
+function canPass(col, row) {
+  if (row < 0 || row >= MAP_ROWS || col < 0 || col >= MAP_COLS) return false;
+  return map[row][col] === 0; // Only road is passible
+}
+
+function setupRound(idx) {
+  currentStageIndex = idx;
+  const cfg = STAGE_CONFIGS[idx];
+  generateMaze(idx);
+
+  const startC = Math.floor(MAP_COLS / 2);
+  const startR = Math.floor(MAP_ROWS / 2);
+
+  player.x = startC * TILE_SIZE + TILE_SIZE / 2;
+  player.y = startR * TILE_SIZE + TILE_SIZE / 2;
+  player.dir = 1;
+  player.nextDir = 1;
+  player.dead = false;
+  player.invulnerableTime = 120; // 2 seconds safety buffer
+  fuel = maxFuel;
+  doubleScoreActive = false;
+
+  smokes = [];
+  particles = [];
+  flags = [];
+
+  // Place Flags
+  let placedFlags = 0;
+  const targetFlags = cfg.flags;
+  const specialFlagIdx = 1;
+  const luckyFlagIdx = targetFlags - 1;
+
+  while (placedFlags < targetFlags) {
+    const fc = Math.floor(Math.random() * (MAP_COLS - 2)) + 1;
+    const fr = Math.floor(Math.random() * (MAP_ROWS - 2)) + 1;
+    const distToPlayer = Math.hypot(fc - startC, fr - startR);
+    if (map[fr][fc] === 0 && distToPlayer > 3) {
+      const alreadyHas = flags.some(f => f.col === fc && f.row === fr);
+      if (!alreadyHas) {
+        let type = 'NORMAL';
+        if (placedFlags === specialFlagIdx) type = 'SPECIAL';
+        if (placedFlags === luckyFlagIdx) type = 'LUCKY';
+
+        flags.push({
+          x: fc * TILE_SIZE + TILE_SIZE / 2,
+          y: fr * TILE_SIZE + TILE_SIZE / 2,
+          col: fc,
+          row: fr,
+          type: type,
+          collected: false
+        });
+        placedFlags++;
+      }
+    }
+  }
+
+  // Spawn Red Enemy Cars far from player
+  enemies = [];
+  for (let i = 0; i < cfg.enemies; i++) {
+    let ec, er;
+    let valid = false;
+    let tries = 0;
+    while (!valid && tries < 100) {
+      tries++;
+      ec = Math.floor(Math.random() * (MAP_COLS - 4)) + 2;
+      er = Math.floor(Math.random() * (MAP_ROWS - 4)) + 2;
+      if (map[er][ec] === 0 && Math.hypot(ec - startC, er - startR) > 10) {
+        valid = true;
+      }
+    }
+    enemies.push({
+      x: ec * TILE_SIZE + TILE_SIZE / 2,
+      y: er * TILE_SIZE + TILE_SIZE / 2,
+      dir: Math.floor(Math.random() * 4),
+      speed: cfg.enemySpeed,
+      radius: 13,
+      stunTimer: 0,
+      spinAngle: 0,
+      respawnTimer: 0
+    });
+  }
+}
+
+window.addEventListener('keydown', (e) => {
+  sound.init();
+  if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') player.nextDir = 0;
+  if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') player.nextDir = 1;
+  if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') player.nextDir = 2;
+  if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') player.nextDir = 3;
+
+  if (e.code === 'Space') {
+    e.preventDefault();
+    deploySmoke();
+  }
+
+  if (gameState === 'TITLE' && (e.code === 'Space' || e.key === 'Enter')) {
+    startGame();
+  } else if (gameState === 'GAME_OVER' && (e.code === 'Space' || e.key === 'Enter')) {
+    startGame();
+  } else if (gameState === 'ENDING' && (e.code === 'Space' || e.key === 'Enter')) {
+    gameState = 'TITLE';
+  }
+});
+
+function deploySmoke() {
+  if (gameState !== 'PLAYING' || player.dead) return;
+  if (fuel <= 0) return;
+
+  fuel = Math.max(0, fuel - 3.0);
+  sound.smoke();
+
+  // Puff dropped behind player
+  const revDir = (player.dir + 2) % 4;
+  const sx = player.x + DIRS[revDir].dx * 18;
+  const sy = player.y + DIRS[revDir].dy * 18;
+
+  smokes.push({
+    x: sx,
+    y: sy,
+    life: 180,
+    maxLife: 180,
+    radius: 16
+  });
+}
+
+function bindTouchBtn(elementId, action) {
+  const btn = document.getElementById(elementId);
+  if (!btn) return;
+  const trigger = (e) => {
+    e.preventDefault();
+    sound.init();
+    btn.classList.add('active');
+    action();
+  };
+  const release = (e) => {
+    e.preventDefault();
+    btn.classList.remove('active');
+  };
+  btn.addEventListener('touchstart', trigger, { passive: false });
+  btn.addEventListener('touchend', release, { passive: false });
+  btn.addEventListener('mousedown', trigger);
+  btn.addEventListener('mouseup', release);
+}
+
+bindTouchBtn('btn-up', () => { player.nextDir = 0; if (gameState !== 'PLAYING') handleTapStart(); });
+bindTouchBtn('btn-down', () => { player.nextDir = 2; if (gameState !== 'PLAYING') handleTapStart(); });
+bindTouchBtn('btn-left', () => { player.nextDir = 3; if (gameState !== 'PLAYING') handleTapStart(); });
+bindTouchBtn('btn-right', () => { player.nextDir = 1; if (gameState !== 'PLAYING') handleTapStart(); });
+bindTouchBtn('btn-smoke', () => { deploySmoke(); if (gameState !== 'PLAYING') handleTapStart(); });
+
+function handleTapStart() {
+  if (gameState === 'TITLE' || gameState === 'GAME_OVER') {
+    startGame();
+  } else if (gameState === 'ENDING') {
+    gameState = 'TITLE';
+  }
+}
+
+document.getElementById('audio-toggle').addEventListener('click', (e) => {
+  e.stopPropagation();
+  sound.init();
+  sound.muted = !sound.muted;
+  e.target.innerText = sound.muted ? '🔇 SOUND: OFF' : '🔊 BGM/SE: ON';
+  if (sound.muted) {
+    sound.stopBGM();
+  } else if (gameState === 'PLAYING') {
+    sound.startBGM();
+  }
+});
+
+if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+  document.getElementById('mobile-controls').style.display = 'flex';
+}
+
+function startGame() {
+  score = 0;
+  lives = 3;
+  currentStageIndex = 0;
+  gameStartTime = Date.now();
+  setupRound(0);
+  gameState = 'PLAYING';
+  sound.startBGM();
+}
+
+function createExplosion(x, y, color = '#ff5522') {
+  for (let i = 0; i < 24; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const spd = 1 + Math.random() * 4.5;
+    particles.push({
+      x: x,
+      y: y,
+      vx: Math.cos(angle) * spd,
+      vy: Math.sin(angle) * spd,
+      color: color,
+      life: 25 + Math.random() * 20,
+      radius: 2 + Math.random() * 3
+    });
+  }
+}
+
+function killPlayer() {
+  if (player.invulnerableTime > 0 || player.dead) return;
+  player.dead = true;
+  sound.crash();
+  createExplosion(player.x, player.y, '#ffff33');
+  lives--;
+
+  setTimeout(() => {
+    if (lives <= 0) {
+      if (score > highScore) highScore = score;
+      gameState = 'GAME_OVER';
+      sound.gameOver();
+      stateTimer = 0;
+    } else {
+      const startC = Math.floor(MAP_COLS / 2);
+      const startR = Math.floor(MAP_ROWS / 2);
+      player.x = startC * TILE_SIZE + TILE_SIZE / 2;
+      player.y = startR * TILE_SIZE + TILE_SIZE / 2;
+      player.dir = 1;
+      player.nextDir = 1;
+      player.dead = false;
+      player.invulnerableTime = 120;
+      fuel = maxFuel;
+    }
+  }, 1200);
+}
+
+function update() {
+  if (gameState !== 'PLAYING') {
+    stateTimer++;
+    return;
+  }
+
+  const cfg = STAGE_CONFIGS[currentStageIndex];
+
+  // Stage-based gentle Fuel consumption
+  if (fuel > 0) {
+    fuel -= cfg.fuelDrain;
+    if (fuel <= 0) fuel = 0;
+  }
+
+  const currentSpeed = fuel > 0 ? player.speed : player.speed * 0.45;
+  if (player.invulnerableTime > 0) player.invulnerableTime--;
+
+  // Player Auto-Forward & Grid Snap Intersection Movement
+  if (!player.dead) {
+    const col = Math.floor(player.x / TILE_SIZE);
+    const row = Math.floor(player.y / TILE_SIZE);
+    const tileCenterX = col * TILE_SIZE + TILE_SIZE / 2;
+    const tileCenterY = row * TILE_SIZE + TILE_SIZE / 2;
+
+    const distToCenter = Math.hypot(player.x - tileCenterX, player.y - tileCenterY);
+
+    // If close to center of current corridor tile, check queued turn
+    if (distToCenter <= currentSpeed * 0.7) {
+      const targetCol = col + DIRS[player.nextDir].dx;
+      const targetRow = row + DIRS[player.nextDir].dy;
+
+      if (canPass(targetCol, targetRow)) {
+        player.x = tileCenterX;
+        player.y = tileCenterY;
+        player.dir = player.nextDir;
+      }
+    }
+
+    // Check if forward path is clear
+    const fwdCol = col + DIRS[player.dir].dx;
+    const fwdRow = row + DIRS[player.dir].dy;
+    const isForwardClear = canPass(fwdCol, fwdRow);
+
+    const reachedCenterInFwd =
+      (player.dir === 0 && player.y <= tileCenterY) ||
+      (player.dir === 2 && player.y >= tileCenterY) ||
+      (player.dir === 3 && player.x <= tileCenterX) ||
+      (player.dir === 1 && player.x >= tileCenterX);
+
+    if (!isForwardClear && reachedCenterInFwd) {
+      player.x = tileCenterX;
+      player.y = tileCenterY;
+    } else {
+      player.x += DIRS[player.dir].dx * currentSpeed;
+      player.y += DIRS[player.dir].dy * currentSpeed;
+    }
+
+    // Check rock collision
+    const currCol = Math.floor(player.x / TILE_SIZE);
+    const currRow = Math.floor(player.y / TILE_SIZE);
+    if (map[currRow] && map[currRow][currCol] === 2) {
+      killPlayer();
+    }
+
+    // Collect Flags
+    flags.forEach(f => {
+      if (!f.collected) {
+        const dist = Math.hypot(player.x - f.x, player.y - f.y);
+        if (dist < player.radius + 15) {
+          f.collected = true;
+          let earned = 100;
+          if (f.type === 'SPECIAL') {
+            earned = 500;
+            doubleScoreActive = true;
+            sound.flagCollect(true, false);
+          } else if (f.type === 'LUCKY') {
+            const fuelBonus = Math.floor(fuel * 20);
+            earned = 300 + fuelBonus;
+            fuel = Math.min(maxFuel, fuel + 35);
+            sound.flagCollect(false, true);
+          } else {
+            sound.flagCollect(false, false);
+          }
+
+          if (doubleScoreActive) earned *= 2;
+          score += earned;
+        }
+      }
+    });
+
+    // Check Round Completion
+    const remainingFlags = flags.filter(f => !f.collected).length;
+    if (remainingFlags === 0) {
+      sound.stageClear();
+      score += (currentStageIndex + 1) * 1000 + Math.floor(fuel * 30);
+      if (currentStageIndex + 1 >= STAGE_CONFIGS.length) {
+        totalClearTime = Math.floor((Date.now() - gameStartTime) / 1000);
+        if (score > highScore) highScore = score;
+        gameState = 'ENDING';
+        stateTimer = 0;
+      } else {
+        gameState = 'ROUND_CLEAR';
+        stateTimer = 0;
+      }
+    }
+  }
+
+  // Update Smokes
+  for (let i = smokes.length - 1; i >= 0; i--) {
+    const s = smokes[i];
+    s.life--;
+    if (s.life <= 0) {
+      smokes.splice(i, 1);
+    }
+  }
+
+  // Update Red Enemy Cars
+  enemies.forEach(e => {
+    if (e.respawnTimer > 0) {
+      e.respawnTimer--;
+      return;
+    }
+
+    if (e.stunTimer > 0) {
+      e.stunTimer--;
+      e.spinAngle += 0.38;
+      return;
+    }
+
+    // Smoke collision check
+    for (let sm of smokes) {
+      if (Math.hypot(e.x - sm.x, e.y - sm.y) < e.radius + sm.radius) {
+        e.stunTimer = 190;
+        sound.spin();
+        createExplosion(e.x, e.y, '#ffffff');
+        break;
+      }
+    }
+
+    const ecol = Math.floor(e.x / TILE_SIZE);
+    const erow = Math.floor(e.y / TILE_SIZE);
+    const eCenterX = ecol * TILE_SIZE + TILE_SIZE / 2;
+    const eCenterY = erow * TILE_SIZE + TILE_SIZE / 2;
+
+    const distToCenter = Math.hypot(e.x - eCenterX, e.y - eCenterY);
+
+    if (distToCenter <= e.speed * 0.75) {
+      e.x = eCenterX;
+      e.y = eCenterY;
+
+      const validDirs = [];
+      for (let d = 0; d < 4; d++) {
+        const opp = (e.dir + 2) % 4;
+        const testC = ecol + DIRS[d].dx;
+        const testR = erow + DIRS[d].dy;
+        if (canPass(testC, testR)) {
+          validDirs.push({ dir: d, reverse: d === opp });
+        }
+      }
+
+      if (validDirs.length > 0) {
+        let forwardChoices = validDirs.filter(v => !v.reverse);
+        if (forwardChoices.length === 0) forwardChoices = validDirs;
+
+        // Stage 1 tutorial AI wanders more gently; later stages hunt aggressively
+        const followChance = currentStageIndex === 0 ? 0.35 : 0.65 + currentStageIndex * 0.07;
+
+        forwardChoices.sort((a, b) => {
+          const posA_X = eCenterX + DIRS[a.dir].dx * TILE_SIZE;
+          const posA_Y = eCenterY + DIRS[a.dir].dy * TILE_SIZE;
+          const posB_X = eCenterX + DIRS[b.dir].dx * TILE_SIZE;
+          const posB_Y = eCenterY + DIRS[b.dir].dy * TILE_SIZE;
+          return Math.hypot(posA_X - player.x, posA_Y - player.y) - Math.hypot(posB_X - player.x, posB_Y - player.y);
+        });
+
+        if (Math.random() < followChance) {
+          e.dir = forwardChoices[0].dir;
+        } else {
+          e.dir = forwardChoices[Math.floor(Math.random() * forwardChoices.length)].dir;
+        }
+      }
+    }
+
+    e.x += DIRS[e.dir].dx * e.speed;
+    e.y += DIRS[e.dir].dy * e.speed;
+
+    // Check rock collision for enemy
+    const enemyTileC = Math.floor(e.x / TILE_SIZE);
+    const enemyTileR = Math.floor(e.y / TILE_SIZE);
+    if (map[enemyTileR] && map[enemyTileR][enemyTileC] === 2) {
+      createExplosion(e.x, e.y, '#ff4757');
+      sound.crash();
+      e.respawnTimer = 220;
+      e.x = 2 * TILE_SIZE + TILE_SIZE / 2;
+      e.y = 2 * TILE_SIZE + TILE_SIZE / 2;
+    }
+
+    // Player collision
+    if (!player.dead && player.invulnerableTime <= 0) {
+      if (Math.hypot(e.x - player.x, e.y - player.y) < player.radius + e.radius - 2) {
+        killPlayer();
+      }
+    }
+  });
+
+  // Update Particles
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.life--;
+    if (p.life <= 0) {
+      particles.splice(i, 1);
+    }
+  }
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const viewWidth = 640;
+  const viewHeight = 600;
+  const radarX = 640;
+  const radarWidth = 260;
+
+  const camX = player.x - viewWidth / 2;
+  const camY = player.y - viewHeight / 2;
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(0, 0, viewWidth, viewHeight);
+  ctx.clip();
+
+  // Road surface
+  ctx.fillStyle = '#11141c';
+  ctx.fillRect(0, 0, viewWidth, viewHeight);
+
+  // Visible tiles
+  const startCol = Math.max(0, Math.floor(camX / TILE_SIZE) - 1);
+  const endCol = Math.min(MAP_COLS - 1, Math.ceil((camX + viewWidth) / TILE_SIZE) + 1);
+  const startRow = Math.max(0, Math.floor(camY / TILE_SIZE) - 1);
+  const endRow = Math.min(MAP_ROWS - 1, Math.ceil((camY + viewHeight) / TILE_SIZE) + 1);
+
+  for (let r = startRow; r <= endRow; r++) {
+    for (let c = startCol; c <= endCol; c++) {
+      const screenX = c * TILE_SIZE - camX;
+      const screenY = r * TILE_SIZE - camY;
+
+      if (!map[r] || map[r][c] === undefined) continue;
+
+      if (map[r][c] === 1) {
+        // Wall block (Arcade blue border with dark center)
+        ctx.fillStyle = '#062038';
+        ctx.fillRect(screenX, screenY, TILE_SIZE, TILE_SIZE);
+        ctx.strokeStyle = '#22a6b3';
+        ctx.lineWidth = 3;
+        ctx.strokeRect(screenX + 1, screenY + 1, TILE_SIZE - 2, TILE_SIZE - 2);
+      } else if (map[r][c] === 2) {
+        // Hazardous Rock
+        ctx.fillStyle = '#778ca3';
+        ctx.beginPath();
+        ctx.arc(screenX + TILE_SIZE / 2, screenY + TILE_SIZE / 2, 14, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#d1d8e0';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.fillStyle = '#2d3436';
+        ctx.beginPath();
+        ctx.arc(screenX + TILE_SIZE / 2 - 3, screenY + TILE_SIZE / 2 - 3, 6, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        // Center dotted lane marker for true Rally-X arcade look
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+        ctx.fillRect(screenX + TILE_SIZE / 2 - 2, screenY + TILE_SIZE / 2 - 2, 4, 4);
+      }
+    }
+  }
+
+  // Smokes
+  smokes.forEach(s => {
+    const alpha = s.life / s.maxLife;
+    ctx.fillStyle = `rgba(230, 230, 230, ${alpha * 0.85})`;
+    ctx.beginPath();
+    ctx.arc(s.x - camX, s.y - camY, s.radius * (1 + (1 - alpha) * 0.4), 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  // Flags
+  flags.forEach(f => {
+    if (!f.collected) {
+      const fx = f.x - camX;
+      const fy = f.y - camY;
+
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(fx - 6, fy + 12);
+      ctx.lineTo(fx - 6, fy - 12);
+      ctx.stroke();
+
+      if (f.type === 'SPECIAL') {
+        ctx.fillStyle = '#e056fd';
+      } else if (f.type === 'LUCKY') {
+        ctx.fillStyle = '#00d2d3';
+      } else {
+        ctx.fillStyle = '#f9ca24';
+      }
+
+      ctx.beginPath();
+      ctx.moveTo(fx - 5, fy - 12);
+      ctx.lineTo(fx + 12, fy - 5);
+      ctx.lineTo(fx - 5, fy + 2);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.fillStyle = '#000';
+      ctx.font = 'bold 9px monospace';
+      const letter = f.type === 'SPECIAL' ? 'S' : f.type === 'LUCKY' ? 'L' : '';
+      if (letter) ctx.fillText(letter, fx - 2, fy - 4);
+    }
+  });
+
+  // Enemy Red Cars
+  enemies.forEach(e => {
+    if (e.respawnTimer > 0) return;
+    const ex = e.x - camX;
+    const ey = e.y - camY;
+
+    ctx.save();
+    ctx.translate(ex, ey);
+    if (e.stunTimer > 0) {
+      ctx.rotate(e.spinAngle);
+    } else {
+      ctx.rotate(DIRS[e.dir].angle);
+    }
+
+    // Formula Red Body
+    ctx.fillStyle = '#eb4d4b';
+    ctx.fillRect(-9, -13, 18, 26);
+    // Spoiler and Cockpit
+    ctx.fillStyle = '#130f40';
+    ctx.fillRect(-5, -4, 10, 8);
+    // Wheels
+    ctx.fillStyle = '#535c68';
+    ctx.fillRect(-12, -11, 3, 7);
+    ctx.fillRect(9, -11, 3, 7);
+    ctx.fillRect(-12, 4, 3, 7);
+    ctx.fillRect(9, 4, 3, 7);
+
+    if (e.stunTimer > 0) {
+      ctx.fillStyle = '#ffff00';
+      ctx.font = '11px monospace';
+      ctx.fillText('💫', -6, -15);
+    }
+    ctx.restore();
+  });
+
+  // Player Car (Classic Yellow/Blue Formula)
+  if (!player.dead) {
+    const px = player.x - camX;
+    const py = player.y - camY;
+
+    if (player.invulnerableTime === 0 || Math.floor(player.invulnerableTime / 6) % 2 === 0) {
+      ctx.save();
+      ctx.translate(px, py);
+      ctx.rotate(DIRS[player.dir].angle);
+
+      // Yellow Body
+      ctx.fillStyle = '#f9ca24';
+      ctx.fillRect(-9, -13, 18, 26);
+      // Blue accents
+      ctx.fillStyle = '#0984e3';
+      ctx.fillRect(-7, -15, 14, 3);
+      ctx.fillRect(-8, 10, 16, 4);
+      // Cockpit
+      ctx.fillStyle = '#1e272e';
+      ctx.fillRect(-5, -4, 10, 8);
+      // Helmet
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(0, 0, 3, 0, Math.PI * 2);
+      ctx.fill();
+      // Tires
+      ctx.fillStyle = '#2f3542';
+      ctx.fillRect(-12, -11, 3, 7);
+      ctx.fillRect(9, -11, 3, 7);
+      ctx.fillRect(-12, 4, 3, 7);
+      ctx.fillRect(9, 4, 3, 7);
+
+      ctx.restore();
+    }
+  }
+
+  // Particles
+  particles.forEach(p => {
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.arc(p.x - camX, p.y - camY, p.radius, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  // Stage 1 Tutorial HUD Prompt Banner
+  if (currentStageIndex === 0 && !player.dead) {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.72)';
+    ctx.fillRect(20, 15, viewWidth - 40, 52);
+    ctx.strokeStyle = '#2ed573';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(20, 15, viewWidth - 40, 52);
+
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#2ed573';
+    ctx.font = 'bold 13px Courier New';
+    ctx.fillText('🔰 STAGE 1 : チュートリアル走行 (安全モード)', viewWidth / 2, 33);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '12px Courier New';
+    ctx.fillText('右のレーダーを見て黄色い旗を5本集めよう！ 敵が来たら [SPACE/煙幕]', viewWidth / 2, 53);
+    ctx.textAlign = 'left';
+  }
+
+  ctx.restore();
+
+  // Radar HUD
+  ctx.fillStyle = '#0a0d14';
+  ctx.fillRect(radarX, 0, radarWidth, canvas.height);
+  ctx.strokeStyle = '#ffb000';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(radarX, 0);
+  ctx.lineTo(radarX, canvas.height);
+  ctx.stroke();
+
+  // Statistics
+  ctx.fillStyle = '#ff4757';
+  ctx.font = 'bold 15px Courier New';
+  ctx.fillText('1UP SCORE', radarX + 20, 30);
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 20px Courier New';
+  ctx.fillText(score.toString().padStart(6, '0'), radarX + 20, 55);
+
+  ctx.fillStyle = '#2ed573';
+  ctx.font = 'bold 13px Courier New';
+  ctx.fillText('HIGH SCORE', radarX + 20, 85);
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 17px Courier New';
+  ctx.fillText(highScore.toString().padStart(6, '0'), radarX + 20, 105);
+
+  ctx.fillStyle = '#f1c40f';
+  ctx.font = 'bold 13px Courier New';
+  const stageName = currentStageIndex === 0 ? "ROUND 1 (TUTORIAL)" : `ROUND ${currentStageIndex + 1} / 5`;
+  ctx.fillText(stageName, radarX + 20, 138);
+
+  // FUEL GAUGE
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 12px Courier New';
+  ctx.fillText('FUEL', radarX + 20, 168);
+  ctx.fillStyle = '#1e272e';
+  ctx.fillRect(radarX + 65, 155, 170, 16);
+
+  const fuelPct = fuel / maxFuel;
+  ctx.fillStyle = fuelPct > 0.25 ? '#2ed573' : '#ff4757';
+  ctx.fillRect(radarX + 65, 155, 170 * fuelPct, 16);
+  ctx.strokeStyle = '#fff';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(radarX + 65, 155, 170, 16);
+
+  // Remaining Lives
+  ctx.fillStyle = '#ffb000';
+  ctx.fillText('CARS:', radarX + 20, 195);
+  for (let l = 0; l < lives; l++) {
+    ctx.fillStyle = '#f9ca24';
+    ctx.fillRect(radarX + 70 + l * 24, 185, 16, 12);
+  }
+
+  if (doubleScoreActive) {
+    ctx.fillStyle = '#e056fd';
+    ctx.font = 'bold 12px Courier New';
+    ctx.fillText('★ 2X SCORE ACTIVE ★', radarX + 38, 220);
+  }
+
+  // Radar Mini-map
+  const mapFrameX = radarX + 15;
+  const mapFrameY = 240;
+  const mapFrameW = 230;
+  const mapFrameH = 340;
+
+  ctx.fillStyle = '#000';
+  ctx.fillRect(mapFrameX, mapFrameY, mapFrameW, mapFrameH);
+  ctx.strokeStyle = '#00d2d3';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(mapFrameX, mapFrameY, mapFrameW, mapFrameH);
+
+  const scaleX = mapFrameW / (MAP_COLS * TILE_SIZE);
+  const scaleY = mapFrameH / (MAP_ROWS * TILE_SIZE);
+
+  // Radar Flags
+  const blink = Math.floor(Date.now() / 200) % 2 === 0;
+  if (blink) {
+    flags.forEach(f => {
+      if (!f.collected) {
+        ctx.fillStyle = f.type === 'SPECIAL' ? '#ff00ff' : f.type === 'LUCKY' ? '#00ffff' : '#ffff00';
+        const rx = mapFrameX + f.x * scaleX;
+        const ry = mapFrameY + f.y * scaleY;
+        ctx.fillRect(rx - 3, ry - 3, 6, 6);
+      }
+    });
+  }
+
+  // Radar Enemies
+  enemies.forEach(e => {
+    if (e.respawnTimer > 0) return;
+    ctx.fillStyle = '#ff3838';
+    const rx = mapFrameX + e.x * scaleX;
+    const ry = mapFrameY + e.y * scaleY;
+    ctx.fillRect(rx - 3, ry - 3, 6, 6);
+  });
+
+  // Radar Player
+  if (!player.dead) {
+    const rx = mapFrameX + player.x * scaleX;
+    const ry = mapFrameY + player.y * scaleY;
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(rx, ry, 3.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = '#f1c40f';
+    ctx.beginPath();
+    ctx.arc(rx, ry, 6, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+
+  if (gameState === 'TITLE') renderTitleScreen();
+  else if (gameState === 'ROUND_CLEAR') renderRoundClearScreen();
+  else if (gameState === 'GAME_OVER') renderGameOverScreen();
+  else if (gameState === 'ENDING') renderEndingScreen();
+}
+
+function renderTitleScreen() {
+  ctx.fillStyle = 'rgba(2, 4, 10, 0.94)';
+  ctx.fillRect(0, 0, 640, 600);
+
+  // Decorative Arcade Grid Lines
+  ctx.strokeStyle = 'rgba(34, 166, 179, 0.2)';
+  ctx.lineWidth = 1;
+  for (let y = 30; y < 600; y += 30) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(640, y); ctx.stroke();
+  }
+  for (let x = 30; x < 640; x += 30) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 600); ctx.stroke();
+  }
+
+  ctx.textAlign = 'center';
+
+  // Shadow Logo
+  ctx.fillStyle = '#b31217';
+  ctx.font = '900 48px Courier New';
+  ctx.fillText('RALLY - X', 323, 83);
+  // Foreground Logo
+  ctx.fillStyle = '#ff4757';
+  ctx.fillText('RALLY - X', 320, 80);
+
+  ctx.fillStyle = '#f1c40f';
+  ctx.font = 'bold 18px Courier New';
+  ctx.fillText('★ RETRO ESCAPE - 5 STAGES ★', 320, 115);
+
+  // Animated Demo Chasing Cars
+  const tAnim = (Date.now() / 20) % 720 - 40;
+  // Road strip
+  ctx.fillStyle = '#11141c';
+  ctx.fillRect(60, 135, 520, 40);
+  ctx.strokeStyle = '#ffb000';
+  ctx.strokeRect(60, 135, 520, 40);
+
+  // Demo Player (Yellow)
+  ctx.fillStyle = '#f9ca24';
+  ctx.fillRect(tAnim, 148, 22, 14);
+  ctx.fillStyle = '#0984e3';
+  ctx.fillRect(tAnim + 16, 149, 4, 12);
+
+  // Demo Red Chaser
+  ctx.fillStyle = '#eb4d4b';
+  ctx.fillRect(tAnim - 55, 148, 22, 14);
+
+  // Demo Puff of Smoke
+  if (Math.sin(Date.now() / 100) > 0) {
+    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+    ctx.beginPath();
+    ctx.arc(tAnim - 12, 155, 6, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Scoring / Rules Table
+  ctx.fillStyle = '#0d1322';
+  ctx.fillRect(60, 195, 520, 205);
+  ctx.strokeStyle = '#22a6b3';
+  ctx.strokeRect(60, 195, 520, 205);
+
+  ctx.fillStyle = '#00d2d3';
+  ctx.font = 'bold 15px Courier New';
+  ctx.fillText('━ MISSION OBJECTIVES & FLAGS ━', 320, 222);
+
+  ctx.textAlign = 'left';
+  // Flag guide
+  ctx.fillStyle = '#f9ca24';
+  ctx.fillText('🚩 YELLOW FLAG', 85, 252);
+  ctx.fillStyle = '#fff';
+  ctx.fillText(': 100 PTS  (集めるとステージクリア)', 240, 252);
+
+  ctx.fillStyle = '#e056fd';
+  ctx.fillText('🚩 [S] SPECIAL', 85, 280);
+  ctx.fillStyle = '#fff';
+  ctx.fillText(': 500 PTS + 以降の全得点が2倍！', 240, 280);
+
+  ctx.fillStyle = '#00d2d3';
+  ctx.fillText('🚩 [L] LUCKY', 85, 308);
+  ctx.fillStyle = '#fff';
+  ctx.fillText(': 残燃料ボーナス ＋ 燃料回復！', 240, 308);
+
+  ctx.fillStyle = '#ff6b81';
+  ctx.fillText('💨 SMOKE [SPACE]', 85, 336);
+  ctx.fillStyle = '#fff';
+  ctx.fillText(': 煙幕を撒いて追跡敵車をスピン停止！', 240, 336);
+
+  ctx.fillStyle = '#2ed573';
+  ctx.font = 'bold 13px Courier New';
+  ctx.fillText('🔰 第1ステージは敵1台・岩無しの安全チュートリアルです', 85, 375);
+
+  // Controls info
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#a4b0be';
+  ctx.font = '13px Courier New';
+  ctx.fillText('操作: [矢印キー/WASD] で曲がり角を先行予約 / スマホは仮想ボタン', 320, 435);
+
+  const blink = Math.floor(Date.now() / 420) % 2 === 0;
+  if (blink) {
+    ctx.fillStyle = '#f1c40f';
+    ctx.font = 'bold 22px Courier New';
+    ctx.fillText('▶ PRESS SPACE OR TAP TO START ◀', 320, 495);
+  }
+
+  ctx.fillStyle = '#747d8c';
+  ctx.font = '12px Courier New';
+  ctx.fillText('1980s NAMCO ARCADE HOMAGE - HTML5 STANDALONE', 320, 545);
+
+  ctx.textAlign = 'left';
+}
+
+function renderRoundClearScreen() {
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.82)';
+  ctx.fillRect(0, 0, 640, 600);
+
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#2ecc71';
+  ctx.font = 'bold 36px Courier New';
+  ctx.fillText('ROUND CLEAR!', 320, 220);
+
+  const cfg = STAGE_CONFIGS[currentStageIndex];
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 20px Courier New';
+  ctx.fillText(cfg.name, 320, 265);
+
+  ctx.fillStyle = '#f1c40f';
+  ctx.font = '16px Courier New';
+  ctx.fillText(`FUEL BONUS: +${Math.floor(fuel * 30)} PTS`, 320, 310);
+
+  const nextCfg = STAGE_CONFIGS[currentStageIndex + 1];
+  if (nextCfg) {
+    ctx.fillStyle = '#00d2d3';
+    ctx.font = 'bold 15px Courier New';
+    ctx.fillText(`NEXT: ${nextCfg.name}`, 320, 370);
+    ctx.fillStyle = '#dcdde1';
+    ctx.font = '13px Courier New';
+    ctx.fillText(`( ${nextCfg.desc} )`, 320, 395);
+  }
+
+  if (stateTimer > 150) {
+    setupRound(currentStageIndex + 1);
+    gameState = 'PLAYING';
+    sound.startBGM();
+  }
+  ctx.textAlign = 'left';
+}
+
+function renderGameOverScreen() {
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.88)';
+  ctx.fillRect(0, 0, 640, 600);
+
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#e84118';
+  ctx.font = 'bold 44px Courier New';
+  ctx.fillText('GAME OVER', 320, 240);
+
+  ctx.fillStyle = '#fff';
+  ctx.font = '20px Courier New';
+  ctx.fillText(`FINAL SCORE: ${score}`, 320, 310);
+
+  const blink = Math.floor(Date.now() / 450) % 2 === 0;
+  if (blink) {
+    ctx.fillStyle = '#f5cd79';
+    ctx.font = 'bold 18px Courier New';
+    ctx.fillText('PRESS SPACE OR TAP TO RESTART', 320, 420);
+  }
+  ctx.textAlign = 'left';
+}
+
+function renderEndingScreen() {
+  ctx.fillStyle = 'rgba(5, 5, 20, 0.92)';
+  ctx.fillRect(0, 0, 640, 600);
+
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#f1c40f';
+  ctx.font = 'bold 34px Courier New';
+  ctx.fillText('CONGRATULATIONS!', 320, 150);
+
+  ctx.fillStyle = '#00d2d3';
+  ctx.font = 'bold 22px Courier New';
+  ctx.fillText('ALL 5 STAGES CLEARED!', 320, 200);
+
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '18px Courier New';
+  ctx.fillText(`CLEAR TIME: ${totalClearTime} SEC`, 320, 270);
+  ctx.fillText(`TOTAL SCORE: ${score}`, 320, 310);
+  ctx.fillText(`HIGH SCORE: ${highScore}`, 320, 350);
+
+  ctx.fillStyle = '#e056fd';
+  ctx.font = 'bold 16px Courier New';
+  ctx.fillText('🏆 YOU ARE THE MASTER OF RALLY-X 🏆', 320, 410);
+
+  const blink = Math.floor(Date.now() / 450) % 2 === 0;
+  if (blink) {
+    ctx.fillStyle = '#fff';
+    ctx.font = '16px Courier New';
+    ctx.fillText('PRESS SPACE OR TAP FOR TITLE', 320, 490);
+  }
+  ctx.textAlign = 'left';
+}
+
+function gameLoop() {
+  update();
+  draw();
+  requestAnimationFrame(gameLoop);
+}
+
+window.onload = function() {
+  setupRound(0);
+  gameState = 'TITLE';
+  gameLoop();
+};
+</script>
+</body>
+</html>

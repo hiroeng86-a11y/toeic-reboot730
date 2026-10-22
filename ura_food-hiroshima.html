@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>広島の食・農水産・物流エコシステム 構造インフォグラフィック</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0a0e17',
+              card: 'rgba(21, 29, 47, 0.88)',
+              accent: '#38bdf8',
+              crimson: '#ef4444',
+              emerald: '#10b981',
+              amber: '#f59e0b',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0a0e17;
+      color: #e2e8f0;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    }
+    .glass-card {
+      background: rgba(21, 29, 47, 0.88);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(51, 65, 85, 0.6);
+      transition: all 0.25s ease-in-out;
+    }
+    .glass-card:hover {
+      border-color: rgba(56, 189, 248, 0.7);
+      transform: translateY(-2px);
+    }
+    .metric-card.dimmed {
+      opacity: 0.2;
+      filter: grayscale(80%);
+      transform: scale(0.98);
+    }
+    .metric-card.highlighted {
+      border-color: #38bdf8 !important;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+      background: rgba(30, 41, 69, 0.95);
+      transform: scale(1.02);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen p-4 md:p-8 custom-scrollbar">
+
+  <!-- HEADER -->
+  <header class="max-w-7xl mx-auto mb-8 border-b border-slate-800 pb-6">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-800 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-2">
+          <i class="fa-solid fa-water"></i> Maritime & Montane Agro-Logistics Architecture
+        </div>
+        <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight flex items-center gap-3">
+          広島「食・農水産・物流」30の基幹数字
+        </h1>
+        <p class="text-slate-400 text-sm mt-1 max-w-2xl">
+          瀬戸内海の恵み（カキ・レモン）と中国山地の中山間農業、山陽大動脈の幹線物流と外食加工産業が織りなす構造的ダイナミクスを解読。
+        </p>
+      </div>
+      <!-- FILTER BUTTONS -->
+      <div class="flex flex-wrap items-center gap-2" id="filterContainer">
+        <button onclick="filterCategory('all')" class="filter-btn active px-3.5 py-1.5 text-xs font-medium rounded-lg bg-sky-500 text-white shadow-sm transition">すべて</button>
+        <button onclick="filterCategory('macro')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">マクロ・基盤</button>
+        <button onclick="filterCategory('marine-crops')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">水産・農林・畜産</button>
+        <button onclick="filterCategory('food')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">醸造・食文化・外食</button>
+        <button onclick="filterCategory('logistics')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">物流・サプライチェーン</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto space-y-8">
+
+    <!-- KPI SUMMARY BAR -->
+    <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="glass-card rounded-xl p-4 border-l-4 border-l-cyan-500">
+        <span class="text-xs text-slate-400 font-medium">養殖カキ 全国シェア</span>
+        <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">62.8 <span class="text-base font-normal text-cyan-400">%</span></div>
+        <div class="text-xs text-cyan-400 mt-1 flex items-center gap-1"><i class="fa-solid fa-crown"></i> 圧倒的全国No.1（瀬戸内海湾岸）</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 border-l-4 border-l-amber-500">
+        <span class="text-xs text-slate-400 font-medium">国産レモン 生産シェア</span>
+        <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">51.2 <span class="text-base font-normal text-amber-400">%</span></div>
+        <div class="text-xs text-amber-400 mt-1"><i class="fa-solid fa-lemon"></i> 生口島・大崎下島など島嶼部主産</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 border-l-4 border-l-emerald-500">
+        <span class="text-xs text-slate-400 font-medium">農業産出額（野菜・畜産中心）</span>
+        <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">約1,038 <span class="text-base font-normal text-emerald-400">億円</span></div>
+        <div class="text-xs text-slate-400 mt-1">中山間地多品種＋沿岸園芸の複合型</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 border-l-4 border-l-red-500">
+        <span class="text-xs text-slate-400 font-medium">県内お好み焼き店舗数</span>
+        <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">約1,600 <span class="text-base font-normal text-red-400">軒</span></div>
+        <div class="text-xs text-red-400 mt-1"><i class="fa-solid fa-utensils"></i> 人口比全国1位水準の巨大消費網</div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE CARD GRID (30 NUMBERS) -->
+    <section>
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-diagram-project text-sky-400"></i>
+          基幹数字マトリクス（クリックで因果関係・連鎖ハイライト）
+        </h2>
+        <button onclick="resetHighlight()" class="text-xs text-slate-400 hover:text-white px-2 py-1 rounded bg-slate-800 border border-slate-700">選択解除</button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3" id="cardsGrid">
+        <!-- Javascript dynamically renders 30 cards here -->
+      </div>
+    </section>
+
+    <!-- 2 COMPARATIVE CHART AREAS -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- CHART 1: 規模・産出額の構造比較 -->
+      <div class="glass-card rounded-xl p-5 border border-slate-800 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-chart-column text-sky-400"></i>
+              広島県 主要農水産部門の産出・生産規模（億円換算）
+            </h3>
+            <span class="text-xs bg-slate-800 text-slate-400 px-2 py-0.5 rounded">縦棒チャート</span>
+          </div>
+          <p class="text-xs text-slate-400 mb-4">カキを主軸とする水産業と、畜産・野菜・米が拮抗する中山間複合構造。</p>
+        </div>
+        <div class="h-64 relative">
+          <canvas id="outputScaleChart"></canvas>
+        </div>
+      </div>
+
+      <!-- CHART 2: 独立比率・全国依存度（上限100% 水平バーチャート） -->
+      <div class="glass-card rounded-xl p-5 border border-slate-800 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-chart-bar text-amber-400"></i>
+              広島県 主要指標の全国比率・特化度（上限100%基準）
+            </h3>
+            <span class="text-xs bg-slate-800 text-amber-400/80 px-2 py-0.5 rounded">水平バーチャート</span>
+          </div>
+          <p class="text-xs text-slate-400 mb-4">母集団が異なるシェア・比率を厳格に独立個別評価（円グラフ誤用を完全排除）。</p>
+        </div>
+        <div class="h-64 relative">
+          <canvas id="dependencyRatioChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- STRUCTURAL CALCULATOR / SIMULATOR -->
+    <section class="glass-card rounded-xl p-6 border border-slate-800">
+      <div class="flex items-center gap-2 mb-3">
+        <i class="fa-solid fa-calculator text-emerald-400"></i>
+        <h3 class="text-base font-bold text-white">広島発サプライチェーン & 物流負荷シミュレーター</h3>
+      </div>
+      <p class="text-xs text-slate-400 mb-4">
+        広島（山陽ベルト・瀬戸内海）から大消費地へのチルド輸送（生鮮カキ・柑橘）における時間・コスト・ドライバー拘束負荷を試算。
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center bg-slate-900/60 p-4 rounded-lg border border-slate-800 text-sm">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">仕向地（片道距離 / 主要輸送ルート）</label>
+          <select id="calcDestination" class="w-full bg-slate-800 border border-slate-700 rounded p-2 text-white text-xs focus:ring-1 focus:ring-sky-500" onchange="runSimulation()">
+            <option value="820" selected>首都圏・豊洲市場（約820km / 山陽道・東名経由）</option>
+            <option value="330">関西・大阪中央市場（約330km / 山陽道経由即日便）</option>
+            <option value="280">福岡・博多市場（約280km / 関門橋経由当日配送）</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">出荷規模（チルド10t車換算台数）</label>
+          <input type="number" id="calcTrucks" min="1" max="100" value="8" class="w-full bg-slate-800 border border-slate-700 rounded p-2 text-white text-xs focus:ring-1 focus:ring-sky-500" onchange="runSimulation()">
+        </div>
+        <div class="p-3 bg-slate-950/80 rounded border border-slate-800/80">
+          <div class="text-xs text-slate-400">試算：輸送CO2排出量 & ドライバー拘束リスク</div>
+          <div class="text-lg font-bold text-sky-400 mt-1" id="calcResultDisplay">CO₂ 約 3.15 t ／ 拘束時間 約20〜22時間</div>
+          <div class="text-[11px] text-slate-500 mt-0.5" id="calcInsight">※東京直行は連続運転・拘束規制に直面。中間リレー拠点または新幹線貨物併用が論点。</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="max-w-7xl mx-auto mt-12 pt-6 border-t border-slate-800/80 text-center text-xs text-slate-500">
+    <p>広島県食料・水産・農業・物流構造インフォグラフィック | 農林水産統計・水産白書・広島県庁公表統計に基づく体系的整理</p>
+  </footer>
+
+  <!-- DATA & JAVASCRIPT LOGIC -->
+  <script>
+    // 30 Core Metrics Data Definition for Hiroshima
+    const metricsData = [
+      { id: 1, num: "62.8%", unit: "", title: "養殖カキ 全国シェア", cat: "marine-crops", rel: [2, 11, 18, 21], desc: "全国の過半を独占。太田川水系からの植物プランクトンと穏やかな広島湾が形成。" },
+      { id: 2, num: "約9万t", unit: "", title: "カキ年間水揚量（殻付）", cat: "marine-crops", rel: [1, 18, 20, 21], desc: "むき身・殻付き双方で全国首位。冬季チルド物流網と急速冷凍技術が全国網を支える。" },
+      { id: 3, num: "51.2%", unit: "", title: "国産レモン 生産シェア", cat: "marine-crops", rel: [4, 16, 21, 26], desc: "瀬戸内広島レモン。防腐剤・ワックス不使用の皮ごと流通で高付加価値化に成功。" },
+      { id: 4, num: "53.4%", unit: "", title: "八朔（はっさく）シェア", cat: "marine-crops", rel: [3, 16, 26], desc: "因島（尾道市）発祥の柑橘。温暖寡雨な島嶼部斜面が生む代表的特産品。" },
+      { id: 5, num: "1,038億", unit: "円", title: "農業産出額", cat: "macro", rel: [6, 7, 8, 29], desc: "畜産・野菜・米が均衡。大規模平野が少ないため高付加価値型・中山間型へ特化。" },
+      { id: 6, num: "392億", unit: "円", title: "畜産産出額", cat: "marine-crops", rel: [5, 9, 25], desc: "県内農業最大のシェア（約38%）。肉用牛・酪農・養鶏が県北を中心に集積。" },
+      { id: 7, num: "30%", unit: "", title: "カロリーベース自給率", cat: "macro", rel: [5, 8, 22], desc: "大消費地・工業都市を抱えるため自給率は全国平均未満。外内需ハイブリッド型。" },
+      { id: 8, num: "72%", unit: "", title: "中山間地域比率", cat: "macro", rel: [5, 29, 30], desc: "県土の約7割が中山間部。寒暖差を利用した高原野菜や酒米栽培の強みと輸送の弱点が同居。" },
+      { id: 9, num: "180年+", unit: "", title: "比婆牛（血統源流）の歴史", cat: "marine-crops", rel: [6, 17, 25], desc: "日本最古の蔓牛（岩倉蔓）ルーツ。広島和牛として脂の融点が低く高品質。" },
+      { id: 10, num: "約50蔵", unit: "", title: "県内清酒酒蔵数", cat: "food", rel: [12, 13, 15], desc: "西条（東広島）・竹原・呉など酒どころが林立。灘・伏見と並ぶ日本三大銘醸地。" },
+      { id: 11, num: "80%超", unit: "", title: "カキ県外・首都圏出荷率", cat: "logistics", rel: [1, 2, 18, 21], desc: "生産の大多数は首都圏・中京・関西等の生鮮市場および外食チェーンへ流出。" },
+      { id: 12, num: "100%", unit: "", title: "軟水醸造法 発祥地", cat: "food", rel: [10, 13, 15], desc: "三浦仙三郎が開発した低温発酵技術。硬水適用の常識を覆し芳醇吟醸酒の礎を築く。" },
+      { id: 13, num: "3大品種", unit: "", title: "酒造好適米（八反・千本）", cat: "marine-crops", rel: [8, 10, 12], desc: "八反錦・千本錦・雄町など高品質酒米を県北部の中山間標高差で栽培。" },
+      { id: 14, num: "約1,600軒", unit: "", title: "お好み焼き店舗数", cat: "food", rel: [16, 17, 23], desc: "キャベツ・中華麺・豚肉・卵を重ね焼きする文化。市内1人当たり店舗数日本一水準。" },
+      { id: 15, num: "1位", unit: "", title: "日本酒酒類総合研究所", cat: "macro", rel: [10, 12, 28], desc: "国税庁直轄から移行した酒類研究機関が東広島市西条に立地。全国醸造の中心地。" },
+      { id: 16, num: "1位", unit: "", title: "オタフクソース等 ソース出荷", cat: "food", rel: [14, 17, 24], desc: "お好みソースの最大拠点。デーツ原料活用や外食業務用サプライチェーンを世界展開。" },
+      { id: 17, num: "20万t超", unit: "", title: "加工用キャベツ県内消費量", cat: "food", rel: [5, 14, 16], desc: "お好み焼きチェーン向けに膨大なキャベツ需要。県内契約栽培と他県リレーで調達。" },
+      { id: 18, num: "820km", unit: "", title: "首都圏豊洲市場への輸送距離", cat: "logistics", rel: [1, 2, 11, 19], desc: "カキ・生鮮柑橘の幹線陸送距離。翌日早朝便運行における長距離制約のボーダー。" },
+      { id: 19, num: "2024年", unit: "問題", title: "長距離運行時間外規制", cat: "logistics", rel: [11, 18, 22, 27], desc: "東京方面へのワンマン直行トラックが困難化。山陽新幹線貨物・中継輸送の導入が進む。" },
+      { id: 20, num: "100億円+", unit: "", title: "カキ養殖産出額", cat: "marine-crops", rel: [1, 2, 11], desc: "水産単一品目として突出した経済規模。加工冷凍・オイル漬け等6次化も加速。" },
+      { id: 21, num: "約150億円", unit: "", title: "農水産品輸出実績", cat: "logistics", rel: [1, 3, 24, 28], desc: "カキ・酒・ソース・柑橘が東アジア・欧米へ急拡大。広島港コンテナ機能と連携。" },
+      { id: 22, num: "山陽道1軸", unit: "", title: "大動脈依存リスク", cat: "logistics", rel: [18, 19, 27], desc: "東西輸送の9割以上が山陽自動車道に集中。豪雨災害時の寸断リスクが構造的弱点。" },
+      { id: 23, num: "3大ご当地麺", unit: "", title: "尾道・広島・汁なし担々", cat: "food", rel: [14, 16, 25], desc: "尾道の背脂醤油、広島の豚骨醤油、広島発祥汁なし担々麺と重厚な麺食文化。" },
+      { id: 24, num: "国際拠点港", unit: "", title: "広島港 コンテナ貨物網", cat: "logistics", rel: [20, 21, 28], desc: "東南アジア・中国直行定期航路を有し、冷凍水産加工品・調味料の輸出港として機能。" },
+      { id: 25, num: "600万羽", unit: "", title: "採卵鶏・ブロイラー飼養数", cat: "marine-crops", rel: [5, 6, 14], desc: "県北・備後地区の大規模養鶏。お好み焼きの鶏卵需要や鶏肉食文化を支える。" },
+      { id: 26, num: "700島超", unit: "", title: "瀬戸内海 多島美柑橘網", cat: "macro", rel: [3, 4, 16], desc: "しまなみ海道・とびしま海道等の架橋で陸送化され、鮮度維持のまま即日集荷可能に。" },
+      { id: 27, num: "山陽本線", unit: "", title: "JR貨物幹線モーダルシフト", cat: "logistics", rel: [18, 19, 22], desc: "広島貨物ターミナル駅を中核とした鉄道コンテナ輸送。2024年問題の有力な代替軸。" },
+      { id: 28, num: "3,000m", unit: "", title: "広島空港 国際航空貨物", cat: "logistics", rel: [1, 3, 21], desc: "高標高（標高331m）拠点のハブ。活魚・生鮮カキ・高級和牛のアジア当日空輸を担う。" },
+      { id: 29, num: "70.2歳", unit: "", title: "基幹的農業従事者平均年齢", cat: "macro", rel: [5, 8, 30], desc: "中山間地域の過疎化に伴う担い手高齢化。耕作放棄地対策とアグリテック導入が急務。" },
+      { id: 30, num: "約2,400", unit: "経営体", title: "認定農業者・集落営農組織", cat: "macro", rel: [5, 8, 29], desc: "中山間地特有の集落営農法人比率が全国トップクラス。地域共同による農地保全。" }
+    ];
+
+    // Render Cards
+    const grid = document.getElementById('cardsGrid');
+    function renderCards(filter = 'all') {
+      grid.innerHTML = '';
+      metricsData.forEach(item => {
+        if (filter !== 'all' && item.cat !== filter) return;
+
+        const card = document.createElement('div');
+        card.className = `metric-card glass-card rounded-lg p-3 cursor-pointer border border-slate-800 flex flex-col justify-between`;
+        card.setAttribute('data-id', item.id);
+        card.setAttribute('data-rel', JSON.stringify(item.rel));
+        card.onclick = () => handleCardClick(item.id);
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
+              <span class="font-mono text-cyan-400 font-bold">#${item.id < 10 ? '0' + item.id : item.id}</span>
+              <span class="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">${item.cat}</span>
+            </div>
+            <div class="text-xl font-black text-white tracking-tight flex items-baseline gap-0.5">
+              ${item.num} <span class="text-xs font-normal text-slate-400">${item.unit}</span>
+            </div>
+            <div class="text-xs font-bold text-slate-200 mt-1 line-clamp-1">${item.title}</div>
+            <p class="text-[11px] text-slate-400 mt-1 leading-relaxed line-clamp-2">${item.desc}</p>
+          </div>
+          <div class="mt-2 pt-2 border-t border-slate-800/80 flex items-center justify-between text-[10px] text-slate-500">
+            <span>連動: ${item.rel.map(r => '#' + (r < 10 ? '0' + r : r)).join(' ')}</span>
+            <i class="fa-solid fa-circle-nodes text-slate-600"></i>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Filter Logic
+    function filterCategory(cat) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('bg-sky-500', 'text-white');
+        btn.classList.add('bg-slate-800', 'text-slate-300');
+      });
+      event.target.classList.remove('bg-slate-800', 'text-slate-300');
+      event.target.classList.add('bg-sky-500', 'text-white');
+      renderCards(cat);
+      resetHighlight();
+    }
+
+    // Interactive Highlight Logic
+    let selectedId = null;
+    function handleCardClick(id) {
+      if (selectedId === id) {
+        resetHighlight();
+        return;
+      }
+      selectedId = id;
+      const target = metricsData.find(m => m.id === id);
+      const relatedIds = [id, ...(target ? target.rel : [])];
+
+      document.querySelectorAll('.metric-card').forEach(card => {
+        const cardId = parseInt(card.getAttribute('data-id'));
+        if (relatedIds.includes(cardId)) {
+          card.classList.remove('dimmed');
+          card.classList.add('highlighted');
+        } else {
+          card.classList.remove('highlighted');
+          card.classList.add('dimmed');
+        }
+      });
+    }
+
+    function resetHighlight() {
+      selectedId = null;
+      document.querySelectorAll('.metric-card').forEach(card => {
+        card.classList.remove('dimmed', 'highlighted');
+      });
+    }
+
+    // Initialize Charts
+    let chart1, chart2;
+    function initCharts() {
+      // Chart 1: 主要品目・部門別産出額（縦棒グラフ）
+      const ctx1 = document.getElementById('outputScaleChart').getContext('2d');
+      chart1 = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+          labels: ['畜産合計', '野菜・果実', '米・穀類', '養殖カキ(水産)', 'その他農産'],
+          datasets: [{
+            label: '産出規模（億円）',
+            data: [392, 280, 210, 115, 156],
+            backgroundColor: [
+              'rgba(239, 68, 68, 0.75)',
+              'rgba(245, 158, 11, 0.75)',
+              'rgba(16, 185, 129, 0.75)',
+              'rgba(56, 189, 248, 0.75)',
+              'rgba(148, 163, 184, 0.65)'
+            ],
+            borderColor: '#0f172a',
+            borderWidth: 1,
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#1e293b',
+              titleColor: '#fff',
+              bodyColor: '#cbd5e1'
+            }
+          },
+          scales: {
+            x: {
+              ticks: { color: '#94a3b8', font: { size: 11 } },
+              grid: { display: false }
+            },
+            y: {
+              beginAtZero: true,
+              ticks: { color: '#94a3b8', font: { size: 10 } },
+              grid: { color: 'rgba(51, 65, 85, 0.4)' }
+            }
+          }
+        }
+      });
+
+      // Chart 2: 比率・全国シェア特化度（水平バーチャート 上限100%厳格固定）
+      const ctx2 = document.getElementById('dependencyRatioChart').getContext('2d');
+      chart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+          labels: [
+            'カキ県外・首都圏出荷比率',
+            '県土中山間地域面積比率',
+            '養殖カキ 国内生産シェア',
+            '八朔（はっさく）国内シェア',
+            '国産レモン 国内生産シェア',
+            '食料自給率（カロリー基準）'
+          ],
+          datasets: [{
+            label: '比率・シェア (%)',
+            data: [82.0, 72.0, 62.8, 53.4, 51.2, 30.0],
+            backgroundColor: 'rgba(56, 189, 248, 0.75)',
+            borderColor: '#38bdf8',
+            borderWidth: 1,
+            borderRadius: 4
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(context) { return `${context.parsed.x}%`; }
+              }
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              max: 100, // 厳格な100%上限ルール適用
+              ticks: {
+                color: '#94a3b8',
+                callback: function(value) { return value + "%"; }
+              },
+              grid: { color: 'rgba(51, 65, 85, 0.4)' }
+            },
+            y: {
+              ticks: { color: '#cbd5e1', font: { size: 11 } },
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    }
+
+    // Simulator Logic
+    function runSimulation() {
+      const distance = parseFloat(document.getElementById('calcDestination').value);
+      const trucks = parseInt(document.getElementById('calcTrucks').value);
+      
+      // 10tチルド車 1台・1kmあたりのCO2排出量試算（約0.48kg-CO2/km）
+      const co2TotalTon = ((distance * trucks * 0.48) / 1000).toFixed(2);
+      
+      let constraintText = "";
+      let insightText = "";
+      if (distance >= 800) {
+        constraintText = "拘束時間 約20〜24時間（2人運行または中継必須）";
+        insightText = "※首都圏向け生鮮カキ・レモン便は2024年問題の要衝。山陽新幹線「レールゴー」や貨物鉄道併用が不可欠。";
+      } else if (distance >= 300) {
+        constraintText = "拘束時間 約8〜10時間（日帰り往復・夜間ワンマン可能）";
+        insightText = "※関西圏へは山陽道直行で翌朝の中央卸売市場セリに直結。広島の最も安定した物流幹線。";
+      } else {
+        constraintText = "拘束時間 約6〜8時間（当日配送・高回転）";
+        insightText = "※福岡・北九州圏へは関門橋経由で最短アクセス。西日本域内サプライチェーンの強み。";
+      }
+
+      document.getElementById('calcResultDisplay').innerText = `CO₂ 約 ${co2TotalTon} t ／ ${constraintText}`;
+      document.getElementById('calcInsight').innerText = insightText;
+    }
+
+    // Initial Execution
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCards();
+      initCharts();
+      runSimulation();
+    });
+  </script>
+</body>
+</html>

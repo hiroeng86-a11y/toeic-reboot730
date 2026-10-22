@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>システム連携図解 & 構築議事録 | Knowledge & Training Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #0b1120;
+      color: #e2e8f0;
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body class="min-h-screen p-4 sm:p-8">
+  <div class="max-w-6xl mx-auto space-y-8">
+    
+    <!-- ヘッダー -->
+    <header class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-l-4 border-emerald-500">
+      <div>
+        <div class="flex items-center gap-3">
+          <span class="p-2.5 bg-emerald-500/20 text-emerald-400 rounded-xl"><i class="fa-solid fa-diagram-project fa-lg"></i></span>
+          <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">3社連携アーキテクチャ & 構築議事録</h1>
+        </div>
+        <p class="text-slate-400 text-sm mt-1">VSC・GitHub・Cloudflareの役割分担と、手動脱却を果たした作業全容のまとめ</p>
+      </div>
+      <a href="index.html" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-sm border border-slate-700 transition flex items-center gap-2">
+        <i class="fa-solid fa-arrow-left"></i> ポータルへ戻る
+      </a>
+    </header>
+
+    <!-- 3社の関係性図解 -->
+    <section class="space-y-4">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <i class="fa-solid fa-network-wired text-sky-400"></i> 三位一体の役割分担図
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- VS Code -->
+        <div class="glass-card rounded-2xl p-6 relative overflow-hidden border-t-4 border-blue-500">
+          <div class="text-blue-400 text-3xl mb-3"><i class="fa-solid fa-laptop-code"></i></div>
+          <span class="text-xs uppercase font-bold text-blue-400 tracking-wider">ローカル工房（作業机）</span>
+          <h3 class="text-xl font-bold text-white mt-1 mb-2">VS Code</h3>
+          <p class="text-slate-300 text-sm leading-relaxed mb-4">
+            手元のパソコン内部でファイルを書き換えたり、JSONデータを整える場所。
+          </p>
+          <div class="p-3 bg-slate-900/80 rounded-lg text-xs text-slate-400 border border-slate-800 space-y-1">
+            <div class="text-blue-300 font-semibold"><i class="fa-solid fa-gear"></i> あなたの操作:</div>
+            <div>・コード・単語の編集</div>
+            <div>・<code class="text-sky-300">Ctrl + S</code> で保存</div>
+            <div>・下部ターミナルで送信合図</div>
+          </div>
+        </div>
+
+        <!-- GitHub -->
+        <div class="glass-card rounded-2xl p-6 relative overflow-hidden border-t-4 border-purple-500">
+          <div class="text-purple-400 text-3xl mb-3"><i class="fa-brands fa-github"></i></div>
+          <span class="text-xs uppercase font-bold text-purple-400 tracking-wider">中間金庫（マスター保管庫）</span>
+          <h3 class="text-xl font-bold text-white mt-1 mb-2">GitHub</h3>
+          <p class="text-slate-300 text-sm leading-relaxed mb-4">
+            インターネット上に完全非公開（Private）で配置された、過去すべての履歴を持つ中央金庫。
+          </p>
+          <div class="p-3 bg-slate-900/80 rounded-lg text-xs text-slate-400 border border-slate-800 space-y-1">
+            <div class="text-purple-300 font-semibold"><i class="fa-solid fa-shield"></i> 役割:</div>
+            <div>・全ファイルの安全保管</div>
+            <div>・更新データの着信窓口</div>
+            <div>・Cloudflareへ更新を即時通報</div>
+          </div>
+        </div>
+
+        <!-- Cloudflare Pages -->
+        <div class="glass-card rounded-2xl p-6 relative overflow-hidden border-t-4 border-amber-500">
+          <div class="text-amber-400 text-3xl mb-3"><i class="fa-solid fa-cloud"></i></div>
+          <span class="text-xs uppercase font-bold text-amber-400 tracking-wider">世界配信所（電波塔）</span>
+          <h3 class="text-xl font-bold text-white mt-1 mb-2">Cloudflare Pages</h3>
+          <p class="text-slate-300 text-sm leading-relaxed mb-4">
+            GitHubからデータを受け取り、世界中のエッジサーバーへ即座に公開・配信するプラットフォーム。
+          </p>
+          <div class="p-3 bg-slate-900/80 rounded-lg text-xs text-slate-400 border border-slate-800 space-y-1">
+            <div class="text-amber-300 font-semibold"><i class="fa-solid fa-bolt"></i> 自動処理:</div>
+            <div>・着信を自動検知（Webhook）</div>
+            <div>・数秒で最新版を全世界配置</div>
+            <div>・PIN認証によるアクセス防護</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- パイプラインの流れ -->
+      <div class="glass-card rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left text-sm text-slate-300">
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold">1</span>
+          <span>PCで編集・保存 (Ctrl+S)</span>
+        </div>
+        <i class="fa-solid fa-arrow-right text-slate-600 hidden sm:block"></i>
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold">2</span>
+          <span>3行コマンド送信 (Push)</span>
+        </div>
+        <i class="fa-solid fa-arrow-right text-slate-600 hidden sm:block"></i>
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold">3</span>
+          <span>GitHub金庫に格納</span>
+        </div>
+        <i class="fa-solid fa-arrow-right text-slate-600 hidden sm:block"></i>
+        <div class="flex items-center gap-3">
+          <span class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">4</span>
+          <span class="text-emerald-400 font-bold">Cloudflareが自動反映！</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 本日の作業議事録 -->
+    <section class="glass-card rounded-2xl p-6 sm:p-8 space-y-6">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2">
+        <i class="fa-solid fa-clipboard-check text-emerald-400"></i> 本日の導入作業 議事録
+      </h2>
+      
+      <div class="space-y-4 text-sm">
+        
+        <div class="border-l-2 border-slate-700 pl-4 space-y-1">
+          <div class="text-xs text-sky-400 font-semibold">STEP 1: 開発環境の基盤構築</div>
+          <h4 class="font-bold text-white">Git for Windowsの導入 & VS Code連携</h4>
+          <p class="text-slate-400 text-xs">
+            PC内にバージョン管理エンジン「Git」をインストール。VS Code内蔵ターミナルから直接Gitコマンドが扱える状態を確立。
+          </p>
+        </div>
+
+        <div class="border-l-2 border-slate-700 pl-4 space-y-1">
+          <div class="text-xs text-purple-400 font-semibold">STEP 2: リポジトリ設計</div>
+          <h4 class="font-bold text-white">GitHub上の受け皿作成 & 初回Push</h4>
+          <p class="text-slate-400 text-xs">
+            アカウント <code class="text-purple-300">hirotech86</code> 直下に非公開リポジトリ <code class="text-purple-300">training-hub</code> を開設。7ファイル（認証、単語カード、JSON、分析ボード群）を一括アップロード。
+          </p>
+        </div>
+
+        <div class="border-l-2 border-slate-700 pl-4 space-y-1">
+          <div class="text-xs text-amber-400 font-semibold">STEP 3: 自動配信の確立</div>
+          <h4 class="font-bold text-white">Cloudflare PagesとGitリポジトリの直結</h4>
+          <p class="text-slate-400 text-xs">
+            手動ドラッグ＆ドロップ方式を廃止し、GitHubとPagesを連携。Framework Preset「None」の静的最適化構成で即時ビルド・公開パイプライン（CI/CD）を開通。
+          </p>
+        </div>
+
+      </div>
+
+      <!-- 今後のルーティン -->
+      <div class="p-4 bg-slate-900/90 rounded-xl border border-slate-800 space-y-2">
+        <div class="text-sm font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-repeat text-sky-400"></i> 明日からの最短ルーティン（VSCで打つだけ）
+        </div>
+        <pre class="bg-black/50 p-3 rounded text-xs font-mono text-emerald-400 overflow-x-auto">
+git add .
+git commit -m "update data"
+git push origin main</pre>
+        <p class="text-slate-400 text-xs">
+          これだけで数十秒後に本番URL（<a href="https://training-hub-dr6.pages.dev" target="_blank" class="text-sky-400 underline">https://training-hub-dr6.pages.dev</a>）へ自動反映されます。
+        </p>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

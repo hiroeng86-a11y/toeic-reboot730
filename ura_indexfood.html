@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>食・農水産・物流エコシステムハブ | Knowledge & Training Hub</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans JP"', 'Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              dark: '#0a0e17',
+              card: 'rgba(21, 29, 47, 0.88)',
+              border: '#1e293b',
+              accent: '#f59e0b',
+              fukuoka: '#06b6d4',
+              kumamoto: '#38bdf8',
+              hiroshima: '#ef4444',
+              hyougo: '#a855f7',
+              natto: '#d97706'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #0a0e17;
+      color: #e2e8f0;
+      font-family: 'Noto Sans JP', Inter, sans-serif;
+    }
+    .glass-card {
+      background: rgba(21, 29, 47, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.6), 0 0 18px rgba(245, 158, 11, 0.15);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-white">
+
+  <!-- 認証ガード（ura_index.html の認証状態を検証） -->
+  <script>
+    if (sessionStorage.getItem('hub_auth_status') !== 'true' && sessionStorage.getItem('hub_authenticated') !== 'true') {
+      window.location.href = 'ura_index.html';
+    }
+  </script>
+
+  <div>
+    <!-- ヘッダーナビゲーション -->
+    <header class="sticky top-0 z-50 bg-[#0a0e17]/85 backdrop-blur border-b border-slate-800 px-4 py-3">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <a href="ura_index.html" class="text-slate-400 hover:text-white transition flex items-center gap-2 text-sm font-medium">
+            <i class="fa-solid fa-arrow-left"></i> 総合ポータルへ戻る
+          </a>
+          <span class="text-slate-600">/</span>
+          <span class="text-amber-400 text-sm font-semibold tracking-wide">Food & Agro-Logistics Matrix</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <!-- 表サイトへの戻りリンク -->
+          <a href="index.html" class="text-xs text-sky-400 hover:text-white px-2.5 py-1 rounded-lg border border-sky-500/30 bg-sky-500/10 hover:bg-sky-500/20 transition-all flex items-center gap-1.5">
+            <i class="fa-solid fa-house"></i> 表サイト（TOEIC）へ
+          </a>
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-300 border border-amber-500/20">
+            <i class="fa-solid fa-utensils mr-1.5"></i> Food & Supply Chain Hub
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ヒーロータイトル -->
+    <div class="max-w-7xl mx-auto px-4 pt-8 pb-4">
+      <div class="glass-card rounded-2xl p-6 sm:p-8 border-l-4 border-l-amber-500 relative overflow-hidden">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="space-y-2">
+            <div class="inline-flex items-center gap-2 text-xs font-bold text-amber-400 uppercase tracking-wider font-mono">
+              <i class="fa-solid fa-truck-ramp-box"></i> Multi-Perspective Food Infrastructure
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+              食・農水産・物流エコシステムハブ
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+              日本の「食」を生み出す生産基盤・自然生態系と、大消費地を繋ぐコールドチェーン物流網。地方の地域特性、全国流通動脈、微生物発酵適性と食料安全保障を多角的に解剖する統合アナリティクス空間です。
+            </p>
+          </div>
+          <!-- クイックサマリーバッジ -->
+          <div class="grid grid-cols-2 gap-2 shrink-0 text-center font-mono text-xs">
+            <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800">
+              <span class="text-[10px] text-slate-400 block font-sans">収録ドキュメント</span>
+              <span class="text-amber-400 font-bold text-sm">全5編（順次拡張）</span>
+            </div>
+            <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800">
+              <span class="text-[10px] text-slate-400 block font-sans">基幹指標数</span>
+              <span class="text-emerald-400 font-bold text-sm">各30項目</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- メインコンテンツグリッド -->
+    <main class="max-w-7xl mx-auto px-4 py-6 space-y-10">
+
+      <!-- 切り口 01: 地方の特色（地域別の生産・食文化・物流アーキテクチャ） -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-6 bg-amber-500 rounded"></span>
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              切り口 ①：地方の特色・地域構造マトリクス
+            </h2>
+            <span class="text-xs text-slate-400 font-mono">Regional Ecosystems & Logistics</span>
+          </div>
+          <span class="text-xs text-amber-400 font-semibold font-mono">5 Regions & Topics</span>
+        </div>
+
+        <p class="text-xs text-slate-400">
+          地形、気候、土壌、海洋生態系に根ざした各地方の農水産業・特化型発酵バイオと、大消費地への幹線輸送（2024年問題対策含む）の構造。
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- 01: 福岡県 -->
+          <a href="ura_food-fukuoka.html" class="glass-card p-5 rounded-2xl block group border-cyan-500/20 hover:border-cyan-400/60 relative overflow-hidden flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-start justify-between">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-2xl group-hover:scale-110 transition">
+                  <i class="fa-solid fa-hubspot"></i>
+                </div>
+                <span class="text-[10px] font-mono text-cyan-400 font-bold px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-800">
+                  FUKUOKA
+                </span>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white group-hover:text-cyan-300 transition flex items-center gap-1.5">
+                  福岡県
+                  <i class="fa-solid fa-arrow-right text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition"></i>
+                </h3>
+                <div class="text-xs font-mono text-cyan-400 mt-0.5">九州メガハブ & 屋台外食経済</div>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                あまおう苺（シェア99%）、博多港100万TEU、辛子明太子加工3万t。二大海域（玄界灘・有明海）と鳥栖JCT結節点の物流構造[cite: 9]。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+              <span>全30指標 / 輸送シミュレータ</span>
+              <span class="text-cyan-400 group-hover:underline">解析を開く &rarr;</span>
+            </div>
+          </a>
+
+          <!-- 02: 熊本県（総合） -->
+          <a href="ura_food-kumamoto.html" class="glass-card p-5 rounded-2xl block group border-sky-500/20 hover:border-sky-400/60 relative overflow-hidden flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-start justify-between">
+                <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 text-2xl group-hover:scale-110 transition">
+                  <i class="fa-solid fa-wheat-awn"></i>
+                </div>
+                <span class="text-[10px] font-mono text-sky-400 font-bold px-2 py-0.5 rounded bg-sky-950/80 border border-sky-800">
+                  KUMAMOTO
+                </span>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white group-hover:text-sky-300 transition flex items-center gap-1.5">
+                  熊本県（総合）
+                  <i class="fa-solid fa-arrow-right text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition"></i>
+                </h3>
+                <div class="text-xs font-mono text-sky-400 mt-0.5">地下水循環 & 高低差農業大国</div>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                農業産出額4,116億円（全国6位水準）、自給率120%、トマト首位（18.5%）。阿蘇の地下水天然水瓶と全国外需型供給モデル。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+              <span>全30指標 / 輸送シミュレータ</span>
+              <span class="text-sky-400 group-hover:underline">解析を開く &rarr;</span>
+            </div>
+          </a>
+
+          <!-- 03: 九州・熊本 納豆王国（特化編） -->
+          <a href="ura_food-kumamoto-natto.html" class="glass-card p-5 rounded-2xl block group border-amber-500/30 hover:border-amber-400/70 relative overflow-hidden flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-start justify-between">
+                <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl group-hover:scale-110 transition">
+                  <i class="fa-solid fa-dna"></i>
+                </div>
+                <span class="text-[10px] font-mono text-amber-400 font-bold px-2 py-0.5 rounded bg-amber-950/80 border border-amber-800">
+                  SPECIAL MATRIX
+                </span>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white group-hover:text-amber-300 transition flex items-center gap-1.5">
+                  九州・熊本「納豆王国」
+                  <i class="fa-solid fa-arrow-right text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition"></i>
+                </h3>
+                <div class="text-xs font-mono text-amber-400 mt-0.5">超高温菌バイオロジー × 西日本制覇</div>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                西日本シェア約50%超（丸美屋他）、至適温度42℃の高温耐性菌、阿蘇伏流水大豆プラント、甘口醤油との化学共生の全貌。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+              <span>全30指標 / 発酵温度比較</span>
+              <span class="text-amber-400 group-hover:underline">解析を開く &rarr;</span>
+            </div>
+          </a>
+
+          <!-- 04: 広島県 -->
+          <a href="ura_food-hiroshima.html" class="glass-card p-5 rounded-2xl block group border-red-500/20 hover:border-red-400/60 relative overflow-hidden flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-start justify-between">
+                <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 text-2xl group-hover:scale-110 transition">
+                  <i class="fa-solid fa-water"></i>
+                </div>
+                <span class="text-[10px] font-mono text-red-400 font-bold px-2 py-0.5 rounded bg-red-950/80 border border-red-800">
+                  HIROSHIMA
+                </span>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white group-hover:text-red-300 transition flex items-center gap-1.5">
+                  広島県
+                  <i class="fa-solid fa-arrow-right text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition"></i>
+                </h3>
+                <div class="text-xs font-mono text-red-400 mt-0.5">瀬戸内水産 × 中山間 × 外食文化</div>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                養殖カキ（62.8%）、国産レモン（51.2%）、お好み焼き1,600軒[cite: 10]。太田川河口の干潟と山陽大動脈を軸とする流通ネットワーク[cite: 10]。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+              <span>全30指標 / 輸送シミュレータ</span>
+              <span class="text-red-400 group-hover:underline">解析を開く &rarr;</span>
+            </div>
+          </a>
+
+          <!-- 05: 兵庫県 -->
+          <a href="ura_food-hyougo.html" class="glass-card p-5 rounded-2xl block group border-purple-500/20 hover:border-purple-400/60 relative overflow-hidden flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-start justify-between">
+                <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl group-hover:scale-110 transition">
+                  <i class="fa-solid fa-gem"></i>
+                </div>
+                <span class="text-[10px] font-mono text-purple-400 font-bold px-2 py-0.5 rounded bg-purple-950/80 border border-purple-800">
+                  HYOGO
+                </span>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-white group-hover:text-purple-300 transition flex items-center gap-1.5">
+                  兵庫県
+                  <i class="fa-solid fa-arrow-right text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition"></i>
+                </h3>
+                <div class="text-xs font-mono text-purple-400 mt-0.5">旧五国の多様性 & 東西クロスハブ</div>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                但馬牛純血統（100%）、灘の清酒（25.2%）、山田錦（60.5%）、神戸港290万TEU。日本海から瀬戸内・淡路島まで包括する縮図。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+              <span>全30指標 / 輸送シミュレータ</span>
+              <span class="text-purple-400 group-hover:underline">解析を開く &rarr;</span>
+            </div>
+          </a>
+
+          <!-- 将来拡張枠（次の地域） -->
+          <div class="glass-card p-5 rounded-2xl border-dashed border-slate-800 opacity-60 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-start justify-between">
+                <div class="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 text-2xl">
+                  <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+                <span class="text-[10px] font-mono text-slate-400 font-bold px-2 py-0.5 rounded bg-slate-900 border border-slate-700">
+                  COMING SOON
+                </span>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-300">次期分析対象地域</h3>
+                <div class="text-xs font-mono text-slate-500 mt-0.5">北海道（巨大穀倉・酪農）/ 高知（施設園芸）</div>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                順次47都道府県の構造データを策定・追加予定。
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-slate-500 font-mono">
+              準備中
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 切り口 02: サプライチェーン・流通ネットワーク（将来拡張枠） -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-6 bg-cyan-500 rounded"></span>
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              切り口 ②：コールドチェーン & 幹線物流システム（準備中）
+            </h2>
+            <span class="text-xs text-slate-400 font-mono">National Cold Chain & Route 2024</span>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 bg-slate-800 text-slate-400 rounded">EXPANDING</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="glass-card p-5 rounded-2xl border-dashed border-slate-800 opacity-70 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 text-xl shrink-0">
+              <i class="fa-solid fa-snowflake"></i>
+            </div>
+            <div>
+              <h3 class="text-sm font-bold text-slate-200">2024年物流問題と青果・チルド食品リレー</h3>
+              <p class="text-xs text-slate-400 mt-1">産地から大消費地（大田・豊洲・関西）への輸送時間制限、長距離トラック中継運行とフェリーRORO船モーダルシフトの構造解析。</p>
+            </div>
+          </div>
+
+          <div class="glass-card p-5 rounded-2xl border-dashed border-slate-800 opacity-70 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 text-xl shrink-0">
+              <i class="fa-solid fa-plane-departure"></i>
+            </div>
+            <div>
+              <h3 class="text-sm font-bold text-slate-200">新幹線貨物（ことむすび）& 航空ベリー便</h3>
+              <p class="text-xs text-slate-400 mt-1">超鮮度生鮮（朝採れあまおう・活魚等）を当日首都圏・アジア市場へ届ける高速輸送ネットワーク[cite: 9]。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 切り口 03: 食料安全保障 & マクロ自給率（将来拡張枠） -->
+      <section class="space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-6 bg-emerald-500 rounded"></span>
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              切り口 ③：食料安全保障 & 資材依存度マトリクス（準備中）
+            </h2>
+            <span class="text-xs text-slate-400 font-mono">Food Security & Inputs Dependency</span>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-0.5 bg-slate-800 text-slate-400 rounded">PLANNING</span>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900/40 border border-dashed border-slate-800 flex items-center justify-between text-xs text-slate-500">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-shield-halved text-slate-600"></i>
+            <span>追加予定：化学肥料（リン・カリウム）輸入依存構造、配合飼料穀物サプライチェーン、カロリーベース vs 生産額ベース自給率比較</span>
+          </div>
+          <span class="font-mono text-[10px] px-2 py-0.5 bg-slate-800 rounded">ARCHIVING</span>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- フッター -->
+  <footer class="mt-12 text-center text-xs text-slate-500 py-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-center gap-4">
+    <div>Knowledge & Training Hub - Food & Agro-Logistics Matrix &copy; 2026</div>
+    <div class="flex items-center gap-3">
+      <a href="ura_index.html" class="text-slate-400 hover:text-slate-300 underline">総合ポータル</a>
+      <span>•</span>
+      <a href="ura_indexfin.html" class="text-slate-400 hover:text-slate-300 underline">経済・財政ハブ</a>
+      <span>•</span>
+      <a href="ura_indextec.html" class="text-slate-400 hover:text-slate-300 underline">開発・技術ハブ</a>
+    </div>
+  </footer>
+
+</body>
+</html>

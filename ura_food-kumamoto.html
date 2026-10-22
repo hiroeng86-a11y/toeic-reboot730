@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>熊本の食と農・物流エコシステム 構造インフォグラフィック</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0a0e17',
+              card: 'rgba(21, 29, 47, 0.85)',
+              accent: '#38bdf8',
+              crimson: '#ef4444',
+              emerald: '#10b981',
+              amber: '#f59e0b',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0a0e17;
+      color: #e2e8f0;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    }
+    .glass-card {
+      background: rgba(21, 29, 47, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(51, 65, 85, 0.6);
+      transition: all 0.25s ease-in-out;
+    }
+    .glass-card:hover {
+      border-color: rgba(56, 189, 248, 0.7);
+      transform: translateY(-2px);
+    }
+    .metric-card.dimmed {
+      opacity: 0.2;
+      filter: grayscale(80%);
+      transform: scale(0.98);
+    }
+    .metric-card.highlighted {
+      border-color: #38bdf8 !important;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+      background: rgba(30, 41, 69, 0.95);
+      transform: scale(1.02);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen p-4 md:p-8 custom-scrollbar">
+
+  <!-- HEADER -->
+  <header class="max-w-7xl mx-auto mb-8 border-b border-slate-800 pb-6">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-950/60 border border-sky-800 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-2">
+          <i class="fa-solid fa-wheat-awn"></i> Macro Food & Logistics Architecture
+        </div>
+        <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight flex items-center gap-3">
+          熊本「食・農・物流」30の基幹数字
+        </h1>
+        <p class="text-slate-400 text-sm mt-1 max-w-2xl">
+          日本有数のフードクラスター熊本の生態系。地下水循環・高低差農業・全国サプライチェーン・郷土食の構造的急所を読み解く。
+        </p>
+      </div>
+      <!-- FILTER BUTTONS -->
+      <div class="flex flex-wrap items-center gap-2" id="filterContainer">
+        <button onclick="filterCategory('all')" class="filter-btn active px-3.5 py-1.5 text-xs font-medium rounded-lg bg-sky-500 text-white shadow-sm transition">すべて</button>
+        <button onclick="filterCategory('macro')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">マクロ・基盤</button>
+        <button onclick="filterCategory('crops')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">農畜水産・素材</button>
+        <button onclick="filterCategory('food')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">食文化・加工</button>
+        <button onclick="filterCategory('logistics')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">物流・サプライチェーン</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto space-y-8">
+
+    <!-- KPI SUMMARY BAR -->
+    <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="glass-card rounded-xl p-4 border-l-4 border-l-sky-500">
+        <span class="text-xs text-slate-400 font-medium">農業産出額（全国上位）</span>
+        <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">約4,116 <span class="text-base font-normal text-sky-400">億円</span></div>
+        <div class="text-xs text-emerald-400 mt-1 flex items-center gap-1"><i class="fa-solid fa-trophy"></i> 全国第5〜6位規模</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 border-l-4 border-l-emerald-500">
+        <span class="text-xs text-slate-400 font-medium">生産額ベース食料自給率</span>
+        <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">約120 <span class="text-base font-normal text-emerald-400">%</span></div>
+        <div class="text-xs text-slate-400 mt-1">県内消費を上回る供給基地</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 border-l-4 border-l-red-500">
+        <span class="text-xs text-slate-400 font-medium">冬春トマト 全国シェア</span>
+        <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">18.5 <span class="text-base font-normal text-red-400">%</span></div>
+        <div class="text-xs text-red-400 mt-1"><i class="fa-solid fa-crown"></i> 圧倒的全国No.1（八代平野）</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 border-l-4 border-l-amber-500">
+        <span class="text-xs text-slate-400 font-medium">熊本市 水道水地下水依存率</span>
+        <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">100 <span class="text-base font-normal text-amber-400">%</span></div>
+        <div class="text-xs text-amber-400 mt-1"><i class="fa-solid fa-water"></i> 50万人都市で世界有数の奇跡</div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE CARD GRID (30 NUMBERS) -->
+    <section>
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-diagram-project text-sky-400"></i>
+          基幹数字マトリクス（クリックで因果関係・連鎖ハイライト）
+        </h2>
+        <button onclick="resetHighlight()" class="text-xs text-slate-400 hover:text-white px-2 py-1 rounded bg-slate-800 border border-slate-700">選択解除</button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3" id="cardsGrid">
+        <!-- Javascript dynamically renders 30 cards here -->
+      </div>
+    </section>
+
+    <!-- 2 COMPARATIVE CHART AREAS -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- CHART 1: 規模・産出額の構造比較 -->
+      <div class="glass-card rounded-xl p-5 border border-slate-800 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-chart-column text-sky-400"></i>
+              熊本県 主力農産物の産出額規模（億円）
+            </h3>
+            <span class="text-xs bg-slate-800 text-slate-400 px-2 py-0.5 rounded">縦棒チャート</span>
+          </div>
+          <p class="text-xs text-slate-400 mb-4">野菜・畜産が双璧をなし、稲作依存から高収益多角化へと構造転換された構成。</p>
+        </div>
+        <div class="h-64 relative">
+          <canvas id="outputScaleChart"></canvas>
+        </div>
+      </div>
+
+      <!-- CHART 2: 独立比率・全国依存度（上限100% 水平バーチャート） -->
+      <div class="glass-card rounded-xl p-5 border border-slate-800 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-chart-bar text-amber-400"></i>
+              重要指標の全国比率・依存度（上限100%基準）
+            </h3>
+            <span class="text-xs bg-slate-800 text-amber-400/80 px-2 py-0.5 rounded">水平バーチャート</span>
+          </div>
+          <p class="text-xs text-slate-400 mb-4">母集団が異なる比率指標を個別比較（円グラフ誤用を完全排除した正規可視化）。</p>
+        </div>
+        <div class="h-64 relative">
+          <canvas id="dependencyRatioChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- STRUCTURAL CALCULATOR / SIMULATOR -->
+    <section class="glass-card rounded-xl p-6 border border-slate-800">
+      <div class="flex items-center gap-2 mb-3">
+        <i class="fa-solid fa-calculator text-emerald-400"></i>
+        <h3 class="text-base font-bold text-white">食と物流の構造方程式シミュレーター</h3>
+      </div>
+      <p class="text-xs text-slate-400 mb-4">
+        農業生産と長距離物流が抱える「時間と距離の壁」を試算し、構造的ボトルネックを可視化します。
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center bg-slate-900/60 p-4 rounded-lg border border-slate-800 text-sm">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">出荷先エリア（片道距離目安）</label>
+          <select id="calcDestination" class="w-full bg-slate-800 border border-slate-700 rounded p-2 text-white text-xs focus:ring-1 focus:ring-sky-500" onchange="runSimulation()">
+            <option value="900" selected>東京・関東市場（約900km / 陸送翌々日）</option>
+            <option value="600">関西・大阪市場（約600km / 陸送翌日朝）</option>
+            <option value="120">福岡都市圏（約120km / 域内即日配送）</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">出荷ロット（10t大型トラック換算台数）</label>
+          <input type="number" id="calcTrucks" min="1" max="100" value="10" class="w-full bg-slate-800 border border-slate-700 rounded p-2 text-white text-xs focus:ring-1 focus:ring-sky-500" onchange="runSimulation()">
+        </div>
+        <div class="p-3 bg-slate-950/80 rounded border border-slate-800/80">
+          <div class="text-xs text-slate-400">試算：輸送CO2排出量 & 拘束時間インパクト</div>
+          <div class="text-lg font-bold text-sky-400 mt-1" id="calcResultDisplay">約 4.32 トン CO₂ / 2人日超過</div>
+          <div class="text-[11px] text-slate-500 mt-0.5" id="calcInsight">※関東便は2024年問題（時間外規制）により中継輸送やフェリーシフトが必須</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="max-w-7xl mx-auto mt-12 pt-6 border-t border-slate-800/80 text-center text-xs text-slate-500">
+    <p>熊本県食料・農業・物流構造インフォグラフィック | 農林水産統計・熊本県公表資料等に基づく体系的整理</p>
+  </footer>
+
+  <!-- DATA & JAVASCRIPT LOGIC -->
+  <script>
+    // 30 Core Metrics Data Definition
+    const metricsData = [
+      { id: 1, num: "4,116億", unit: "円", title: "農業産出額", cat: "macro", rel: [2, 3, 4, 11], desc: "全国6位水準。野菜・畜産・米が極めて高いバランスで構成される。" },
+      { id: 2, num: "120%", unit: "", title: "生産額食料自給率", cat: "macro", rel: [1, 7, 26], desc: "全国上位。自給自足を遥かに超え、西日本・首都圏の供給基地として機能。" },
+      { id: 3, num: "1位", unit: "", title: "トマト生産量", cat: "crops", rel: [1, 4, 21, 26], desc: "全国シェア約18%。八代平野を中心に塩トマト等ブランド品種も確立。" },
+      { id: 4, num: "1位", unit: "", title: "スイカ生産量", cat: "crops", rel: [1, 3, 21, 26], desc: "全国シェア約16%。春すいかのパイオニアで植木町（北区）が主産地。" },
+      { id: 5, num: "1位", unit: "", title: "不知火（デコポン）", cat: "crops", rel: [1, 22, 26], desc: "全国シェア約30%超。不知火町発祥、JA熊本果実連が商標管理。" },
+      { id: 6, num: "1位", unit: "", title: "い草生産量", cat: "crops", rel: [1, 11], desc: "八代平野が誇る特産。全国シェア90%以上を占める伝統的農業基盤。" },
+      { id: 7, num: "100%", unit: "", title: "熊本市 地下水依存率", cat: "macro", rel: [2, 8, 14, 20], desc: "阿蘇外輪山と白川中流域水田が涵養する天然の巨大水瓶。食品工場の強み。" },
+      { id: 8, num: "25億t", unit: "", title: "阿蘇地下水涵養量", cat: "macro", rel: [7, 14, 20], desc: "年間約25億立方メートルの地下水資源。精密機械産業と農業が共存。" },
+      { id: 9, num: "134千頭", unit: "", title: "肉用牛飼養頭数", cat: "crops", rel: [1, 10, 16], desc: "全国4位規模。「くまもと黒毛和牛」と阿蘇草原の「あか牛」が二大柱。" },
+      { id: 10, num: "1位", unit: "", title: "馬刺し・馬肉生産", cat: "food", rel: [9, 16, 25], desc: "国内馬肉生鮮流通の約4割を占める伝統食文化。解体・チルド配送技術の結晶。" },
+      { id: 11, num: "1,554億", unit: "円", title: "生産農業所得", cat: "macro", rel: [1, 29, 30], desc: "農業所得で全国2〜3位。付加価値と粗利益率の高さが特徴。" },
+      { id: 12, num: "2位", unit: "", title: "養殖まだい生産量", cat: "crops", rel: [13, 27], desc: "天草のリアス海岸と潮流が育むブランド真鯛。関西・中京へ活魚出荷。" },
+      { id: 13, num: "1位", unit: "", title: "車海老養殖発祥", cat: "food", rel: [12, 27], desc: "天草・維和島が近代車海老養殖の原点。高級料亭向けチルド空輸網と直結。" },
+      { id: 14, num: "28蔵", unit: "", title: "球磨焼酎（地理的表示）", cat: "food", rel: [7, 8, 15], desc: "人吉・球磨地方の米焼酎。WTOが認める世界基準の産地呼称（GI）。" },
+      { id: 15, num: "100%", unit: "", title: "赤酒（正月用お屠蘇）", cat: "food", rel: [14, 17], desc: "灰持酒（あくもちざけ）。熊本の郷土料理や祝い事に不可欠な伝統酒。" },
+      { id: 16, num: "400年", unit: "", title: "からし蓮根の歴史", cat: "food", rel: [10, 17], desc: "加藤清正公・細川家由来の滋養食。蓮根穴に和からし味噌を詰めた薬膳由来。" },
+      { id: 17, num: "1位", unit: "", title: "タイピーエン（太平燕）", cat: "food", rel: [15, 16], desc: "福州ルーツの春雨スープ。学校給食にも定着した熊本独自の中華麺文化。" },
+      { id: 18, num: "900km", unit: "", title: "東京市場への輸送距離", cat: "logistics", rel: [19, 21, 26], desc: "大消費地・豊洲まで約900km。青果物の翌々日着（中1日）輸送が基本。" },
+      { id: 19, num: "2024年", unit: "問題", title: "物流ドライバー拘束規制", cat: "logistics", rel: [18, 20, 24], desc: "九州から本州へのトラック直行が困難化。リレー輸送・フェリー化が加速。" },
+      { id: 20, num: "151億", unit: "円", title: "農水産物輸出額", cat: "logistics", rel: [1, 21, 28], desc: "過去最高を更新。熊本空港の国際貨物ハブ化と八代港コンテナ航路が牽引。" },
+      { id: 21, num: "80%超", unit: "", title: "県外出荷比率（青果）", cat: "logistics", rel: [3, 4, 18, 26], desc: "トマト・スイカ等の大半は福岡・関西・関東へ流出する典型的外需型。" },
+      { id: 22, num: "2位", unit: "", title: "栗（くり）生産量", cat: "crops", rel: [1, 5], desc: "山鹿市・菊池市などの丘陵地で高品質な和栗を生産。製菓企業向け直送。" },
+      { id: 23, num: "3位", unit: "", title: "生乳生産量", cat: "crops", rel: [1, 9, 25], desc: "阿蘇山麓・酪農地帯での高品質生乳。らくのうマザーズが広域供給。" },
+      { id: 24, num: "800万t", unit: "", title: "八代港 国際物流機能", cat: "logistics", rel: [19, 20, 28], desc: "熊本県最大の国際貿易港。穀物飼料輸入および農水産品輸出の海上ゲート。" },
+      { id: 25, num: "200店舗", unit: "超", title: "熊本ラーメン系譜", cat: "food", rel: [9, 10, 23], desc: "豚骨白湯に焦がしニンニク油（マー油）と中太ストレート麺が特徴の食文化。" },
+      { id: 26, num: "750m", unit: "", title: "阿蘇波野 高冷地農業標高", cat: "crops", rel: [3, 4, 18], desc: "高低差を生かした夏秋野菜生産。平野部が猛暑の時期に出荷リレーを完結。" },
+      { id: 27, num: "35%+", unit: "", title: "有明海産海苔シェア", cat: "crops", rel: [12, 13], desc: "有明海（福岡・佐賀・長崎・熊本）全体で全国の大半を占める一大海苔産地。" },
+      { id: 28, num: "3,000m", unit: "", title: "阿蘇くまもと空港 滑走路", cat: "logistics", rel: [20, 24], desc: "新旅客・貨物ターミナル整備により、台湾・東南アジアへの生鮮空輸が直行化。" },
+      { id: 29, num: "68歳", unit: "", title: "基幹的農業従事者平均年齢", cat: "macro", rel: [1, 11, 30], desc: "全国共通の課題。人手不足克服のためスマート農業と大規模法人化が急務。" },
+      { id: 30, num: "3,800経営体", unit: "", title: "認定農業者数（全国3位）", cat: "macro", rel: [1, 11, 29], desc: "法人化・経営規模拡大が進み、若手新規就農者受入数でも全国上位を維持。" }
+    ];
+
+    // Render Cards
+    const grid = document.getElementById('cardsGrid');
+    function renderCards(filter = 'all') {
+      grid.innerHTML = '';
+      metricsData.forEach(item => {
+        if (filter !== 'all' && item.cat !== filter) return;
+
+        const card = document.createElement('div');
+        card.className = `metric-card glass-card rounded-lg p-3 cursor-pointer border border-slate-800 flex flex-col justify-between`;
+        card.setAttribute('data-id', item.id);
+        card.setAttribute('data-rel', JSON.stringify(item.rel));
+        card.onclick = () => handleCardClick(item.id);
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
+              <span class="font-mono text-sky-400 font-bold">#${item.id < 10 ? '0' + item.id : item.id}</span>
+              <span class="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">${item.cat}</span>
+            </div>
+            <div class="text-xl font-black text-white tracking-tight flex items-baseline gap-0.5">
+              ${item.num} <span class="text-xs font-normal text-slate-400">${item.unit}</span>
+            </div>
+            <div class="text-xs font-bold text-slate-200 mt-1 line-clamp-1">${item.title}</div>
+            <p class="text-[11px] text-slate-400 mt-1 leading-relaxed line-clamp-2">${item.desc}</p>
+          </div>
+          <div class="mt-2 pt-2 border-t border-slate-800/80 flex items-center justify-between text-[10px] text-slate-500">
+            <span>連動: ${item.rel.map(r => '#' + (r < 10 ? '0' + r : r)).join(' ')}</span>
+            <i class="fa-solid fa-circle-nodes text-slate-600"></i>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Filter Logic
+    function filterCategory(cat) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('bg-sky-500', 'text-white');
+        btn.classList.add('bg-slate-800', 'text-slate-300');
+      });
+      event.target.classList.remove('bg-slate-800', 'text-slate-300');
+      event.target.classList.add('bg-sky-500', 'text-white');
+      renderCards(cat);
+      resetHighlight();
+    }
+
+    // Interactive Highlight Logic
+    let selectedId = null;
+    function handleCardClick(id) {
+      if (selectedId === id) {
+        resetHighlight();
+        return;
+      }
+      selectedId = id;
+      const target = metricsData.find(m => m.id === id);
+      const relatedIds = [id, ...(target ? target.rel : [])];
+
+      document.querySelectorAll('.metric-card').forEach(card => {
+        const cardId = parseInt(card.getAttribute('data-id'));
+        if (relatedIds.includes(cardId)) {
+          card.classList.remove('dimmed');
+          card.classList.add('highlighted');
+        } else {
+          card.classList.remove('highlighted');
+          card.classList.add('dimmed');
+        }
+      });
+    }
+
+    function resetHighlight() {
+      selectedId = null;
+      document.querySelectorAll('.metric-card').forEach(card => {
+        card.classList.remove('dimmed', 'highlighted');
+      });
+    }
+
+    // Initialize Charts
+    let chart1, chart2;
+    function initCharts() {
+      // Chart 1: 規模・産出額（縦棒グラフ）
+      const ctx1 = document.getElementById('outputScaleChart').getContext('2d');
+      chart1 = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+          labels: ['野菜合計', '畜産合計', '米・穀物', '果実合計', '花き・その他'],
+          datasets: [{
+            label: '産出額（億円）',
+            data: [1420, 1150, 520, 480, 546],
+            backgroundColor: [
+              'rgba(56, 189, 248, 0.75)',
+              'rgba(239, 68, 68, 0.75)',
+              'rgba(16, 185, 129, 0.75)',
+              'rgba(245, 158, 11, 0.75)',
+              'rgba(148, 163, 184, 0.65)'
+            ],
+            borderColor: '#0f172a',
+            borderWidth: 1,
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#1e293b',
+              titleColor: '#fff',
+              bodyColor: '#cbd5e1'
+            }
+          },
+          scales: {
+            x: {
+              ticks: { color: '#94a3b8', font: { size: 11 } },
+              grid: { display: false }
+            },
+            y: {
+              beginAtZero: true,
+              ticks: { color: '#94a3b8', font: { size: 10 } },
+              grid: { color: 'rgba(51, 65, 85, 0.4)' }
+            }
+          }
+        }
+      });
+
+      // Chart 2: 比率・独立依存度（水平バーチャート 上限100%厳格固定）
+      const ctx2 = document.getElementById('dependencyRatioChart').getContext('2d');
+      chart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+          labels: [
+            '熊本市水道 水道地下水比率',
+            '青果物 県外出荷率',
+            'い草 国内生産シェア',
+            '馬肉 国内生鮮シェア',
+            'トマト 全国生産シェア',
+            'スイカ 全国生産シェア'
+          ],
+          datasets: [{
+            label: '比率・シェア (%)',
+            data: [100, 82, 92, 42, 18.5, 16.1],
+            backgroundColor: 'rgba(56, 189, 248, 0.7)',
+            borderColor: '#38bdf8',
+            borderWidth: 1,
+            borderRadius: 4
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(context) { return `${context.parsed.x}%`; }
+              }
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              max: 100, // 厳格な100%上限ルール適用
+              ticks: {
+                color: '#94a3b8',
+                callback: function(value) { return value + "%"; }
+              },
+              grid: { color: 'rgba(51, 65, 85, 0.4)' }
+            },
+            y: {
+              ticks: { color: '#cbd5e1', font: { size: 11 } },
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    }
+
+    // Simulator Logic
+    function runSimulation() {
+      const distance = parseFloat(document.getElementById('calcDestination').value);
+      const trucks = parseInt(document.getElementById('calcTrucks').value);
+      
+      // 10tトラック1台 1kmあたりの概算CO2排出量（約0.48kg-CO2/km）
+      const co2TotalTon = ((distance * trucks * 0.48) / 1000).toFixed(2);
+      
+      let constraintText = "";
+      let insightText = "";
+      if (distance >= 900) {
+        constraintText = "拘束時間 約24〜30時間（フェリー併用/2名運行必須）";
+        insightText = "※東京市場向けは2024年問題の直撃区間。中継拠点・RORO船へのモーダルシフトが焦点。";
+      } else if (distance >= 600) {
+        constraintText = "拘束時間 約13〜15時間（夜間直行便・中継拠点化推奨）";
+        insightText = "※関西便は翌朝卸しが標準。高速道路ドライバーの連続運転規制（4時間）管理が厳格。";
+      } else {
+        constraintText = "拘束時間 約3〜5時間（即日往復可能）";
+        insightText = "※福岡都市圏は地産地消・域内最短流通の理想的サプライチェーン。";
+      }
+
+      document.getElementById('calcResultDisplay').innerText = `CO₂ 約 ${co2TotalTon} t ／ ${constraintText}`;
+      document.getElementById('calcInsight').innerText = insightText;
+    }
+
+    // Initial Execution
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCards();
+      initCharts();
+      runSimulation();
+    });
+  </script>
+</body>
+</html>

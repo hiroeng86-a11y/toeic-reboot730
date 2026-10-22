@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>古代気球都市『ラピス・アーク』探索記</title>
+<style>
+  :root {
+    --bg-color: #0c0d12;
+    --panel-bg: #161822;
+    --border-color: #3b4261;
+    --text-main: #c0caf5;
+    --text-muted: #7aa2f7;
+    --accent: #ff9e64;
+    --danger: #f7768e;
+    --success: #9ece6a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: "Courier New", Courier, monospace, "Hiragino Kaku Gothic ProN", sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  #game-container {
+    width: 100%;
+    max-width: 680px;
+    background: var(--panel-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  }
+  /* 画像表示枠 */
+  #visual-screen {
+    width: 100%;
+    height: 320px;
+    background: #000;
+    border-bottom: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  #scene-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: none;
+  }
+  #image-placeholder {
+    color: #565f89;
+    text-align: center;
+    padding: 20px;
+    border: 1px dashed #3b4261;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  /* ステータスバー */
+  #status-bar {
+    background: #0f1017;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9rem;
+  }
+  .stat-val { color: var(--accent); }
+  .danger { color: var(--danger) !important; }
+  /* メインテキストエリア */
+  #text-panel {
+    padding: 20px;
+    min-height: 160px;
+  }
+  #scene-title {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    border-left: 4px solid var(--accent);
+    padding-left: 8px;
+  }
+  #scene-desc {
+    line-height: 1.85;
+    white-space: pre-wrap;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+  }
+  /* 選択肢ボタン */
+  #choices-panel {
+    padding: 10px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .choice-btn {
+    background: #1f2335;
+    color: #c0caf5;
+    border: 1px solid #3b4261;
+    padding: 12px 16px;
+    text-align: left;
+    font-family: inherit;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    cursor: pointer;
+    line-height: 1.4;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .choice-btn:hover {
+    background: #292e42;
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .choice-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    border-color: #24283b;
+  }
+  /* エンディング・タイトルモーダル */
+  #ending-modal, #title-screen {
+    padding: 24px;
+  }
+  .ending-banner {
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  .badge-bad { background: rgba(247, 118, 142, 0.2); border: 1px solid var(--danger); color: var(--danger); }
+  .badge-happy { background: rgba(158, 206, 106, 0.2); border: 1px solid var(--success); color: var(--success); }
+  .badge-bitter { background: rgba(255, 158, 100, 0.2); border: 1px solid var(--accent); color: var(--accent); }
+  #log-box {
+    background: #0f1017;
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    max-height: 160px;
+    overflow-y: auto;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: #7aa2f7;
+    margin-bottom: 15px;
+  }
+  .title-logo {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #bb9af7;
+    margin-bottom: 10px;
+    letter-spacing: 0.1em;
+  }
+  .title-sub {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #565f89;
+    margin-bottom: 25px;
+  }
+  .prologue-text {
+    line-height: 1.9;
+    font-size: 0.92rem;
+    color: #a9b1d6;
+    margin-bottom: 25px;
+    background: #13141f;
+    padding: 15px;
+    border-left: 2px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+<div id="game-container">
+  <!-- 画像エリア -->
+  <div id="visual-screen">
+    <img id="scene-image" alt="Scene Graphic">
+    <div id="image-placeholder">
+      <div id="ph-scene-id" style="font-weight: bold; color: #bb9af7;">[ LAPIS ARK ]</div>
+      <div id="ph-desc">1980s Retro Adventure System</div>
+    </div>
+  </div>
+
+  <!-- ステータスHUD（プレイ中のみ表示） -->
+  <div id="status-bar" style="display: none;">
+    <span>航行手番: <span id="stat-turn" class="stat-val">00</span></span>
+    <span>船体HP: <span id="stat-hp" class="stat-val">100</span>%</span>
+    <span>燃料: <span id="stat-fuel" class="stat-val">100</span>%</span>
+    <span>古代知識: <span id="stat-lore" class="stat-val">0</span></span>
+  </div>
+
+  <!-- タイトル・プロローグ画面 -->
+  <div id="title-screen">
+    <div class="title-logo">古代気球都市『ラピス・アーク』</div>
+    <div class="title-sub">- LAPIS ARK : THE FLOATING EMPIRE -</div>
+    <div class="prologue-text">
+地上は煤煙と石炭の匂いに覆われていた。<br>
+産業革命に沸く地上の国家群は、枯渇しつつある化石燃料をめぐり水面下で鎬を削っている。<br><br>
+そんな折、あなたの手元にもたらされた一枚の古い羊皮紙——かつて超古代文明が成層圏に建造したという巨大浮遊都市『ラピス・アーク』の航路図。<br>
+そこには、地上の全動力を未来永劫賄える無尽蔵のエネルギー機関『エーテル・マトリクス』が眠るという。<br><br>
+あなたは全財産を投じて旧式の中型蒸気気球船『アルゴ号』を仕立て、未踏の雲海へと単身舵を切った。目指すは雲の上、数千年間外界を拒み続ける天空の箱庭である。
+    </div>
+    <button class="choice-btn" style="text-align: center; width: 100%; font-weight: bold; padding: 14px;" onclick="startGame()">
+      蒸気機関点火 —— 成層圏へ出航する
+    </button>
+  </div>
+
+  <!-- 通常シーン領域 -->
+  <div id="play-area" style="display: none;">
+    <div id="text-panel">
+      <div id="scene-title">---</div>
+      <div id="scene-desc">---</div>
+    </div>
+    <div id="choices-panel"></div>
+  </div>
+
+  <!-- エンディング表示領域 -->
+  <div id="ending-modal" style="display: none;">
+    <div id="ending-banner" class="ending-banner">
+      <h3 id="end-title" style="margin-bottom: 5px;">---</h3>
+      <div id="end-type" style="font-size: 0.85rem;">---</div>
+    </div>
+    <div id="end-desc" style="line-height: 1.85; margin-bottom: 20px; font-size: 0.95rem; white-space: pre-wrap;"></div>
+    
+    <div style="font-size: 0.85rem; margin-bottom: 8px; color: #a9b1d6; font-weight: bold;">【航海日誌（選択の足跡）】</div>
+    <div id="log-box"></div>
+    <button class="choice-btn" style="text-align: center; width: 100%; margin-top: 10px;" onclick="returnToTitle()">タイトル画面に戻る</button>
+  </div>
+</div>
+
+<script>
+// =============================================================================
+// ゲーム状態
+// =============================================================================
+const state = {
+  hp: 100,
+  fuel: 100,
+  lore: 0,
+  turn: 0,
+  history: [],
+  currentScene: "stage1_start"
+};
+
+// =============================================================================
+// 全20エンディング定義
+// =============================================================================
+const ENDINGS = {
+  1: { title: "乱気流の藻屑", type: "BAD END", badge: "badge-bad", text: "装甲の破断限界を超えたアルゴ号は、激しい風圧に耐えきれず空中分解した。\n飛散した木枠と気球の残骸は、重力に引かれるまま果てしない雲海の底へと沈んでいった。" },
+  2: { title: "避雷針の消失", type: "BAD END", badge: "badge-bad", text: "数千万ボルトの雷撃がアルゴ号の機関部を直撃した。\n高圧ガスが爆縮を起こし、白熱した閃光が夜空を真昼のように照らす。\n船はただ一瞬の閃光となって消滅した。" },
+  3: { title: "迷宮の漂流船", type: "BAD END", badge: "badge-bad", text: "濃密な白霧の中、磁気異常により完全に針路を見失った。\nバーナーの燃料計がゼロを指し、静かに最後の火が消える。\n極低温の成層圏で、アルゴ号は音もなく冷え切った幽霊船となった。" },
+  4: { title: "自動迎撃の洗礼", type: "BAD END", badge: "badge-bad", text: "ドックの天井から現れた無人砲塔から無慈悲な光条が放たれた。\n原始的な蒸気銃の弾丸は古代装甲に弾かれ、船体は蜂の巣となって雲海へと滑落していった。" },
+  5: { title: "凍てつく係留所", type: "BAD END", badge: "badge-bad", text: "成層圏外縁の氷点下40度の冷気が、防護の隙間から容赦なく体温を奪い去る。\nハッチのロックを解除する前に手足の感覚が消え去り、あなたは青白い氷の彫像となって係留柱に永遠に取り残された。" },
+  6: { title: "空賊の横槍", type: "BAD END", badge: "badge-bad", text: "無警戒に放った遭難電波を嗅ぎつけ、雲の裂け目から武装空賊船が躍り出た。\n銃撃戦の末に船と資材をすべて強奪され、粗末な脱出用パラシュート一つで地上へ放り出された。" },
+  7: { title: "黄金の脱出者", type: "NORMAL END", badge: "badge-bitter", text: "外縁部の遺構から掻き集めた古代の金貨と美術品を積み込み、命あるうちに地上へ帰還した。\nあなたは巨万の富を得て一生遊んで暮らせる身となったが、酒場の喧騒の中、あの雲の上に残してきた「本当の秘密」を思い出しては胸を焦がす。" },
+  8: { title: "語り継がれぬ証言", type: "BITTER END", badge: "badge-bitter", text: "命からがら持ち帰った結晶記憶板は、帰路の乱気流で致命的な亀裂が入っていた。\n再生不能の破片を前に王立学会はあなたを「大ボラ吹きの山師」と断じ、二度と探検の舞台に立つことは許されなかった。" },
+  9: { title: "閉ざされた回廊", type: "BAD END", badge: "badge-bad", text: "無理な爆破工作が非常用防衛シークエンスを作動させた。\n前後に落下した超高密度の遮断隔壁に閉じ込められ、通信も光も届かぬ闇の中で、あなたは最後のマッチを擦った。" },
+  10: { title: "燃料切れの帰路", type: "BITTER END", badge: "badge-bitter", text: "都市の遺構に見惚れ、時間を浪費しすぎた。\n帰路の途中で浮力ガスが尽き、絶海の孤島にそびえる岩礁へ不時着。\n貴重な古代の記録を抱えたまま、あなたは二度と現れぬ救援船を待ち続けている。" },
+  11: { title: "エーテル結晶の標本", type: "SPECIAL END", badge: "badge-bad", text: "漏洩する高純度エーテルの青き輝きが、皮膚を、内臓を、骨を侵食していく。\n激痛はやがて透き通るような多幸感へと変わり、あなたの身体は美しいサファイア色の結晶像となって動力室の床に根を下ろした。" },
+  12: { title: "集合意識の囁き", type: "SPECIAL END", badge: "badge-bad", text: "古代数億の市民が眠る思念ネットワークへ接続した瞬間、自我の輪郭が溶け出した。\n人間という狭い器を捨て去ったあなたの意識は、光の潮流となって都市の空を永遠に泳ぎ回る。" },
+  13: { title: "落下する流星", type: "BAD END", badge: "badge-bad", text: "不用意に引き抜いた制御ロッドが、都市の重力相殺フィールドを崩壊させた。\n数百万トンの巨大構造物が傾き、地上の大都市目掛けて音速で落下していく。\n夜空を引き裂く流星となった都市は、一つの文明を消滅させた。" },
+  14: { title: "封鎖戦争の引き金", type: "BAD END", badge: "badge-bad", text: "国家軍部へ密告した座標は、貪欲な列強諸国を呼び寄せる狼煙となった。\n成層圏を埋め尽くす超弩級戦艦同士の砲撃戦により、古代都市は一筋の煙となって雲海の彼方に霧散した。" },
+  15: { title: "天空の約束", type: "HAPPY END", badge: "badge-happy", text: "アストライアの認証のもと、数千年間空に留まっていた気球都市が静かに降下を始めた。\n青空の下、古代の環境浄化技術と清浄なる知恵が地上の人々へと開放される。\n二つの文明が手を取り合い、争いのない新たな時代の幕が上がった。" },
+  16: { title: "クリーンエネルギーの夜明け", type: "GOOD END", badge: "badge-happy", text: "完全に調律された無害な小型エーテル機関の製法を持ち帰ることに成功した。\n煙突の黒煙に覆われていた地上の街々は瞬く間に青空を取り戻し、歴史はあなたを「世界を煤煙から救った探検家」として教科書に刻んだ。" },
+  17: { title: "空の守護同盟", type: "GOOD END", badge: "badge-happy", text: "都市はふたたび光学迷彩の霧を纏い、雲海の深淵へと潜航した。\nだがアルゴ号の船長であるあなただけには、いつでも都市の門が開かれている。\n果てしない空の旅人として、あなたは天空の秘密を守り続ける。" },
+  18: { title: "静謐なる封印", type: "BITTER TRUE END", badge: "badge-bitter", text: "都市が秘める兵器としての力は、未熟な人類を滅ぼすに十分すぎた。\nあなたは起動鍵を雲海の底へ投げ捨て、推進ロッドを大気圏外へ向け点火した。\n星海へと静かに旅立つ都市を見送りながら、あなたはその秘密を墓場まで持っていくことを誓う。" },
+  19: { title: "コールドスリープの同胞", type: "TRUE END", badge: "badge-happy", text: "ガラスカプセルの中で眠っていた古代の女性技師が、数千年の時を超えて瞳を開いた。\n「……あなたが、私の船を起こしてくれたの？」\n二人は修理を終えたアルゴ号に乗り込み、新しい地上の光を目指して舵を取った。" },
+  20: { title: "機球都市の真のマスター", type: "SECRET TRUE END", badge: "badge-happy", text: "欠けのない船体、卓絶した古代語の知識、そして強靭なる意志。\n都市の全中枢システムが、あなたを「正当なる至高の統治者」と認証した。\n数千年の休眠を終えたラピス・アークの全浮力機関が今、あなたの指揮のもとで誇り高く再始動する！" }
+};
+
+// =============================================================================
+// シナリオ・シーン定義
+// =============================================================================
+const SCENES = {
+  // --- STAGE 1: 雲海突破 ---
+  "stage1_start": {
+    title: "海抜4,200m・紫電の積乱雲",
+    text: "アルゴ号の高度計は海抜4,200mを指している。\n目の前にそびえ立つのは、紫色の放電を繰り返す異常発達した大積乱雲だ。\n乱気流がゴンドラを激しく揺らし、リベットで留められた真鍮のフレームが悲鳴を上げている。\nこの暴風雨の向こう側に、古代都市の高度座標が重なっているのは間違いない。",
+    options: [
+      { label: "ボイラーの安全弁を締め、最大出力で雷雲の中心を最短突破する", hp: -50, fuel: -10, next: "stage1_storm" },
+      { label: "高度を落として雲海の下層へ潜り、気流の隙間を慎重に探す", hp: -15, fuel: -35, next: "stage1_under" },
+      { label: "羊皮紙の古代航路図を広げ、雷雲内に存在するはずの「無風の回廊」を割り出す", hp: -5, fuel: -20, lore: 1, next: "stage1_reading" }
+    ]
+  },
+  "stage1_storm": {
+    title: "雷雲のコア・超高圧放電域",
+    text: "視界は完全な紫の閃光に染まった。船首の避雷針が轟音とともに火花を散らし、過電圧でボイラー室の計器板ガラスが弾け飛ぶ。\n前方わずか百メートル、雷雲の中心部に圧縮された巨大なプラズマ放電球が急速に膨張を始めた！",
+    options: [
+      { label: "避雷針の蓄電器を過負荷のまま開放し、放電球の中心を力尽くで突っ切る", end: 2 },
+      { label: "逆噴射バーナーを全開にして船首を捻り、雲の切れ間に見えた金属構造物の足元へ逃げ込む", hp: -30, fuel: -20, next: "stage2_docks" }
+    ]
+  },
+  "stage1_under": {
+    title: "反重力フィールド境界・濃霧帯",
+    text: "雲の下層へ滑空した途端、猛烈な磁気嵐が船を包み込んだ。\n真鍮の羅針盤が狂ったように回転を始め、現在地の手がかりが消え去る。\n霧の合間から見上げる天空には、都市の底面とおぼしき巨大な人工影が広がっているが、燃料計の針はすでに赤色領域に張り付いていた。",
+    options: [
+      { label: "計器の狂いを無視し、直感に身を任せて霧の奥へフルスロットルで突き進む", end: 3 },
+      { label: "気球のガス弁を開いて急降下し、垂れ下がる巨大な係留アンカーの鎖へワイヤーを撃ち込む", hp: -10, fuel: -15, lore: 1, next: "stage2_mooring" }
+    ]
+  },
+  "stage1_reading": {
+    title: "凪の回廊・都市外観",
+    text: "古代の観測図は正確無比だった。\n雷雲の狭間に走る安定した気流のトンネルを滑るように抜け、アルゴ号はほぼ無傷で嵐を突破した。\n晴れ渡った成層圏の濃紺の空の下、青白い発光ラインを走らせる巨大な浮遊要塞都市『ラピス・アーク』が、圧倒的な威容をもって視界全体を塞いだ。",
+    options: [
+      { label: "都市上層に広がる巨大な透明展望ドームの搬入口を目指して上昇する", fuel: -15, lore: 1, next: "stage2_dome" },
+      { label: "防衛網を警戒し、外縁部の影になっている工業用換気シャフトへ密かに船を寄せる", hp: -5, fuel: -10, next: "stage2_shaft" }
+    ]
+  },
+
+  // --- STAGE 2: 外壁侵入 ---
+  "stage2_docks": {
+    title: "西側・朽ちた発着ドック",
+    text: "損傷した気球のガスを抜き、半ば叩きつけられるようにドックの金属床へ不時着した。\nアルゴ号の機関が冷めやらぬ中、天井のスリットから重低音の駆動音が響く。\n球形の古代防衛ドローンが赤黒い光条を放ちながら下降し、銃口をこちらへと固定した！",
+    options: [
+      { label: "アルゴ号の甲板に据え付けられた旋回式ガトリング銃で真っ向から撃ち合う", end: 4 },
+      { label: "船体を見捨て、ドック奥の気密扉へ滑り込むように飛び込む", hp: -20, fuel: -40, next: "stage3_residential" },
+      { label: "古代航路図の余白に記されていた「整備停止コード」の周波数を無線で発信する", reqLore: 1, lore: 1, next: "stage3_archive" }
+    ]
+  },
+  "stage2_mooring": {
+    title: "底部・反重力係留アンカー",
+    text: "アンカーの鎖に船を固定し、ハッチを開けて外へ出る。\n氷点下30度の烈風が防護服越しに皮膚を刺し、金属の手すりは分厚い氷に覆われている。\n都市内部へと通じる点検用ハッチは、頑強な凍結ロックで固く閉ざされていた。",
+    options: [
+      { label: "防寒具の点検を省き、携帯用バーナーの炎で一気に氷を融かして押し入る", end: 5 },
+      { label: "命綱を二重に結び直し、温度調節弁を調整しながら慎重に手動バイパスを探す", hp: -10, fuel: -20, next: "stage3_engine_sub" }
+    ]
+  },
+  "stage2_dome": {
+    title: "上層・透明展望ドーム",
+    text: "ガラス状の超硬度天蓋は傷一つなく、足下には古代の整然たる庭園都市が広がっている。\n搬入口へ着陸しようとしたその時、アルゴ号の短波受信機から不穏なエンジンノイズと男たちの粗野な声が混ざり込んだ。\n背後の雲を割って、武装した空賊船が急速に接近してくる。",
+    options: [
+      { label: "救助船と誤認し、照明弾を打ち上げてアルゴ号の現在座標を電波で知らせる", end: 6 },
+      { label: "全機関の火を消して通信を断ち、ドームの緊急搬入シャフトの暗がりへ船を滑り込ませる", fuel: -15, lore: 1, next: "stage3_archive" }
+    ]
+  },
+  "stage2_shaft": {
+    title: "工業排気ダクト回廊",
+    text: "狭い排気ダクトを靴音を忍ばせて進む。かつて巨大なファンを回していた熱気はとうに失われている。\n金属の壁面には、青く自生した未知の鉱石結晶が淡い光を放ち、空気中にわずかに甘いオゾンの匂いが漂っている。",
+    options: [
+      { label: "壁面の発光結晶をナイフで削り取り、標本ケースに収めながら居住区へ向かう", fuel: -10, lore: 1, next: "stage3_residential" },
+      { label: "結晶には手を触れず、機関室へ直行できる配管ダクトを足早に辿る", hp: -15, fuel: -10, next: "stage3_engine_sub" }
+    ]
+  },
+
+  // --- STAGE 3: 居住・研究区街 ---
+  "stage3_residential": {
+    title: "沈黙の居住区・石造りの大広場",
+    text: "数千年前に突然住人が姿を消したかのように、生活の跡がそのまま残る広大な街並み。\n崩れた宝飾店の金庫からは、見たこともない緻密な古代金貨や宝玉が床一面に散らばっている。\nしかし、街の奥へと通じる大通りは分厚い防護隔壁によって完全に遮断されていた。",
+    options: [
+      { label: "これ以上の深入りを避け、足元の財宝を袋いっぱいに詰め込んでアルゴ号へ引き返す", end: 7 },
+      { label: "工兵用爆薬を取り出し、隔壁のヒンジ部分を力尽くで吹き飛ばす", end: 9 },
+      { label: "広場を迂回し、高台の尖塔にそびえる「記録大図書館」の渡り廊下を目指す", fuel: -15, lore: 1, next: "stage3_archive" }
+    ]
+  },
+  "stage3_archive": {
+    title: "大図書館・青き記録大空洞",
+    text: "天井の見えないドーム全体に、幾何学模様を描く青い光のホログラム書架が整然と並んでいる。\nコンソールに手を触れると、古代の文字が網膜に直接投影された。\nかつて地上で起きた天変地異、この都市が空へ逃れた理由、そして都市の心臓たるエネルギー炉の構造がすべてここに記録されている。",
+    options: [
+      { label: "手近な記憶結晶スロットから標本ディスクを1枚だけ抜き取り、崩壊を恐れて脱出する", end: 8 },
+      { label: "燃料の消費を覚悟し、端末の全データを時間をかけてアルゴ号の通信機へ転送・解読する", hp: -10, fuel: -35, lore: 2, next: "stage4_deep_hub" },
+      { label: "動力機関の安全制御プロトコルだけを急いで頭に叩き込み、機関室へ急行する", fuel: -10, lore: 1, next: "stage4_core" }
+    ]
+  },
+  "stage3_engine_sub": {
+    title: "機関室下層・高圧蒸気回廊",
+    text: "耳を劈くような排気音とともに、紫がかった高圧のエーテル蒸気がパイプの継ぎ目から噴き出している。\n通路の床には青い液体が溜まり、アルゴ号の燃料タンクへと繋がる給油口が圧力異常で激しく振動を始めた。",
+    options: [
+      { label: "パイプの亀裂を塞ぐため、蒸気の噴出口に張り付いて長時間の応急修理を行う", fuel: -50, checkFuelFail: 10, next: "stage4_core" },
+      { label: "皮膚を焼く熱蒸気を防護服で耐え忍びながら、手動レバーをねじ伏せて中枢隔壁をこじ開ける", hp: -30, lore: 1, next: "stage4_core" }
+    ]
+  },
+
+  // --- STAGE 4: 動力中枢 ---
+  "stage4_deep_hub": {
+    title: "中枢通信回廊・光の回廊",
+    text: "都市の神経系が集まる中枢通路。\n地上の超長波を受信できる巨大アンテナ室が今なお微かに稼働しており、軍用通信の暗号電波を拾っている。\n通路の突き当たりには、都市の最高決定機関である『頂上管制塔』へと直通する垂直リフトが静かに待機していた。",
+    options: [
+      { label: "地上の国家軍部へ暗号通信を繋ぎ、この天空都市の絶対座標と独占権を最高値で売り渡す", end: 14 },
+      { label: "誘惑を振り払い、リフトの起動キーを押し込んで頂上管制塔へ向かう", fuel: -10, lore: 1, next: "stage5_apex" }
+    ]
+  },
+  "stage4_core": {
+    title: "主動力室『エーテル・マトリクス炉』",
+    text: "視界を埋め尽くすのは、脈動を続けるビルほどの巨大な青き結晶炉。\n数千年の間、この都市を空に浮かべ続けてきた超古代の心臓部だ。\nだが冷却システムはすでに限界を迎えており、高密度の精神感応波が激しい頭痛となって意識を揺さぶる！",
+    options: [
+      { label: "頭痛の苦痛に耐えかね、防護服を脱ぎ捨てて美しく脈打つ結晶体へと手を伸ばす", end: 11 },
+      { label: "制御端末の端子を直接自らの額に当て、古代人の集合意識アーカイブと精神を同期させる", end: 12 },
+      { label: "知識がないまま、赤く点滅している緊急停止レバーを渾身の力で引き倒す", end: 13 },
+      { label: "これまでに得た古代知識を駆使し、炉心冷却プロトコルの周波数を手動で再調律する", reqLore: 3, hp: -10, fuel: 20, lore: 1, next: "stage5_apex" }
+    ]
+  },
+
+  // --- STAGE 5: 頂上管制塔 ---
+  "stage5_apex": {
+    title: "頂上・天空の玉座の間",
+    text: "天蓋のガラス越しに、地球の丸みと果てしない青空が広がる静謐な円形の間。\n中央の壇上に光の粒子が集まり、透き通った少女の姿をした統括人工知能『アストライア』が結像した。\n\n「数千年の風の果てに、我が領域へ至った地上の旅人よ。\nこの都市は滅びゆく文明の種子を託された揺り籠であり、同時に地上をリセットするための天秤でもあります。\n最後の鍵を持つ者よ、このラピス・アークをいかに処遇しますか？」",
+    options: [
+      { label: "「都市の全機能を地上へ降下させ、古代の英知と技術を地上の民と分かち合おう」", reqLore: 3, end: 15 },
+      { label: "「兵器となる都市本体は封じ、無害なエーテル機関の設計コアだけを地上へ持ち帰る」", end: 16 },
+      { label: "「都市の姿をふたたび霧で隠せ。私はこの空の守護者として、共に生きる」", end: 17 },
+      { label: "「あまりに危険すぎる力だ。都市の推進炉を宇宙へ点火し、二度と触れられぬ星海へ旅立たせよう」", end: 18 },
+      { label: "玉座の奥、数千年間眠り続けている古代の設計技師のカプセルを手動で解放する", end: 19 },
+      { label: "統治者としての全資格コードを詠唱し、都市の全権を我が手に掌握する", reqLore: 4, checkHpMaster: true }
+    ]
+  }
+};
+
+// =============================================================================
+// エンジン処理
+// =============================================================================
+function startGame() {
+  document.getElementById("title-screen").style.display = "none";
+  document.getElementById("status-bar").style.display = "flex";
+  document.getElementById("play-area").style.display = "block";
+  render();
+}
+
+function returnToTitle() {
+  state.hp = 100;
+  state.fuel = 100;
+  state.lore = 0;
+  state.turn = 0;
+  state.history = [];
+  state.currentScene = "stage1_start";
+
+  document.getElementById("ending-modal").style.display = "none";
+  document.getElementById("play-area").style.display = "none";
+  document.getElementById("status-bar").style.display = "none";
+  document.getElementById("title-screen").style.display = "block";
+  
+  // プレースホルダーの初期化
+  const imgEl = document.getElementById("scene-image");
+  const phEl = document.getElementById("image-placeholder");
+  imgEl.style.display = "none";
+  phEl.style.display = "block";
+  document.getElementById("ph-scene-id").innerText = "[ LAPIS ARK ]";
+  document.getElementById("ph-desc").innerText = "1980s Retro Adventure System";
+}
+
+function render() {
+  const scene = SCENES[state.currentScene];
+  if (!scene) return;
+
+  // ステータス更新
+  document.getElementById("stat-turn").innerText = String(state.turn).padStart(2, "0");
+  const hpEl = document.getElementById("stat-hp");
+  hpEl.innerText = Math.max(0, state.hp);
+  hpEl.className = state.hp <= 25 ? "stat-val danger" : "stat-val";
+
+  const fuelEl = document.getElementById("stat-fuel");
+  fuelEl.innerText = Math.max(0, state.fuel);
+  fuelEl.className = state.fuel <= 20 ? "stat-val danger" : "stat-val";
+
+  document.getElementById("stat-lore").innerText = state.lore;
+
+  // 画像プレースホルダーの更新
+  const imgEl = document.getElementById("scene-image");
+  const phEl = document.getElementById("image-placeholder");
+  if (scene.image && scene.image.trim() !== "") {
+    imgEl.src = scene.image;
+    imgEl.style.display = "block";
+    phEl.style.display = "none";
+  } else {
+    imgEl.style.display = "none";
+    phEl.style.display = "block";
+    document.getElementById("ph-scene-id").innerText = `[ SCENE: ${state.currentScene} ]`;
+    document.getElementById("ph-desc").innerText = scene.title;
+  }
+
+  // テキスト更新
+  document.getElementById("scene-title").innerText = scene.title;
+  document.getElementById("scene-desc").innerText = scene.text;
+
+  // 選択肢ボタン生成
+  const choicesPanel = document.getElementById("choices-panel");
+  choicesPanel.innerHTML = "";
+
+  scene.options.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.className = "choice-btn";
+    
+    // 知識条件チェック
+    const isLocked = opt.reqLore && state.lore < opt.reqLore;
+    let label = opt.label;
+    if (isLocked) {
+      label += ` （※ 古代知識が不足しており選択できない）`;
+      btn.disabled = true;
+    }
+    btn.innerText = label;
+
+    btn.onclick = () => chooseOption(opt);
+    choicesPanel.appendChild(btn);
+  });
+}
+
+function chooseOption(opt) {
+  state.turn++;
+  state.history.push(opt.label);
+  state.hp += opt.hp || 0;
+  state.fuel += opt.fuel || 0;
+  state.lore += opt.lore || 0;
+
+  // 汎用死判定
+  if (state.hp <= 0) return triggerEnding(1);
+  if (state.fuel <= 0) return triggerEnding(opt.checkFuelFail ? opt.checkFuelFail : 3);
+
+  // 特殊即死・特定エンディング
+  if (opt.end) return triggerEnding(opt.end);
+
+  // マスターエンドのHP判定
+  if (opt.checkHpMaster) {
+    if (state.hp >= 70) return triggerEnding(20);
+    return triggerEnding(15);
+  }
+
+  state.currentScene = opt.next;
+  render();
+}
+
+function triggerEnding(endNo) {
+  const end = ENDINGS[endNo];
+  document.getElementById("play-area").style.display = "none";
+  document.getElementById("ending-modal").style.display = "block";
+
+  const banner = document.getElementById("ending-banner");
+  banner.className = `ending-banner ${end.badge}`;
+  document.getElementById("end-title").innerText = `ENDING No.${String(endNo).padStart(2, "0")} : ${end.title}`;
+  document.getElementById("end-type").innerText = `${end.type} (到達ターン: ${state.turn})`;
+  document.getElementById("end-desc").innerText = end.text;
+
+  // ログ表示
+  const logBox = document.getElementById("log-box");
+  logBox.innerHTML = state.history.map((h, i) => `<div>${i + 1}. ${h}</div>`).join("");
+}
+</script>
+
+</body>
+</html>

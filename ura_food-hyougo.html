@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>兵庫県「食・農水産・物流」構造インフォグラフィック</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0a0e17',
+              card: 'rgba(21, 29, 47, 0.88)',
+              accent: '#8b5cf6',
+              purple: '#a855f7',
+              crimson: '#ef4444',
+              emerald: '#10b981',
+              amber: '#f59e0b',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0a0e17;
+      color: #e2e8f0;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    }
+    .glass-card {
+      background: rgba(21, 29, 47, 0.88);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(51, 65, 85, 0.6);
+      transition: all 0.25s ease-in-out;
+    }
+    .glass-card:hover {
+      border-color: rgba(168, 85, 247, 0.7);
+      transform: translateY(-2px);
+    }
+    .metric-card.dimmed {
+      opacity: 0.2;
+      filter: grayscale(80%);
+      transform: scale(0.98);
+    }
+    .metric-card.highlighted {
+      border-color: #a855f7 !important;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+      background: rgba(35, 30, 68, 0.95);
+      transform: scale(1.02);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen p-4 md:p-8 custom-scrollbar">
+
+  <!-- HEADER & NAVIGATION -->
+  <header class="max-w-7xl mx-auto mb-8 border-b border-slate-800 pb-6">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-800 text-purple-400 text-xs font-semibold uppercase tracking-wider mb-2">
+          <i class="fa-solid fa-gem"></i> Five Provinces Food & Logistics Architecture
+        </div>
+        <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight flex items-center gap-3">
+          兵庫県「食・農水産・物流」30の基幹数字
+        </h1>
+        <p class="text-slate-400 text-sm mt-1 max-w-2xl">
+          旧五国（摂津・播磨・但馬・丹波・淡路）の豊かな食材多様性。但馬牛・灘の酒・淡路島玉ねぎと、東西幹線を結ぶメガハブ物流の構造的急所。
+        </p>
+      </div>
+      <!-- FILTER BUTTONS -->
+      <div class="flex flex-wrap items-center gap-2" id="filterContainer">
+        <button onclick="filterCategory('all')" class="filter-btn active px-3.5 py-1.5 text-xs font-medium rounded-lg bg-purple-600 text-white shadow-sm transition">すべて (30)</button>
+        <button onclick="filterCategory('macro')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">マクロ・基盤</button>
+        <button onclick="filterCategory('agri')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">農産・畜産・水産</button>
+        <button onclick="filterCategory('food')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">醸造・食文化・外食</button>
+        <button onclick="filterCategory('logistics')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">物流・サプライチェーン</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto space-y-8">
+
+    <!-- KPI SUMMARY BAR (4 CARDS) -->
+    <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="glass-card rounded-xl p-4 border-l-4 border-l-purple-500">
+        <span class="text-xs text-slate-400 font-medium">但馬牛純血統率（神戸牛素牛）</span>
+        <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">100 <span class="text-base font-normal text-purple-400">%</span></div>
+        <div class="text-xs text-purple-400 mt-1 flex items-center gap-1"><i class="fa-solid fa-dna"></i> 全国黒毛和牛の母体・閉鎖育種</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 border-l-4 border-l-amber-500">
+        <span class="text-xs text-slate-400 font-medium">清酒（日本酒）生産量シェア</span>
+        <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">約25.2 <span class="text-base font-normal text-amber-400">%</span></div>
+        <div class="text-xs text-amber-400 mt-1 flex items-center gap-1"><i class="fa-solid fa-wine-bottle"></i> 灘五郷が誇る日本一の醸造地帯</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 border-l-4 border-l-emerald-500">
+        <span class="text-xs text-slate-400 font-medium">酒米の王「山田錦」生産シェア</span>
+        <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">約60.5 <span class="text-base font-normal text-emerald-400">%</span></div>
+        <div class="text-xs text-slate-400 mt-1">三木・加東の特A地区が支える独占力</div>
+      </div>
+      <div class="glass-card rounded-xl p-4 border-l-4 border-l-sky-500">
+        <span class="text-xs text-slate-400 font-medium">神戸港 外貿コンテナ取扱量</span>
+        <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">約290 <span class="text-base font-normal text-sky-400">万TEU</span></div>
+        <div class="text-xs text-sky-400 mt-1"><i class="fa-solid fa-ship"></i> 西日本最大の国際戦略港湾ハブ</div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE CARD GRID (30 NUMBERS) -->
+    <section>
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-diagram-project text-purple-400"></i>
+          基幹数字マトリクス（クリックで因果関係・連鎖ハイライト）
+        </h2>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-400 hidden sm:inline">※カード選択で関連指標が点灯</span>
+          <button onclick="resetHighlight()" class="text-xs text-slate-400 hover:text-white px-2.5 py-1 rounded bg-slate-800 border border-slate-700">選択解除</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3" id="cardsGrid">
+        <!-- Javascript dynamically renders 30 cards here -->
+      </div>
+    </section>
+
+    <!-- 2 COMPARATIVE CHART AREAS -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- CHART 1: 規模・産出額の構造比較 (縦棒) -->
+      <div class="glass-card rounded-xl p-5 border border-slate-800 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-chart-column text-purple-400"></i>
+              兵庫県 主要農水産部門の産出・生産規模（億円）
+            </h3>
+            <span class="text-xs bg-slate-800 text-slate-400 px-2 py-0.5 rounded">縦棒チャート</span>
+          </div>
+          <p class="text-xs text-slate-400 mb-4">但馬牛を中心とする畜産が首位を占め、淡路島の野菜・山田錦等の米・水産が拮抗。</p>
+        </div>
+        <div class="h-64 relative">
+          <canvas id="outputScaleChart"></canvas>
+        </div>
+      </div>
+
+      <!-- CHART 2: 独立比率・全国特化度 (水平バー 上限100%) -->
+      <div class="glass-card rounded-xl p-5 border border-slate-800 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-chart-bar text-amber-400"></i>
+              兵庫県 主要指標の全国比率・特化度（上限100%基準）
+            </h3>
+            <span class="text-xs bg-slate-800 text-amber-400/80 px-2 py-0.5 rounded">水平バーチャート</span>
+          </div>
+          <p class="text-xs text-slate-400 mb-4">母集団が異なるシェア・比率を厳格に独立個別評価（円グラフ誤用の完全排除）。</p>
+        </div>
+        <div class="h-64 relative">
+          <canvas id="dependencyRatioChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- STRUCTURAL CALCULATOR / SIMULATOR -->
+    <section class="glass-card rounded-xl p-6 border border-slate-800">
+      <div class="flex items-center gap-2 mb-2">
+        <i class="fa-solid fa-calculator text-emerald-400"></i>
+        <h3 class="text-base font-bold text-white">兵庫発サプライチェーン & 物流負荷方程式シミュレーター</h3>
+      </div>
+      <p class="text-xs text-slate-400 mb-4">
+        東西十字路・兵庫（神戸・阪神間）から各大消費地へのチルド輸送（神戸牛・青果・水産）における距離・台数と、CO2排出量およびドライバー拘束リスクを試算。
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center bg-slate-900/60 p-4 rounded-lg border border-slate-800 text-sm">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">仕向地・輸送ルート</label>
+          <select id="calcDestination" class="w-full bg-slate-800 border border-slate-700 rounded p-2 text-white text-xs focus:ring-1 focus:ring-purple-500" onchange="runSimulation()">
+            <option value="550" selected>首都圏・豊洲/大田市場（約550km / 新東名経由 翌朝便）</option>
+            <option value="580">九州・博多港/福岡中央卸売（約580km / 山陽道経由 翌朝便）</option>
+            <option value="50">阪神都市圏（約50km / 阪神高速経由 即日短距離ピストン）</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">輸送規模（チルド10t車換算台数）</label>
+          <input type="number" id="calcTrucks" min="1" max="100" value="8" class="w-full bg-slate-800 border border-slate-700 rounded p-2 text-white text-xs focus:ring-1 focus:ring-purple-500" onchange="runSimulation()">
+        </div>
+        <div class="p-3 bg-slate-950/80 rounded border border-slate-800/80">
+          <div class="text-xs text-slate-400">試算：輸送CO2排出量 & ドライバー拘束リスク</div>
+          <div class="text-base font-bold text-purple-400 mt-1" id="calcResultDisplay">計算中...</div>
+          <div class="text-[11px] text-slate-500 mt-0.5" id="calcInsight">...</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="max-w-7xl mx-auto mt-12 pt-6 border-t border-slate-800/80 text-center text-xs text-slate-500">
+    <p>兵庫県食料・水産・農業・物流構造インフォグラフィック | 農林水産統計・水産庁・神戸港港湾統計・兵庫県公表資料に基づく体系的整理</p>
+  </footer>
+
+  <!-- DATA & JAVASCRIPT LOGIC -->
+  <script>
+    // 30 Core Metrics Data Definition for Hyogo
+    const metricsData = [
+      { id: 1, num: "1,530億", unit: "円", title: "農業産出額", cat: "macro", rel: [2, 3, 4, 11], desc: "但馬牛などの畜産が約4割を占め、淡路島玉ねぎ、山田錦が支える高付加価値構造。" },
+      { id: 2, num: "約25.2%", unit: "", title: "清酒生産量（全国ダントツ1位）", cat: "food", rel: [3, 10, 13, 20], desc: "灘五郷（西宮・神戸）。全国清酒出荷の約1/4を占め、巨大醸造プラントが集中。" },
+      { id: 3, num: "約60.5%", unit: "", title: "山田錦（酒米の王）生産シェア", cat: "agri", rel: [1, 2, 10, 13], desc: "三木市・加東市の「特A地区」。寒暖差と粘土質土壌が生む最高峰酒造好適米の独占的産地。" },
+      { id: 4, num: "100%", unit: "", title: "但馬牛純血統（神戸牛素牛）", cat: "agri", rel: [1, 9, 16, 20], desc: "松阪牛・近江牛の素牛も但馬牛。他県血統を排除した閉鎖育種で守り抜かれた霜降り肉の世界的原点。" },
+      { id: 5, num: "約290万TEU", unit: "", title: "神戸港 外貿コンテナ取扱量", cat: "logistics", rel: [18, 20, 24], desc: "西日本最大の国際戦略港湾。北米・欧州直行航路を有し、牛肉・日本酒・加工品を世界へ輸出。" },
+      { id: 6, num: "旧五国", unit: "多様性", title: "摂津・播磨・但馬・丹波・淡路", cat: "macro", rel: [3, 4, 7, 8], desc: "日本海（但馬）から瀬戸内（播磨・摂津）、淡路島まで気候風土が完全に異なる列島の縮図。" },
+      { id: 7, num: "約9.2%", unit: "", title: "淡路島たまねぎ 生産シェア", cat: "agri", rel: [1, 8, 17, 26], desc: "長い日照時間と潮風。吊り小屋乾燥で熟成され、高糖度・軟らかさで全国ブランド化。" },
+      { id: 8, num: "2大海洋", unit: "", title: "日本海（松葉ガニ）& 瀬戸内海", cat: "agri", rel: [6, 9, 12], desc: "香住・浜坂港のズワイガニ・ホタルイカと、明石海峡の明石鯛・明石蛸が同一県内に併存。" },
+      { id: 9, num: "1位", unit: "", title: "ホタルイカ水揚量（全国首位）", cat: "agri", rel: [8, 12, 18], desc: "浜坂漁港（新温泉町）。富山湾を上回る深海底引き網漁による全国屈指の水揚規模。" },
+      { id: 10, num: "灘五郷", unit: "26蔵", title: "宮水（西宮下海水）の奇跡", cat: "food", rel: [2, 3, 13], desc: "リン・カルシウムに富み鉄分を含まない湧水。酵母増殖を劇的に促進する名水が醸造を牽引。" },
+      { id: 11, num: "32%", unit: "", title: "カロリーベース食料自給率", cat: "macro", rel: [1, 6, 29], desc: "阪神大都市圏を抱えるため自給率は低いが、地域特産品・プレミアム食材の付加価値は全国屈指。" },
+      { id: 12, num: "明石海峡", unit: "激流", title: "明石鯛・明石ダコ・いかなご", cat: "agri", rel: [8, 14, 15], desc: "速い潮流が育む身の引き締まり。春の風物詩「いかなごのくぎ煮」等、強固な魚食文化を形成。" },
+      { id: 13, num: "村米制度", unit: "百余年", title: "酒蔵と酒米産地の契約直結", cat: "food", rel: [2, 3, 10], desc: "播磨の農家と灘の蔵元が結ぶ専属取引契約。品質保証と共存共栄を実現した日本型アグリビジネスの祖。" },
+      { id: 14, num: "1位", unit: "", title: "明石焼き（玉子焼）文化", cat: "food", rel: [12, 15, 25], desc: "鶏卵と沈粉（じんこ）、出汁で食す伝統粉もの。大阪たこ焼きの直接的ルーツとなった食文化。" },
+      { id: 15, num: "神戸洋食", unit: "発祥", title: "開港150年の洋食・ベーカリー", cat: "food", rel: [4, 14, 25], desc: "ビーフカツレツ、神戸パン、洋菓子。外国人居留地から根付いた洗練された外食・加工産業。" },
+      { id: 16, num: "年約5,000頭", unit: "", title: "神戸ビーフ 厳格認定頭数", cat: "food", rel: [4, 9, 20], desc: "歩留・肉質等級（A4/A5）、BMS値No.6以上のみに許される称号。年間5,000頭前後の希少性。" },
+      { id: 17, num: "2大架橋", unit: "", title: "明石海峡大橋 & 鳴門大橋", cat: "logistics", rel: [7, 18, 26], desc: "四国・淡路島と阪神間を完全陸送化。玉ねぎや四国青果の関西当日配送を支える生命線。" },
+      { id: 18, num: "神戸/吉川JCT", unit: "要衝", title: "東西・南北物流の十字路", cat: "logistics", rel: [5, 17, 19, 24], desc: "中国道・山陽道・舞鶴若狭道が分岐。関西と西日本全域、日本海側を結ぶ中継ハブ倉庫群が集積。" },
+      { id: 19, num: "2024年", unit: "問題", title: "関東直行と西日本中継の壁", cat: "logistics", rel: [18, 22, 27], desc: "神戸発・東京（約550km）は日帰り不可のワンマン限界域。中継拠点化やトレーラー中継が進展。" },
+      { id: 20, num: "約250億円", unit: "", title: "農水産品・加工酒類輸出額", cat: "logistics", rel: [2, 4, 5, 28], desc: "神戸牛のアメリカ・アジア輸出、灘の日本酒の欧米展開が牽引し、輸出額は全国上位。" },
+      { id: 21, num: "丹波三宝", unit: "", title: "黒大豆・栗・大納言小豆", cat: "agri", rel: [1, 6, 15], desc: "丹波盆地の深い霧と粘土質が生む最高級乾物・和菓子原料。全国料亭への直送サプライチェーン。" },
+      { id: 22, num: "六甲アイランド", unit: "", title: "長距離フェリー西日本拠点", cat: "logistics", rel: [5, 18, 19], desc: "新門司・大分・宮崎・四国と直結。無人シャーシ航送によるドライバー拘束ゼロ化の心臓部。" },
+      { id: 23, num: "約38%", unit: "", title: "手延そうめん「揖保乃糸」シェア", cat: "food", rel: [1, 3, 25], desc: "播州平野（たつの市）。良質な小麦と揖保川の水、赤穂の塩が生む全国シェアNo.1の手延そうめん。" },
+      { id: 24, num: "ポートアイランド", unit: "", title: "巨大冷凍・冷蔵倉庫クラスター", cat: "logistics", rel: [5, 18, 20], desc: "神戸港背後に広がる西日本最大級の低温物流街区。輸入食肉・輸入青果・輸出水産物の集積地。" },
+      { id: 25, num: "日本一のパン消費", unit: "", title: "神戸市民のパン購入額首位", cat: "food", rel: [14, 15, 23], desc: "総務省家計調査で全国トップ常連。ドンク、イスズベーカリー等の高度なベーカリー産業が成熟。" },
+      { id: 26, num: "淡路島レタス", unit: "", title: "冬春レタス二重作体系", cat: "agri", rel: [1, 7, 17], desc: "水稲と玉ねぎ、レタスの高度輪作。温暖な気候を活かし冬場の関西青果市場を支える主力産地。" },
+      { id: 27, num: "吹田・尼崎貨物", unit: "", title: "東海道・山陽本線 鉄道貨物", cat: "logistics", rel: [18, 19, 22], desc: "JR貨物の超基幹軸。トラックドライバー不足を代替するコンテナモーダルシフトの主動脈。" },
+      { id: 28, num: "2,500m", unit: "", title: "神戸空港 国際化と航空貨物", cat: "logistics", rel: [4, 5, 20], desc: "国際チャーター便就航・発着枠拡大が進展。関西三空港一体運用によるプレミアム生鮮品の航空輸送拡大。" },
+      { id: 29, num: "70.5歳", unit: "", title: "基幹的農業従事者平均年齢", cat: "macro", rel: [1, 11, 30], desc: "丹波・但馬の中山間地における過疎高齢化。棚田保全とスマート農業・自動運行機械の導入が急務。" },
+      { id: 30, num: "約2,500", unit: "経営体", title: "認定農業者・集落営農組織", cat: "macro", rel: [1, 29], desc: "播磨・但馬での集落営農法人化が進展。山田錦の契約栽培法人などが農地維持の中核を担う。" }
+    ];
+
+    // Render Cards
+    const grid = document.getElementById('cardsGrid');
+    function renderCards(filter = 'all') {
+      grid.innerHTML = '';
+      metricsData.forEach(item => {
+        if (filter !== 'all' && item.cat !== filter) return;
+
+        const card = document.createElement('div');
+        card.className = `metric-card glass-card rounded-lg p-3 cursor-pointer border border-slate-800 flex flex-col justify-between`;
+        card.setAttribute('data-id', item.id);
+        card.setAttribute('data-rel', JSON.stringify(item.rel));
+        card.onclick = () => handleCardClick(item.id);
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
+              <span class="font-mono text-purple-400 font-bold">#${item.id < 10 ? '0' + item.id : item.id}</span>
+              <span class="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">${item.cat}</span>
+            </div>
+            <div class="text-xl font-black text-white tracking-tight flex items-baseline gap-0.5">
+              ${item.num} <span class="text-xs font-normal text-slate-400">${item.unit}</span>
+            </div>
+            <div class="text-xs font-bold text-slate-200 mt-1 line-clamp-1">${item.title}</div>
+            <p class="text-[11px] text-slate-400 mt-1 leading-relaxed line-clamp-2">${item.desc}</p>
+          </div>
+          <div class="mt-2 pt-2 border-t border-slate-800/80 flex items-center justify-between text-[10px] text-slate-500">
+            <span>連動: ${item.rel.map(r => '#' + (r < 10 ? '0' + r : r)).join(' ')}</span>
+            <i class="fa-solid fa-circle-nodes text-slate-600"></i>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Filter Logic
+    function filterCategory(cat) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('bg-purple-600', 'text-white');
+        btn.classList.add('bg-slate-800', 'text-slate-300');
+      });
+      event.target.classList.remove('bg-slate-800', 'text-slate-300');
+      event.target.classList.add('bg-purple-600', 'text-white');
+      renderCards(cat);
+      resetHighlight();
+    }
+
+    // Interactive Highlight Logic
+    let selectedId = null;
+    function handleCardClick(id) {
+      if (selectedId === id) {
+        resetHighlight();
+        return;
+      }
+      selectedId = id;
+      const target = metricsData.find(m => m.id === id);
+      const relatedIds = [id, ...(target ? target.rel : [])];
+
+      document.querySelectorAll('.metric-card').forEach(card => {
+        const cardId = parseInt(card.getAttribute('data-id'));
+        if (relatedIds.includes(cardId)) {
+          card.classList.remove('dimmed');
+          card.classList.add('highlighted');
+        } else {
+          card.classList.remove('highlighted');
+          card.classList.add('dimmed');
+        }
+      });
+    }
+
+    function resetHighlight() {
+      selectedId = null;
+      document.querySelectorAll('.metric-card').forEach(card => {
+        card.classList.remove('dimmed', 'highlighted');
+      });
+    }
+
+    // Initialize Charts
+    let chart1, chart2;
+    function initCharts() {
+      // Chart 1: 規模・産出額（縦棒グラフ）
+      const ctx1 = document.getElementById('outputScaleChart').getContext('2d');
+      chart1 = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+          labels: ['畜産（但馬牛等）', '野菜（淡路玉葱等）', '米（山田錦等）', '水産（松葉蟹等）', '果樹・その他加工'],
+          datasets: [{
+            label: '産出規模（億円）',
+            data: [590, 410, 310, 220, 110],
+            backgroundColor: [
+              'rgba(168, 85, 247, 0.75)',
+              'rgba(239, 68, 68, 0.75)',
+              'rgba(16, 185, 129, 0.75)',
+              'rgba(56, 189, 248, 0.75)',
+              'rgba(148, 163, 184, 0.65)'
+            ],
+            borderColor: '#0f172a',
+            borderWidth: 1,
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#1e293b',
+              titleColor: '#fff',
+              bodyColor: '#cbd5e1'
+            }
+          },
+          scales: {
+            x: {
+              ticks: { color: '#94a3b8', font: { size: 10 } },
+              grid: { display: false }
+            },
+            y: {
+              beginAtZero: true,
+              ticks: { color: '#94a3b8', font: { size: 10 } },
+              grid: { color: 'rgba(51, 65, 85, 0.4)' }
+            }
+          }
+        }
+      });
+
+      // Chart 2: 比率・全国シェア特化度（水平バーチャート 上限100%厳格固定）
+      const ctx2 = document.getElementById('dependencyRatioChart').getContext('2d');
+      chart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+          labels: [
+            '但馬牛純血統率（素牛）',
+            '山田錦 酒米全国シェア',
+            '手延そうめん 揖保乃糸シェア',
+            'カロリーベース自給率',
+            '清酒（日本酒）生産シェア',
+            '淡路島たまねぎ 生産シェア'
+          ],
+          datasets: [{
+            label: '比率・シェア (%)',
+            data: [100.0, 60.5, 38.0, 32.0, 25.2, 9.2],
+            backgroundColor: 'rgba(168, 85, 247, 0.75)',
+            borderColor: '#a855f7',
+            borderWidth: 1,
+            borderRadius: 4
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(context) { return `${context.parsed.x}%`; }
+              }
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              max: 100, // 厳格な100%上限ルール適用
+              ticks: {
+                color: '#94a3b8',
+                callback: function(value) { return value + "%"; }
+              },
+              grid: { color: 'rgba(51, 65, 85, 0.4)' }
+            },
+            y: {
+              ticks: { color: '#cbd5e1', font: { size: 10 } },
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    }
+
+    // Simulator Logic
+    function runSimulation() {
+      const distance = parseFloat(document.getElementById('calcDestination').value);
+      const trucks = parseInt(document.getElementById('calcTrucks').value) || 1;
+      
+      // 10tチルド車 1台・1kmあたりのCO2排出量試算（約0.48kg-CO2/km）
+      const co2TotalTon = ((distance * trucks * 0.48) / 1000).toFixed(2);
+      
+      let constraintText = "";
+      let insightText = "";
+      if (distance >= 500) {
+        constraintText = "拘束時間 約13〜15時間（日帰り不可・翌日戻り便）";
+        insightText = "※神戸発・東京方面は約550km。新東名直行で当日夜間発・翌朝豊洲着が可能だが、2024年規制下では荷待ち短縮が至上命題。";
+      } else if (distance >= 300) {
+        constraintText = "拘束時間 約8〜10時間（夜間運行・翌朝市場セリ直行）";
+        insightText = "※山陽道直行便。関西と中国・四国をつなぐ基幹サプライチェーン。";
+      } else {
+        constraintText = "拘束時間 約2〜4時間（即日多頻度ピストン輸送可能）";
+        insightText = "※阪神都市圏内（神戸〜大阪〜京都）は地産地消・即日配送。淡路島玉ねぎや灘の清酒の最短消費ルート。";
+      }
+
+      document.getElementById('calcResultDisplay').innerText = `CO₂ 約 ${co2TotalTon} t ／ ${constraintText}`;
+      document.getElementById('calcInsight').innerText = insightText;
+    }
+
+    // Initial Execution
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCards();
+      initCharts();
+      runSimulation();
+    });
+  </script>
+</body>
+</html>

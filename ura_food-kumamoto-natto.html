@@ -1,0 +1,497 @@
+<!-- 対象ファイル: food-natto_kyushu.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>九州・熊本「納豆王国」構造インフォグラフィック | Knowledge & Training Hub</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0a0e17',
+              card: 'rgba(21, 29, 47, 0.88)',
+              accent: '#f59e0b',
+              amber: '#d97706',
+              cyan: '#06b6d4',
+              emerald: '#10b981',
+              rose: '#f43f5e',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', '"Noto Sans JP"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0a0e17;
+      color: #e2e8f0;
+      font-family: 'Noto Sans JP', Inter, sans-serif;
+    }
+    .glass-card {
+      background: rgba(21, 29, 47, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(245, 158, 11, 0.45);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 15px rgba(245, 158, 11, 0.15);
+    }
+    .metric-card.dimmed {
+      opacity: 0.2;
+      filter: grayscale(80%);
+      transform: scale(0.98);
+    }
+    .metric-card.highlighted {
+      border-color: #f59e0b !important;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+      background: rgba(35, 30, 68, 0.95);
+      transform: scale(1.02);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen p-4 md:p-8 custom-scrollbar flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- 認証ガード（index.html の認証状態を検証） -->
+  <script>
+    if (sessionStorage.getItem('hub_auth_status') !== 'true' && sessionStorage.getItem('hub_authenticated') !== 'true') {
+      window.location.href = 'index.html';
+    }
+  </script>
+
+  <div>
+    <!-- ナビゲーションバー -->
+    <header class="max-w-7xl mx-auto mb-8 border-b border-slate-800 pb-5">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <a href="indexfood.html" class="text-slate-400 hover:text-white transition flex items-center gap-2 text-xs font-mono">
+            <i class="fa-solid fa-arrow-left"></i> 食・農水産ハブへ戻る
+          </a>
+          <span class="text-slate-600">/</span>
+          <a href="index.html" class="text-slate-400 hover:text-white transition text-xs font-mono">
+            総合ポータル
+          </a>
+        </div>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-300 border border-amber-500/20 font-mono">
+          <i class="fa-solid fa-dna mr-1.5"></i> Microbiome & Industrial Matrix
+        </span>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-950/60 border border-amber-800 text-amber-400 text-xs font-semibold uppercase tracking-wider mb-2 font-mono">
+            <i class="fa-solid fa-cubes-stacked"></i> Kyushu Fermentation & Bio-Logistics
+          </div>
+          <h1 class="text-2xl md:text-3xl font-extrabold text-white tracking-tight flex items-center gap-3">
+            九州・熊本「納豆王国」30の基幹数字
+          </h1>
+          <p class="text-slate-400 text-xs md:text-sm mt-1 max-w-3xl leading-relaxed">
+            「西日本は納豆嫌い」の定説を覆す熊本・九州の圧倒的シェア。40℃超の高温増殖バイオロジー、阿蘇伏流水プラント、甘口醤油との化学的共生、そして西日本全域を制覇したメガサプライチェーンの全貌。
+          </p>
+        </div>
+        <!-- カテゴリ切り替えボタン -->
+        <div class="flex flex-wrap items-center gap-2 shrink-0" id="filterContainer">
+          <button onclick="filterCategory('all')" class="filter-btn active px-3.5 py-1.5 text-xs font-medium rounded-lg bg-amber-600 text-white shadow-sm transition">すべて (30)</button>
+          <button onclick="filterCategory('bio')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">生物・気候耐性</button>
+          <button onclick="filterCategory('industry')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">企業・メガプラント</button>
+          <button onclick="filterCategory('culture')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">消費・食文化・調味料</button>
+          <button onclick="filterCategory('logistics')" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">物流・水資源・原料</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto space-y-8">
+
+      <!-- KPI サマリーバー (4大急所指標) -->
+      <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="glass-card rounded-xl p-4 border-l-4 border-l-amber-500">
+          <span class="text-xs text-slate-400 font-medium">九州発（丸美屋他）西日本シェア</span>
+          <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">約50 <span class="text-base font-normal text-amber-400">%超</span></div>
+          <div class="text-xs text-amber-400 mt-1 flex items-center gap-1 font-mono"><i class="fa-solid fa-crown"></i> 西日本の食卓を実質制覇</div>
+        </div>
+        <div class="glass-card rounded-xl p-4 border-l-4 border-l-emerald-500">
+          <span class="text-xs text-slate-400 font-medium">納豆菌 至適生育温度</span>
+          <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">40〜42 <span class="text-base font-normal text-emerald-400">℃</span></div>
+          <div class="text-xs text-emerald-400 mt-1 flex items-center gap-1 font-mono"><i class="fa-solid fa-temperature-arrow-up"></i> 温暖多湿な気候で無類の強さ</div>
+        </div>
+        <div class="glass-card rounded-xl p-4 border-l-4 border-l-cyan-500">
+          <span class="text-xs text-slate-400 font-medium">大豆洗浄・浸漬の地下水純度</span>
+          <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">100 <span class="text-base font-normal text-cyan-400">%天然水</span></div>
+          <div class="text-xs text-cyan-400 mt-1 flex items-center gap-1 font-mono"><i class="fa-solid fa-water"></i> 阿蘇山系ミネラル豊富な天然水瓶</div>
+        </div>
+        <div class="glass-card rounded-xl p-4 border-l-4 border-l-rose-500">
+          <span class="text-xs text-slate-400 font-medium">熊本市 1世帯納豆購入額</span>
+          <div class="text-2xl md:text-3xl font-extrabold text-white mt-1">西日本 <span class="text-base font-normal text-rose-400">上位常連</span></div>
+          <div class="text-xs text-rose-400 mt-1 flex items-center gap-1 font-mono"><i class="fa-solid fa-cart-shopping"></i> 「西日本は食べない」の迷信を粉砕</div>
+        </div>
+      </section>
+
+      <!-- 30基幹数字カードマトリクス -->
+      <section>
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-base md:text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-diagram-project text-amber-400"></i>
+            基幹数字マトリクス（クリックで因果関係・連鎖ハイライト）
+          </h2>
+          <div class="flex items-center gap-2">
+            <span class="text-xs text-slate-400 hidden sm:inline">※カード選択で関連指標が点灯</span>
+            <button onclick="resetHighlight()" class="text-xs text-slate-400 hover:text-white px-2.5 py-1 rounded bg-slate-800 border border-slate-700">選択解除</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3" id="cardsGrid">
+          <!-- JSで30枚を動的描画 -->
+        </div>
+      </section>
+
+      <!-- 比較チャートエリア (2系統) -->
+      <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- CHART 1: 微生物の至適発酵温度比較（縦棒チャート） -->
+        <div class="glass-card rounded-xl p-5 border border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-chart-column text-amber-400"></i>
+                主要醸造菌・微生物の至適活動温度帯（℃）
+              </h3>
+              <span class="text-xs bg-slate-800 text-slate-400 px-2 py-0.5 rounded font-mono">至適温度比較</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-4">清酒菌が厳冬期の寒冷地を必要とするのに対し、納豆菌は40℃超の高温下で爆発的に増殖。</p>
+          </div>
+          <div class="h-64 relative">
+            <canvas id="tempScaleChart"></canvas>
+          </div>
+        </div>
+
+        <!-- CHART 2: 独立比率・特化度（水平バー 上限100%厳格固定） -->
+        <div class="glass-card rounded-xl p-5 border border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-chart-bar text-cyan-400"></i>
+                九州・熊本 納豆産業の特化度・市場比率（上限100%基準）
+              </h3>
+              <span class="text-xs bg-slate-800 text-cyan-400/80 px-2 py-0.5 rounded font-mono">比率・シェア</span>
+            </div>
+            <p class="text-xs text-slate-400 mb-4">分母が異なる市場占有率や浸透度を独立評価（円グラフ誤用を完全排除）。</p>
+          </div>
+          <div class="h-64 relative">
+            <canvas id="dependencyRatioChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- サプライチェーン & 配送方程式シミュレーター -->
+      <section class="glass-card rounded-xl p-6 border border-slate-800">
+        <div class="flex items-center gap-2 mb-2">
+          <i class="fa-solid fa-calculator text-emerald-400"></i>
+          <h3 class="text-base font-bold text-white">熊本プラント発 チルド納豆西日本配送負荷シミュレーター</h3>
+        </div>
+        <p class="text-xs text-slate-400 mb-4">
+          熊本県和水町・菊池などの巨大納豆プラントから西日本各ハブへの冷蔵チルド輸送（5℃管理）における距離・台数、CO2排出量および翌朝店舗配送リードタイムを試算。
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center bg-slate-900/60 p-4 rounded-lg border border-slate-800 text-sm">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">仕向地・物流ハブ</label>
+            <select id="calcDestination" class="w-full bg-slate-800 border border-slate-700 rounded p-2 text-white text-xs focus:ring-1 focus:ring-amber-500 font-mono" onchange="runSimulation()">
+              <option value="120" selected>福岡・鳥栖物流センター（約120km / 九州全域翌朝配）</option>
+              <option value="420">広島・中四国ハブ（約420km / 山陽道チルド夜間便）</option>
+              <option value="650">関西・阪神チルドDC（約650km / 翌朝店舗着限界線）</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">出荷ロット（10tチルド車換算台数）</label>
+            <input type="number" id="calcTrucks" min="1" max="50" value="8" class="w-full bg-slate-800 border border-slate-700 rounded p-2 text-white text-xs focus:ring-1 focus:ring-amber-500 font-mono" onchange="runSimulation()">
+          </div>
+          <div class="p-3 bg-slate-950/80 rounded border border-slate-800/80">
+            <div class="text-xs text-slate-400">試算：輸送CO2排出量 & リードタイム特性</div>
+            <div class="text-base font-bold text-amber-400 mt-1 font-mono" id="calcResultDisplay">計算中...</div>
+            <div class="text-[11px] text-slate-500 mt-0.5" id="calcInsight">...</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="max-w-7xl mx-auto mt-12 pt-6 border-t border-slate-800/80 text-center text-xs text-slate-500">
+    <p>九州・熊本 納豆・発酵・バイオ物流構造インフォグラフィック | 総務省家計調査・農林水産省統計・全国納豆協同組合連合会・各社公開データに基づく体系的整理</p>
+  </footer>
+
+  <!-- データ定義 & JSロジック -->
+  <script>
+    const metricsData = [
+      { id: 1, num: "40〜42℃", unit: "", title: "納豆菌 至適増殖温度", cat: "bio", rel: [2, 3, 11, 14], desc: "清酒酵母（10℃）と対極の超高温菌。九州の温暖な気候が発酵保温を強力にアシスト。" },
+      { id: 2, num: "30分", unit: "分裂", title: "爆発的増殖速度", cat: "bio", rel: [1, 3, 12], desc: "好適環境では約30分で倍増。雑菌が活動する前に大豆表面を完全制圧する圧倒的増殖力。" },
+      { id: 3, num: "100℃耐熱", unit: "芽胞", title: "耐久芽胞シェルター", cat: "bio", rel: [1, 2, 13], desc: "煮沸でも死滅しない胞子形態。温暖多湿な南国でも腐敗せず生き残る最強の微生物。" },
+      { id: 4, num: "約50%", unit: "超", title: "丸美屋 西日本市場シェア", cat: "industry", rel: [5, 6, 21, 24], desc: "「お城納豆」で著名。熊本県和水町から西日本・中四国のスーパー棚を長年支配。" },
+      { id: 5, num: "100万パック", unit: "/日", title: "和水・菊水メガプラント能力", cat: "industry", rel: [4, 7, 22, 23], desc: "西日本最大級の単一工場生産能力。全自動無菌発酵室による高精度マスプロダクション。" },
+      { id: 6, num: "西日本首位", unit: "", title: "熊本市 納豆消費金額", cat: "culture", rel: [4, 8, 15, 17], desc: "総務省家計調査で西日本トップ常連。「西日本＝納豆嫌い」の先入観を完全に覆す高消費。" },
+      { id: 7, num: "100%", unit: "地下水", title: "大豆浸漬・洗浄の天然伏流水", cat: "logistics", rel: [5, 23, 27], desc: "大豆の自重の2倍以上を吸水させる仕込み水。阿蘇外輪山が涵養した良質ミネラル水を使用。" },
+      { id: 8, num: "甘口醤油", unit: "相乗", title: "九州醤油ダレの最適共生", cat: "culture", rel: [6, 16, 18], desc: "アミノ酸・糖度の高い九州特有の甘口醤油が、納豆のアンモニア臭をマスキングし旨味を増幅。" },
+      { id: 9, num: "加藤清正", unit: "伝説", title: "熊本城築城と納豆伝説", cat: "culture", rel: [10, 13, 14], desc: "文禄の役や築城時、煮豆を馬の背の藁袋に入れて発酵したのが起源とされる根強い伝承。" },
+      { id: 10, num: "つばき納豆", unit: "伝統", title: "肥後伝統のつばき葉発酵", cat: "culture", rel: [9, 13, 15], desc: "稲わらだけでなく椿の葉に付着した枯草菌を利用した熊本独自の保存食文化の系譜。" },
+      { id: 11, num: "ジピコリン酸", unit: "分泌", title: "天然抗菌物質による無菌化", cat: "bio", rel: [1, 2, 12], desc: "納豆菌が自ら生成する強力な抗菌成分。温暖地で繁殖しやすい病原性大腸菌等を徹底排除。" },
+      { id: 12, num: "pH強アルカリ", unit: "耐性", title: "アンモニア揮発防御", cat: "bio", rel: [1, 11, 16], desc: "発酵後半にアルカリ性へとシフト。酸を好む一般的な腐敗菌をアルカリ環境で寄せ付けない。" },
+      { id: 13, num: "干し納豆", unit: "保存", title: "南国型保存食の知恵", cat: "culture", rel: [3, 9, 10], desc: "発酵後に天日干しして水分を抜く。冷蔵庫のない時代に高温多湿下でタンパク質を長期保存。" },
+      { id: 14, num: "黄麹との対比", unit: "", title: "清酒（黄麹）敗北と納豆勝利", cat: "bio", rel: [1, 11, 26], desc: "低温を求める黄麹は九州の暖地で腐造に苦しんだが、超高温を好む納豆菌は天恵の気候となった。" },
+      { id: 15, num: "からし蓮根", unit: "文化", title: "刺激薬膳食との親和性", cat: "culture", rel: [6, 8, 9], desc: "和からしを好む熊本の食文化。納豆の付属カラシをたっぷり入れて食べる食習慣が定着。" },
+      { id: 16, num: "あご出汁タレ", unit: "開発", title: "九州発タレ革命の波及", cat: "culture", rel: [4, 8, 18], desc: "焼きあご（トビウオ）や椎茸出汁を効かせたタレ。東日本の醤油辛いタレと差別化し全国普及。" },
+      { id: 17, num: "朝食定着率", unit: "高水準", title: "九州各県ホテルの朝納豆率", cat: "culture", rel: [4, 6, 8], desc: "九州域内のビジネスホテル・旅館における納豆提供率は東日本と遜色ない90%超を維持。" },
+      { id: 18, num: "たまご醤油", unit: "親和", title: "卵かけご飯×納豆の日常化", cat: "culture", rel: [8, 16, 17], desc: "養鶏の盛んな九州。濃厚な卵黄と甘口醤油タレ納豆の組み合わせが家庭の朝食を席巻。" },
+      { id: 19, num: "竹之下フーズ", unit: "宮崎", title: "南九州ローカル納豆網", cat: "industry", rel: [4, 20, 21], desc: "宮崎・都城を本拠とする老舗。霧島山麓の水と高千穂納豆で南九州一帯を強固に防衛。" },
+      { id: 20, num: "あづま食品", unit: "進出", title: "大手メーカーの九州生産シフト", cat: "industry", rel: [4, 19, 21], desc: "東日本大手も九州内に大型工場を新設。地産地消・物流効率化のため九州拠点化を加速。" },
+      { id: 21, num: "7県全域網", unit: "当日", title: "鳥栖・熊本2大物流軸", cat: "logistics", rel: [4, 22, 24], desc: "九州道・鳥栖JCTを通じ、深夜製造パックを翌朝7県すべてのスーパーへ当日陳列。" },
+      { id: 22, num: "5℃チルド", unit: "厳格", title: "冷蔵輸送コールドチェーン", cat: "logistics", rel: [5, 21, 24], desc: "発酵をピタリと止める5℃以下チルドコンテナ。賞味期限14日間の鮮度流通を担保。" },
+      { id: 23, num: "フクユタカ", unit: "大粒", title: "九州産大豆の契約栽培", cat: "logistics", rel: [5, 7, 28], desc: "福岡・佐賀・熊本の大豆主産地。「フクユタカ」等を用いたプレミアム大粒納豆の展開。" },
+      { id: 24, num: "2024年問題", unit: "直撃", title: "中四国・関西便のモーダルシフト", cat: "logistics", rel: [4, 21, 22], desc: "熊本から関西（650km）への陸送限界。新門司フェリーや山陽新幹線貨物の併用が課題。" },
+      { id: 25, num: "ひきわり比率", unit: "上昇", title: "巻き寿司・幼児食需要の急伸", cat: "culture", rel: [4, 6, 18], desc: "九州の回転寿司チェーンで納豆巻が大ヒット。離乳食としての消費も全国トップクラス。" },
+      { id: 26, num: "球磨焼酎共生", unit: "", title: "発酵文化の多重レイヤー", cat: "bio", rel: [14, 27, 29], desc: "クエン酸バリアの球磨焼酎と超高温増殖の納豆。過酷な南国が生んだ二大バイオ兵器。" },
+      { id: 27, num: "八代港・博多港", unit: "", title: "北米産大豆コンテナ直行", cat: "logistics", rel: [7, 23, 28], desc: "安定的量産を支える北米・カナダ産極小粒大豆のバルク輸入港湾ゲートウェイ機能。" },
+      { id: 28, num: "大豆自給率", unit: "約25%", title: "九州内原料自給モデル", cat: "logistics", rel: [23, 27, 30], desc: "水田裏作大麦・大豆の二毛作地帯（筑紫平野・八代平野）が国産納豆大豆を供給。" },
+      { id: 29, num: "アミノ酸度", unit: "高スコア", title: "長期発酵による旨味凝縮", cat: "bio", rel: [1, 8, 11], desc: "納豆菌プロテアーゼが大豆タンパクを強力分解。天然グルタミン酸の爆発的生成。" },
+      { id: 30, num: "スマートバイオ", unit: "", title: "次世代発酵プラント投資", cat: "industry", rel: [5, 20, 29], desc: "AI画像認識による大豆煮沸ムラ検知と発酵室温湿度自動制御。匠の技の完全デジタル化。" }
+    ];
+
+    // カード描画処理
+    const grid = document.getElementById('cardsGrid');
+    function renderCards(filter = 'all') {
+      grid.innerHTML = '';
+      metricsData.forEach(item => {
+        if (filter !== 'all' && item.cat !== filter) return;
+
+        const card = document.createElement('div');
+        card.className = `metric-card glass-card rounded-lg p-3 cursor-pointer border border-slate-800 flex flex-col justify-between`;
+        card.setAttribute('data-id', item.id);
+        card.setAttribute('data-rel', JSON.stringify(item.rel));
+        card.onclick = () => handleCardClick(item.id);
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
+              <span class="font-mono text-amber-400 font-bold">#${item.id < 10 ? '0' + item.id : item.id}</span>
+              <span class="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">${item.cat}</span>
+            </div>
+            <div class="text-xl font-black text-white tracking-tight flex items-baseline gap-0.5 font-mono">
+              ${item.num} <span class="text-xs font-normal text-slate-400 font-sans">${item.unit}</span>
+            </div>
+            <div class="text-xs font-bold text-slate-200 mt-1 line-clamp-1">${item.title}</div>
+            <p class="text-[11px] text-slate-400 mt-1 leading-relaxed line-clamp-2">${item.desc}</p>
+          </div>
+          <div class="mt-2 pt-2 border-t border-slate-800/80 flex items-center justify-between text-[10px] text-slate-500 font-mono">
+            <span>連動: ${item.rel.map(r => '#' + (r < 10 ? '0' + r : r)).join(' ')}</span>
+            <i class="fa-solid fa-circle-nodes text-slate-600"></i>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // カテゴリフィルター
+    function filterCategory(cat) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('bg-amber-600', 'text-white');
+        btn.classList.add('bg-slate-800', 'text-slate-300');
+      });
+      event.target.classList.remove('bg-slate-800', 'text-slate-300');
+      event.target.classList.add('bg-amber-600', 'text-white');
+      renderCards(cat);
+      resetHighlight();
+    }
+
+    // カードクリック連動ハイライト
+    let selectedId = null;
+    function handleCardClick(id) {
+      if (selectedId === id) {
+        resetHighlight();
+        return;
+      }
+      selectedId = id;
+      const target = metricsData.find(m => m.id === id);
+      const relatedIds = [id, ...(target ? target.rel : [])];
+
+      document.querySelectorAll('.metric-card').forEach(card => {
+        const cardId = parseInt(card.getAttribute('data-id'));
+        if (relatedIds.includes(cardId)) {
+          card.classList.remove('dimmed');
+          card.classList.add('highlighted');
+        } else {
+          card.classList.remove('highlighted');
+          card.classList.add('dimmed');
+        }
+      });
+    }
+
+    function resetHighlight() {
+      selectedId = null;
+      document.querySelectorAll('.metric-card').forEach(card => {
+        card.classList.remove('dimmed', 'highlighted');
+      });
+    }
+
+    // Chart.js グラフ初期化
+    let chart1, chart2;
+    function initCharts() {
+      // グラフ1: 至適発酵温度（縦棒）
+      const ctx1 = document.getElementById('tempScaleChart').getContext('2d');
+      chart1 = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+          labels: ['納豆菌 (枯草菌)', '黒麹菌 (焼酎用)', '黄麹菌 (清酒用)', '一般的な腐敗菌', '清酒酵母 (低温発酵)'],
+          datasets: [{
+            label: '至適活動温度 (℃)',
+            data: [42, 35, 30, 25, 12],
+            backgroundColor: [
+              'rgba(245, 158, 11, 0.85)',
+              'rgba(6, 182, 212, 0.75)',
+              'rgba(148, 163, 184, 0.65)',
+              'rgba(244, 63, 94, 0.75)',
+              'rgba(56, 189, 248, 0.75)'
+            ],
+            borderColor: '#0f172a',
+            borderWidth: 1,
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#1e293b',
+              titleColor: '#fff',
+              bodyColor: '#cbd5e1'
+            }
+          },
+          scales: {
+            x: {
+              ticks: { color: '#94a3b8', font: { size: 10 } },
+              grid: { display: false }
+            },
+            y: {
+              beginAtZero: true,
+              ticks: { color: '#94a3b8', font: { size: 10 } },
+              grid: { color: 'rgba(51, 65, 85, 0.4)' }
+            }
+          }
+        }
+      });
+
+      // グラフ2: 比率・全国シェア特化度（水平バー 上限100%厳格固定）
+      const ctx2 = document.getElementById('dependencyRatioChart').getContext('2d');
+      chart2 = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+          labels: [
+            '熊本プラント 仕込み地下水比率',
+            '九州内ホテル 朝食納豆提供率',
+            '丸美屋 西日本市場推定シェア',
+            '九州内納豆大豆 自給比率',
+            '納豆菌胞子 100℃耐熱残存率',
+            '熊本市 1世帯納豆購入指数(全国比)'
+          ],
+          datasets: [{
+            label: '比率・シェア (%)',
+            data: [100.0, 92.0, 52.0, 25.0, 100.0, 88.0],
+            backgroundColor: 'rgba(245, 158, 11, 0.75)',
+            borderColor: '#f59e0b',
+            borderWidth: 1,
+            borderRadius: 4
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(context) { return `${context.parsed.x}%`; }
+              }
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              max: 100, // 厳格な100%上限ルール適用
+              ticks: {
+                color: '#94a3b8',
+                callback: function(value) { return value + "%"; }
+              },
+              grid: { color: 'rgba(51, 65, 85, 0.4)' }
+            },
+            y: {
+              ticks: { color: '#cbd5e1', font: { size: 10 } },
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    }
+
+    // シミュレーター計算ロジック
+    function runSimulation() {
+      const distance = parseFloat(document.getElementById('calcDestination').value);
+      const trucks = parseInt(document.getElementById('calcTrucks').value) || 1;
+      
+      // 10tチルド車 1台・1kmあたりのCO2排出量試算（約0.48kg-CO2/km）
+      const co2TotalTon = ((distance * trucks * 0.48) / 1000).toFixed(2);
+      
+      let constraintText = "";
+      let insightText = "";
+      if (distance >= 600) {
+        constraintText = "拘束時間 約15〜18時間（翌朝阪神店舗着 2024年限界線）";
+        insightText = "※関西市場向けは夜間直行便の限界距離。新門司〜泉大津フェリー無人シャーシ航送が現実解。";
+      } else if (distance >= 400) {
+        constraintText = "拘束時間 約10〜12時間（夜間山陽道即日リレー）";
+        insightText = "※中四国ハブへは関門橋突破後即座に納品。賞味期限14日間の鮮度流通を完全に維持。";
+      } else {
+        constraintText = "拘束時間 約3〜5時間（九州道経由 即日当日配送可能）";
+        insightText = "※鳥栖JCTを通じ、深夜パッキング分を翌朝7時までに九州7県全スーパーの店頭へ展開。";
+      }
+
+      document.getElementById('calcResultDisplay').innerText = `CO₂ 約 ${co2TotalTon} t ／ ${constraintText}`;
+      document.getElementById('calcInsight').innerText = insightText;
+    }
+
+    // 初期実行
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCards();
+      initCharts();
+      runSimulation();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日本の国家予算（一般会計）収支解剖・完全構造インフォグラフィック</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background-color: #0a0e17;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+      color: #e2e8f0;
+    }
+    .glass-card {
+      background: rgba(21, 29, 47, 0.88);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(51, 65, 85, 0.6);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(99, 102, 241, 0.8);
+      transform: translateY(-2px);
+    }
+    /* 歳入・歳出・国債の明確なカラーコーディング */
+    .card-rev {
+      border-top: 4px solid #10b981 !important;
+    }
+    .card-exp {
+      border-top: 4px solid #f59e0b !important;
+    }
+    .card-debt {
+      border-top: 4px solid #f43f5e !important;
+    }
+
+    /* 連動ハイライト挙動 */
+    .metric-card.dimmed {
+      opacity: 0.15;
+      filter: grayscale(85%);
+      transform: scale(0.96);
+    }
+    .metric-card.active-target {
+      border-color: #38bdf8 !important;
+      box-shadow: 0 0 22px rgba(56, 189, 248, 0.55);
+      transform: scale(1.03);
+    }
+    .metric-card.active-related {
+      border-color: #a855f7 !important;
+      box-shadow: 0 0 18px rgba(168, 85, 247, 0.45);
+    }
+  </style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+
+  <!-- ヘッダー -->
+  <header class="max-w-7xl mx-auto mb-8">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between border-b border-slate-800 pb-6 gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-950/80 text-indigo-300 border border-indigo-800/60 mb-2">
+          <i class="fa-solid fa-scale-balanced"></i> 日本財政構造解読インフォグラフィック
+        </div>
+        <h1 class="text-2xl md:text-3xl font-black text-white tracking-tight">日本の国家予算（一般会計112.6兆円）収支解剖</h1>
+        <p class="text-sm text-slate-400 mt-1">
+          「税収約70兆円」と「支出約113兆円」の間に横たわる約43兆円のギャップはどこから来たのか？その完全な内訳と義務的経費の固定化リスク
+        </p>
+      </div>
+      <!-- 系統別フィルター -->
+      <div class="flex flex-wrap gap-2 items-center">
+        <span class="text-xs text-slate-400 mr-1"><i class="fa-solid fa-filter"></i> 系統別表示:</span>
+        <button onclick="filterCards('all')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white transition hover:bg-indigo-500">全体（全12指標）</button>
+        <button onclick="filterCards('rev')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-emerald-400 hover:bg-slate-700 transition"><i class="fa-solid fa-circle-down mr-1"></i>歳入（入るお金）</button>
+        <button onclick="filterCards('exp')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-amber-400 hover:bg-slate-700 transition"><i class="fa-solid fa-circle-up mr-1"></i>歳出（出るお金）</button>
+        <button onclick="filterCards('debt')" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-rose-400 hover:bg-slate-700 transition"><i class="fa-solid fa-triangle-exclamation mr-1"></i>赤字補填・国債</button>
+      </div>
+    </div>
+
+    <!-- 視覚的コントラスト：歳入 vs 歳出 の総枠対比バー -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+      <!-- 歳入側総枠 -->
+      <div class="glass-card rounded-xl p-5 border-l-8 border-l-emerald-500 relative overflow-hidden">
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="inline-flex items-center gap-1.5 text-xs font-bold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
+              <i class="fa-solid fa-arrow-down-left"></i> 歳入（収入）の総枠
+            </div>
+            <div class="text-3xl font-black text-white font-mono mt-2">112.6 <span class="text-base font-medium text-slate-400">兆円</span></div>
+          </div>
+          <div class="text-right">
+            <span class="text-xs text-slate-400">税収比率</span>
+            <div class="text-xl font-black text-emerald-400 font-mono">61.8%</div>
+          </div>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-800 text-xs text-slate-300 grid grid-cols-3 gap-2">
+          <div>
+            <span class="text-slate-400 block text-[11px]">一般会計税収</span>
+            <span class="font-bold text-emerald-400 font-mono text-sm">69.6 兆円</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block text-[11px]">その他税外収入</span>
+            <span class="font-bold text-sky-400 font-mono text-sm">7.6 兆円</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block text-[11px]">新規借金（国債）</span>
+            <span class="font-bold text-rose-400 font-mono text-sm">35.4 兆円</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 歳出側総枠 -->
+      <div class="glass-card rounded-xl p-5 border-l-8 border-l-amber-500 relative overflow-hidden">
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="inline-flex items-center gap-1.5 text-xs font-bold px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800">
+              <i class="fa-solid fa-arrow-up-right"></i> 歳出（支出）の総枠
+            </div>
+            <div class="text-3xl font-black text-white font-mono mt-2">112.6 <span class="text-base font-medium text-slate-400">兆円</span></div>
+          </div>
+          <div class="text-right">
+            <span class="text-xs text-slate-400">義務的経費比率</span>
+            <div class="text-xl font-black text-amber-400 font-mono">57.7%</div>
+          </div>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-800 text-xs text-slate-300 grid grid-cols-3 gap-2">
+          <div>
+            <span class="text-slate-400 block text-[11px]">社会保障費</span>
+            <span class="font-bold text-amber-400 font-mono text-sm">37.7 兆円</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block text-[11px]">国債費（元利返済）</span>
+            <span class="font-bold text-rose-400 font-mono text-sm">27.3 兆円</span>
+          </div>
+          <div>
+            <span class="text-slate-400 block text-[11px]">一般政策経費等</span>
+            <span class="font-bold text-indigo-400 font-mono text-sm">47.6 兆円</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto space-y-10">
+
+    <!-- セクション: 【核心解剖】税収70兆円以外の残り「43兆円」はどこから来たか？ -->
+    <section class="glass-card rounded-xl p-6 border-indigo-900/60 bg-gradient-to-r from-slate-900 via-indigo-950/30 to-slate-900">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-9 h-9 rounded-lg bg-indigo-500/20 text-indigo-300 flex items-center justify-center text-lg border border-indigo-500/40">
+          <i class="fa-solid fa-magnifying-glass-dollar"></i>
+        </div>
+        <div>
+          <h2 class="text-base md:text-lg font-bold text-white">
+            【核心解剖】税収（約70兆円）以外の「残り43兆円」の厳密な内訳
+          </h2>
+          <p class="text-xs text-slate-400">112.6兆円の支出に対し、税収69.6兆円を差し引いた「不足額43.0兆円」の正体</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+        <!-- 内訳1: 赤字国債 -->
+        <div class="bg-slate-900/90 p-4 rounded-lg border border-rose-900/50 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider">不足分の70.5%</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800">特例公債</span>
+            </div>
+            <div class="text-sm font-bold text-white">特例公債（赤字国債）</div>
+            <div class="text-2xl font-black text-rose-400 font-mono my-2">30.3 <span class="text-xs font-normal text-slate-300">兆円</span></div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              日常的な行政サービス・政策経費を賄うための純粋な借金。財政法第4条の原則で禁じられているが、特例法を毎年更新して発行を継続。
+            </p>
+          </div>
+          <div class="mt-3 pt-2 border-t border-slate-800 text-[11px] text-slate-500">
+            ※将来世代が元利を返済する義務を負う
+          </div>
+        </div>
+
+        <!-- 内訳2: 建設国債 -->
+        <div class="bg-slate-900/90 p-4 rounded-lg border border-orange-900/50 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-mono font-bold text-orange-400 uppercase tracking-wider">不足分の11.9%</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-orange-950 text-orange-300 border border-orange-800">4条公債</span>
+            </div>
+            <div class="text-sm font-bold text-white">建設国債（財政法第4条）</div>
+            <div class="text-2xl font-black text-orange-400 font-mono my-2">5.1 <span class="text-xs font-normal text-slate-300">兆円</span></div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              道路、港湾、治水、公営住宅などの資産として将来世代に残るインフラ整備や防衛施設整備にあてるための調達。
+            </p>
+          </div>
+          <div class="mt-3 pt-2 border-t border-slate-800 text-[11px] text-slate-500">
+            ※資産形成を伴う借金として認められている公債
+          </div>
+        </div>
+
+        <!-- 内訳3: その他税外収入 -->
+        <div class="bg-slate-900/90 p-4 rounded-lg border border-sky-900/50 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-mono font-bold text-sky-400 uppercase tracking-wider">不足分の17.6%</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-sky-950 text-sky-300 border border-sky-800">その他財源</span>
+            </div>
+            <div class="text-sm font-bold text-white">その他税外収入（雑収入等）</div>
+            <div class="text-2xl font-black text-sky-400 font-mono my-2">7.6 <span class="text-xs font-normal text-slate-300">兆円</span></div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              日本銀行からの納付金、外国為替資金特別会計等の余剰金受入、国有財産の売却益・賃貸料、官公庁の手数料など。
+            </p>
+          </div>
+          <div class="mt-3 pt-2 border-t border-slate-800 text-[11px] text-slate-500">
+            ※年度によって変動が激しく恒久財源ではない
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- セクション: 基幹メトリクス・因果連動グリッド -->
+    <section>
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-network-wired text-indigo-400"></i> 基幹指標（全12要素）因果連動マップ
+          </h2>
+          <div class="flex items-center gap-3 text-xs mt-1">
+            <span class="inline-flex items-center gap-1 text-emerald-400"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> 歳入（4項目）</span>
+            <span class="inline-flex items-center gap-1 text-amber-400"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> 歳出（4項目）</span>
+            <span class="inline-flex items-center gap-1 text-rose-400"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> 国債・債務（4項目）</span>
+            <span class="text-slate-500">| ※カードクリックで連動先がパープルに発光</span>
+          </div>
+        </div>
+        <button id="resetHighlightBtn" class="text-xs text-indigo-300 hover:text-indigo-200 font-medium hidden">
+          <i class="fa-solid fa-rotate-left"></i> 選択解除
+        </button>
+      </div>
+
+      <div id="metricsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <!-- JSで12枚のカードを動的描画 -->
+      </div>
+    </section>
+
+    <!-- セクション: 対比チャートエリア（厳格ルールに準拠） -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- チャート1: 歳入・歳出の規模バランス対比（縦棒グラフ） -->
+      <div class="glass-card rounded-xl p-5">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-chart-column text-sky-400"></i> 歳入・歳出 構成規模の対比（兆円）
+            </h3>
+            <p class="text-xs text-slate-400">同一単位（兆円）で見る収入と支出の各構成要素の大きさ</p>
+          </div>
+          <span class="text-xs font-mono px-2 py-0.5 rounded bg-slate-800 text-sky-400 border border-slate-700">兆円単位</span>
+        </div>
+        <div class="h-72">
+          <canvas id="barScaleChart"></canvas>
+        </div>
+      </div>
+
+      <!-- チャート2: 依存度・硬直性指標（上限100%固定・水平バー） -->
+      <div class="glass-card rounded-xl p-5">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-bars-progress text-rose-400"></i> 財政脆弱性・依存度指標（上限100%統一）
+            </h3>
+            <p class="text-xs text-slate-400">独立した比率・負荷の比較（円グラフ誤用を完全排除した水平バー）</p>
+          </div>
+          <span class="text-xs font-mono px-2 py-0.5 rounded bg-slate-800 text-rose-400 border border-slate-700">比率（%）</span>
+        </div>
+        <div class="h-72">
+          <canvas id="horizontalRatioChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- セクション: 構造試算シミュレーター -->
+    <section class="glass-card rounded-xl p-6 border-indigo-900/50">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-9 h-9 rounded-lg bg-indigo-600/20 text-indigo-400 flex items-center justify-center text-lg border border-indigo-500/30">
+          <i class="fa-solid fa-calculator"></i>
+        </div>
+        <div>
+          <h3 class="text-base font-bold text-white">財政インパクト・因果関係シミュレーター</h3>
+          <p class="text-xs text-slate-400">数字を掛け合わせ・割り算することで、国民生活や将来への重圧を解き明かす</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+        <!-- 試算1: 国民1人当たり・現役世代の債務負担 -->
+        <div class="bg-slate-900/70 p-4 rounded-lg border border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="text-xs text-indigo-300 font-semibold mb-1">【式: 長期債務 ÷ 人口】</div>
+            <div class="text-sm font-bold text-slate-200">1人当たりの累積借金負担額</div>
+            <p class="text-xs text-slate-400 mt-1">国と地方の借金総額（1,311兆円）を人口で按分した場合の純債務。</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800 space-y-2">
+            <div class="flex justify-between items-baseline">
+              <span class="text-xs text-slate-400">全人口割（1.24億人）</span>
+              <span class="text-base font-bold text-white font-mono">約1,057 <span class="text-xs font-normal text-slate-400">万円/人</span></span>
+            </div>
+            <div class="flex justify-between items-baseline">
+              <span class="text-xs text-rose-400 font-medium">生産年齢人口割（7,380万人）</span>
+              <span class="text-lg font-black text-rose-400 font-mono">約1,776 <span class="text-xs font-normal text-slate-400">万円/人</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 試算2: 金利1%上昇時の国債利払い急増シミュレーター -->
+        <div class="bg-slate-900/70 p-4 rounded-lg border border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="text-xs text-emerald-300 font-semibold mb-1">【式: 国債残高 × 想定金利上昇幅】</div>
+            <div class="text-sm font-bold text-slate-200">金利上昇に伴う利払い追加負担</div>
+            <p class="text-xs text-slate-400 mt-1">借換債に新金利が適用されることで、数年度遅れで利払いが急拡大。</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <label for="interestRateSlider" class="text-xs text-slate-300">金利上昇幅（スライダー）:</label>
+              <span id="rateValueDisplay" class="text-sm font-mono font-bold text-emerald-400">+1.0 %</span>
+            </div>
+            <input type="range" id="interestRateSlider" min="0.5" max="3.0" step="0.5" value="1.0" class="w-full h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+            <div class="flex justify-between items-baseline pt-1">
+              <span class="text-xs text-slate-400">数年後の年間追加利払費</span>
+              <span id="interestCostDisplay" class="text-lg font-black text-emerald-400 font-mono">+約3.6 <span class="text-xs font-normal text-slate-400">兆円/年</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 試算3: 消費税率換算シミュレーター -->
+        <div class="bg-slate-900/70 p-4 rounded-lg border border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="text-xs text-amber-300 font-semibold mb-1">【式: 新規国債発行額 ÷ 消費税1%税収】</div>
+            <div class="text-sm font-bold text-slate-200">新規赤字の消費税率換算</div>
+            <p class="text-xs text-slate-400 mt-1">消費税1%分の税収＝約2.8兆円。借金（35.4兆円）を消費税だけで埋めると？</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800">
+            <div class="text-xs text-slate-400 mb-1">赤字埋め合わせに必要な消費税引き上げ幅</div>
+            <div class="text-2xl font-black text-amber-400 font-mono">
+              +12.6 <span class="text-xs font-normal text-slate-300">%（現行10% → 22.6%相当）</span>
+            </div>
+            <div class="text-[11px] text-slate-500 mt-1">※税収下振れ等を考慮しない単純算術値</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="max-w-7xl mx-auto mt-12 pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
+    <p>出典・算定根拠：財務省「令和6年度・令和7年度一般会計予算資料」、内閣府「中長期の経済財政に関する試算」、総務省「人口推計」を基に構造化。</p>
+  </footer>
+
+  <script>
+    // 12個の基幹メトリクス（歳入: rev, 歳出: exp, 借金: debt）
+    const metricsData = [
+      // 歳入系（4項目）
+      {
+        id: "R01",
+        category: "rev",
+        badge: "歳入総枠",
+        value: "112.6",
+        unit: "兆円",
+        title: "一般会計歳入総額",
+        desc: "国の年間の収入全体。税収、税外収入、そして不足を補う新規借入（公債金）で構成される。",
+        related: ["R02", "R03", "D01", "E01"]
+      },
+      {
+        id: "R02",
+        category: "rev",
+        badge: "基幹税収",
+        value: "69.6",
+        unit: "兆円",
+        title: "一般会計 税収見込",
+        desc: "所得税、法人税、消費税で約8割。企業好業績や物価高で名目上は過去最高水準を更新中。",
+        related: ["R01", "R04", "E01", "E03"]
+      },
+      {
+        id: "R03",
+        category: "rev",
+        badge: "税外収入",
+        value: "7.6",
+        unit: "兆円",
+        title: "その他税外収入",
+        desc: "「税金でも借金でもない残り」。日銀納付金、特別会計繰入金、国有財産売却収入などで構成。",
+        related: ["R01", "D01", "D02"]
+      },
+      {
+        id: "R04",
+        category: "rev",
+        badge: "最大税目",
+        value: "23.8",
+        unit: "兆円",
+        title: "消費税収",
+        desc: "税収全体の約34%を占める最大安定財源。社会保障費の財源として法律上全額が紐づけられている。",
+        related: ["R02", "E01", "E03"]
+      },
+
+      // 歳出系（4項目）
+      {
+        id: "E01",
+        category: "exp",
+        badge: "最大支出",
+        value: "37.7",
+        unit: "兆円",
+        title: "社会保障関係費",
+        desc: "医療、年金、介護など。高齢化により毎年数千億円単位で自然増し、予算全体の33.5%を占める。",
+        related: ["R04", "E02", "E03", "R02"]
+      },
+      {
+        id: "E02",
+        category: "exp",
+        badge: "借金返済",
+        value: "27.3",
+        unit: "兆円",
+        title: "国債費（元利返済）",
+        desc: "過去の借金の元本償還（約17兆円）と利払い（約10兆円）。歳出の24.2%を占め削減が不可能。",
+        related: ["D03", "D04", "E03", "R01"]
+      },
+      {
+        id: "E03",
+        category: "exp",
+        badge: "硬直化指標",
+        value: "57.7",
+        unit: "%",
+        title: "義務的経費比率",
+        desc: "社会保障費と国債費の合計割合（65.0兆円）。法律上削れない固定費であり、税収総額の93%に匹敵。",
+        related: ["R02", "E01", "E02"]
+      },
+      {
+        id: "E04",
+        category: "exp",
+        badge: "裁量経費",
+        value: "47.6",
+        unit: "兆円",
+        title: "一般政策経費等",
+        desc: "防衛（約8兆円）、公共事業、文教・科学技術、地方交付税交付金（約17.8兆円）などの合計。",
+        related: ["R01", "E01", "D01"]
+      },
+
+      // 国債・債務系（4項目）
+      {
+        id: "D01",
+        category: "debt",
+        badge: "借金依存",
+        value: "35.4",
+        unit: "兆円",
+        title: "新規国債発行額（借入）",
+        desc: "税収＋税外収入では足りない35.4兆円を補填。赤字国債30.3兆円＋建設国債5.1兆円。",
+        related: ["R01", "D02", "D03", "E02"]
+      },
+      {
+        id: "D02",
+        category: "debt",
+        badge: "将来ツケ",
+        value: "30.3",
+        unit: "兆円",
+        title: "特例公債（赤字国債）",
+        desc: "新規借金35.4兆円の85.6%を占める純粋な赤字補填公債。資産が残らず将来世代の負担となる。",
+        related: ["D01", "R01", "D03"]
+      },
+      {
+        id: "D03",
+        category: "debt",
+        badge: "累積残高",
+        value: "1,105",
+        unit: "兆円",
+        title: "普通国債発行残高",
+        desc: "国の返済義務がある国債の残高。地方債を含めると1,311兆円（対GDP比約261%でG7最悪）。",
+        related: ["D01", "E02", "D04"]
+      },
+      {
+        id: "D04",
+        category: "debt",
+        badge: "金利リスク",
+        value: "3.6",
+        unit: "兆円",
+        title: "金利+1%時の追加利払",
+        desc: "長期金利が1%上昇した場合、数年度後に毎年発生する国の追加利払い費。他の政策予算を激しく圧迫。",
+        related: ["D03", "E02"]
+      }
+    ];
+
+    // カード描画処理
+    function renderCards(filter = 'all') {
+      const grid = document.getElementById('metricsGrid');
+      grid.innerHTML = '';
+
+      metricsData.forEach(item => {
+        if (filter !== 'all' && item.category !== filter) return;
+
+        const card = document.createElement('div');
+        let cardColorClass = 'card-rev';
+        let badgeColor = 'bg-emerald-950/80 text-emerald-300 border-emerald-800/80';
+        let categoryLabel = '歳入（収入）';
+
+        if (item.category === 'exp') {
+          cardColorClass = 'card-exp';
+          badgeColor = 'bg-amber-950/80 text-amber-300 border-amber-800/80';
+          categoryLabel = '歳出（支出）';
+        } else if (item.category === 'debt') {
+          cardColorClass = 'card-debt';
+          badgeColor = 'bg-rose-950/80 text-rose-300 border-rose-800/80';
+          categoryLabel = '赤字・借金';
+        }
+
+        card.className = `metric-card glass-card rounded-xl p-4 cursor-pointer relative overflow-hidden ${cardColorClass}`;
+        card.setAttribute('data-id', item.id);
+        card.setAttribute('data-related', JSON.stringify(item.related));
+
+        card.innerHTML = `
+          <div class="flex justify-between items-start mb-2">
+            <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded border ${badgeColor}">
+              ${item.badge}
+            </span>
+            <span class="text-[11px] font-mono text-slate-500 font-bold">#${item.id}</span>
+          </div>
+          <div class="text-2xl font-black text-white font-mono tracking-tight">
+            ${item.value} <span class="text-xs font-semibold text-slate-400 font-sans">${item.unit}</span>
+          </div>
+          <div class="text-sm font-bold text-slate-200 mt-1">${item.title}</div>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">${item.desc}</p>
+          <div class="mt-3 pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+            <span class="text-slate-400 text-[10px]">${categoryLabel}</span>
+            <span>連動: ${item.related.map(r => `#${r}`).join(' ')}</span>
+          </div>
+        `;
+
+        card.addEventListener('click', (e) => {
+          e.stopPropagation();
+          activateHighlight(item.id, item.related);
+        });
+
+        grid.appendChild(card);
+      });
+    }
+
+    // 連動ハイライト機能
+    let activeId = null;
+    function activateHighlight(targetId, relatedIds) {
+      activeId = targetId;
+      document.getElementById('resetHighlightBtn').classList.remove('hidden');
+
+      const cards = document.querySelectorAll('.metric-card');
+      cards.forEach(card => {
+        const id = card.getAttribute('data-id');
+        card.classList.remove('dimmed', 'active-target', 'active-related');
+
+        if (id === targetId) {
+          card.classList.add('active-target');
+        } else if (relatedIds.includes(id)) {
+          card.classList.add('active-related');
+        } else {
+          card.classList.add('dimmed');
+        }
+      });
+    }
+
+    function resetHighlight() {
+      activeId = null;
+      document.getElementById('resetHighlightBtn').classList.add('hidden');
+      const cards = document.querySelectorAll('.metric-card');
+      cards.forEach(card => {
+        card.classList.remove('dimmed', 'active-target', 'active-related');
+      });
+    }
+
+    document.getElementById('resetHighlightBtn').addEventListener('click', resetHighlight);
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.metric-card')) {
+        resetHighlight();
+      }
+    });
+
+    // 系統別フィルターボタン制御
+    function filterCards(category) {
+      resetHighlight();
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('bg-indigo-600', 'text-white');
+        btn.classList.add('bg-slate-800');
+      });
+      event.target.classList.remove('bg-slate-800');
+      event.target.classList.add('bg-indigo-600', 'text-white');
+      renderCards(category);
+    }
+
+    // 厳格なルールに基づくChart.js初期化
+    function initCharts() {
+      // チャート1: 歳入・歳出の規模対比（縦棒グラフ）
+      const ctxBar = document.getElementById('barScaleChart').getContext('2d');
+      new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+          labels: [
+            '[歳入] 税収',
+            '[歳入] 税外収入',
+            '[歳入] 新規国債',
+            '[歳出] 社会保障',
+            '[歳出] 国債費',
+            '[歳出] 地方交付税',
+            '[歳出] 防衛・その他'
+          ],
+          datasets: [{
+            label: '金額（兆円）',
+            data: [69.6, 7.6, 35.4, 37.7, 27.3, 17.8, 29.8],
+            backgroundColor: [
+              'rgba(16, 185, 129, 0.8)', // 税収（緑）
+              'rgba(14, 165, 233, 0.8)', // 税外（水色）
+              'rgba(244, 63, 94, 0.8)',  // 新規国債（赤）
+              'rgba(245, 158, 11, 0.8)', // 社会保障（橙）
+              'rgba(239, 68, 68, 0.8)',  // 国債費（赤）
+              'rgba(99, 102, 241, 0.8)', // 地方交付税（紫）
+              'rgba(148, 163, 184, 0.8)' // その他（灰）
+            ],
+            borderColor: [
+              '#10b981', '#0ea5e9', '#f43f5e', '#f59e0b', '#ef4444', '#6366f1', '#94a3b8'
+            ],
+            borderWidth: 1.5,
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ` 金額: ${ctx.parsed.y.toFixed(1)} 兆円`
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: '#94a3b8', font: { size: 10, family: 'Noto Sans JP' } }
+            },
+            y: {
+              grid: { color: 'rgba(51, 65, 85, 0.4)' },
+              ticks: { color: '#94a3b8', font: { size: 10 } },
+              title: { display: true, text: '兆円', color: '#64748b' }
+            }
+          }
+        }
+      });
+
+      // チャート2: 独立指標の水平バー（上限100%厳守）
+      const ctxHoz = document.getElementById('horizontalRatioChart').getContext('2d');
+      new Chart(ctxHoz, {
+        type: 'bar',
+        data: {
+          labels: [
+            '税収に占める義務的経費（固定費比率）',
+            '歳出に占める義務的経費比率',
+            '国民負担率（税＋社保 ÷ 所得）',
+            '公債金（新規借金）依存度',
+            '新規国債中の赤字国債比率'
+          ],
+          datasets: [{
+            label: '比率（%）',
+            data: [93.4, 57.7, 45.1, 31.5, 85.6],
+            backgroundColor: [
+              'rgba(225, 29, 72, 0.85)', // 93.4%（深紅）
+              'rgba(245, 158, 11, 0.8)',  // 57.7%（橙）
+              'rgba(99, 102, 241, 0.8)',  // 45.1%（紫）
+              'rgba(244, 63, 94, 0.8)',   // 31.5%（赤）
+              'rgba(217, 70, 239, 0.8)'   // 85.6%（マゼンタ）
+            ],
+            borderRadius: 6,
+            barThickness: 16
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ` 比率: ${ctx.parsed.x.toFixed(1)} %`
+              }
+            }
+          },
+          scales: {
+            x: {
+              min: 0,
+              max: 100, // 上限100%固定
+              grid: { color: 'rgba(51, 65, 85, 0.4)' },
+              ticks: {
+                color: '#94a3b8',
+                callback: (val) => val + '%'
+              }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: '#cbd5e1', font: { size: 10, family: 'Noto Sans JP' } }
+            }
+          }
+        }
+      });
+    }
+
+    // 金利シミュレーター
+    const slider = document.getElementById('interestRateSlider');
+    const rateDisplay = document.getElementById('rateValueDisplay');
+    const costDisplay = document.getElementById('interestCostDisplay');
+
+    slider.addEventListener('input', (e) => {
+      const val = parseFloat(e.target.value);
+      rateDisplay.textContent = `+${val.toFixed(1)} %`;
+      const addedCost = (val * 3.6).toFixed(1);
+      costDisplay.innerHTML = `+約${addedCost} <span class="text-xs font-normal text-slate-400">兆円/年</span>`;
+    });
+
+    // 初期化実行
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCards();
+      initCharts();
+    });
+  </script>
+</body>
+</html>

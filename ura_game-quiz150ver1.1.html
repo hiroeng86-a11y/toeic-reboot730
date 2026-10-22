@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知の防衛戦！クイズ戦隊ナゾレンジャー</title>
+<style>
+  :root {
+    --bg-color: #121826;
+    --card-bg: #1e293b;
+    --text-color: #f8fafc;
+    --accent-red: #ef4444;
+    --accent-blue: #3b82f6;
+    --accent-green: #10b981;
+    --accent-yellow: #f59e0b;
+    --accent-purple: #8b5cf6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 16px;
+  }
+  #game-container {
+    background: var(--card-bg);
+    width: 100%;
+    max-width: 650px;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    text-align: center;
+  }
+  .hidden { display: none !important; }
+  h1 { font-size: 1.8rem; margin-bottom: 16px; color: #fbbf24; }
+  p { margin-bottom: 20px; line-height: 1.6; }
+  
+  /* ボタン全般 */
+  button {
+    background: #334155;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  button:hover { filter: brightness(1.2); }
+
+  /* ステータスバー（ライフ・進捗） */
+  .status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  .life-display { color: #f43f5e; font-size: 1.3rem; letter-spacing: 2px; }
+
+  /* クイズ画面 */
+  .enemy-box {
+    margin-bottom: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    border-left: 6px solid #ccc;
+  }
+  .enemy-name { font-size: 1.2rem; font-weight: bold; }
+  .timer-bar {
+    height: 8px;
+    background: #475569;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 16px 0;
+  }
+  .timer-fill {
+    height: 100%;
+    width: 100%;
+    background: #38bdf8;
+    transition: width 0.1s linear;
+  }
+  .question-text {
+    font-size: 1.15rem;
+    font-weight: bold;
+    min-height: 50px;
+    margin-bottom: 20px;
+    text-align: left;
+    line-height: 1.5;
+  }
+  .choices-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 500px) {
+    .choices-grid { grid-template-columns: 1fr; }
+  }
+  .choice-btn {
+    text-align: left;
+    background: #334155;
+    padding: 14px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+  
+  /* リザルト・演出 */
+  .feedback {
+    font-size: 1.15rem;
+    font-weight: bold;
+    margin-top: 16px;
+    min-height: 28px;
+  }
+</style>
+</head>
+<body>
+
+<div id="game-container">
+  <!-- 1. オープニング画面 -->
+  <div id="screen-title">
+    <h1>知の防衛戦！<br>逆襲のクイズ戦隊ナゾレンジャー</h1>
+    <p>突如地球に現れた「クイズ戦隊ナゾレンジャー」！<br>
+    5人の戦士が放つ難問を解き明かし、世界に平和を取り戻せ！<br><br>
+    ・制限時間は各問20秒<br>
+    ・各エリア3問突破で幹部撃破（全5エリア）<br>
+    ・ライフは3機（3回間違えるとゲームオーバー）</p>
+    <button id="btn-start" style="font-size: 1.2rem; background: #2563eb;">戦いを開始する</button>
+  </div>
+
+  <!-- 2. 戦闘（クイズ）画面 -->
+  <div id="screen-battle" class="hidden">
+    <div class="status-header">
+      <div id="stage-info" style="color: #94a3b8;">STAGE 1 / 5</div>
+      <div>残りLIFE: <span id="life-icons" class="life-display">❤❤❤</span></div>
+    </div>
+
+    <div id="enemy-box" class="enemy-box">
+      <div id="enemy-name" class="enemy-name">怪人名</div>
+      <div id="enemy-phrase" style="font-size: 0.9rem; margin-top: 4px;">セリフ</div>
+    </div>
+    
+    <div style="font-size: 0.95rem;">残り時間: <span id="timer-text" style="font-weight: bold;">20</span> 秒</div>
+    <div class="timer-bar"><div id="timer-fill" class="timer-fill"></div></div>
+
+    <div id="question-text" class="question-text">問題文</div>
+    
+    <div class="choices-grid">
+      <button class="choice-btn" onclick="selectAnswer(0)"></button>
+      <button class="choice-btn" onclick="selectAnswer(1)"></button>
+      <button class="choice-btn" onclick="selectAnswer(2)"></button>
+      <button class="choice-btn" onclick="selectAnswer(3)"></button>
+    </div>
+    <div id="feedback" class="feedback"></div>
+  </div>
+
+  <!-- 3. ゲームオーバー画面 -->
+  <div id="screen-gameover" class="hidden">
+    <h1 style="color: var(--accent-red);">GAME OVER</h1>
+    <p id="gameover-msg">ナゾレンジャーの圧倒的な知識の前に屈してしまった……。</p>
+    <button onclick="startGame()">最初からやり直す</button>
+  </div>
+
+  <!-- 4. エンディング画面 -->
+  <div id="screen-clear" class="hidden">
+    <h1 style="color: #4ade80;">VICTORY!!</h1>
+    <p>ナゾレンジャー5人を全員撃破した！<br>
+    あなたの圧倒的な閃きと知識が、地球の平和を守り抜いたのだ！<br>
+    ゲームクリア、おめでとう！</p>
+    <button onclick="startGame()">もう一度挑戦する</button>
+  </div>
+</div>
+
+<script>
+// --- 戦隊メンバー ---
+const STAGES = [
+  { genre: "current", name: "時事レッド", color: "var(--accent-red)", intro: "「世の中の動きを知らぬ者に、未来は掴めん！」" },
+  { genre: "history", name: "歴史ブルー", color: "var(--accent-blue)", intro: "「過去の積み重ねこそ真理。古の問いに答えよ！」" },
+  { genre: "sports", name: "スポーツグリーン", color: "var(--accent-green)", intro: "「頭脳の反射神経を見せてみろ！熱き戦いだ！」" },
+  { genre: "game", name: "ゲームイエロー", color: "var(--accent-yellow)", intro: "「遊びの達人に勝てるかな？全問パーフェクトを狙え！」" },
+  { genre: "pc", name: "PCパープル", color: "var(--accent-purple)", intro: "「0と1の狭間に沈め……デジタルの試練をパスせよ。」" }
+];
+
+// --- 問題データベース（全150問：各30問） ---
+const QUIZ_DATA = {
+  current: [
+    { q: "2024年に刷新された新しい一万円札の肖像に選ばれた人物は誰？", c: ["福沢諭吉", "渋沢栄一", "津田梅子", "北里柴三郎"], a: 1 },
+    { q: "2024年に刷新された五千円札の肖像に選ばれた人物は誰？", c: ["樋口一葉", "津田梅子", "与謝野晶子", "平塚らいてう"], a: 1 },
+    { q: "2024年に刷新された千円札の肖像に選ばれた医学者は誰？", c: ["北里柴三郎", "野口英世", "志賀潔", "山極勝三郎"], a: 0 },
+    { q: "国連が定めた「持続可能な開発目標」をアルファベット4文字で何という？", c: ["SDGs", "OECD", "NATO", "APEC"], a: 0 },
+    { q: "「ChatGPT」を開発・提供しているアメリカのAI研究開発企業は？", c: ["Meta", "Apple", "OpenAI", "Google"], a: 2 },
+    { q: "2024年の夏季オリンピック・パラリンピックが開催された都市はどこ？", c: ["ロサンゼルス", "ロンドン", "パリ", "東京"], a: 2 },
+    { q: "2028年の夏季オリンピック開催地として予定されている都市はどこ？", c: ["ブリスベン", "ロサンゼルス", "ローマ", "マドリード"], a: 1 },
+    { q: "物価が継続的に上昇し、お金の価値が下がる経済現象を何という？", c: ["デフレーション", "インフレーション", "スタグフレーション", "リフレーション"], a: 1 },
+    { q: "少子高齢化に伴い、国内の生産活動を中心となって支える15歳〜64歳の人口区分を何という？", c: ["年少人口", "生産年齢人口", "老年人口", "労働力人口"], a: 1 },
+    { q: "温室効果ガスの排出量を実質ゼロにすることを目指す取り組みをカタカナで何という？", c: ["カーボンニュートラル", "スマートグリッド", "ゼロエミッション", "バイオマス"], a: 0 },
+    { q: "世界的な半導体受託製造の最大手企業「TSMC」の本社がある地域はどこ？", c: ["韓国", "台湾", "シンガポール", "アメリカ"], a: 1 },
+    { q: "2024年1月に少額投資非課税制度「NISA」が大幅拡充されたが、この制度の通称は？", c: ["プレミアムNISA", "つみたてプラス", "新NISA", "スーパーNISA"], a: 2 },
+    { q: "金融政策を決定する日本の中央銀行はどこ？", c: ["日本政策投資銀行", "日本銀行", "ゆうちょ銀行", "農林中央金庫"], a: 1 },
+    { q: "日本の現在の元号「令和」の典拠となった日本の古典文学は何？", c: ["古事記", "万葉集", "日本書紀", "源氏物語"], a: 1 },
+    { q: "地球温暖化対策の国際的な枠組みを定めた協定で、フランスの都市名が冠されているものは？", c: ["京都議定書", "パリ協定", "ジュネーブ条約", "モントリオール議定書"], a: 1 },
+    { q: "ITやデジタル技術を活用して行政手続きや企業活動、社会を変革することを何という？", c: ["DX", "IoT", "AI", "RPA"], a: 0 },
+    { q: "インターネット上で取引される、暗号技術を用いたデジタル通貨の総称は？", c: ["電子マネー", "暗号資産（仮想通貨）", "地域振興券", "ポイント通貨"], a: 1 },
+    { q: "2023年5月に第49回先進国首脳会議（G7サミット）が開催された日本の都市はどこ？", c: ["仙台", "広島", "福岡", "伊勢志摩"], a: 1 },
+    { q: "2025年に国際博覧会（万博）が開催された日本の都市はどこ？", c: ["愛知", "大阪", "横浜", "札幌"], a: 1 },
+    { q: "災害時に指定避難所以外に親族宅やホテル等で過ごす被災者を把握・支援する課題は何と呼ばれる？", c: ["帰宅困難者", "在宅・車中泊避難者", "孤立集落", "避難所過密"], a: 1 },
+    { q: "食品ロス削減推進法などが対象とする、まだ食べられるのに捨てられてしまう食品の廃棄問題を何という？", c: ["フードマイレージ", "フードロス", "フードバンク", "フードファディズム"], a: 1 },
+    { q: "気象庁が災害の発生リスクが極めて高い時に発表する、警報よりさらに上位の情報は？", c: ["特別警戒", "緊急警報", "特別警報", "災害発生情報"], a: 2 },
+    { q: "2023年にインドが世界4カ国目として探査機の着陸に成功した天体はどこ？", c: ["火星", "金星", "月", "小惑星リュウグウ"], a: 2 },
+    { q: "スマートフォンなどでマイナンバーカードの機能を搭載できる公的個人認証サービスの連携先は？", c: ["マイナポータル", "e-Tax", "住基ネット", "デジタル庁ポータル"], a: 0 },
+    { q: "再生可能エネルギーのうち、風の力を利用してタービンを回して発電するものは？", c: ["地熱発電", "風力発電", "水力発電", "バイオマス発電"], a: 1 },
+    { q: "インターネット上で虚偽の情報をあたかも事実であるかのように拡散するニュースを何という？", c: ["フェイクニュース", "ディープフェイク", "ステマ", "フィッシング"], a: 0 },
+    { q: "物価の上昇率に賃金の伸びが追いつかない状況で注目される「購買力を示す賃金指標」は？", c: ["名目賃金", "実質賃金", "基本給", "所定内給与"], a: 1 },
+    { q: "世界遺産条約を採択・管轄している国連の専門機関はどこ？", c: ["UNICEF", "WHO", "UNESCO", "UNHCR"], a: 2 },
+    { q: "2024年に能登半島で発生した大規模地震において、交通寸断などの課題が浮き彫りになった地形的特徴は？", c: ["扇状地", "半島地域", "カルスト台地", "盆地"], a: 1 },
+    { q: "AI技術の悪用を防ぎ、安全な利活用を促進するために国際的に議論されている指針・規制の枠組みを何という？", c: ["AIガバナンス", "AIプロンプト", "AIモデリング", "AIリテラシー"], a: 0 }
+  ],
+  history: [
+    { q: "1600年に徳川家康率いる東軍と石田三成率いる西軍が激突した「天下分け目」の合戦は？", c: ["長篠の戦い", "関ヶ原の戦い", "桶狭間の戦い", "川中島の戦い"], a: 1 },
+    { q: "1582年、明智光秀が織田信長を討った事件を何という？", c: ["本能寺の変", "寺田屋事件", "桜田門外の変", "本郷事件"], a: 0 },
+    { q: "江戸幕府を開いた初代征夷大将軍は誰？", c: ["徳川家康", "織田信長", "豊臣秀吉", "徳川家光"], a: 0 },
+    { q: "鎌倉幕府を開き、源氏による武家政権を確立した人物は誰？", c: ["源義経", "源頼朝", "源義仲", "北条時政"], a: 1 },
+    { q: "日本初の本格的な都とされる、710年に奈良に造営された都は？", c: ["平安京", "平城京", "藤原京", "難波京"], a: 1 },
+    { q: "794年に桓武天皇によって京都に遷都された都の名前は？", c: ["平城京", "平安京", "長岡京", "紫香楽宮"], a: 1 },
+    { q: "『源氏物語』の作者として知られる平安中期の女性作家は誰？", c: ["清少納言", "紫式部", "和泉式部", "小野小町"], a: 1 },
+    { q: "平安時代に随筆『枕草子』を著した人物は誰？", c: ["紫式部", "清少納言", "菅原孝標女", "建礼門院右京大夫"], a: 1 },
+    { q: "1853年に黒船を率いて浦賀に来航したアメリカ海軍の提督は誰？", c: ["ハリス", "ペリー", "タウンゼント", "マッカーサー"], a: 1 },
+    { q: "1867年に江戸幕府第15代将軍・徳川慶喜が政権を朝廷に返上した出来事は？", c: ["大政奉還", "王政復古の大号令", "廃藩置県", "明治維新"], a: 0 },
+    { q: "坂本龍馬の仲介によって1866年に結ばれた、薩摩藩と長州藩の同盟は？", c: ["薩長同盟", "三国同盟", "日露同盟", "薩土盟約"], a: 0 },
+    { q: "室町幕府の第3代将軍で、京都に金閣（鹿苑寺）を建立したのは誰？", c: ["足利義満", "足利尊氏", "足利義政", "足利義昭"], a: 0 },
+    { q: "室町文化の「東山文化」を代表する建築で、足利義政が建立した銀閣は何寺にある？", c: ["金閣寺", "慈照寺", "清水寺", "建仁寺"], a: 1 },
+    { q: "古代エジプトの王たちの墓として建造された、四角錐の形をした巨大石造建造物は？", c: ["パルテノン", "ピラミッド", "コロッセオ", "ジッグラト"], a: 1 },
+    { q: "古代ローマで剣闘士の試合や猛獣狩りなどが行われた巨大円形闘技場は？", c: ["パルテノン神殿", "コロッセオ", "パンテオン", "フォロ・ロマーノ"], a: 1 },
+    { q: "1492年に大西洋を西へ航海し、西インド諸島（アメリカ沖）に到達した航海者は？", c: ["コロンブス", "マゼラン", "バスコ・ダ・ガマ", "アメリゴ・ヴェスプッチ"], a: 0 },
+    { q: "1519年に出発し、史上初の世界一周航海を成し遂げた艦隊の指揮官は誰？", c: ["コロンブス", "マゼラン", "クック", "カボット"], a: 1 },
+    { q: "18世紀後半にイギリスで始まり、蒸気機関の実用化などで生産力が飛躍した変革は？", c: ["農業革命", "産業革命", "情報革命", "名誉革命"], a: 1 },
+    { q: "1789年にバスティーユ牢獄襲撃を契機に勃発したヨーロッパの市民革命は？", c: ["フランス革命", "アメリカ独立革命", "ロシア革命", "清教徒革命"], a: 0 },
+    { q: "フランス革命後に台頭し、皇帝となってヨーロッパの大半を制覇した軍人は誰？", c: ["ルイ14世", "ルイ16世", "ナポレオン", "ビスマルク"], a: 2 },
+    { q: "アメリカ合衆国第16代大統領で、「人民の、人民による、人民のための政治」と演説した人物は？", c: ["ワシントン", "リンカーン", "ジェファーソン", "ルーズベルト"], a: 1 },
+    { q: "秦の始皇帝が北方騎馬民族の侵入を防ぐために連結・修築した防壁は？", c: ["万里の長城", "ベルリンの壁", "ハドリアヌスの長城", "クレムリンの城壁"], a: 0 },
+    { q: "中国を統一し、度量衡や文字の統一、兵馬俑を残した秦の初代皇帝は誰？", c: ["始皇帝", "項羽", "劉邦", "漢の武帝"], a: 0 },
+    { q: "戦国時代に「鳴かぬなら 鳴くまで待とう ホトトギス」と気質を詠まれた武将は？", c: ["織田信長", "豊臣秀吉", "徳川家康", "武田信玄"], a: 2 },
+    { q: "1543年に種子島へ漂着したポルトガル人によって日本に伝えられた兵器は？", c: ["火薬", "鉄砲（火縄銃）", "日本刀", "大砲"], a: 1 },
+    { q: "1549年に鹿児島へ来航し、日本に初めてキリスト教を伝えた宣教師は誰？", c: ["フランシスコ・ザビエル", "マルコ・ポーロ", "ルイス・フロイス", "ペドロ・ゴメス"], a: 0 },
+    { q: "飛鳥時代に十七条憲法や冠位十二階を制定し、推古天皇の摂政を務めた皇族は？", c: ["中大兄皇子", "聖徳太子（厩戸皇子）", "中臣鎌足", "天武天皇"], a: 1 },
+    { q: "1871年に明治政府が実行した、旧藩を廃止して全国を中央集権的な府・県に改編した政策は？", c: ["版籍奉還", "廃藩置県", "地租改正", "学制発布"], a: 1 },
+    { q: "大正デモクラシー期に普通選挙運動などを推進した護憲運動で、尾崎行雄とともに活躍した政治家は？", c: ["犬養毅", "板垣退助", "大隈重信", "伊藤博文"], a: 0 },
+    { q: "1914年にサラエボ事件を契機として勃発した世界規模の戦争は？", c: ["第一次世界大戦", "第二次世界大戦", "普仏戦争", "クリミア戦争"], a: 0 }
+  ],
+  sports: [
+    { q: "サッカーの公式試合において、ピッチ上に同時に立てる1チームの選手数は何人？", c: ["9人", "10人", "11人", "12人"], a: 2 },
+    { q: "野球において、打者が1試合で単打・二塁打・三塁打・本塁打を全て記録することを何という？", c: ["グランドスラム", "サイクルヒット", "パーフェクトゲーム", "トリプルクラウン"], a: 1 },
+    { q: "バスケットボールのコート上で、同時にプレーできる1チームの人数は何人？", c: ["4人", "5人", "6人", "7人"], a: 1 },
+    { q: "テニスでスコアが「40対40」の同点になった状態を何と呼ぶ？", c: ["デュース", "タイブレーク", "アドバンテージ", "ラブオール"], a: 0 },
+    { q: "バレーボールの守備専門のポジションで、アタックやサーブが禁止されている選手を何という？", c: ["セッター", "リベロ", "ミドルブロッカー", "オポジット"], a: 1 },
+    { q: "フルマラソンの公認走行距離として正しいものはどれ？", c: ["42.195km", "42.000km", "42.500km", "41.195km"], a: 0 },
+    { q: "近代オリンピックのシンボルマークに描かれている輪の数はいくつ？", c: ["4つ", "5つ", "6つ", "7つ"], a: 1 },
+    { q: "ボウリングで、1フレーム目から10フレームの最後まですべてストライクを取った場合の満点は？", c: ["200点", "250点", "300点", "350点"], a: 2 },
+    { q: "ゴルフにおいて、各ホールに設定された基準打数（パー）より1打少なくカップインすることを何という？", c: ["バーディー", "イーグル", "ボギー", "アルバトロス"], a: 0 },
+    { q: "ゴルフで、規定打数（パー）より2打少なくホールアウトすることを何という？", c: ["ボギー", "バーディー", "イーグル", "アルバトロス"], a: 2 },
+    { q: "柔道の試合において、最も重い判定で一本勝ちとなる基準のうち、技によるものは？", c: ["有効", "技あり", "技あり2つ（合わせて一本）", "指導"], a: 2 },
+    { q: "相撲の土俵の中央に埋められている、勝負の境界線を示す俵は何本使われている？", c: ["12本", "16本", "20本", "24本"], a: 2 },
+    { q: "陸上短距離走で、号砲が鳴る前にスタートしてしまう不正出発の英語表記は？", c: ["フライング（フォールススタート）", "ファウル", "オフサイド", "イリーガルスタート"], a: 0 },
+    { q: "ラグビー（15人制）において、相手のインゴールにボールを接地して得点することを何という？", c: ["ゴール", "トライ", "タッチダウン", "ドロップ"], a: 1 },
+    { q: "アメリカンフットボールで、相手のエンドゾーンにボールを持ち込んで得点することを何という？", c: ["トライ", "タッチダウン", "ホームラン", "ゴール"], a: 1 },
+    { q: "卓球（ラージボール除く）の公式球の直径は何ミリメートル？", c: ["38mm", "40mm", "44mm", "48mm"], a: 1 },
+    { q: "バドミントンで使用する、羽根のついた球状の道具の名称は何？", c: ["パック", "シャトル（シャトルコック）", "ピン", "ボール"], a: 1 },
+    { q: "競泳のメドレーリレーで、第1泳者が泳ぐ泳法はどれ？", c: ["背泳ぎ", "平泳ぎ", "バタフライ", "自由形"], a: 0 },
+    { q: "スキージャンプ競技において、美しい着地姿勢として採点基準になる姿勢を何という？", c: ["テレマーク", "V字", "クラウチング", "ランディング"], a: 0 },
+    { q: "フィギュアスケートのジャンプのうち、唯一前向きに踏み切って跳ぶ種類のものは？", c: ["ルッツ", "アクセル", "フリップ", "サルコウ"], a: 1 },
+    { q: "大相撲の本場所で、幕内最高優勝力士に授与される総理大臣杯などの他に、年間6場所のうち奇数月に開催される場所の数は？", c: ["2場所", "3場所", "4場所", "6場所"], a: 1 },
+    { q: "ボクシングで、ダウンした選手がカウントいくつ以内に立ち上がれなければノックアウト（KO）になる？", c: ["5", "8", "10", "12"], a: 2 },
+    { q: "カーリングにおいて、ブラシで氷上を力強く掃く動作を英語で何という？", c: ["スイーピング", "スライディング", "デリバリー", "スキッピング"], a: 0 },
+    { q: "野球の試合で、投手が安打を1本も許さず、かつ四死球や失策も出さずに勝利することを何という？", c: ["ノーヒットノーラン", "完全試合（パーフェクトゲーム）", "シャットアウト", "完封勝ち"], a: 1 },
+    { q: "体操競技の種目「あん馬」で、選手が手をつくリング状の突起部分を何という？", c: ["ポメル（把手）", "バー", "グリップ", "ポスト"], a: 0 },
+    { q: "ハンドボールで、ボールを持ったまま移動できる歩数の上限は何歩まで？", c: ["2歩", "3歩", "4歩", "5歩"], a: 1 },
+    { q: "フェンシングの3種目のうち、全身すべての部位が有効面となる種目はどれ？", c: ["フルーレ", "エペ", "サーブル", "フォイル"], a: 1 },
+    { q: "ダーツ競技において、盤面の中心にある最も小さな円（インナーブル）の点数は何点？", c: ["25点", "50点", "60点", "100点"], a: 1 },
+    { q: "ツール・ド・フランスなどで知られるロードレースで、個人総合時間トップの選手が着用する黄色いジャージは？", c: ["マイヨ・ブラン", "マイヨ・ジョーヌ", "マイヨ・ヴェール", "マイヨ・ア・ポワ"], a: 1 },
+    { q: "近代五種競技に含まれる5つの種目は、フェンシング、水泳、馬術、射撃と、もう一つは何？", c: ["自転車", "陸上（ランニング）", "ボート", "体操"], a: 1 }
+  ],
+  game: [
+    { q: "任天堂の人気ゲーム『スーパーマリオブラザーズ』で、マリオの双子の弟の名前は？", c: ["ワリオ", "ルイージ", "キノピオ", "ワルイージ"], a: 1 },
+    { q: "『ドラゴンクエスト』シリーズの看板モンスターである、プルプルした青い魔物の名前は？", c: ["ドラキー", "スライム", "モーモン", "ゴースト"], a: 1 },
+    { q: "落ちてくるブロックを横一列に隙間なく並べてラインを消す、旧ソビエト生まれの世界的人気ゲームは？", c: ["ぷよぷよ", "テトリス", "ドクターマリオ", "コラムス"], a: 1 },
+    { q: "『ポケットモンスター 赤・緑』で、オーキド博士から最初に選べるくさタイプのポケモンは？", c: ["フシギダネ", "ヒトカゲ", "ゼニガメ", "ピカチュウ"], a: 0 },
+    { q: "カプコンのアクションゲーム『ロックマン』で、主人公ロックマンが放つチャージ可能な基本ショットは？", c: ["波動拳", "ロックバスター", "メガスマッシュ", "ビームライフル"], a: 1 },
+    { q: "任天堂のゲーム『ゼルダの伝説』シリーズで、緑の服を着て剣と盾を持って冒険する主人公の名前は？", c: ["ゼルダ", "リンク", "ガノンドロフ", "エポナ"], a: 1 },
+    { q: "ブロックを配置して自由な建築や冒険が楽しめる、Mojang開発の世界で最も売れたゲームは？", c: ["ロブロックス", "マインクラフト", "テラリア", "フォートナイト"], a: 1 },
+    { q: "『ファイナルファンタジーVII』の主人公で、巨大なバスターソードを背負う元ソルジャーは？", c: ["クラウド", "セフィロス", "スコール", "ティーダ"], a: 0 },
+    { q: "カプコンの対戦格闘ゲーム『ストリートファイターII』で、必殺技「昇龍拳」を使う道着を着たキャラクターは？", c: ["ガイル", "ダルシム", "リュウ", "ブランカ"], a: 2 },
+    { q: "任天堂が1983年に発売し、日本の家庭用ゲーム機ブームを巻き起こしたゲームハードの略称は？", c: ["ファミコン（FC）", "メガドライブ", "PCエンジン", "スーファミ（SFC）"], a: 0 },
+    { q: "『星のカービィ』シリーズで、カービィが敵を吸い込むことでその敵の能力を奪うアクションを何という？", c: ["コピー能力", "メタモルフォーゼ", "シンクロ", "ドレイン"], a: 0 },
+    { q: "ナムコが1980年に発表した、黄色い円形のキャラクターが迷路内のエサを食べ進めるゲームは？", c: ["パックマン", "ディグダグ", "ギャラガ", "マッピー"], a: 0 },
+    { q: "『モンスターハンター』シリーズで、ハンターをサポートしてくれるネコのような見た目の相棒は？", c: ["オトモアイルー", "プーギー", "テツカブラ", "チャチャ"], a: 0 },
+    { q: "ソニー・コンピュータエンタテインメントが1994年に初代機を発売した据置型ゲーム機シリーズは？", c: ["PlayStation", "セガサターン", "Nintendo 64", "Xbox"], a: 0 },
+    { q: "タイトーが1978年にリリースし、社会現象となったシューティングゲームは？", c: ["スペースインベーダー", "グラディウス", "ゼビウス", "ツインビー"], a: 0 },
+    { q: "『大乱闘スマッシュブラザーズ』シリーズで、敵を画面外へ勢いよく弾き飛ばして倒すことを何という？", c: ["K.O.", "バースト（撃墜）", "フォール", "リングアウト"], a: 1 },
+    { q: "『Splatoon（スプラトゥーン）』で、プレイヤーが操作するヒトとイカの姿を切り替えられる種族は？", c: ["タコ", "インクリング", "クラゲ", "シャケ"], a: 1 },
+    { q: "『ドラゴンクエスト』シリーズで、仲間を生き返らせることができる代表的な呪文は？", c: ["ホイミ", "ザオラル", "メラ", "ルーラ"], a: 1 },
+    { q: "『ポケットモンスター』シリーズの看板キャラクターで、図鑑番号0025のねずみポケモンは？", c: ["ピカチュウ", "ライチュウ", "コラッタ", "デデンネ"], a: 0 },
+    { q: "1996年に任天堂が発売した、3Dスティックをコントローラに初搭載した据置型ゲーム機は？", c: ["NINTENDO 64", "ゲームキューブ", "スーパーファミコン", "Wii"], a: 0 },
+    { q: "『ゼルダの伝説 ブレス オブ ザ ワイルド』で、リンクが手に入れる特殊な端末の名前は？", c: ["シーカーストーン", "トライフォース", "オカリナ", "ロッド"], a: 0 },
+    { q: "同じ色の「ぷよ」を何個以上つなげると消えるのが『ぷよぷよ』の基本ルール？", c: ["3個", "4個", "5個", "6個"], a: 1 },
+    { q: "『どうぶつの森』シリーズで、村の役場や案内所でプレイヤーの生活をサポートしてくれる犬のキャラは？", c: ["とたけけ", "しずえ", "たぬきち", "つぶきち"], a: 1 },
+    { q: "セガの看板キャラクターで、音速で走ることができる青いハリネズミの名前は？", c: ["テイルス", "ソニック", "ナックルズ", "シャドウ"], a: 1 },
+    { q: "コナミのステルスアクションゲーム『メタルギア』シリーズの歴代主人公がコードネームに持つ動物は？", c: ["ウルフ", "スネーク", "フォックス", "オセロット"], a: 1 },
+    { q: "『桃太郎電鉄』シリーズで、最下位のプレイヤーに取り憑いて迷惑行為を繰り返すキャラクターは？", c: ["貧乏神（ボンビー）", "夜叉姫", "スゴロク鬼", "ぬりかべ"], a: 0 },
+    { q: "ゲーム用語で、HP（体力）が0になって行動不能になることを英語由来で何という？", c: ["ノックアウト", "デス（戦闘不能）", "リスポーン", "リタイア"], a: 1 },
+    { q: "『DARK SOULS』や『エルデンリング』などを手掛け、高難易度「死にゲー」で世界的に知られる日本のゲーム制作会社は？", c: ["フロム・ソフトウェア", "コーエーテクモ", "プラチナゲームズ", "アトラス"], a: 0 },
+    { q: "『スーパーマリオ』シリーズに登場する、マリオが乗って長いたろで敵を食べたりできる緑の恐竜は？", c: ["キャサリン", "ヨッシー", "クッパ", "ノコノコ"], a: 1 },
+    { q: "『Apex Legends』や『PUBG』のように、多人数が1つの島などで生き残りをかけて戦うゲームジャンルは？", c: ["MOBA", "バトルロイヤル", "タワーディフェンス", "ハックアンドスラッシュ"], a: 1 }
+  ],
+  pc: [
+    { q: "パソコンの「頭脳」にあたり、演算や制御を司るパーツの略称は？", c: ["GPU", "RAM", "CPU", "SSD"], a: 2 },
+    { q: "データを一時的に記憶し、電源を切ると内容が消去される主記憶装置は？", c: ["ROM", "RAM（メモリ）", "HDD", "SSD"], a: 1 },
+    { q: "Windowsパソコンで、選択したテキストやファイルを「コピー」する代表的なショートカットキーは？", c: ["Ctrl + C", "Ctrl + V", "Ctrl + X", "Ctrl + Z"], a: 0 },
+    { q: "Windowsパソコンで、直前の操作を「取り消す（元に戻す）」ショートカットキーは？", c: ["Ctrl + Y", "Ctrl + Z", "Ctrl + S", "Ctrl + A"], a: 1 },
+    { q: "Webブラウザで暗号化された安全な通信を行う際、URLの先頭につく文字列は？", c: ["http://", "https://", "ftp://", "ssh://"], a: 1 },
+    { q: "コンピュータが内部ですべてのデータを処理する際に使う、2つの数字のみで表す位取り記数法は？", c: ["十進法", "二進法", "十六進法", "八進法"], a: 1 },
+    { q: "コンピュータで扱われる情報量の最小単位（0か1を表す1桁）は何？", c: ["バイト (Byte)", "ビット (Bit)", "キロバイト (KB)", "ワード (Word)"], a: 1 },
+    { q: "1バイト（Byte）は何ビット（Bit）？", c: ["4ビット", "8ビット", "16ビット", "32ビット"], a: 1 },
+    { q: "磁気ディスクを回転させてデータを読み書きする、大容量だが衝撃に弱い記憶装置は？", c: ["SSD", "HDD", "USBメモリ", "SDカード"], a: 1 },
+    { q: "半導体メモリを使用し、HDDよりも高速で静音性に優れる内蔵ストレージは？", c: ["SSD", "DVD-RAM", "フロッピーディスク", "MO"], a: 0 },
+    { q: "OS（オペレーティングシステム）のうち、世界で最も高いシェアを持つマイクロソフト社のOSは？", c: ["macOS", "Linux", "Windows", "ChromeOS"], a: 2 },
+    { q: "オープンソースとして広くサーバーや組み込み機器などに使われているOSは？", c: ["Windows", "macOS", "Linux", "iOS"], a: 2 },
+    { q: "Webページを記述するための基本言語で、タグを用いて骨組みを作る言語は？", c: ["HTML", "CSS", "JavaScript", "SQL"], a: 0 },
+    { q: "Webページのデザイン、文字色、レイアウトなどを装飾・指定するためのスタイルシート言語は？", c: ["HTML", "CSS", "Python", "PHP"], a: 1 },
+    { q: "インターネット上で各コンピュータを識別するために割り振られる「ネット上の住所」にあたる番号は？", c: ["MACアドレス", "IPアドレス", "URL", "ドメイン"], a: 1 },
+    { q: "「example.com」のようなドメイン名を、数字のIPアドレスに変換・解決する仕組みは？", c: ["DHCP", "DNS", "FTP", "SSL"], a: 1 },
+    { q: "LANケーブルなどを差し込んで有線ネットワークに接続する端子の規格名称は？", c: ["HDMI", "DisplayPort", "RJ-45 (LANポート)", "VGA"], a: 2 },
+    { q: "映像や音声を1本のケーブルでデジタル伝送できる、テレビやPCモニターで標準的な規格は？", c: ["HDMI", "DVI", "USB Type-A", "D-Sub"], a: 0 },
+    { q: "上下の向きを気にせず挿入でき、急速充電や映像出力にも対応する小型のUSB端子規格は？", c: ["USB Type-A", "USB Type-B", "USB Type-C", "Mini USB"], a: 2 },
+    { q: "悪意のあるプログラム（ウイルス、トロイの木馬、ランサムウェアなど）の総称は？", c: ["マルウェア", "スパイラル", "ファームウェア", "シェアウェア"], a: 0 },
+    { q: "感染するとPC内のファイルを勝手に暗号化し、復元のために金銭を要求してくる悪質ウイルスは？", c: ["ワーム", "アドウェア", "ランサムウェア", "キーロガー"], a: 2 },
+    { q: "実在の銀行や通販サイトなどを装った偽メールで、パスワード等を盗み取る詐欺手法は？", c: ["スキミング", "フィッシング詐欺", "クラッキング", "DoS攻撃"], a: 1 },
+    { q: "Webブラウザで閲覧中のページを再読み込み（リフレッシュ）するファンクションキーは？", c: ["F1", "F2", "F5", "F12"], a: 2 },
+    { q: "ブラウザ閲覧時にユーザーの認証情報や状態を一時的にブラウザ側に保存する仕組みは？", c: ["キャッシュ", "クッキー (Cookie)", "履歴", "セッションキー"], a: 1 },
+    { q: "画像処理や3Dグラフィックスの高速計算に特化し、近年はAI学習でも重用される演算装置は？", c: ["CPU", "GPU", "APU", "TPU"], a: 1 },
+    { q: "表計算ソフト「Excel」などで、合計値を求める際に入力する代表的な関数は？", c: ["=AVERAGE()", "=COUNT()", "=SUM()", "=MAX()"], a: 2 },
+    { q: "インターネットを経由して、手元のPCではなくネットワーク上のサーバー資源やサービスを利用する形態は？", c: ["オンプレミス", "クラウドコンピューティング", "ローカルエリア", "ピアツーピア"], a: 1 },
+    { q: "「ギガバイト（GB）」の1つ上の単位で、約1,000GB（正確には1,024GB）に相当する単位は？", c: ["メガバイト (MB)", "テラバイト (TB)", "ペタバイト (PB)", "エクサバイト (EB)"], a: 1 },
+    { q: "データ通信で、外部からの不正侵入を防ぐためにネットワークの境目に設置される「防火壁」は？", c: ["プロキシ", "ファイアウォール", "ゲートウェイ", "ルーター"], a: 1 },
+    { q: "プログラミングにおいて、プログラム内の記述ミスや論理的な不具合を探して修正する作業は？", c: ["コンパイル", "デバッグ", "ビルド", "リバースエンジニアリング"], a: 1 }
+  ]
+};
+
+// --- ゲーム設定 ---
+const QUESTIONS_PER_STAGE = 3;
+const TIME_LIMIT = 20;
+const MAX_LIVES = 3;
+
+let currentStageIndex = 0;
+let currentQuestionIndex = 0;
+let lives = MAX_LIVES;
+let stageQuestions = [];
+let currentShuffledChoices = [];
+let correctShuffledIndex = 0;
+
+let timer = null;
+let timeLeft = TIME_LIMIT;
+let acceptingInput = false;
+
+// 画面要素
+const screens = {
+  title: document.getElementById('screen-title'),
+  battle: document.getElementById('screen-battle'),
+  gameover: document.getElementById('screen-gameover'),
+  clear: document.getElementById('screen-clear')
+};
+
+document.getElementById('btn-start').onclick = startGame;
+
+function setScreen(screenName) {
+  Object.keys(screens).forEach(key => screens[key].classList.add('hidden'));
+  screens[screenName].classList.remove('hidden');
+}
+
+// 開始ミリ秒時刻に基づく高品質シャッフル（Fisher-Yates法）
+function shuffleWithTime(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const seed = (Date.now() * (i + 1) + Math.floor(Math.random() * 100000)) % 10000;
+    const j = Math.floor((seed / 10000) * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function updateLifeUI() {
+  let hearts = "";
+  for (let i = 0; i < MAX_LIVES; i++) {
+    hearts += i < lives ? "❤" : "🖤";
+  }
+  document.getElementById('life-icons').innerText = hearts;
+}
+
+function startGame() {
+  currentStageIndex = 0;
+  lives = MAX_LIVES;
+  updateLifeUI();
+  startStage();
+}
+
+function startStage() {
+  const stage = STAGES[currentStageIndex];
+  currentQuestionIndex = 0;
+  
+  // 開始時刻を元にシャッフルして3問を抽出
+  const pool = QUIZ_DATA[stage.genre];
+  stageQuestions = shuffleWithTime(pool).slice(0, QUESTIONS_PER_STAGE);
+
+  // ステージ演出
+  document.getElementById('stage-info').innerText = `STAGE ${currentStageIndex + 1} / 5 [${stage.name}]`;
+  document.getElementById('enemy-name').innerText = stage.name;
+  document.getElementById('enemy-phrase').innerText = stage.intro;
+  document.getElementById('enemy-box').style.borderColor = stage.color;
+
+  setScreen('battle');
+  showQuestion();
+}
+
+function showQuestion() {
+  acceptingInput = true;
+  document.getElementById('feedback').innerText = "";
+  
+  const qData = stageQuestions[currentQuestionIndex];
+  document.getElementById('question-text').innerText = `Q${currentQuestionIndex + 1}. ${qData.q}`;
+  
+  // 選択肢のシャッフル処理
+  const choiceObjects = qData.c.map((text, idx) => ({ text, isCorrect: idx === qData.a }));
+  currentShuffledChoices = shuffleWithTime(choiceObjects);
+  correctShuffledIndex = currentShuffledChoices.findIndex(item => item.isCorrect);
+
+  const choiceBtns = document.querySelectorAll('.choice-btn');
+  choiceBtns.forEach((btn, index) => {
+    btn.innerText = `${index + 1}. ${currentShuffledChoices[index].text}`;
+    btn.style.background = "#334155";
+  });
+
+  // タイマー開始
+  timeLeft = TIME_LIMIT;
+  updateTimerUI();
+  clearInterval(timer);
+  timer = setInterval(countDown, 100);
+}
+
+function countDown() {
+  timeLeft -= 0.1;
+  if (timeLeft <= 0) {
+    timeLeft = 0;
+    clearInterval(timer);
+    timeUp();
+  }
+  updateTimerUI();
+}
+
+function updateTimerUI() {
+  document.getElementById('timer-text').innerText = Math.ceil(timeLeft);
+  const percent = (timeLeft / TIME_LIMIT) * 100;
+  document.getElementById('timer-fill').style.width = `${percent}%`;
+}
+
+function selectAnswer(choiceIdx) {
+  if (!acceptingInput) return;
+  acceptingInput = false;
+  clearInterval(timer);
+
+  const choiceBtns = document.querySelectorAll('.choice-btn');
+
+  if (choiceIdx === correctShuffledIndex) {
+    document.getElementById('feedback').innerText = "〇 正解！撃破へ一歩前進！";
+    document.getElementById('feedback').style.color = "#4ade80";
+    choiceBtns[choiceIdx].style.background = "#15803d";
+    setTimeout(nextProgress, 1200);
+  } else {
+    handleMistake(choiceIdx);
+  }
+}
+
+function timeUp() {
+  acceptingInput = false;
+  handleMistake(-1);
+}
+
+function handleMistake(wrongIdx) {
+  lives--;
+  updateLifeUI();
+
+  const choiceBtns = document.querySelectorAll('.choice-btn');
+  if (wrongIdx >= 0) {
+    choiceBtns[wrongIdx].style.background = "#b91c1c";
+  }
+  choiceBtns[correctShuffledIndex].style.background = "#15803d";
+
+  if (lives > 0) {
+    const reason = wrongIdx === -1 ? "時間切れ！" : "不正解！";
+    document.getElementById('feedback').innerText = `× ${reason} 残りライフ: ${lives}`;
+    document.getElementById('feedback').style.color = "#ef4444";
+    // 間違えてもライフがあればそのまま次の問題へ進む
+    setTimeout(nextProgress, 1500);
+  } else {
+    document.getElementById('feedback').innerText = "× ライフが尽きてしまった……！";
+    document.getElementById('feedback').style.color = "#ef4444";
+    setTimeout(gameOver, 1500);
+  }
+}
+
+function nextProgress() {
+  currentQuestionIndex++;
+  if (currentQuestionIndex < QUESTIONS_PER_STAGE) {
+    showQuestion();
+  } else {
+    // 幹部撃破
+    currentStageIndex++;
+    if (currentStageIndex < STAGES.length) {
+      startStage();
+    } else {
+      // 5ステージ走破でエンディング
+      setScreen('clear');
+    }
+  }
+}
+
+function gameOver() {
+  const stage = STAGES[currentStageIndex];
+  document.getElementById('gameover-msg').innerText = `${stage.name}の猛攻により知識エネルギーが尽きてしまった……！`;
+  setScreen('gameover');
+}
+</script>
+</body>
+</html>

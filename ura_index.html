@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Knowledge & Training Hub (Archive)</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { background-color: #0a0e17; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(56, 189, 248, 0.15);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-white">
+
+  <!-- PIN認証コンテナ（未認証時表示） -->
+  <div id="auth-container" class="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0e17] px-4">
+    <div class="glass-card w-full max-w-sm p-8 rounded-2xl text-center shadow-2xl">
+      <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-2xl border border-cyan-500/20">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+      <h2 class="text-xl font-bold tracking-wider mb-2">SECURITY ACCESS</h2>
+      <p class="text-xs text-slate-400 mb-6">4桁の認証PINを入力してください</p>
+      
+      <div class="flex justify-center gap-3 mb-6">
+        <input type="password" maxlength="4" id="pin-input" autofocus
+          class="w-36 text-center text-2xl tracking-[0.5em] py-2 bg-slate-900/80 border border-slate-700 rounded-lg focus:outline-none focus:border-cyan-400 text-cyan-300 transition-all font-mono">
+      </div>
+      <button onclick="verifyPin()" class="w-full py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 rounded-lg text-sm font-semibold tracking-wider transition-all shadow-lg shadow-cyan-500/20">
+        認証して入場
+      </button>
+      <p id="error-msg" class="text-xs text-rose-400 mt-3 hidden">PINコードが一致しません</p>
+    </div>
+  </div>
+
+  <!-- メインポータル（認証完了後表示） -->
+  <div id="main-content" class="hidden flex-1 p-6 md:p-12 max-w-6xl mx-auto w-full">
+    
+    <!-- ヘッダー -->
+    <header class="flex flex-col md:flex-row md:items-center justify-between pb-8 mb-8 border-b border-slate-800/80 gap-4">
+      <div>
+        <div class="flex items-center gap-3">
+          <div class="h-8 w-1.5 bg-cyan-400 rounded-full"></div>
+          <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
+            Knowledge & Training Hub
+          </h1>
+        </div>
+        <p class="text-xs text-slate-400 mt-1 pl-4.5">総合アーカイブポータル & 各種専門ハブ</p>
+      </div>
+      <div class="flex items-center gap-3 self-end md:self-auto">
+        <!-- 表サイト（TOEIC）へ戻るボタン -->
+        <a href="index.html" class="text-xs text-sky-400 hover:text-white px-3 py-1.5 rounded-lg border border-sky-500/30 bg-sky-500/10 hover:bg-sky-500/20 transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>表サイト（TOEIC）へ
+        </a>
+        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>ONLINE
+        </span>
+        <button onclick="lockSystem()" class="text-xs text-slate-400 hover:text-slate-200 px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900/50 hover:bg-slate-800 transition-all">
+          <i class="fa-solid fa-lock mr-1.5"></i>ロック
+        </button>
+      </div>
+    </header>
+
+    <!-- メインコーナーグリッド（英語を破棄し4大セクションに再編） -->
+    <main class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- SECTION 01: ゲームセンター (ura_indexgame.html) -->
+      <a href="ura_indexgame.html" class="glass-card rounded-2xl p-6 transition-all duration-300 flex items-center justify-between group">
+        <div class="flex items-center gap-5">
+          <div class="w-14 h-14 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-2xl group-hover:scale-105 transition-transform">
+            <i class="fa-solid fa-gamepad"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold tracking-widest text-purple-400 uppercase">SECTION 01</span>
+            <h2 class="text-lg md:text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
+              ゲームセンター
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">Classic Rogue、ナゾレンジャー、Rally-X 等</p>
+          </div>
+        </div>
+        <div class="text-slate-500 group-hover:text-purple-400 group-hover:translate-x-1 transition-all pr-2">
+          <i class="fa-solid fa-chevron-right text-lg"></i>
+        </div>
+      </a>
+
+      <!-- SECTION 02: 食べもの・農水産・物流 (ura_indexfood.html) -->
+      <a href="ura_indexfood.html" class="glass-card rounded-2xl p-6 transition-all duration-300 flex items-center justify-between group">
+        <div class="flex items-center gap-5">
+          <div class="w-14 h-14 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-2xl group-hover:scale-105 transition-transform">
+            <i class="fa-solid fa-utensils"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold tracking-widest text-amber-400 uppercase">SECTION 02</span>
+            <h2 class="text-lg md:text-xl font-bold text-white group-hover:text-amber-300 transition-colors">
+              食べもの・農水産・物流
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">福岡・熊本・広島・兵庫の地域構造 & 幹線サプライチェーン</p>
+          </div>
+        </div>
+        <div class="text-slate-500 group-hover:text-amber-400 group-hover:translate-x-1 transition-all pr-2">
+          <i class="fa-solid fa-chevron-right text-lg"></i>
+        </div>
+      </a>
+
+      <!-- SECTION 03: 経済・財政・マクロ構造ハブ (ura_indexfin.html) -->
+      <a href="ura_indexfin.html" class="glass-card rounded-2xl p-6 transition-all duration-300 flex items-center justify-between group">
+        <div class="flex items-center gap-5">
+          <div class="w-14 h-14 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 text-2xl group-hover:scale-105 transition-transform">
+            <i class="fa-solid fa-chart-pie"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold tracking-widest text-rose-400 uppercase">SECTION 03</span>
+            <h2 class="text-lg md:text-xl font-bold text-white group-hover:text-rose-300 transition-colors">
+              経済・財政・マクロ構造
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">国家予算112兆円・国際収支・日本30指標・中東情勢</p>
+          </div>
+        </div>
+        <div class="text-slate-500 group-hover:text-rose-400 group-hover:translate-x-1 transition-all pr-2">
+          <i class="fa-solid fa-chevron-right text-lg"></i>
+        </div>
+      </a>
+
+      <!-- SECTION 04: 開発・パイプライン・技術ハブ (ura_indextec.html) -->
+      <a href="ura_indextec.html" class="glass-card rounded-2xl p-6 transition-all duration-300 flex items-center justify-between group">
+        <div class="flex items-center gap-5">
+          <div class="w-14 h-14 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 text-2xl group-hover:scale-105 transition-transform">
+            <i class="fa-solid fa-code-branch"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold tracking-widest text-sky-400 uppercase">SECTION 04</span>
+            <h2 class="text-lg md:text-xl font-bold text-white group-hover:text-sky-300 transition-colors">
+              開発・パイプライン・技術事典
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">Git実践事典・VS Codeガイド・3社連携パイプライン</p>
+          </div>
+        </div>
+        <div class="text-slate-500 group-hover:text-sky-400 group-hover:translate-x-1 transition-all pr-2">
+          <i class="fa-solid fa-chevron-right text-lg"></i>
+        </div>
+      </a>
+
+    </main>
+  </div>
+
+  <!-- フッター -->
+  <footer id="main-footer" class="hidden p-6 text-center text-xs text-slate-500 border-t border-slate-900">
+    <div class="flex flex-wrap justify-center gap-4 sm:gap-6 mb-2">
+      <a href="index.html" class="text-sky-400 hover:text-white transition-colors"><i class="fa-solid fa-arrow-left mr-1"></i>表サイト（TOEIC）</a>
+      <a href="ura_indexgame.html" class="hover:text-slate-300 transition-colors"><i class="fa-solid fa-gamepad mr-1"></i>ゲーム</a>
+      <a href="ura_indexfood.html" class="hover:text-slate-300 transition-colors"><i class="fa-solid fa-utensils mr-1"></i>食・農水産・物流</a>
+      <a href="ura_indexfin.html" class="hover:text-slate-300 transition-colors"><i class="fa-solid fa-scale-balanced mr-1"></i>経済・財政</a>
+      <a href="ura_indextec.html" class="hover:text-slate-300 transition-colors"><i class="fa-solid fa-screwdriver-wrench mr-1"></i>開発・技術</a>
+    </div>
+    <p>&copy; Knowledge & Training Hub Archive. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const CORRECT_PIN = "8686";
+
+    function checkAuth() {
+      const isAuth = sessionStorage.getItem("hub_authenticated") === "true" || sessionStorage.getItem("hub_auth_status") === "true";
+      if (isAuth) {
+        document.getElementById("auth-container").classList.add("hidden");
+        document.getElementById("main-content").classList.remove("hidden");
+        document.getElementById("main-footer").classList.remove("hidden");
+      } else {
+        document.getElementById("auth-container").classList.remove("hidden");
+        document.getElementById("main-content").classList.add("hidden");
+        document.getElementById("main-footer").classList.add("hidden");
+      }
+    }
+
+    function verifyPin() {
+      const pin = document.getElementById("pin-input").value;
+      if (pin === CORRECT_PIN) {
+        sessionStorage.setItem("hub_auth_status", "true");
+        sessionStorage.setItem("hub_authenticated", "true");
+        checkAuth();
+      } else {
+        const err = document.getElementById("error-msg");
+        err.classList.remove("hidden");
+        document.getElementById("pin-input").value = "";
+        document.getElementById("pin-input").focus();
+      }
+    }
+
+    document.getElementById("pin-input").addEventListener("keypress", (e) => {
+      if (e.key === "Enter") verifyPin();
+    });
+
+    function lockSystem() {
+      sessionStorage.removeItem("hub_authenticated");
+      sessionStorage.removeItem("hub_auth_status");
+      location.reload();
+    }
+
+    checkAuth();
+  </script>
+</body>
+</html>

@@ -1,0 +1,492 @@
+html_content = """<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VSCode Python環境構築・操作ガイド（サプー解説まとめ）</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --primary: #38bdf8;
+      --python-blue: #3776ab;
+      --python-yellow: #ffd343;
+      --accent: #a855f7;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --kbd-bg: #334155;
+      --kbd-border: #475569;
+      --tag-bg: rgba(56, 189, 248, 0.15);
+      --code-bg: #090d16;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 32px 16px;
+    }
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: var(--tag-bg);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #f8fafc;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #f8fafc;
+      margin: 36px 0 18px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-number {
+      background: linear-gradient(135deg, var(--python-blue), var(--primary));
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .step-list {
+      list-style: none;
+      counter-reset: step-counter;
+    }
+    .step-list > li {
+      counter-increment: step-counter;
+      position: relative;
+      padding-left: 36px;
+      margin-bottom: 16px;
+    }
+    .step-list > li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 24px;
+      height: 24px;
+      background-color: var(--card-border);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    .step-subtext {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .ext-item {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+    .ext-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+    .ext-name {
+      font-weight: 700;
+      color: #f1f5f9;
+      font-size: 0.95rem;
+    }
+    .tag-req {
+      font-size: 0.7rem;
+      background: #ef4444;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    .tag-rec {
+      font-size: 0.7rem;
+      background: #10b981;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    kbd {
+      background-color: var(--kbd-bg);
+      border: 1px solid var(--kbd-border);
+      border-radius: 4px;
+      box-shadow: 0 2px 0 var(--kbd-border);
+      color: #f8fafc;
+      display: inline-block;
+      font-family: monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      margin: 0 2px;
+    }
+    .shortcut-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+    }
+    .shortcut-table th, .shortcut-table td {
+      padding: 10px 12px;
+      text-align: left;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .shortcut-table th {
+      color: var(--text-muted);
+      font-weight: 600;
+      background: rgba(15, 23, 42, 0.4);
+    }
+    .callout {
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 4px solid var(--primary);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 14px;
+      font-size: 0.9rem;
+    }
+    .callout-title {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .comp-col {
+      background: rgba(15, 23, 42, 0.5);
+      border-radius: 8px;
+      padding: 16px;
+      border: 1px solid var(--card-border);
+    }
+    .comp-col h4 {
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+    ul.check-list {
+      list-style: none;
+      font-size: 0.88rem;
+    }
+    ul.check-list li {
+      margin-bottom: 8px;
+      position: relative;
+      padding-left: 20px;
+    }
+    ul.check-list li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: #10b981;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">YouTube解説まとめ &middot; 実践手順書</span>
+      <h1>VSCode Python 開発環境 実践セットアップ</h1>
+      <p class="subtitle">サプー「【VSCode】無料エディターのVSCodeをPythonコーディング用にカスタマイズしよう！〜初心者向け〜」動画準拠の手順書</p>
+    </header>
+
+    <!-- SECTION 1 -->
+    <div class="section-title">
+      <span class="section-number">1</span>
+      <span>インストール & 日本語化</span>
+    </div>
+    <div class="card">
+      <ol class="step-list">
+        <li>
+          <strong>VSCodeのダウンロードと通常インストール</strong>
+          <p class="step-subtext">Microsoft公式サイトからPC（Windows / Mac）に対応したインストーラーをダウンロードし、標準設定のまま完了させます。</p>
+        </li>
+        <li>
+          <strong>拡張機能画面（Extensions）を開く</strong>
+          <p class="step-subtext">画面左端のアクティビティバーにある「四角いブロック（パズル）型アイコン」をクリックします（または <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd>）。</p>
+        </li>
+        <li>
+          <strong>「Japanese Language Pack for VS Code」をインストール</strong>
+          <p class="step-subtext">上部の検索バーに <code>Japanese</code> と入力し、Microsoft公式パックの「Install」をクリック。完了後、右下に表示される「Restart」ボタンを押して再起動するとメニューが日本語化されます。</p>
+        </li>
+      </ol>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="section-title">
+      <span class="section-number">2</span>
+      <span>導入すべき拡張機能（4選）</span>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">
+          <span>Python必須ツール</span>
+        </div>
+        <div class="ext-item">
+          <div class="ext-header">
+            <span class="ext-name">Python (Microsoft公式)</span>
+            <span class="tag-req">必須</span>
+          </div>
+          <p class="step-subtext">構文ハイライト、コード補完、右上の「▷実行ボタン」の追加、インタープリタ切り替えなどPython開発の根幹機能。</p>
+        </div>
+        <div class="ext-item">
+          <div class="ext-header">
+            <span class="ext-name">Visual Studio IntelliCode</span>
+            <span class="tag-rec">推奨</span>
+          </div>
+          <p class="step-subtext">AIが文脈を読み、ライブラリ（pandas等）の候補や引数の解説ポップアップを高精度にサジェスト。</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>コーディング補助ツール</span>
+        </div>
+        <div class="ext-item">
+          <div class="ext-header">
+            <span class="ext-name">Python Indent</span>
+            <span class="tag-rec">推奨</span>
+          </div>
+          <p class="step-subtext">リスト内改行やネスト時に、開始位置を自動でPythonの標準インデント規則に合わせて配置。</p>
+        </div>
+        <div class="ext-item">
+          <div class="ext-header">
+            <span class="ext-name">autoDocstring (Python Docstring Generator)</span>
+            <span class="tag-rec">推奨</span>
+          </div>
+          <p class="step-subtext">関数直下で <code>"""</code> と打ってEnterを押すだけで、引数・戻り値の型アノテーション枠を含むDocstringを自動挿入。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="section-title">
+      <span class="section-number">3</span>
+      <span>作業フォルダ作成から実行までの手順</span>
+    </div>
+    <div class="card">
+      <ol class="step-list">
+        <li>
+          <strong>作業用フォルダを開く</strong>
+          <p class="step-subtext">「ファイル」&gt;「フォルダーを開く」から、スクリプトを保存する任意のフォルダを選択。「フォルダーの作成者を信頼しますか？」が出たら「信頼する」を選択。</p>
+        </li>
+        <li>
+          <strong>Pythonファイルの新規作成</strong>
+          <p class="step-subtext">エクスプローラー左上の「新しいファイル」アイコンをクリックし、<code>code.py</code> などの拡張子 <code>.py</code> を付けたファイル名を入力してEnter。</p>
+        </li>
+        <li>
+          <strong>コードの記述と保存</strong>
+          <p class="step-subtext">コードを記述します。編集直後はタブ名に「白丸（●）」が表示されます。<kbd>Ctrl</kbd> + <kbd>S</kbd>（Mac: <kbd>Cmd</kbd> + <kbd>S</kbd>）で保存すると白丸が消えます。</p>
+        </li>
+        <li>
+          <strong>実行ボタンをクリック</strong>
+          <p class="step-subtext">エディタ画面の右上にある「再生ボタン（▷）」をクリックすると、下部にターミナルが立ち上がり、自動で <code>python code.py</code> が実行されます。</p>
+        </li>
+      </ol>
+      <div class="callout">
+        <div class="callout-title">💡 インタープリタ（仮想環境・Pythonバージョン）の変更方法</div>
+        画面左下（または右下ステータスバー）に表示されているPythonバージョン（例: <code>3.10.x</code>）をクリックするか、コマンドパレットから <code>Python: Select Interpreter</code> を呼び出して対象のPython環境を切り替え可能です。
+      </div>
+    </div>
+
+    <!-- SECTION 4 -->
+    <div class="section-title">
+      <span class="section-number">4</span>
+      <span>知っておくべき必須ショートカット & 検索</span>
+    </div>
+    <div class="card">
+      <table class="shortcut-table">
+        <thead>
+          <tr>
+            <th>機能</th>
+            <th>Windows</th>
+            <th>Mac</th>
+            <th>操作詳細</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>ファイル内 検索 / 置換</strong></td>
+            <td><kbd>Ctrl</kbd> + <kbd>F</kbd></td>
+            <td><kbd>Cmd</kbd> + <kbd>F</kbd></td>
+            <td>右上に検索バー。左の「&gt;」展開で置換入力。個別置換・一括置換ボタンあり。</td>
+          </tr>
+          <tr>
+            <td><strong>プロジェクト全体検索</strong></td>
+            <td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd></td>
+            <td><kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>F</kbd></td>
+            <td>開いているフォルダ内すべてのファイルを横断検索。クリックで該当局へジャンプ。</td>
+          </tr>
+          <tr>
+            <td><strong>定義へジャンプ / 逆参照</strong></td>
+            <td><kbd>F12</kbd></td>
+            <td><kbd>F12</kbd></td>
+            <td>関数名にカーソルを置いて押すと定義元へ。定義元で押せば呼び出し元リストを表示。</td>
+          </tr>
+          <tr>
+            <td><strong>ファイル名 クイックオープン</strong></td>
+            <td><kbd>Ctrl</kbd> + <kbd>P</kbd></td>
+            <td><kbd>Cmd</kbd> + <kbd>P</kbd></td>
+            <td>上部に検索バー。ファイル名の一部を入力して即座に該当ファイルを開く。</td>
+          </tr>
+          <tr>
+            <td><strong>コマンドパレット</strong></td>
+            <td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> (または <kbd>F1</kbd>)</td>
+            <td><kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> (または <kbd>F1</kbd>)</td>
+            <td>設定・拡張機能一覧・エディタ操作など、VSCodeの全機能をあいまい検索して実行。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION 5 -->
+    <div class="section-title">
+      <span class="section-number">5</span>
+      <span>ブレークポイントによるデバッグ（ステップ実行）</span>
+    </div>
+    <div class="card">
+      <ol class="step-list">
+        <li>
+          <strong>ブレークポイントのセット</strong>
+          <p class="step-subtext">確認したい行の行番号のすぐ左側（グレーの領域）をクリックすると「赤い丸」が付きます。プログラムはその直前で一時停止します。</p>
+        </li>
+        <li>
+          <strong>デバッグ開始</strong>
+          <p class="step-subtext">右上の再生ボタン横の下矢印メニューから「Python ファイルのデバッグ」を選択して起動します。</p>
+        </li>
+        <li>
+          <strong>変数状態のモニタリング</strong>
+          <p class="step-subtext">赤丸行で処理が止まり行がハイライトされます。左側パネルの「変数（Variables）」欄にその時点でのローカル変数の値が一覧表示されます。</p>
+        </li>
+        <li>
+          <strong>1行ずつ進める（ステップオーバー / イン）</strong>
+          <p class="step-subtext">上部に現れる操作バーの「下向き矢印（ステップオーバー）」を押すと1行ずつ実行が進み、変数がどう変化していくかをリアルタイムに確認できます。</p>
+        </li>
+      </ol>
+    </div>
+
+    <!-- SECTION 6 -->
+    <div class="section-title">
+      <span class="section-number">6</span>
+      <span>エディタの基本設定カスタマイズ & PyCharm比較</span>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">
+          <span>初期設定の微調整</span>
+        </div>
+        <ul style="padding-left: 20px; font-size: 0.9rem; color: var(--text);">
+          <li style="margin-bottom: 8px;">
+            <strong>設定画面の開き方</strong>: <kbd>Ctrl</kbd> + <kbd>,</kbd>（Mac: <kbd>Cmd</kbd> + <kbd>,</kbd>）
+          </li>
+          <li style="margin-bottom: 8px;">
+            <strong>フォントサイズ</strong>: 「よく使用するもの」内の <code>Font Size</code> を変更（14 → 16など好みに合わせて拡大）。
+          </li>
+          <li>
+            <strong>カラーテーマ変更</strong>: 「ワークベンチ」&gt;「外観」&gt;「カラーテーマ」から好みの配色を選択（初期設定のDark+が見やすくおすすめ）。
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>VSCode vs PyCharm の選び方</span>
+        </div>
+        <div class="comparison-grid">
+          <div class="comp-col">
+            <h4 style="color: #38bdf8;">VSCode</h4>
+            <ul class="check-list">
+              <li><strong>完全無料</strong>で制限なし</li>
+              <li>動作・起動が圧倒的に軽い</li>
+              <li>HTML/JS/シェル等も同一環境で共存</li>
+              <li>（初回のみプラグイン導入が必要）</li>
+            </ul>
+          </div>
+          <div class="comp-col">
+            <h4 style="color: #ffd343;">PyCharm</h4>
+            <ul class="check-list">
+              <li>Python特化で設定ゼロで動く</li>
+              <li>コード推論・修正提案が極めて優秀</li>
+              <li>一部プロ向け機能は有償</li>
+              <li>環境によってやや動作が重い</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
+"""
+
+filename = "vscode_python_setup_guide.html"
+with open(filename, "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print(f"Generated HTML file: {filename}")

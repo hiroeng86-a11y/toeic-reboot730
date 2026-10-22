@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="ja" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界を俯瞰する30の基幹数字 | Global Macro & Bottleneck Matrix</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            500: '#3b82f6',
+                            card: '#151d2f',
+                            border: '#26344d',
+                            dark: '#0a0e17'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            background-color: #0a0e17;
+            color: #e2e8f0;
+        }
+        .glass-card {
+            background: rgba(21, 29, 47, 0.88);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.45);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 15px rgba(59, 130, 246, 0.15);
+        }
+        .glow-active {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+            border-color: #3b82f6 !important;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0a0e17;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #26344d;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col custom-scrollbar text-slate-200">
+
+    <!-- Header -->
+    <header class="border-b border-slate-800 bg-slate-950/85 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-500/30">
+                    <i class="fa-solid fa-network-wired"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-white tracking-wide flex items-center gap-2">
+                        世界を俯瞰する 30の基幹数字
+                        <span class="text-xs font-normal px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30">Top 30 Global Matrix</span>
+                    </h1>
+                    <p class="text-xs text-slate-400">大国骨格（1〜20）× 局所的急所・ボトルネック（21〜30）の統合構造マップ</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 text-sm">
+                <button id="view-all-btn" onclick="filterCategory('all')" class="px-3 py-1.5 rounded-lg font-medium text-xs bg-blue-600 text-white shadow-sm transition">すべて表示</button>
+                <button onclick="toggleCalcModal()" class="px-3 py-1.5 rounded-lg font-medium text-xs bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-600/50 transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-calculator"></i> 構造試算シミュレーター
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+
+        <!-- Top Overview Stats (4 Key Pillars) -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 text-xl">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-400 block font-medium">基幹需要（世界人口）</span>
+                    <span class="text-2xl font-extrabold text-white tracking-tight">81<span class="text-base font-normal text-slate-400 ml-1">億人</span></span>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-xl">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-400 block font-medium">経済パイ（世界GDP）</span>
+                    <span class="text-2xl font-extrabold text-white tracking-tight">105<span class="text-base font-normal text-slate-400 ml-1">兆ドル</span></span>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-xl">
+                    <i class="fa-solid fa-network-wired"></i>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-400 block font-medium">通信の急所（海底ケーブル）</span>
+                    <span class="text-2xl font-extrabold text-white tracking-tight">95<span class="text-base font-normal text-slate-400 ml-1">%</span></span>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 text-xl">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-400 block font-medium">露光装置独占（ASML）</span>
+                    <span class="text-2xl font-extrabold text-white tracking-tight">100<span class="text-base font-normal text-slate-400 ml-1">%</span></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Nav Filters -->
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4">
+            <div class="flex flex-wrap items-center gap-2" id="category-filters">
+                <!-- Buttons rendered via JS -->
+            </div>
+            <div class="text-xs text-slate-400">
+                クリックした数字と構造的に連動するカードが連鎖ハイライトされます
+            </div>
+        </div>
+
+        <!-- 30 Core Numbers Grid -->
+        <section id="cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <!-- 30 Cards populated via JS -->
+        </section>
+
+        <!-- Comparative Charts & Bottleneck Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-4">
+            <!-- Power & GDP Distribution -->
+            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-scale-balanced text-blue-400"></i> 大国間パワー格差の比較
+                    </h3>
+                    <span class="text-xs text-slate-500">数字 #5, #6, #15, #16, #17</span>
+                </div>
+                <div class="h-64">
+                    <canvas id="powerChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Single Points of Failure (Bottlenecks) -->
+            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-5">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-400"></i> グローバル・単一障害点（独占・依存度）
+                    </h3>
+                    <span class="text-xs text-slate-500">数字 #13, #14, #21, #22, #25</span>
+                </div>
+                <div class="h-64">
+                    <canvas id="bottleneckChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Calculation Modal -->
+    <div id="calc-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl">
+            <div class="p-5 border-b border-slate-800 flex justify-between items-center bg-slate-950">
+                <h3 class="font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-calculator text-emerald-400"></i> 30の数字から導く「構造試算」
+                </h3>
+                <button onclick="toggleCalcModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="p-6 space-y-5 max-h-[80vh] overflow-y-auto custom-scrollbar">
+
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-2">
+                    <h4 class="text-xs font-bold text-blue-400 uppercase tracking-wider">① 先端テクノロジーの二重ボトルネック</h4>
+                    <div class="text-sm font-semibold text-slate-200">
+                        オランダASML(100%露光装置 / #22) ➔ 台湾TSMC(90%先端製造 / #14)
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        最先端AIや軍事チップは、オランダの1社が製造機を止めれば生産不能になり、台湾の海峡が封鎖されれば全世界の9割の供給が途絶する構造。
+                    </p>
+                </div>
+
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-2">
+                    <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider">② デジタルと物流の物理的脆弱性</h4>
+                    <div class="text-sm font-semibold text-slate-200">
+                        海上輸送(90% / #13) ＋ 海底光ファイバー(95% / #21)
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        クラウドやグローバル経済は仮想空間にあるように見えて、実態は「海の上（船）」と「海の底（光ケーブル）」という極めて物理的な2本の線に依存している。
+                    </p>
+                </div>
+
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-2">
+                    <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider">③ 生存基盤（水と食料）の連鎖危機</h4>
+                    <div class="text-sm font-semibold text-slate-200">
+                        水ストレス人口(20億人 / #24) ➔ 中東・北アフリカ小麦依存(80% / #28) ➔ 飢餓(8億人 / #19)
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        農業と生活用水の枯渇が穀物輸入依存国を直撃し、政情不安・難民流出・地域紛争（グローバル・サウス #29）の引き金となる。
+                    </p>
+                </div>
+
+                <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-2">
+                    <h4 class="text-xs font-bold text-rose-400 uppercase tracking-wider">④ ドル覇権と対抗軸（多極化）</h4>
+                    <div class="text-sm font-semibold text-slate-200">
+                        ドル決済比率(85〜90% / #7) vs CBDC研究国(約130カ国 / #27)
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        ドルの圧倒的基軸通貨体制に対し、金融制裁を回避したい新興国や資源国が自国通貨決済・デジタル通貨への迂回ルートを模索中。
+                    </p>
+                </div>
+
+            </div>
+            <div class="p-4 border-t border-slate-800 bg-slate-950 text-right">
+                <button onclick="toggleCalcModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-bold transition">閉じる</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-900 bg-slate-950 py-6 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>Top 30 Global Macro Indicators & Structural Bottlenecks | Geopolitical Systems Analysis</p>
+        </div>
+    </footer>
+
+    <!-- Data Script -->
+    <script>
+        const numbersData = [
+            // 人口・社会 (1-4)
+            {
+                id: 1,
+                number: "81億人",
+                title: "世界の総人口",
+                category: "demographics",
+                categoryName: "人口・社会",
+                icon: "fa-users",
+                color: "blue",
+                related: [2, 3, 5, 8, 9, 19, 20, 24],
+                desc: "全需要・食料・エネルギー消費・環境負荷の母数。一人当たり資源やGDPを算出するすべての根本分母。"
+            },
+            {
+                id: 2,
+                number: "14億 / 14億人",
+                title: "インド・中国の人口",
+                category: "demographics",
+                categoryName: "人口・社会",
+                icon: "fa-earth-asia",
+                color: "blue",
+                related: [1, 6, 9, 11, 12, 19, 24],
+                desc: "世界人口の約35%が2カ国に集中。消費市場・巨大製造拠点・資源需要の二大ブラックホール。"
+            },
+            {
+                id: 3,
+                number: "14億人",
+                title: "アフリカ大陸の総人口",
+                category: "demographics",
+                categoryName: "人口・社会",
+                icon: "fa-person-walking-arrow-loop-left",
+                color: "blue",
+                related: [1, 4, 19, 28, 29],
+                desc: "21世紀後半の人口増の中心。若い労働力と将来市場とともに、食料不足や難民危機の震源地。"
+            },
+            {
+                id: 4,
+                number: "1.3〜1.4",
+                title: "東アジアの出生率",
+                category: "demographics",
+                categoryName: "人口・社会",
+                icon: "fa-child-combat",
+                color: "blue",
+                related: [1, 3, 5, 8],
+                desc: "日・韓・中の急速な少子高齢化。「豊かになる前に老いる（未富先老）」構造危機の指標。"
+            },
+
+            // 経済・資本・通貨 (5-8, 26, 27)
+            {
+                id: 5,
+                number: "105兆ドル",
+                title: "世界の総GDP",
+                category: "economy",
+                categoryName: "経済・資本",
+                icon: "fa-chart-pie",
+                color: "emerald",
+                related: [1, 6, 8, 15, 26],
+                desc: "年間の全生産・サービス総額。グローバルな富の「パイ」全体の規模。"
+            },
+            {
+                id: 6,
+                number: "28兆 / 18兆ドル",
+                title: "米国 vs 中国のGDP",
+                category: "economy",
+                categoryName: "経済・資本",
+                icon: "fa-building-columns",
+                color: "emerald",
+                related: [5, 7, 15, 16, 22],
+                desc: "2カ国だけで世界GDPの約44%を占める。米中新冷戦・二極構造の経済的裏付け。"
+            },
+            {
+                id: 7,
+                number: "85〜90%",
+                title: "国際決済のドルシェア",
+                category: "economy",
+                categoryName: "経済・資本",
+                icon: "fa-dollar-sign",
+                color: "emerald",
+                related: [6, 8, 16, 18, 27],
+                desc: "ドルの基軸通貨覇権（シニョリッジ）。米国の金融制裁を可能にする最大のパワー基盤。"
+            },
+            {
+                id: 8,
+                number: "約300兆ドル",
+                title: "世界の総債務残高",
+                category: "economy",
+                categoryName: "経済・資本",
+                icon: "fa-receipt",
+                color: "emerald",
+                related: [5, 7, 26],
+                desc: "世界GDPの約3倍に達する官民借金。金利変動が世界経済を直撃するハイリスク構造。"
+            },
+            {
+                id: 26,
+                number: "2.0%",
+                title: "主要国の中銀目標インフレ率",
+                category: "economy",
+                categoryName: "経済・資本",
+                icon: "fa-gauge-high",
+                color: "emerald",
+                related: [5, 8, 9, 28],
+                desc: "世界金融の「温度計」。この維持成否で金利・為替・債務返済負担が一斉に揺れる基準線。"
+            },
+            {
+                id: 27,
+                number: "約130カ国",
+                title: "CBDC(中銀デジタル通貨)検討国",
+                category: "economy",
+                categoryName: "経済・資本",
+                icon: "fa-coins",
+                color: "emerald",
+                related: [7, 29],
+                desc: "ドル覇権（#7）に対する構造的挑戦。制裁回避や決済自立を目指す新興国の脱ドル化の動き。"
+            },
+
+            // エネルギー・重要資源 (9-12, 24, 25)
+            {
+                id: 9,
+                number: "1億バレル/日",
+                title: "世界の原油消費量",
+                category: "energy",
+                categoryName: "エネルギー・資源",
+                icon: "fa-gas-pump",
+                color: "amber",
+                related: [1, 10, 13, 20],
+                desc: "現代文明の日量カロリー消費。チョークポイント封鎖が世界経済を止める物理的根拠。"
+            },
+            {
+                id: 10,
+                number: "約30%",
+                title: "中東の原油生産シェア",
+                category: "energy",
+                categoryName: "エネルギー・資源",
+                icon: "fa-oil-well",
+                color: "amber",
+                related: [9, 13, 15, 18],
+                desc: "脱炭素下でもペルシャ湾周辺が地政学リスクの最大震源であり続ける根拠。"
+            },
+            {
+                id: 11,
+                number: "70〜80%",
+                title: "中国のレアアース精錬シェア",
+                category: "energy",
+                categoryName: "エネルギー・資源",
+                icon: "fa-magnet",
+                color: "amber",
+                related: [2, 6, 12, 14, 25],
+                desc: "採掘量以上に「加工・精錬」を独占。EV・先端兵器・電子機器の致命的急所。"
+            },
+            {
+                id: 12,
+                number: "約50%",
+                title: "インドネシアのニッケルシェア",
+                category: "energy",
+                categoryName: "エネルギー・資源",
+                icon: "fa-cubes",
+                color: "amber",
+                related: [11, 20, 25],
+                desc: "EVバッテリーの要。未加工輸出禁止など「資源ナショナリズム」による国力強化の象徴。"
+            },
+            {
+                id: 24,
+                number: "約20億人",
+                title: "水ストレス直面人口",
+                category: "energy",
+                categoryName: "エネルギー・資源",
+                icon: "fa-droplet",
+                color: "amber",
+                related: [1, 14, 19, 20],
+                desc: "半導体工場・農業・発電所すべてを律する絶対制約。中東・南アジアでの水争奪リスク。"
+            },
+            {
+                id: 25,
+                number: "約70%",
+                title: "電池鉱物(リチウム等)特定国精錬",
+                category: "energy",
+                categoryName: "エネルギー・資源",
+                icon: "fa-battery-full",
+                color: "amber",
+                related: [11, 12, 20],
+                desc: "石油から電力への転換で、地政学覇権が「産油国」から「精錬独占国」へ移行する現場。"
+            },
+
+            // デジタル・物流・技術 (13, 14, 21, 22, 30)
+            {
+                id: 13,
+                number: "約90%",
+                title: "海上輸送の貿易割合",
+                category: "logistics",
+                categoryName: "物流・技術",
+                icon: "fa-ship",
+                color: "cyan",
+                related: [9, 10, 18, 21],
+                desc: "世界貿易の9割は海を通る。シーレーン防衛と米海軍プレゼンスの存在意義。"
+            },
+            {
+                id: 14,
+                number: "約90%",
+                title: "TSMC先端半導体シェア",
+                category: "logistics",
+                categoryName: "物流・技術",
+                icon: "fa-microchip",
+                color: "cyan",
+                related: [6, 11, 22],
+                desc: "台湾一社への先端半導体集中。「台湾有事＝世界経済機能不全」となる技術的単一障害点。"
+            },
+            {
+                id: 21,
+                number: "約95%",
+                title: "海底ケーブルの通信シェア",
+                category: "logistics",
+                categoryName: "物流・技術",
+                icon: "fa-network-wired",
+                color: "cyan",
+                related: [7, 13, 23],
+                desc: "衛星ではなく海の底のファイバーが全金融・通信の95%を担う。切断工作による即死リスク。"
+            },
+            {
+                id: 22,
+                number: "100%",
+                title: "ASML社 EUV露光装置シェア",
+                category: "logistics",
+                categoryName: "物流・技術",
+                icon: "fa-atom",
+                color: "cyan",
+                related: [6, 14],
+                desc: "TSMC（#14）のさらに奥にある絶対的急所。オランダ1社の輸出規制が世界の半導体進化を止める。"
+            },
+            {
+                id: 30,
+                number: "数万個",
+                title: "低軌道衛星(宇宙インフラ)数",
+                category: "logistics",
+                categoryName: "物流・技術",
+                icon: "fa-satellite",
+                color: "cyan",
+                related: [16, 21, 23],
+                desc: "通信・軍事偵察・GPSが宇宙へ移行。スターリンク等による民間宇宙インフラの覇権化。"
+            },
+
+            // 安全保障・防衛・サイバー (15-18, 23)
+            {
+                id: 15,
+                number: "2.4兆ドル",
+                title: "世界の年間軍事費",
+                category: "security",
+                categoryName: "安全保障・軍事",
+                icon: "fa-shield-halved",
+                color: "rose",
+                related: [5, 6, 16, 17, 23],
+                desc: "人類が不信と抑止のために支払っている年間保険料（対立摩擦コスト）の総額。"
+            },
+            {
+                id: 16,
+                number: "約9,000億ドル",
+                title: "米国単独の軍事費",
+                category: "security",
+                categoryName: "安全保障・軍事",
+                icon: "fa-jet-fighter",
+                color: "rose",
+                related: [6, 7, 15, 18, 30],
+                desc: "2位以下複数国の合計を超える圧倒的規模。地球規模の即応戦力を支える財源。"
+            },
+            {
+                id: 17,
+                number: "約12,000発",
+                title: "世界の核弾頭総数",
+                category: "security",
+                categoryName: "安全保障・軍事",
+                icon: "fa-radiation",
+                color: "rose",
+                related: [15, 16],
+                desc: "米露で9割を保有。「相互確証破壊（相撃ち）」による大国間直接戦争の物理的抑止枠。"
+            },
+            {
+                id: 18,
+                number: "約800箇所",
+                title: "米国の海外軍事拠点数",
+                category: "security",
+                categoryName: "安全保障・軍事",
+                icon: "fa-map-location-dot",
+                color: "rose",
+                related: [7, 10, 13, 16],
+                desc: "主要海峡・同盟国に張り巡らされた基地網。「世界の警察」を支える物理的足場。"
+            },
+            {
+                id: 23,
+                number: "数千億ドル",
+                title: "サイバー攻撃の年間被害額",
+                category: "security",
+                categoryName: "安全保障・軍事",
+                icon: "fa-bug",
+                color: "rose",
+                related: [15, 21, 30],
+                desc: "ミサイルを撃たずにインフラ・金融・送電網を停止させる「見えないハイブリッド戦争」の実害。"
+            },
+
+            // 食料・環境・地政学周縁 (19, 20, 28, 29)
+            {
+                id: 19,
+                number: "約8億人",
+                title: "世界の飢餓人口",
+                category: "environment",
+                categoryName: "食料・環境",
+                icon: "fa-bowl-rice",
+                color: "teal",
+                related: [1, 3, 5, 20, 28],
+                desc: "絶対量不足ではなく「不平等・物流遮断・紛争」による再分配機能不全の被害者数。"
+            },
+            {
+                id: 20,
+                number: "1.5 ℃",
+                title: "気温上昇の上限目標",
+                category: "environment",
+                categoryName: "食料・環境",
+                icon: "fa-temperature-arrow-up",
+                color: "teal",
+                related: [1, 9, 12, 19, 24],
+                desc: "パリ協定の根幹。脱炭素投資、国境炭素税、産業構造転換を縛るグローバル共通規律。"
+            },
+            {
+                id: 28,
+                number: "約80%",
+                title: "中東・北アフリカの小麦輸入依存",
+                category: "environment",
+                categoryName: "食料・環境",
+                icon: "fa-wheat-awn",
+                color: "teal",
+                related: [19, 24, 29],
+                desc: "穀物価格急騰が即座に政変や反乱（アラブの春型危機）を引き起こす食料の急所。"
+            },
+            {
+                id: 29,
+                number: "約40%",
+                title: "グローバルサウス国連票シェア",
+                category: "environment",
+                categoryName: "食料・環境",
+                icon: "fa-scale-unbalanced",
+                color: "teal",
+                related: [3, 7, 27],
+                desc: "米中どちらにも属さない非同盟国家群。国際決議や重要資源獲得合戦のキャスティングボート。"
+            }
+        ];
+
+        const categories = [
+            { id: 'all', name: 'すべて (30)', icon: 'fa-border-all' },
+            { id: 'demographics', name: '人口・社会', icon: 'fa-users' },
+            { id: 'economy', name: '経済・資本', icon: 'fa-chart-pie' },
+            { id: 'energy', name: 'エネルギー・資源', icon: 'fa-oil-well' },
+            { id: 'logistics', name: '物流・技術・デジタル', icon: 'fa-microchip' },
+            { id: 'security', name: '安全保障・軍事・宇宙', icon: 'fa-shield-halved' },
+            { id: 'environment', name: '食料・環境・地政学', icon: 'fa-leaf' }
+        ];
+
+        let activeCategory = 'all';
+        let activeSelectedId = null;
+
+        const colorStyles = {
+            blue: { border: 'border-blue-500/30', bg: 'bg-blue-500/10', text: 'text-blue-400', badge: 'bg-blue-500/20 text-blue-300' },
+            emerald: { border: 'border-emerald-500/30', bg: 'bg-emerald-500/10', text: 'text-emerald-400', badge: 'bg-emerald-500/20 text-emerald-300' },
+            amber: { border: 'border-amber-500/30', bg: 'bg-amber-500/10', text: 'text-amber-400', badge: 'bg-amber-500/20 text-amber-300' },
+            cyan: { border: 'border-cyan-500/30', bg: 'bg-cyan-500/10', text: 'text-cyan-400', badge: 'bg-cyan-500/20 text-cyan-300' },
+            rose: { border: 'border-rose-500/30', bg: 'bg-rose-500/10', text: 'text-rose-400', badge: 'bg-rose-500/20 text-rose-300' },
+            teal: { border: 'border-teal-500/30', bg: 'bg-teal-500/10', text: 'text-teal-400', badge: 'bg-teal-500/20 text-teal-300' }
+        };
+
+        function renderCategoryButtons() {
+            const container = document.getElementById('category-filters');
+            container.innerHTML = categories.map(cat => `
+                <button onclick="filterCategory('${cat.id}')"
+                    class="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 border transition ${
+                        activeCategory === cat.id
+                            ? 'bg-blue-600 border-blue-500 text-white shadow-md'
+                            : 'bg-slate-900 border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-slate-200'
+                    }">
+                    <i class="fa-solid ${cat.icon}"></i> ${cat.name}
+                </button>
+            `).join('');
+        }
+
+        function renderCards() {
+            const container = document.getElementById('cards-grid');
+            const filtered = activeCategory === 'all' 
+                ? numbersData 
+                : numbersData.filter(d => d.category === activeCategory);
+
+            container.innerHTML = filtered.map(item => {
+                const style = colorStyles[item.color];
+                const isSelected = activeSelectedId === item.id;
+                const isRelated = activeSelectedId && numbersData.find(d => d.id === activeSelectedId)?.related.includes(item.id);
+                const isBottleneckTier = item.id > 20;
+
+                let highlightClass = 'glass-card';
+                if (isSelected) highlightClass += ' glow-active ring-2 ring-blue-500 bg-slate-800/95';
+                else if (isRelated) highlightClass += ' border-blue-400/80 bg-blue-950/40';
+                else if (activeSelectedId) highlightClass += ' opacity-35 grayscale-[25%]';
+
+                return `
+                    <div onclick="selectCard(${item.id})" class="${highlightClass} rounded-2xl p-4 cursor-pointer relative flex flex-col justify-between space-y-3">
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between items-center">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="text-[10px] font-bold px-2 py-0.5 rounded border ${style.badge} uppercase tracking-wider">
+                                        #${item.id} ${item.categoryName}
+                                    </span>
+                                    ${isBottleneckTier ? '<span class="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">急所/21-30</span>' : ''}
+                                </div>
+                                <div class="w-7 h-7 rounded-lg ${style.bg} ${style.text} flex items-center justify-center text-xs">
+                                    <i class="fa-solid ${item.icon}"></i>
+                                </div>
+                            </div>
+
+                            <h4 class="text-xl font-black tracking-tight text-white font-mono pt-1">
+                                ${item.number}
+                            </h4>
+                            <p class="text-xs font-bold text-slate-200">
+                                ${item.title}
+                            </p>
+                        </div>
+
+                        <p class="text-xs text-slate-400 leading-relaxed border-t border-slate-800/80 pt-2.5">
+                            ${item.desc}
+                        </p>
+
+                        <div class="flex items-center justify-between text-[10px] text-slate-500 pt-1">
+                            <span>関連: ${item.related.map(r => `#${r}`).join(', ')}</span>
+                            <i class="fa-solid fa-link text-slate-600"></i>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterCategory(catId) {
+            activeCategory = catId;
+            activeSelectedId = null;
+            renderCategoryButtons();
+            renderCards();
+        }
+
+        function selectCard(id) {
+            activeSelectedId = (activeSelectedId === id) ? null : id;
+            renderCards();
+        }
+
+        function toggleCalcModal() {
+            const modal = document.getElementById('calc-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function initCharts() {
+            // Power Chart
+            const ctxPower = document.getElementById('powerChart').getContext('2d');
+            new Chart(ctxPower, {
+                type: 'bar',
+                data: {
+                    labels: ['GDP(兆ドル)', '軍事費(千億ドル)', '核弾頭(千発)'],
+                    datasets: [
+                        {
+                            label: '米国',
+                            data: [28, 9.0, 5.2],
+                            backgroundColor: 'rgba(59, 130, 246, 0.85)'
+                        },
+                        {
+                            label: '中国',
+                            data: [18, 3.0, 0.5],
+                            backgroundColor: 'rgba(244, 63, 94, 0.85)'
+                        },
+                        {
+                            label: 'その他世界合計',
+                            data: [59, 12.0, 6.3],
+                            backgroundColor: 'rgba(100, 116, 139, 0.5)'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#94a3b8', font: { size: 11 } } }
+                    },
+                    scales: {
+                        x: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                        y: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                    }
+                }
+            });
+// Bottleneck Chart（修正後：上限100%の横棒グラフ）
+            const ctxBottle = document.getElementById('bottleneckChart').getContext('2d');
+            new Chart(ctxBottle, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'ASML EUV露光装置 (#22)',
+                        '海底ケーブル通信 (#21)',
+                        'TSMC先端半導体 (#14)',
+                        '海上輸送貿易割合 (#13)',
+                        '電池鉱物加工シェア (#25)'
+                    ],
+                    datasets: [{
+                        data: [100, 95, 90, 90, 70],
+                        backgroundColor: [
+                            'rgba(244, 63, 94, 0.85)',
+                            'rgba(6, 182, 212, 0.85)',
+                            'rgba(99, 102, 241, 0.85)',
+                            'rgba(14, 165, 233, 0.85)',
+                            'rgba(245, 158, 11, 0.85)'
+                        ],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            min: 0,
+                            max: 100,
+                            ticks: { 
+                                color: '#94a3b8', 
+                                font: { size: 10 },
+                                callback: value => value + '%'
+                            },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        },
+                        y: {
+                            ticks: { color: '#94a3b8', font: { size: 10 } },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });        }
+
+        window.onload = function() {
+            renderCategoryButtons();
+            renderCards();
+            initCharts();
+        };
+    </script>
+</body>
+</html>

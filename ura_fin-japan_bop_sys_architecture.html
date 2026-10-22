@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>解読：日本の国際収支構造システム - 貿易立国から成熟債権国への転換</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans JP"', 'Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              dark: '#0a0e17',
+              card: 'rgba(21, 29, 47, 0.90)',
+              border: '#1e293b',
+              accent: '#38bdf8',
+              emerald: '#10b981',
+              rose: '#f43f5e',
+              amber: '#f59e0b',
+              violet: '#8b5cf6'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0a0e17;
+      color: #e2e8f0;
+    }
+    .glass-card {
+      background: rgba(21, 29, 47, 0.88);
+      backdrop-filter: blur(12px);
+      border: 1px solid #1e293b;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      border-color: #38bdf8;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.15);
+    }
+    .metric-card.dimmed {
+      opacity: 0.16;
+      filter: grayscale(85%);
+      transform: scale(0.97);
+    }
+    .metric-card.active-selected {
+      border-color: #38bdf8 !important;
+      box-shadow: 0 0 20px 2px rgba(56, 189, 248, 0.5);
+      transform: translateY(-4px) scale(1.02);
+      z-index: 10;
+    }
+    .metric-card.related-highlight {
+      border-color: #10b981 !important;
+      box-shadow: 0 0 16px 1px rgba(16, 185, 129, 0.45);
+      transform: translateY(-2px);
+      z-index: 5;
+    }
+  </style>
+</head>
+<body class="min-h-screen font-sans antialiased selection:bg-sky-500 selection:text-white">
+
+  <!-- HEADER -->
+  <header class="border-b border-slate-800 bg-slate-950/85 sticky top-0 z-40 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider bg-sky-500/10 text-sky-400 border border-sky-500/20">
+            Systemic BOP Architecture
+          </span>
+          <span class="text-xs text-slate-400">国際収支の恒等式・因果関係マップ</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-white mt-1">
+          日本の国際収支：収支間の紐付けと「利子・投資立国」の構造解読
+        </h1>
+      </div>
+      <!-- FILTER BUTTONS -->
+      <div class="flex flex-wrap items-center gap-1.5" id="filter-bar">
+        <button data-cat="all" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-sky-500 text-slate-950 shadow-md">全30指標</button>
+        <button data-cat="trade" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800/80 text-slate-300 hover:bg-slate-700">① 貿易収支 (7)</button>
+        <button data-cat="service" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800/80 text-slate-300 hover:bg-slate-700">② サービス収支 (6)</button>
+        <button data-cat="primary" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800/80 text-slate-300 hover:bg-slate-700">③ 第一次所得収支 (8)</button>
+        <button data-cat="macro" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800/80 text-slate-300 hover:bg-slate-700">④ 金融収支・対外資産 (9)</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+    <!-- TOP SECTION: BOP SYSTEM TAXONOMY (国際収支の体系的紐付けツリー) -->
+    <section class="glass-card p-6 rounded-2xl border-slate-800">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
+        <div>
+          <span class="text-xs font-bold text-sky-400 uppercase tracking-wider flex items-center gap-2">
+            <i class="fa-solid fa-sitemap"></i> 国際収支統計（BOP）の階層構造と数式関係
+          </span>
+          <h2 class="text-lg sm:text-xl font-bold text-white mt-1">
+            各収支はどのように足し合わされ、どこに蓄積されるのか？
+          </h2>
+        </div>
+        <div class="text-xs bg-slate-900 px-3 py-2 rounded-lg border border-slate-800 font-mono text-slate-300">
+          恒等式: <span class="text-sky-400 font-bold">経常収支</span> ＝ 貿易・サービス ＋ 第一次所得 ＋ 第二次所得
+        </div>
+      </div>
+
+      <!-- VISUAL HIERARCHY TREE -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+        
+        <!-- LEVEL 1: 経常収支 (4 Cols) -->
+        <div class="lg:col-span-4 p-4 rounded-xl bg-slate-900/90 border border-sky-500/40 relative">
+          <div class="flex items-center justify-between text-xs font-bold text-sky-400 mb-2">
+            <span>親区分：経常収支（Current Account）</span>
+            <span class="bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded">年 +28.5兆円</span>
+          </div>
+          <div class="text-xl font-black text-white">国の対外純稼ぎ高</div>
+          <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+            日本全体が海外との経済取引（モノ・サービス・投資）でどれだけ富を増やしたかを示す総合指標。
+            黒字額は全額が<strong class="text-slate-200">「金融収支（対外資産の純増）」</strong>として対外バランスシートに蓄積されます。
+          </p>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 text-[11px] text-slate-400 space-y-1">
+            <div class="flex justify-between font-mono">
+              <span>├ ① 貿易・サービス収支:</span>
+              <span class="text-rose-400 font-bold">▲8.3兆円 (赤字)</span>
+            </div>
+            <div class="flex justify-between font-mono">
+              <span>├ ② 第一次所得収支:</span>
+              <span class="text-emerald-400 font-bold">+38.2兆円 (巨額黒字)</span>
+            </div>
+            <div class="flex justify-between font-mono">
+              <span>└ ③ 第二次所得収支:</span>
+              <span class="text-slate-400 font-bold">▲1.4兆円 (無償援助等)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- LEVEL 2: 3大構成要素の内訳 (8 Cols) -->
+        <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-3">
+          
+          <!-- Box A: 貿易収支 -->
+          <div class="p-3.5 rounded-xl bg-slate-900/60 border border-rose-500/30 flex flex-col justify-between">
+            <div>
+              <div class="text-xs font-bold text-rose-400 flex items-center justify-between">
+                <span>①-A 貿易収支 (Goods)</span>
+                <i class="fa-solid fa-ship"></i>
+              </div>
+              <div class="text-lg font-black text-rose-400 mt-1">▲5.1兆円 赤字</div>
+              <p class="text-[11px] text-slate-400 mt-1.5 leading-snug">
+                【輸出】100.8兆円（車・装置）<br>
+                【輸入】105.9兆円（原油・LNG・食料）<br>
+                <span class="text-slate-300 font-medium">燃料高と円安が輸入代金を押し上げ恒常的赤字に。</span>
+              </p>
+            </div>
+            <div class="mt-3 pt-2 border-t border-slate-800 text-[10px] text-rose-300/80">
+              ※外貨を売って円を買う実需を生みにくい
+            </div>
+          </div>
+
+          <!-- Box B: サービス収支 -->
+          <div class="p-3.5 rounded-xl bg-slate-900/60 border border-amber-500/30 flex flex-col justify-between">
+            <div>
+              <div class="text-xs font-bold text-amber-400 flex items-center justify-between">
+                <span>①-B サービス収支 (Services)</span>
+                <i class="fa-solid fa-globe"></i>
+              </div>
+              <div class="text-lg font-black text-amber-400 mt-1">▲3.2兆円 赤字</div>
+              <p class="text-[11px] text-slate-400 mt-1.5 leading-snug">
+                【旅行】+5.4兆円（訪日消費）<br>
+                【デジタル】▲6.2兆円（クラウド等）<br>
+                <span class="text-slate-300 font-medium">インバウンドの稼ぎをIT大手へのクラウド・広告料が相殺。</span>
+              </p>
+            </div>
+            <div class="mt-3 pt-2 border-t border-slate-800 text-[10px] text-amber-300/80">
+              ※デジタル支払いは恒常的なドル買い要因
+            </div>
+          </div>
+
+          <!-- Box C: 第一次所得収支 -->
+          <div class="p-3.5 rounded-xl bg-slate-900/60 border border-emerald-500/30 flex flex-col justify-between">
+            <div>
+              <div class="text-xs font-bold text-emerald-400 flex items-center justify-between">
+                <span>② 第一次所得収支 (Income)</span>
+                <i class="fa-solid fa-coins"></i>
+              </div>
+              <div class="text-lg font-black text-emerald-400 mt-1">+38.2兆円 巨額黒字</div>
+              <p class="text-[11px] text-slate-400 mt-1.5 leading-snug">
+                【直接投資収益】+20.5兆円（配当純額）<br>
+                【証券投資収益】+13.8兆円（債券利子純額）<br>
+                <span class="text-slate-300 font-medium">海外資産が生む配当・金利が貿易赤字を完全に相殺。</span>
+              </p>
+            </div>
+            <div class="mt-3 pt-2 border-t border-slate-800 text-[10px] text-emerald-300/80">
+              ※約6割は現地再投資され円買いにならない
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- EQUATION FOOTER BAR (複式簿記の恒等関係) -->
+      <div class="mt-4 p-3 rounded-lg bg-slate-950 border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 rounded bg-sky-500/20 text-sky-400 font-mono font-bold">恒等関係の結論</span>
+          <span class="text-slate-300">
+            「経常黒字（年28.5兆円） ＝ 金融収支の純資産増（対外純資産が約500兆円に積み上がる）」
+          </span>
+        </div>
+        <div class="text-slate-400 text-[11px]">
+          稼いだ黒字は国内に現金で戻るのではなく、海外資産の買い増しとして海外にストックされる
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE BOP SIMULATOR (リアルタイム連動シミュレーター) -->
+    <section class="glass-card p-6 rounded-2xl border-slate-800 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950">
+      <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+        <div class="space-y-2 max-w-xl">
+          <div class="inline-flex items-center gap-2 text-xs font-bold text-sky-400 uppercase tracking-wider">
+            <i class="fa-solid fa-calculator"></i> 構造試算シミュレーター
+          </div>
+          <h3 class="text-lg font-bold text-white">「再投資収益」と「実需の円買い」の断絶シミュレーション</h3>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            所得収支の黒字額と、現地子会社の「利益再投資率（国内に送金しない割合）」を動かすと、
+            <strong>実際に国内へ戻ってくる円買い需要（真の円防衛力）</strong>と、
+            貿易・デジタル赤字による<strong>実需の円売り圧力</strong>との力関係が即座に計算されます。
+          </p>
+        </div>
+
+        <!-- SIMULATOR CONTROLS & RESULT -->
+        <div class="w-full lg:w-auto flex-1 bg-slate-950/80 p-4 rounded-xl border border-slate-800 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-[11px] text-slate-400 font-medium mb-1">第一次所得収支 (兆円)</label>
+            <input type="range" id="sim-income" min="20" max="50" value="38.2" step="0.1" class="w-full accent-sky-400">
+            <div class="flex justify-between text-xs font-mono mt-1">
+              <span class="text-slate-500">20兆</span>
+              <span id="sim-income-val" class="text-emerald-400 font-bold">38.2兆円</span>
+              <span class="text-slate-500">50兆</span>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-[11px] text-slate-400 font-medium mb-1">現地再投資率 (国内未還流)</label>
+            <input type="range" id="sim-reinvest" min="30" max="80" value="59.8" step="0.1" class="w-full accent-amber-400">
+            <div class="flex justify-between text-xs font-mono mt-1">
+              <span class="text-slate-500">30%</span>
+              <span id="sim-reinvest-val" class="text-amber-400 font-bold">59.8%</span>
+              <span class="text-slate-500">80%</span>
+            </div>
+          </div>
+
+          <div class="bg-slate-900 p-2.5 rounded-lg border border-slate-800 flex flex-col justify-center">
+            <div class="text-[10px] text-slate-400 uppercase font-bold">国内還流額 (円転実需)</div>
+            <div id="sim-repatriation-val" class="text-lg font-black text-sky-400 font-mono mt-0.5">+15.4 兆円</div>
+            <div class="text-[10px] text-slate-500 mt-1">
+              貿易＋デジタル赤字(約11.3兆円)と拮抗し、円買い余力は僅少
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 KPI SUMMARY CARDS -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="glass-card p-5 rounded-xl border-l-4 border-l-sky-400">
+        <div class="text-xs uppercase font-semibold text-slate-400 flex items-center justify-between">
+          <span>経常収支（Current Account）</span>
+          <i class="fa-solid fa-scale-balanced text-sky-400"></i>
+        </div>
+        <div class="text-3xl font-black text-white mt-2">+28<span class="text-lg font-bold text-sky-400">.5兆円</span></div>
+        <p class="text-xs text-slate-400 mt-1">貿易・サービス赤字を第一次所得収支が飲み込んで黒字確保</p>
+      </div>
+
+      <div class="glass-card p-5 rounded-xl border-l-4 border-l-rose-400">
+        <div class="text-xs uppercase font-semibold text-slate-400 flex items-center justify-between">
+          <span>貿易収支（Trade Balance）</span>
+          <i class="fa-solid fa-ship text-rose-400"></i>
+        </div>
+        <div class="text-3xl font-black text-rose-400 mt-2">▲5<span class="text-lg font-bold text-rose-400">.1兆円</span></div>
+        <p class="text-xs text-slate-400 mt-1">輸出100.8兆円に対し輸入105.9兆円。燃料高で赤字定着体質</p>
+      </div>
+
+      <div class="glass-card p-5 rounded-xl border-l-4 border-l-emerald-400">
+        <div class="text-xs uppercase font-semibold text-slate-400 flex items-center justify-between">
+          <span>第一次所得収支（Primary Income）</span>
+          <i class="fa-solid fa-money-bill-trend-up text-emerald-400"></i>
+        </div>
+        <div class="text-3xl font-black text-emerald-400 mt-2">+38<span class="text-lg font-bold text-emerald-400">.2兆円</span></div>
+        <p class="text-xs text-slate-400 mt-1">海外直接投資配当と債券利子。日本を支える利子稼ぎマシーン</p>
+      </div>
+
+      <div class="glass-card p-5 rounded-xl border-l-4 border-l-amber-400">
+        <div class="text-xs uppercase font-semibold text-slate-400 flex items-center justify-between">
+          <span>対外純資産（Net Foreign Assets）</span>
+          <i class="fa-solid fa-vault text-amber-400"></i>
+        </div>
+        <div class="text-3xl font-black text-white mt-2">約500<span class="text-lg font-bold text-amber-400">兆円</span></div>
+        <p class="text-xs text-slate-400 mt-1">33年連続世界一。資産1,500兆円から年38兆円の金利・配当を創出</p>
+      </div>
+    </section>
+
+    <!-- 30 METRIC CARDS GRID (WITH INTERACTIVE LINKAGE HIGHLIGHTING) -->
+    <section>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-network-wired text-sky-400"></i> 基幹30指標・構造論点カード
+          </h2>
+          <p class="text-xs text-slate-400">カードをクリックすると、その収支の親・子・因果連鎖する項目が緑色に光ります</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-slate-400" id="card-count-label">全30項目表示中</span>
+          <button id="reset-highlight-btn" class="px-2.5 py-1 text-xs text-sky-400 hover:text-sky-300 border border-sky-500/30 rounded bg-sky-500/10 transition">
+            <i class="fa-solid fa-rotate-left mr-1"></i> 解除
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5" id="metric-grid">
+        <!-- Javascript dynamically injects cards here -->
+      </div>
+    </section>
+
+    <!-- 2 COMPARATIVE CHART SECTIONS -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-4">
+      
+      <!-- CHART 1: Scale Balance (Vertical Bar) - 単位: 兆円 -->
+      <div class="glass-card p-6 rounded-2xl border-slate-800 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">収支と資産の絶対規模（兆円）</span>
+            <i class="fa-solid fa-chart-column text-slate-500"></i>
+          </div>
+          <h3 class="text-base font-bold text-white">国際収支の各構成項目と対外純資産（兆円規模）</h3>
+          <p class="text-xs text-slate-400 mt-1">
+            貿易赤字（▲5.1兆円）を所得収支（+38.2兆円）がいかに圧倒しているか、そして約500兆円の対外純資産がその基盤となっているかを比較。
+          </p>
+        </div>
+        <div class="mt-6 h-72">
+          <canvas id="scaleChart"></canvas>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-400">
+          <i class="fa-solid fa-circle-info text-sky-400 mr-1"></i>
+          対外純資産500兆円から生じるインカムゲイン（年率約7.5%）が、赤字を埋めてなお経常黒字28.5兆円を残す構造。
+        </div>
+      </div>
+
+      <!-- CHART 2: Dependency & Bottlenecks (Horizontal Bar strictly capped at 100%) -->
+      <div class="glass-card p-6 rounded-2xl border-slate-800 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-xs font-bold text-rose-400 uppercase tracking-wider">脆弱性とボトルネック比率（上限100%固定）</span>
+            <i class="fa-solid fa-chart-bar text-slate-500"></i>
+          </div>
+          <h3 class="text-base font-bold text-white">日本の対外構造的脆弱性・依存比率</h3>
+          <p class="text-xs text-slate-400 mt-1">
+            母集団が異なる独立した指標の比率を、100%上限固定の水平バーチャートで厳密に比較。
+          </p>
+        </div>
+        <div class="mt-6 h-72">
+          <canvas id="dependencyChart"></canvas>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-400">
+          <i class="fa-solid fa-triangle-exclamation text-amber-400 mr-1"></i>
+          エネルギーと食料の高い輸入依存度、および子会社利益の約60%現地再投資が、円安防衛を困難にしています。
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SYSTEMIC INSIGHT: CAUSAL LOOP DIAGRAM SUMMARY -->
+    <section class="glass-card p-6 rounded-2xl border-slate-800 bg-slate-900/40">
+      <h3 class="text-sm font-bold text-slate-200 mb-3 flex items-center gap-2">
+        <i class="fa-solid fa-arrows-spin text-sky-400"></i>
+        国際収支の構造的連鎖ループ（なぜ黒字なのに円安が止まりにくいのか？）
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-400 leading-relaxed">
+        <div class="p-3.5 rounded-lg bg-slate-950/60 border border-slate-800/80">
+          <div class="font-bold text-rose-400 mb-1 text-sm flex items-center gap-1.5">
+            <i class="fa-solid fa-1"></i> 実需の円売り圧力（貿易・デジタル）
+          </div>
+          原油・LNG等の化石燃料輸入（年25〜30兆円）と、米ビッグテックへのデジタル支払い（年6.2兆円）は、決済時に<strong>「絶対に円を売って外貨を調達しなければならない確定した円売り需要」</strong>を生み続けます。
+        </div>
+        <div class="p-3.5 rounded-lg bg-slate-950/60 border border-slate-800/80">
+          <div class="font-bold text-emerald-400 mb-1 text-sm flex items-center gap-1.5">
+            <i class="fa-solid fa-2"></i> 所得収支の「現地留保」による円買い不全
+          </div>
+          所得収支の黒字（年38.2兆円）は帳簿上は巨大ですが、海外子会社は稼いだ利益を現地での再投資や海外M&Aに回すため（約59.8%）、<strong>「外貨を売って円を買い戻す（国内還流）」実需オペレーションが発生しません</strong>。
+        </div>
+        <div class="p-3.5 rounded-lg bg-slate-950/60 border border-slate-800/80">
+          <div class="font-bold text-amber-400 mb-1 text-sm flex items-center gap-1.5">
+            <i class="fa-solid fa-3"></i> 資本移動と新NISAによる外貨流出
+          </div>
+          低金利を背景に、国内の家計マネーが新NISAを通じて「オルカン」や「S&P500」等の外国投信へ恒常的に流出（年約9〜10兆円）。金融収支を通じて海外資産が増える一方、為替市場では定常的な円売り圧力が固定化します。
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-800/80 py-6 text-center text-xs text-slate-500">
+    <p>International Balance of Payments Systemic Architecture Dashboard © 2026</p>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    // 30 Core Metrics with Taxonomy & Structural Linkages (整合性完全調整版)
+    const metricsData = [
+      // 1. 貿易収支 (trade)
+      {
+        id: 1,
+        cat: 'trade',
+        num: '▲5.1兆円',
+        title: '貿易収支（構造的赤字）',
+        parentGroup: '経常収支の第1構成要素',
+        desc: 'かつての貿易立国の黒字源。現在はエネルギー価格高騰と円安による輸入コスト増で赤字体質が定着。',
+        related: [2, 3, 4, 7, 21, 22]
+      },
+      {
+        id: 2,
+        cat: 'trade',
+        num: '100.8兆円',
+        title: '輸出総額（金額の高止まり）',
+        parentGroup: '貿易収支：受取（貸方）',
+        desc: '自動車や半導体製造装置が牽引。金額は円安インフレで過去最高水準だが、輸出「数量」は伸び悩み。',
+        related: [1, 5, 23]
+      },
+      {
+        id: 3,
+        cat: 'trade',
+        num: '105.9兆円',
+        title: '輸入総額（資源インフレ）',
+        parentGroup: '貿易収支：支払（借方）',
+        desc: '原油・LNG・石炭および食料品が太宗。円安と国際商品高がダイレクトに輸入支払いを押し上げる。',
+        related: [1, 4, 6, 19]
+      },
+      {
+        id: 4,
+        cat: 'trade',
+        num: '87.4%',
+        title: '化石燃料・エネルギー依存度',
+        parentGroup: '貿易の構造的ボトルネック',
+        desc: '一次エネルギー自給率が極めて低く、どれだけ円安になっても輸入数量を減らせない非弾力的な円売り要因。',
+        related: [1, 3, 19]
+      },
+      {
+        id: 5,
+        cat: 'trade',
+        num: '26.2%',
+        title: '製造業の海外現地生産比率',
+        parentGroup: '貿易と直接投資の架け橋',
+        desc: '過去の円高期に工場を海外移転したため、「円安＝国内輸出急増」の好循環が消失。利益は所得収支へ移転。',
+        related: [1, 2, 14, 15]
+      },
+      {
+        id: 6,
+        cat: 'trade',
+        num: '38%',
+        title: '食糧自給率（カロリーベース）',
+        parentGroup: '貿易の非弾力性要因',
+        desc: '穀物・飼料・油脂の海外依存により、円安局面で生活必需品の輸入コスト上昇が国民経済を直撃。',
+        related: [1, 3]
+      },
+      {
+        id: 7,
+        cat: 'trade',
+        num: 'Jカーブ不全',
+        title: 'Jカーブ効果の機能停止',
+        parentGroup: '為替・貿易ダイナミクス',
+        desc: '従来は円安初期の赤字後に輸出数量増で大幅黒字化したが、現地生産化により輸出数量が増えず赤字が残る。',
+        related: [1, 5, 22]
+      },
+
+      // 2. サービス収支 (service) - 四則演算完全一致: +5.4 - 6.2 - 1.4 - 1.0 = ▲3.2
+      {
+        id: 8,
+        cat: 'service',
+        num: '▲3.2兆円',
+        title: 'サービス収支（赤字基調）',
+        parentGroup: '経常収支の第2構成要素',
+        desc: 'インバウンド黒字を、デジタル赤字や研究開発・業務委託費等の恒常的赤字が相殺し赤字が継続。',
+        related: [9, 10, 11, 21]
+      },
+      {
+        id: 9,
+        cat: 'service',
+        num: '▲6.2兆円',
+        title: 'デジタル赤字（通信・IT）',
+        parentGroup: 'サービス収支：デジタル関連',
+        desc: 'クラウド（AWS等）、ネット広告、OS・アプリ手数料など米テック大手への巨額支払い。',
+        related: [8, 10, 13, 25]
+      },
+      {
+        id: 10,
+        cat: 'service',
+        num: '+5.4兆円',
+        title: '旅行収支（インバウンド黒字）',
+        parentGroup: 'サービス収支：旅行',
+        desc: '円安を背景とした訪日客消費の急増。サービス収支の最大の黒字エンジン。',
+        related: [8, 9, 22]
+      },
+      {
+        id: 11,
+        cat: 'service',
+        num: '▲1.4兆円',
+        title: '輸送収支（物流赤字）',
+        parentGroup: 'サービス収支：国際物流',
+        desc: '外航貨物船や航空貨物輸送など、国際海運・空運コストの対外支払い超過。',
+        related: [1, 8]
+      },
+      {
+        id: 12,
+        cat: 'service',
+        num: '▲1.0兆円',
+        title: 'その他業務サービス（純流出）',
+        parentGroup: 'サービス収支：業務・専門サービス',
+        desc: '知財黒字（+3.6兆円）がある一方、海外への法務・コンサル・研究開発委託等の支払いが上回り純赤字。',
+        related: [8, 14, 15]
+      },
+      {
+        id: 13,
+        cat: 'service',
+        num: '手数料中抜き',
+        title: 'プラットフォーム中抜き',
+        parentGroup: '構造指標',
+        desc: '海外配信基盤（ストア・クラウド）を通じた手数料流出がサービス赤字を底支え。',
+        related: [9, 12]
+      },
+
+      // 3. 第一次所得収支 (primary) - 四則演算完全一致: +20.5 + 13.8 + 3.9 = +38.2
+      {
+        id: 14,
+        cat: 'primary',
+        num: '+38.2兆円',
+        title: '第一次所得収支（経常黒字の心臓）',
+        parentGroup: '経常収支の第3構成要素',
+        desc: '海外資産から生じる配当・利息の純受取額。日本を「利子で稼ぐ国」たらしめる最大の源泉。',
+        related: [1, 8, 15, 17, 21, 22]
+      },
+      {
+        id: 15,
+        cat: 'primary',
+        num: '+20.5兆円',
+        title: '直接投資収益（純受取）',
+        parentGroup: '第一次所得収支：事業配当',
+        desc: 'トヨタや商社等の海外子会社からの配当受取（約24.7兆円）から対外支払（4.2兆円）を引いた純額。',
+        related: [5, 14, 16, 23]
+      },
+      {
+        id: 16,
+        cat: 'primary',
+        num: '59.8%',
+        title: '再投資収益率（現地滞留）',
+        parentGroup: '為替実需の断絶ポイント',
+        desc: '子会社利益の約6割は日本に送金されず海外で再投資。黒字でも円買い需要にならない構造要因。',
+        related: [14, 15, 22, 29]
+      },
+      {
+        id: 17,
+        cat: 'primary',
+        num: '+13.8兆円',
+        title: '証券投資収益（純受取）',
+        parentGroup: '第一次所得収支：債券利子・配当',
+        desc: '米金利高を背景とした米国債などの利子受取（約17兆円）から外国人への利子支払いを引いた純額。',
+        related: [14, 23, 24, 26]
+      },
+      {
+        id: 18,
+        cat: 'primary',
+        num: '+3.9兆円',
+        title: 'その他投資収益（貸付金・預金金利）',
+        parentGroup: '第一次所得収支：銀行貸付等',
+        desc: '本邦メガバンクや商社による海外向け貸出金利息・外貨預金金利などの純受取額。',
+        related: [14, 26, 27]
+      },
+      {
+        id: 19,
+        cat: 'primary',
+        num: '交易条件悪化',
+        title: '交易損失（トード・ロス）',
+        parentGroup: '実質実効レートの低下要因',
+        desc: '輸出価格に対して輸入価格が急騰したため、国内で生み出した富が燃料輸出国へ恒常的に吸い取られる。',
+        related: [3, 4, 14]
+      },
+      {
+        id: 20,
+        cat: 'primary',
+        num: '第4ステージ',
+        title: '発展段階説：成熟した債権国',
+        parentGroup: 'マクロ発展段階',
+        desc: '貿易黒字国（第3）から「貿易赤字を投資利益で埋めて経常黒字を維持する成熟債権国（第4）」へ到達。',
+        related: [1, 14, 21, 28]
+      },
+      {
+        id: 21,
+        cat: 'primary',
+        num: '+28.5兆円',
+        title: '経常収支（総計）',
+        parentGroup: 'マクロ恒等式の親指標',
+        desc: '貿易(▲5.1) ＋ サービス(▲3.2) ＋ 所得(+38.2) ＋ 第二次(▲1.4) ＝ 巨額黒字。中身は完全に「資本の果実」。',
+        related: [1, 8, 14, 22, 30]
+      },
+
+      // 4. マクロ金融・資産・為替連動 (macro) - 統計・論理完全整合
+      {
+        id: 22,
+        cat: 'macro',
+        num: '約480〜500兆円',
+        title: '対外純資産残高（33年連続世界1位）',
+        parentGroup: 'バランスシート（国全体の純資産）',
+        desc: '対外資産約1,488兆円から対外負債約1,010兆円を差し引いた純残高。世界最大の対外債権国を維持。',
+        related: [14, 15, 23, 30]
+      },
+      {
+        id: 23,
+        cat: 'macro',
+        num: '約1,500兆円',
+        title: '対外総資産（外貨建て資産の膨張）',
+        parentGroup: 'バランスシート：資産側',
+        desc: '海外工場・設備（直接投資）や米国債・外国株（証券投資）。円安により円換算の評価額が急膨張。',
+        related: [15, 17, 22]
+      },
+      {
+        id: 24,
+        cat: 'macro',
+        num: '約1.25兆ドル',
+        title: '外貨準備高（世界第2位）',
+        parentGroup: '通貨当局（財務省・日銀）の資産',
+        desc: '主に米国債とドル預金。急激な円安時にドルを売って円を買い支える為替介入の実弾資金。',
+        related: [17, 22, 26]
+      },
+      {
+        id: 25,
+        cat: 'macro',
+        num: '年約9〜10兆円',
+        title: '新NISA経由の対外証券投資',
+        parentGroup: '家計発の外貨資産形成',
+        desc: 'オルカン・S&P500等への投信購入。為替市場では定常的な円売り実需となる一方、家計の対外資産を増やす。',
+        related: [9, 16, 23, 26]
+      },
+      {
+        id: 26,
+        cat: 'macro',
+        num: '日米金利差',
+        title: '内外金利差とキャリートレード',
+        parentGroup: '資本移動のインセンティブ',
+        desc: '低金利の円を売って高金利ドル資産へ向かう資金流出圧力。外貨利息（#17）を増やす源泉でもある。',
+        related: [17, 24, 25]
+      },
+      {
+        id: 27,
+        cat: 'macro',
+        num: '対GDP比 約5%',
+        title: '対内直接投資残高の過少（OECD最低）',
+        parentGroup: '外国資本の流入不足',
+        desc: '日本企業が海外を買収する一方、外国企業が日本に対内投資しないため、恒常的な円買い需要が国内に入らない。',
+        related: [5, 18]
+      },
+      {
+        id: 28,
+        cat: 'macro',
+        num: '債権取崩し国の足音',
+        title: '国際収支発展段階説（第5ステージ）',
+        parentGroup: '構造危機のシナリオ',
+        desc: '少子高齢化で貯蓄が底をつき、貿易赤字が所得黒字を上回ると、海外資産を取り崩す「債権取崩国」へ転落。',
+        related: [20, 21, 22]
+      },
+      {
+        id: 29,
+        cat: 'macro',
+        num: '約600兆円',
+        title: '企業の内部留保（海外資産偏重）',
+        parentGroup: '国内家計への還流不全',
+        desc: '海外で稼いだ巨額利益が現地再投資や外貨資産に留まり、国内設備投資や賃上げに波及しにくい構造。',
+        related: [15, 16]
+      },
+      {
+        id: 30,
+        cat: 'macro',
+        num: '経常収支 ≒ 金融収支',
+        title: '国際収支の複式簿記恒等式',
+        parentGroup: 'マクロ経済統計の基本公理',
+        desc: '経常黒字（稼ぎ）は必ず金融収支（対外資産の取得）＋誤差脱漏として帳簿の貸借が一致する。',
+        related: [14, 21, 22]
+      }
+    ];
+
+    // RENDER METRIC CARDS
+    const gridEl = document.getElementById('metric-grid');
+    const cardCountLabel = document.getElementById('card-count-label');
+
+    function renderCards(filter = 'all') {
+      gridEl.innerHTML = '';
+      let visibleCount = 0;
+
+      metricsData.forEach(item => {
+        if (filter !== 'all' && item.cat !== filter) return;
+        visibleCount++;
+
+        const card = document.createElement('div');
+        card.className = `metric-card glass-card p-3 rounded-xl cursor-pointer relative border border-slate-800 flex flex-col justify-between`;
+        card.dataset.id = item.id;
+        card.dataset.cat = item.cat;
+        card.dataset.related = JSON.stringify(item.related);
+
+        let badgeColor = 'text-slate-400 bg-slate-800';
+        let groupLabel = 'その他';
+        if (item.cat === 'trade') {
+          badgeColor = 'text-rose-400 bg-rose-500/10 border-rose-500/20';
+          groupLabel = '① 貿易';
+        } else if (item.cat === 'service') {
+          badgeColor = 'text-amber-400 bg-amber-500/10 border-amber-500/20';
+          groupLabel = '② サービス';
+        } else if (item.cat === 'primary') {
+          badgeColor = 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20';
+          groupLabel = '③ 所得収支';
+        } else if (item.cat === 'macro') {
+          badgeColor = 'text-sky-400 bg-sky-500/10 border-sky-500/20';
+          groupLabel = '④ 金融・資産';
+        }
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between text-[11px] mb-1">
+              <span class="font-mono font-bold text-slate-400">#${String(item.id).padStart(2, '0')}</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded font-medium border ${badgeColor}">
+                ${groupLabel}
+              </span>
+            </div>
+            <div class="text-[10px] text-slate-400 font-mono truncate mb-1">
+              ${item.parentGroup || '構造指標'}
+            </div>
+            <div class="text-base font-black tracking-tight text-white mb-1">${item.num}</div>
+            <h4 class="text-xs font-bold text-slate-200 line-clamp-1 mb-1">${item.title}</h4>
+            <p class="text-[11px] text-slate-400 leading-snug line-clamp-3">${item.desc}</p>
+          </div>
+          <div class="mt-2 pt-2 border-t border-slate-800/80 flex items-center justify-between text-[10px] text-slate-500">
+            <span class="truncate">連動: ${item.related.map(r => '#' + r).join(' ')}</span>
+            <i class="fa-solid fa-link text-slate-600 text-[9px] ml-1"></i>
+          </div>
+        `;
+
+        card.addEventListener('click', () => handleCardClick(item.id, item.related));
+        gridEl.appendChild(card);
+      });
+
+      cardCountLabel.textContent = `${visibleCount}項目表示中`;
+    }
+
+    // INTERACTIVE HIGHLIGHTING LOGIC
+    let activeCardId = null;
+
+    function handleCardClick(clickedId, relatedIds) {
+      const allCards = document.querySelectorAll('.metric-card');
+      
+      if (activeCardId === clickedId) {
+        resetHighlights();
+        return;
+      }
+
+      activeCardId = clickedId;
+
+      allCards.forEach(card => {
+        const id = parseInt(card.dataset.id);
+        card.classList.remove('active-selected', 'related-highlight', 'dimmed');
+
+        if (id === clickedId) {
+          card.classList.add('active-selected');
+        } else if (relatedIds.includes(id)) {
+          card.classList.add('related-highlight');
+        } else {
+          card.classList.add('dimmed');
+        }
+      });
+    }
+
+    function resetHighlights() {
+      activeCardId = null;
+      document.querySelectorAll('.metric-card').forEach(card => {
+        card.classList.remove('active-selected', 'related-highlight', 'dimmed');
+      });
+    }
+
+    document.getElementById('reset-highlight-btn').addEventListener('click', resetHighlights);
+
+    // FILTER LOGIC
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.className = 'filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800/80 text-slate-300 hover:bg-slate-700';
+        });
+        btn.className = 'filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-sky-500 text-slate-950 shadow-md';
+        
+        resetHighlights();
+        renderCards(btn.dataset.cat);
+      });
+    });
+
+    // SIMULATOR REAL-TIME UPDATE
+    const simIncome = document.getElementById('sim-income');
+    const simReinvest = document.getElementById('sim-reinvest');
+    const simIncomeVal = document.getElementById('sim-income-val');
+    const simReinvestVal = document.getElementById('sim-reinvest-val');
+    const simRepatriationVal = document.getElementById('sim-repatriation-val');
+
+    function updateSimulator() {
+      const inc = parseFloat(simIncome.value);
+      const reinv = parseFloat(simReinvest.value);
+      simIncomeVal.textContent = inc.toFixed(1) + '兆円';
+      simReinvestVal.textContent = reinv.toFixed(1) + '%';
+
+      // 国内還流額 ＝ 所得収支 × (100 - 再投資率)%
+      const repatriated = inc * (1 - reinv / 100);
+      simRepatriationVal.textContent = '+' + repatriated.toFixed(1) + ' 兆円';
+    }
+
+    simIncome.addEventListener('input', updateSimulator);
+    simReinvest.addEventListener('input', updateSimulator);
+    updateSimulator();
+
+    // INITIAL RENDER
+    renderCards('all');
+
+    // CHART 1: Scale Balance (Vertical Bar) - 単位: 兆円
+    const ctxScale = document.getElementById('scaleChart').getContext('2d');
+    new Chart(ctxScale, {
+      type: 'bar',
+      data: {
+        labels: [
+          '対外純資産(累積ストック)',
+          '第1次所得収支(黒字)',
+          '経常収支(合計黒字)',
+          'サービス収支(赤字)',
+          '貿易収支(赤字)'
+        ],
+        datasets: [{
+          label: '規模（兆円）',
+          data: [500, 38.2, 28.5, -3.2, -5.1],
+          backgroundColor: [
+            'rgba(245, 158, 11, 0.8)',   // 対外純資産
+            'rgba(16, 185, 129, 0.85)',  // 所得収支
+            'rgba(56, 189, 248, 0.85)',  // 経常収支
+            'rgba(251, 146, 60, 0.8)',   // サービス
+            'rgba(244, 63, 94, 0.9)'     // 貿易収支
+          ],
+          borderColor: ['#f59e0b', '#10b981', '#38bdf8', '#fb923c', '#f43f5e'],
+          borderWidth: 1.5,
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: 'rgba(15, 23, 42, 0.95)',
+            titleColor: '#f8fafc',
+            bodyColor: '#cbd5e1',
+            borderColor: '#334155',
+            borderWidth: 1,
+            callbacks: {
+              label: (ctx) => ` 金額: ${ctx.raw > 0 ? '+' : ''}${ctx.raw} 兆円`
+            }
+          }
+        },
+        scales: {
+          y: {
+            grid: { color: 'rgba(51, 65, 85, 0.35)' },
+            ticks: {
+              color: '#94a3b8',
+              font: { size: 10 },
+              callback: (v) => v + '兆円'
+            }
+          },
+          x: {
+            grid: { display: false },
+            ticks: { color: '#cbd5e1', font: { size: 10 } }
+          }
+        }
+      }
+    });
+
+    // CHART 2: Dependency & Bottlenecks (水平バー・修正完全版)
+    // indexAxis: 'y' の場合、X軸が数値(0-100%)、Y軸がカテゴリ文字列になります
+    const ctxDep = document.getElementById('dependencyChart').getContext('2d');
+    new Chart(ctxDep, {
+      type: 'bar',
+      data: {
+        labels: [
+          '一次エネルギー対外依存度',
+          '海外子会社 利益再投資率 (現地滞留)',
+          '食料輸入依存度 (カロリーベース)',
+          '製造業 海外現地生産比率',
+          '対内直接投資残高 (対GDP比)'
+        ],
+        datasets: [{
+          label: '比率 (%)',
+          data: [87.4, 59.8, 62.0, 26.2, 5.0],
+          backgroundColor: [
+            'rgba(244, 63, 94, 0.85)',
+            'rgba(245, 158, 11, 0.85)',
+            'rgba(251, 146, 60, 0.8)',
+            'rgba(56, 189, 248, 0.8)',
+            'rgba(148, 163, 184, 0.5)'
+          ],
+          borderColor: ['#f43f5e', '#f59e0b', '#fb923c', '#38bdf8', '#94a3b8'],
+          borderWidth: 1.5,
+          borderRadius: 4,
+          barThickness: 18
+        }]
+      },
+      options: {
+        indexAxis: 'y', // 水平バー設定
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: 'rgba(15, 23, 42, 0.95)',
+            titleColor: '#f8fafc',
+            bodyColor: '#cbd5e1',
+            borderColor: '#334155',
+            borderWidth: 1,
+            callbacks: {
+              label: (ctx) => ` 比率: ${ctx.parsed.x}%`
+            }
+          }
+        },
+        scales: {
+          x: {
+            min: 0,
+            max: 100, // 横軸を0%〜100%固定
+            grid: { color: 'rgba(51, 65, 85, 0.35)' },
+            ticks: {
+              color: '#94a3b8',
+              font: { size: 10 },
+              callback: (val) => val + '%' // 0%, 20%, 40% ... 100% と正しく表示
+            }
+          },
+          y: {
+            grid: { display: false },
+            ticks: {
+              color: '#cbd5e1',
+              font: { size: 11, family: '"Noto Sans JP", sans-serif' } // 日本語項目名を表示
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

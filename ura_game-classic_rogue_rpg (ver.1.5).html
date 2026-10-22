@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>破邪の剣を求めて - Classic Rogue RPG (高速版)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/rot-js@2.2.0/dist/rot.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=DotGothic16&display=swap');
+    
+    body {
+      background-color: #05070c;
+      color: #e2e8f0;
+      font-family: 'DotGothic16', 'Fira Code', monospace;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    #terminal-container canvas {
+      display: block;
+      margin: 0 auto;
+      border: 2px solid #334155;
+      border-radius: 6px;
+      box-shadow: 0 0 24px rgba(0, 0, 0, 0.9), 0 0 12px rgba(56, 189, 248, 0.2);
+      background-color: #020617;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .retro-panel {
+      border: 1px solid #334155;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(4px);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.7);
+    }
+
+    .log-item {
+      animation: fadeIn 0.12s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-2px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #0b1120; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-2 sm:p-4 select-none">
+
+  <!-- Top HUD Bar -->
+  <header class="w-full max-w-4xl flex flex-wrap justify-between items-center retro-panel rounded-lg px-3 py-2 mb-2 text-sm">
+    <div class="flex items-center gap-3">
+      <span class="text-amber-400 font-bold tracking-wider text-base sm:text-lg flex items-center gap-1">
+        <span>⚔️</span> 破邪の迷宮
+      </span>
+      <span id="stat-floor" class="bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded border border-indigo-700 font-bold">B1F</span>
+    </div>
+    <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs sm:text-sm">
+      <span class="text-slate-400">LV: <span id="stat-lv" class="text-emerald-400 font-bold">1</span></span>
+      <span class="text-slate-400">HP: <span id="stat-hp" class="text-red-400 font-bold">24</span>/<span id="stat-maxhp" class="text-red-400">24</span></span>
+      <span class="text-slate-400">攻撃: <span id="stat-atk" class="text-orange-400 font-bold">6</span></span>
+      <span class="text-slate-400">防御: <span id="stat-def" class="text-cyan-400 font-bold">1</span></span>
+      <span class="text-slate-400">EXP: <span id="stat-exp" class="text-yellow-400 font-bold">0</span>/<span id="stat-next" class="text-yellow-400">10</span></span>
+      <span class="text-slate-400">ターン: <span id="stat-turn" class="text-slate-200 font-bold">0</span></span>
+    </div>
+  </header>
+
+  <!-- Main Game Area -->
+  <main class="w-full max-w-4xl flex flex-col lg:flex-row gap-3 items-center lg:items-start justify-center flex-grow">
+    <!-- Screen Display -->
+    <div id="terminal-container" class="flex-shrink-0 relative overflow-hidden flex items-center justify-center">
+      <!-- ROT Canvas dynamically mounted here -->
+    </div>
+
+    <!-- Side Control & Log Column -->
+    <div class="w-full lg:w-72 flex flex-col gap-2">
+      <!-- Adventure Log -->
+      <div class="retro-panel rounded-lg p-2.5 flex flex-col h-40 sm:h-48 lg:h-80">
+        <div class="text-xs text-slate-400 border-b border-slate-700/80 pb-1 mb-1 font-bold flex justify-between">
+          <span>冒険ログ</span>
+          <span class="text-[10px] text-slate-500 font-mono">高速処理モード</span>
+        </div>
+        <div id="message-log" class="flex-grow overflow-y-auto text-xs space-y-1 pr-1 font-mono">
+          <div class="text-sky-400 log-item">地下8階の最奥を目指し『破邪の剣』を持ち帰れ！</div>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="grid grid-cols-3 gap-2">
+        <button id="btn-inventory" class="bg-indigo-700 hover:bg-indigo-600 active:bg-indigo-800 text-white text-xs sm:text-sm py-2 px-2 rounded border border-indigo-400 font-bold transition flex items-center justify-center gap-1 shadow">
+          <span>🎒</span> 道具 (I)
+        </button>
+        <button id="btn-wait" class="bg-slate-700 hover:bg-slate-600 active:bg-slate-800 text-white text-xs sm:text-sm py-2 px-2 rounded border border-slate-500 font-bold transition flex items-center justify-center gap-1 shadow">
+          <span>⏳</span> 足踏み (.)
+        </button>
+        <button id="btn-stairs" class="bg-amber-700 hover:bg-amber-600 active:bg-amber-800 text-white text-xs sm:text-sm py-2 px-2 rounded border border-amber-400 font-bold transition flex items-center justify-center gap-1 shadow">
+          <span>🪜</span> 階段 (&gt;)
+        </button>
+      </div>
+
+      <!-- Equipment Status Display -->
+      <div class="retro-panel rounded-lg p-2 text-xs space-y-1">
+        <div class="text-slate-400 flex justify-between">
+          <span>武器:</span> <span id="equip-weapon" class="text-orange-300 font-semibold">素手 (+0)</span>
+        </div>
+        <div class="text-slate-400 flex justify-between">
+          <span>防具:</span> <span id="equip-armor" class="text-cyan-300 font-semibold">平服 (+0)</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer & D-Pad Controls -->
+  <footer class="w-full max-w-4xl mt-2 flex flex-col sm:flex-row justify-center items-center gap-3">
+    <!-- D-Pad for Touch/Mobile -->
+    <div class="grid grid-cols-3 gap-1.5 w-48 sm:w-56 text-sm font-bold">
+      <button class="dpad-btn bg-slate-800 active:bg-slate-600 border border-slate-600 rounded p-2 text-center text-slate-300" data-dx="-1" data-dy="-1">↖</button>
+      <button class="dpad-btn bg-slate-800 active:bg-slate-600 border border-slate-600 rounded p-2 text-center text-slate-200" data-dx="0" data-dy="-1">▲</button>
+      <button class="dpad-btn bg-slate-800 active:bg-slate-600 border border-slate-600 rounded p-2 text-center text-slate-300" data-dx="1" data-dy="-1">↗</button>
+
+      <button class="dpad-btn bg-slate-800 active:bg-slate-600 border border-slate-600 rounded p-2 text-center text-slate-200" data-dx="-1" data-dy="0">◀</button>
+      <button id="dpad-center" class="bg-indigo-900 active:bg-indigo-700 border border-indigo-500 rounded p-2 text-center text-indigo-200">● 待機</button>
+      <button class="dpad-btn bg-slate-800 active:bg-slate-600 border border-slate-600 rounded p-2 text-center text-slate-200" data-dx="1" data-dy="0">▶</button>
+
+      <button class="dpad-btn bg-slate-800 active:bg-slate-600 border border-slate-600 rounded p-2 text-center text-slate-300" data-dx="-1" data-dy="1">↙</button>
+      <button class="dpad-btn bg-slate-800 active:bg-slate-600 border border-slate-600 rounded p-2 text-center text-slate-200" data-dx="0" data-dy="1">▼</button>
+      <button class="dpad-btn bg-slate-800 active:bg-slate-600 border border-slate-600 rounded p-2 text-center text-slate-300" data-dx="1" data-dy="1">↘</button>
+    </div>
+
+    <div class="text-[11px] text-slate-500 text-center sm:text-left leading-relaxed">
+      移動: 矢印キー / Viキー(HJKL) / テンキー / 画面ボタン<br>
+      足踏み: スペースキー / [.] / [5]<br>
+      階段: [&gt;] / [Enter] | 持ち物: [I]
+    </div>
+  </footer>
+
+  <!-- Modal: Start Screen -->
+  <div id="modal-start" class="fixed inset-0 bg-black/95 flex items-center justify-center p-3 z-[60]">
+    <div class="bg-slate-950 retro-panel rounded-xl max-w-lg w-full max-h-[92vh] overflow-y-auto p-5 space-y-4 shadow-2xl border-slate-700">
+      <div class="text-center space-y-1">
+        <div class="text-3xl sm:text-4xl font-bold text-amber-400 tracking-widest">⚔️ 破邪の剣を求めて</div>
+        <div class="text-[11px] text-slate-500 font-mono tracking-[0.3em]">CLASSIC ROGUE RPG</div>
+      </div>
+
+      <section class="space-y-1.5">
+        <h2 class="text-sm font-bold text-sky-300 border-b border-slate-700 pb-1">■ 物語</h2>
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          かつて魔を断ち切ったとされる聖剣『破邪の剣』。その剣は、いまや地の底に広がる迷宮の最奥で眠っている。<br>
+          迷宮から立ちのぼる魔気は年々濃さを増し、地上の村々は静かに蝕まれていった。<br>
+          剣を取り戻せば魔気は晴れる——そう信じて、あなたはたった一人、地下への階段を降りていく。<br>
+          <span class="text-amber-300">地下8階の最奥にある『破邪の剣』を手に入れ、迷宮に光を取り戻せ。</span>
+        </p>
+        <p class="text-[11px] text-slate-400 leading-relaxed">
+          階は潜るたびに姿を変え、深くなるほど強い魔物が現れます。倒れれば最初からやり直しです。
+        </p>
+      </section>
+
+      <section class="space-y-1.5">
+        <h2 class="text-sm font-bold text-sky-300 border-b border-slate-700 pb-1">■ 操作方法</h2>
+        <div class="text-xs text-slate-300 space-y-1 leading-relaxed">
+          <div><span class="text-amber-300 font-bold">移動</span>：矢印キー / HJKLなどのViキー / テンキー / 画面の十字ボタン（斜め移動もできます）</div>
+          <div><span class="text-amber-300 font-bold">攻撃</span>：敵のいる方向へ移動すると攻撃します</div>
+          <div><span class="text-amber-300 font-bold">階段</span>：<span class="text-amber-400 font-mono">&gt;</span> の上に立って [&gt;] か [Enter]（または「階段」ボタン）で次の階へ</div>
+          <div><span class="text-amber-300 font-bold">道具</span>：[I] で持ち物を開き、使う・装備・捨てるができます（最大12個）</div>
+        </div>
+        <div class="text-[11px] text-slate-400 leading-relaxed">
+          このゲームは<span class="text-slate-200">ターン制</span>です。あなたが1回行動するたびに、敵も1回行動します。移動・攻撃・道具の使用はすべて1ターンを消費します（階段を降りるだけではターンは進みません）。
+        </div>
+      </section>
+
+      <section class="space-y-1.5 rounded-lg border border-emerald-700/70 bg-emerald-950/30 p-3">
+        <h2 class="text-sm font-bold text-emerald-300">⏳ 足踏み（スペース / [.] / [5] / 画面の足踏みボタン）</h2>
+        <ul class="text-xs text-slate-300 space-y-1 leading-relaxed list-disc pl-4">
+          <li>その場で<span class="text-emerald-300 font-bold">1ターンだけ時間を進めます</span>。動かずに敵の出方を待ちたいときに使います。</li>
+          <li><span class="text-emerald-300 font-bold">HPは8ターンごとに1回復</span>します（歩いても同じです）。足踏みなら、安全な場所でじっと回復を待てます。</li>
+          <li>敵も同じターンに動きます。近くに敵がいるときに足踏みすると、先に攻撃されることがあります。</li>
+          <li><span class="text-purple-300 font-bold">毒状態の間は自然回復しません</span>。毎ターンHPが1減るので、足踏みで待つのは危険です。毒消し草を使いましょう。</li>
+          <li>敵の気配がない場所で、薬草が尽きたときの回復手段として使うのがおすすめです。</li>
+        </ul>
+      </section>
+
+      <button id="btn-start" class="w-full bg-gradient-to-r from-indigo-700 to-amber-700 hover:from-indigo-600 hover:to-amber-600 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition text-base">
+        冒険を始める (Enter)
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal: Inventory -->
+  <div id="modal-inventory" class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 hidden">
+    <div class="bg-slate-900 retro-panel rounded-xl max-w-md w-full p-4 flex flex-col max-h-[85vh] shadow-2xl border-slate-700">
+      <div class="flex justify-between items-center border-b border-slate-700 pb-2 mb-3">
+        <h3 class="text-base font-bold text-amber-400 flex items-center gap-2">
+          <span>🎒</span> 所持品リスト (<span id="inv-count">0</span>/12)
+        </h3>
+        <button id="btn-close-inv" class="text-slate-400 hover:text-white px-2 py-0.5 rounded text-sm bg-slate-800 border border-slate-700">✕ 閉じる (Esc)</button>
+      </div>
+
+      <div id="inventory-list" class="flex-grow overflow-y-auto space-y-1.5 pr-1 text-sm font-mono"></div>
+
+      <div class="mt-3 pt-2 border-t border-slate-800 text-[11px] text-slate-400">
+        アイテムを選択して使用・装備・廃棄できます。
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Game Clear / Game Over -->
+  <div id="modal-gameover" class="fixed inset-0 bg-black/90 flex items-center justify-center p-4 z-50 hidden">
+    <div class="bg-slate-950 retro-panel rounded-xl max-w-md w-full p-6 text-center space-y-4 shadow-2xl border-slate-700">
+      <div id="modal-title" class="text-2xl font-bold text-red-500 tracking-wider">GAME OVER</div>
+      <p id="modal-desc" class="text-slate-300 text-sm leading-relaxed">力尽きてしまった...</p>
+      
+      <div class="bg-slate-900/90 rounded p-3 text-xs space-y-1.5 text-left border border-slate-800 font-mono">
+        <div class="flex justify-between text-slate-400"><span>到達階層:</span> <span id="res-floor" class="text-slate-200 font-bold">B1F</span></div>
+        <div class="flex justify-between text-slate-400"><span>最終レベル:</span> <span id="res-lv" class="text-slate-200 font-bold">1</span></div>
+        <div class="flex justify-between text-slate-400"><span>討伐モンスター数:</span> <span id="res-kills" class="text-emerald-400 font-bold">0</span></div>
+        <div class="flex justify-between text-slate-400"><span>総ターン数:</span> <span id="res-turns" class="text-indigo-300 font-bold">0</span></div>
+      </div>
+
+      <button id="btn-restart" class="w-full bg-gradient-to-r from-indigo-700 to-amber-700 hover:from-indigo-600 hover:to-amber-600 text-white font-bold py-2.5 px-4 rounded-lg shadow-lg transition">
+        最初から再挑戦する
+      </button>
+    </div>
+  </div>
+
+  <script>
+    /* =========================================================================
+     *  20 Unique Progressive Monster Types (B1F to B8F)
+     * ========================================================================= */
+    const MONSTER_DATABASE = [
+      // B1F
+      { id: 'slime', name: 'スライム', char: 's', color: '#38bdf8', minFloor: 1, maxFloor: 2, hp: 8, atk: 4, def: 0, exp: 4, ai: 'chase' },
+      { id: 'bat', name: '大コウモリ', char: 'b', color: '#c084fc', minFloor: 1, maxFloor: 3, hp: 6, atk: 5, def: 0, exp: 5, ai: 'erratic' },
+      // B2F
+      { id: 'goblin', name: 'ゴブリン', char: 'g', color: '#4ade80', minFloor: 2, maxFloor: 4, hp: 14, atk: 7, def: 1, exp: 9, ai: 'chase' },
+      { id: 'kobold', name: 'コボルト', char: 'k', color: '#facc15', minFloor: 2, maxFloor: 4, hp: 12, atk: 8, def: 1, exp: 10, ai: 'fast' },
+      // B3F
+      { id: 'rat', name: '大毒ネズミ', char: 'r', color: '#fb923c', minFloor: 3, maxFloor: 5, hp: 16, atk: 8, def: 1, exp: 13, special: 'poison', ai: 'chase' },
+      { id: 'zombie', name: '腐乱ゾンビ', char: 'z', color: '#86efac', minFloor: 3, maxFloor: 5, hp: 25, atk: 10, def: 2, exp: 16, ai: 'slow' },
+      // B4F
+      { id: 'spider', name: '巨大毒グモ', char: 'x', color: '#e879f9', minFloor: 4, maxFloor: 6, hp: 20, atk: 11, def: 2, exp: 18, special: 'poison', ai: 'chase' },
+      { id: 'orc', name: '凶暴オーク', char: 'o', color: '#a3e635', minFloor: 4, maxFloor: 6, hp: 28, atk: 14, def: 3, exp: 22, ai: 'chase' },
+      // B5F
+      { id: 'elf', name: 'エルフ射手', char: 'e', color: '#2dd4bf', minFloor: 5, maxFloor: 7, hp: 24, atk: 13, def: 2, exp: 26, ai: 'ranged' },
+      { id: 'ghost', name: '亡霊ゴースト', char: 'w', color: '#93c5fd', minFloor: 5, maxFloor: 7, hp: 22, atk: 15, def: 3, exp: 28, ai: 'chase' },
+      { id: 'skeleton', name: '骸骨戦士', char: 'q', color: '#f1f5f9', minFloor: 5, maxFloor: 7, hp: 32, atk: 16, def: 4, exp: 32, ai: 'chase' },
+      // B6F
+      { id: 'troll', name: 'トロール', char: 'T', color: '#16a34a', minFloor: 6, maxFloor: 8, hp: 44, atk: 20, def: 4, exp: 42, ai: 'chase' },
+      { id: 'mage', name: '魔導師', char: 'm', color: '#f43f5e', minFloor: 6, maxFloor: 8, hp: 28, atk: 22, def: 3, exp: 45, ai: 'ranged' },
+      { id: 'mimic', name: 'ミミック', char: 'M', color: '#eab308', minFloor: 6, maxFloor: 8, hp: 36, atk: 18, def: 5, exp: 48, ai: 'chase' },
+      // B7F
+      { id: 'golem', name: '岩石ゴーレム', char: 'G', color: '#78716c', minFloor: 7, maxFloor: 8, hp: 55, atk: 22, def: 7, exp: 58, ai: 'slow' },
+      { id: 'vampire', name: '吸血鬼', char: 'V', color: '#dc2626', minFloor: 7, maxFloor: 8, hp: 42, atk: 24, def: 5, exp: 65, special: 'drain', ai: 'fast' },
+      { id: 'beholder', name: '邪眼イーヴィル', char: 'E', color: '#d946ef', minFloor: 7, maxFloor: 8, hp: 38, atk: 25, def: 4, exp: 70, ai: 'ranged' },
+      // B8F
+      { id: 'knight', name: '暗黒騎士', char: 'K', color: '#64748b', minFloor: 8, maxFloor: 8, hp: 60, atk: 28, def: 8, exp: 90, ai: 'chase' },
+      { id: 'lich', name: '冥王リッチ', char: 'L', color: '#a855f7', minFloor: 8, maxFloor: 8, hp: 50, atk: 30, def: 6, exp: 110, ai: 'ranged' },
+      { id: 'dragon', name: '深淵の赤竜', char: 'D', color: '#ef4444', minFloor: 8, maxFloor: 8, hp: 75, atk: 35, def: 9, exp: 150, ai: 'chase' }
+    ];
+
+    /* =========================================================================
+     *  Item Catalog Templates
+     * ========================================================================= */
+    /* 巻物の威力（バランス調整はここだけ変えればよい） */
+    const FIRE_DAMAGE = 40;    // 火炎の巻物：視界内の全敵へのダメージ（防御無視）
+    const CONFUSE_TURNS = 10;  // 混乱の巻物：読んだ後に敵が無力化されるターン数
+
+    const ITEM_TEMPLATES = [
+      { id: 'herb_cure', name: '薬草', char: '!', color: '#22c55e', type: 'herb', heal: 25, desc: 'HPを25回復' },
+      { id: 'herb_high', name: '上薬草', char: '!', color: '#10b981', type: 'herb', heal: 50, minFloor: 4, desc: 'HPを50大幅回復' },
+      { id: 'herb_antidote', name: '毒消し草', char: '!', color: '#38bdf8', type: 'herb', curePoison: true, desc: '体内の毒を浄化' },
+      { id: 'scroll_warp', name: 'ワープの巻物', char: '?', color: '#818cf8', type: 'scroll', effect: 'warp', desc: '別の地点へ瞬間移動' },
+      { id: 'scroll_fire', name: '火炎の巻物', char: '?', color: '#f87171', type: 'scroll', effect: 'fire', desc: `視界内の全敵に${FIRE_DAMAGE}ダメージ（防御無視）` },
+      { id: 'scroll_confuse', name: '混乱の巻物', char: '?', color: '#facc15', type: 'scroll', effect: 'confuse', desc: `視界内の敵を${CONFUSE_TURNS}ターン混乱（その間は攻撃してこない）` },
+      { id: 'wpn_copper', name: '銅の剣', char: '/', color: '#fb923c', type: 'weapon', bonus: 3, desc: '攻撃力 +3' },
+      { id: 'wpn_iron', name: '鉄の剣', char: '/', color: '#94a3b8', type: 'weapon', bonus: 6, minFloor: 3, desc: '攻撃力 +6' },
+      { id: 'wpn_steel', name: '鋼の剛剣', char: '/', color: '#60a5fa', type: 'weapon', bonus: 10, minFloor: 6, desc: '攻撃力 +10' },
+      { id: 'arm_leather', name: '革の鎧', char: '[', color: '#a16207', type: 'armor', bonus: 2, desc: '防御力 +2' },
+      { id: 'arm_iron', name: '鉄の胸当て', char: '[', color: '#94a3b8', type: 'armor', bonus: 4, minFloor: 3, desc: '防御力 +4' },
+      { id: 'arm_knight', name: '騎士の大鎧', char: '[', color: '#38bdf8', type: 'armor', bonus: 7, minFloor: 6, desc: '防御力 +7' }
+    ];
+
+    class FastRogueEngine {
+      constructor() {
+        this.width = 46;
+        this.height = 24;
+        this.floor = 1;
+        this.maxFloor = 8;
+        this.turns = 0;
+        this.monstersDefeated = 0;
+        this.isGameOver = false;
+
+        // Player State
+        this.player = {
+          x: 0,
+          y: 0,
+          char: '@',
+          color: '#fbbf24',
+          level: 1,
+          hp: 24,
+          maxHp: 24,
+          baseAtk: 6,
+          baseDef: 1,
+          exp: 0,
+          nextExp: 10,
+          poisoned: 0,
+          inventory: [],
+          equippedWeapon: null,
+          equippedArmor: null
+        };
+
+        // Floor-specific collections (guaranteed clean release)
+        this.map = {}; 
+        this.visible = {};
+        this.explored = {};
+        this.monsters = [];
+        this.items = [];
+        this.stairs = { x: 0, y: 0 };
+        this.holySword = null;
+
+        // Initialize Display
+        this.display = new ROT.Display({
+          width: this.width,
+          height: this.height,
+          fontSize: 18,
+          fontFamily: "'DotGothic16', 'Fira Code', monospace",
+          bg: "#020617",
+          fg: "#94a3b8",
+          spacing: 1.05
+        });
+
+        const container = document.getElementById("terminal-container");
+        container.innerHTML = "";
+        container.appendChild(this.display.getContainer());
+
+        // Fast FOV calculation
+        this.fov = new ROT.FOV.PreciseShadowcasting((x, y) => {
+          const key = `${x},${y}`;
+          return this.map[key] ? this.map[key].see : false;
+        });
+
+        // Register Global Event Listeners STRICTLY ONCE
+        this.initGlobalEventListeners();
+
+        // Boot First Session
+        this.startNewGame();
+      }
+
+      startNewGame() {
+        this.floor = 1;
+        this.turns = 0;
+        this.monstersDefeated = 0;
+        this.isGameOver = false;
+
+        this.player.level = 1;
+        this.player.maxHp = 24;
+        this.player.hp = 24;
+        this.player.baseAtk = 6;
+        this.player.baseDef = 1;
+        this.player.exp = 0;
+        this.player.nextExp = 10;
+        this.player.poisoned = 0;
+        this.player.inventory = [
+          { ...ITEM_TEMPLATES[0] }, // 薬草
+          { ...ITEM_TEMPLATES[3] }  // ワープの巻物
+        ];
+        this.player.equippedWeapon = null;
+        this.player.equippedArmor = null;
+
+        document.getElementById("message-log").innerHTML = "";
+        this.log("地下迷宮に足を踏み入れた...", "#38bdf8");
+        this.log("地下8階の最奥にある『破邪の剣』を目指せ！", "#facc15");
+
+        this.generateFloor(this.floor);
+        this.updateUI();
+      }
+
+      /* Clear previous floor structures completely to prevent memory bloat and slowdown */
+      cleanPreviousFloor() {
+        this.map = {};
+        this.visible = {};
+        this.explored = {};
+        this.monsters.length = 0;
+        this.monsters = [];
+        this.items.length = 0;
+        this.items = [];
+        this.holySword = null;
+        this.display.clear();
+      }
+
+      generateFloor(floorNum) {
+        this.cleanPreviousFloor();
+
+        // Fast procedural digger
+        const digger = new ROT.Map.Digger(this.width, this.height, {
+          roomWidth: [4, 9],
+          roomHeight: [3, 6],
+          corridorLength: [2, 6],
+          dugPercentage: 0.28
+        });
+
+        const freeCells = [];
+        digger.create((x, y, value) => {
+          const key = `${x},${y}`;
+          if (value === 0) {
+            this.map[key] = { char: '.', walk: true, see: true, type: 'floor' };
+            freeCells.push({ x, y });
+          } else {
+            this.map[key] = { char: '#', walk: false, see: false, type: 'wall' };
+          }
+        });
+
+        const rooms = digger.getRooms();
+        if (rooms.length > 0) {
+          const startRoom = rooms[0];
+          this.player.x = startRoom.getCenter()[0];
+          this.player.y = startRoom.getCenter()[1];
+
+          const endRoom = rooms[rooms.length - 1];
+          this.stairs.x = endRoom.getCenter()[0];
+          this.stairs.y = endRoom.getCenter()[1];
+        } else {
+          const p = freeCells.pop();
+          this.player.x = p.x;
+          this.player.y = p.y;
+          const s = freeCells.pop();
+          this.stairs.x = s.x;
+          this.stairs.y = s.y;
+        }
+
+        // B8F Goal: Sword of Exorcism (破邪の剣)
+        if (floorNum === this.maxFloor) {
+          const targetRoom = rooms.length > 1 ? rooms[Math.floor(rooms.length / 2)] : null;
+          const sx = targetRoom ? targetRoom.getCenter()[0] + 1 : this.stairs.x;
+          const sy = targetRoom ? targetRoom.getCenter()[1] : this.stairs.y;
+          this.holySword = {
+            x: sx,
+            y: sy,
+            char: '†',
+            color: '#38bdf8',
+            name: '破邪の剣'
+          };
+          this.log("神秘的な輝きが迷宮の深淵に満ちている...", "#67e8f9");
+        }
+
+        // Spawn Items (3 to 5)
+        const itemCount = 3 + Math.floor(ROT.RNG.getUniform() * 3);
+        for (let i = 0; i < itemCount; i++) {
+          const pool = ITEM_TEMPLATES.filter(it => !it.minFloor || it.minFloor <= floorNum);
+          const tpl = pool[Math.floor(ROT.RNG.getUniform() * pool.length)];
+          const pos = this.getRandomEmptyFloorCell();
+          if (pos) {
+            this.items.push({ ...tpl, x: pos.x, y: pos.y });
+          }
+        }
+
+        // Spawn Monsters (4 to 7)
+        const monsterCount = 4 + Math.floor(ROT.RNG.getUniform() * 4);
+        for (let i = 0; i < monsterCount; i++) {
+          const validMonsters = MONSTER_DATABASE.filter(m => floorNum >= m.minFloor && floorNum <= m.maxFloor);
+          if (validMonsters.length > 0) {
+            const mData = validMonsters[Math.floor(ROT.RNG.getUniform() * validMonsters.length)];
+            const pos = this.getRandomEmptyFloorCell();
+            if (pos && (Math.abs(pos.x - this.player.x) > 3 || Math.abs(pos.y - this.player.y) > 3)) {
+              this.monsters.push({
+                ...mData,
+                curHp: mData.hp,
+                x: pos.x,
+                y: pos.y,
+                confused: 0
+              });
+            }
+          }
+        }
+
+        this.computeFOV();
+        this.draw();
+      }
+
+      computeFOV() {
+        this.visible = {};
+        this.fov.compute(this.player.x, this.player.y, 8, (x, y) => {
+          const key = `${x},${y}`;
+          this.visible[key] = true;
+          this.explored[key] = true;
+        });
+      }
+
+      draw() {
+        this.display.clear();
+
+        // 1. Draw Explored & Visible Floor/Walls
+        for (let y = 0; y < this.height; y++) {
+          for (let x = 0; x < this.width; x++) {
+            const key = `${x},${y}`;
+            const cell = this.map[key];
+            if (!cell) continue;
+
+            const isVis = this.visible[key];
+            const isExp = this.explored[key];
+
+            if (isVis) {
+              if (cell.type === 'floor') {
+                this.display.draw(x, y, '.', '#334155', '#020617');
+              } else if (cell.type === 'wall') {
+                this.display.draw(x, y, '#', '#64748b', '#0f172a');
+              }
+            } else if (isExp) {
+              if (cell.type === 'floor') {
+                this.display.draw(x, y, '.', '#1e293b', '#020617');
+              } else if (cell.type === 'wall') {
+                this.display.draw(x, y, '#', '#334155', '#020617');
+              }
+            }
+          }
+        }
+
+        // 2. Draw Stairs
+        const stairKey = `${this.stairs.x},${this.stairs.y}`;
+        if (this.visible[stairKey] || this.explored[stairKey]) {
+          const color = this.visible[stairKey] ? '#fbbf24' : '#78350f';
+          this.display.draw(this.stairs.x, this.stairs.y, '>', color, '#020617');
+        }
+
+        // 3. Draw Holy Sword (B8F Target)
+        if (this.holySword) {
+          const swordKey = `${this.holySword.x},${this.holySword.y}`;
+          if (this.visible[swordKey]) {
+            this.display.draw(this.holySword.x, this.holySword.y, this.holySword.char, this.holySword.color, '#020617');
+          }
+        }
+
+        // 4. Draw Items
+        for (let i = 0; i < this.items.length; i++) {
+          const it = this.items[i];
+          const k = `${it.x},${it.y}`;
+          if (this.visible[k]) {
+            this.display.draw(it.x, it.y, it.char, it.color, '#020617');
+          }
+        }
+
+        // 5. Draw Monsters within FOV
+        for (let i = 0; i < this.monsters.length; i++) {
+          const m = this.monsters[i];
+          const mk = `${m.x},${m.y}`;
+          if (this.visible[mk]) {
+            const ch = m.confused > 0 ? '?' : m.char;
+            this.display.draw(m.x, m.y, ch, m.color, '#020617');
+          }
+        }
+
+        // 6. Draw Player
+        this.display.draw(this.player.x, this.player.y, this.player.char, this.player.color, '#020617');
+      }
+
+      getRandomEmptyFloorCell() {
+        const floorKeys = Object.keys(this.map).filter(k => {
+          if (!this.map[k].walk) return false;
+          const [x, y] = k.split(',').map(Number);
+          if (x === this.player.x && y === this.player.y) return false;
+          if (x === this.stairs.x && y === this.stairs.y) return false;
+          if (this.holySword && x === this.holySword.x && y === this.holySword.y) return false;
+          for (let i = 0; i < this.monsters.length; i++) {
+            if (this.monsters[i].x === x && this.monsters[i].y === y) return false;
+          }
+          for (let i = 0; i < this.items.length; i++) {
+            if (this.items[i].x === x && this.items[i].y === y) return false;
+          }
+          return true;
+        });
+
+        if (floorKeys.length === 0) return null;
+        const chosen = floorKeys[Math.floor(ROT.RNG.getUniform() * floorKeys.length)];
+        const [cx, cy] = chosen.split(',').map(Number);
+        return { x: cx, y: cy };
+      }
+
+      handlePlayerMove(dx, dy) {
+        if (this.isGameOver) return;
+
+        const targetX = this.player.x + dx;
+        const targetY = this.player.y + dy;
+        const targetKey = `${targetX},${targetY}`;
+
+        // 1. Attack Monster
+        for (let i = 0; i < this.monsters.length; i++) {
+          const m = this.monsters[i];
+          if (m.x === targetX && m.y === targetY) {
+            this.playerAttack(m);
+            this.endTurn();
+            return;
+          }
+        }
+
+        // 2. Wall Collision Check
+        if (!this.map[targetKey] || !this.map[targetKey].walk) {
+          return;
+        }
+
+        // 3. Move Player
+        this.player.x = targetX;
+        this.player.y = targetY;
+
+        this.checkTileEvents();
+        this.endTurn();
+      }
+
+      passTurn() {
+        if (this.isGameOver) return;
+        this.log("一息ついて身構えた。", "#94a3b8");
+        this.endTurn();
+      }
+
+      useStairs() {
+        if (this.isGameOver) return;
+        if (this.player.x === this.stairs.x && this.player.y === this.stairs.y) {
+          if (this.floor < this.maxFloor) {
+            this.floor++;
+            this.log(`階段を降りて地下 ${this.floor} 階へ進んだ。`, "#a855f7");
+            this.generateFloor(this.floor);
+            this.updateUI();
+          } else {
+            this.log("ここが最深部だ。『破邪の剣』を探し出せ！", "#ef4444");
+          }
+        } else {
+          this.log("ここには階段はない。", "#94a3b8");
+        }
+      }
+
+      checkTileEvents() {
+        // Collect Holy Sword
+        if (this.holySword && this.player.x === this.holySword.x && this.player.y === this.holySword.y) {
+          this.triggerVictory();
+          return;
+        }
+
+        // Item Pickup
+        for (let i = 0; i < this.items.length; i++) {
+          const it = this.items[i];
+          if (it.x === this.player.x && it.y === this.player.y) {
+            if (this.player.inventory.length < 12) {
+              this.player.inventory.push(it);
+              this.items.splice(i, 1);
+              this.log(`${it.name} を拾ってリュックに収めた。`, "#38bdf8");
+              this.updateUI();
+            } else {
+              this.log(`足元に ${it.name} があるがリュックが一杯だ。`, "#e2e8f0");
+            }
+            break;
+          }
+        }
+
+        if (this.player.x === this.stairs.x && this.player.y === this.stairs.y) {
+          this.log("下り階段がある。[>] または「階段」で次のフロアへ。", "#fbbf24");
+        }
+      }
+
+      getEffectiveAtk() {
+        return this.player.baseAtk + (this.player.equippedWeapon ? this.player.equippedWeapon.bonus : 0);
+      }
+
+      getEffectiveDef() {
+        return this.player.baseDef + (this.player.equippedArmor ? this.player.equippedArmor.bonus : 0);
+      }
+
+      playerAttack(monster) {
+        const damage = Math.max(1, this.getEffectiveAtk() - monster.def + Math.floor(ROT.RNG.getUniform() * 3) - 1);
+        monster.curHp -= damage;
+        this.log(`${monster.name} に ${damage} のダメージを与えた！`, "#f97316");
+
+        if (monster.curHp <= 0) {
+          this.log(`${monster.name} を討伐した！ (${monster.exp} EXP)`, "#4ade80");
+          this.monstersDefeated++;
+          this.gainExp(monster.exp);
+          const idx = this.monsters.indexOf(monster);
+          if (idx !== -1) this.monsters.splice(idx, 1);
+        }
+      }
+
+      gainExp(amount) {
+        this.player.exp += amount;
+        while (this.player.exp >= this.player.nextExp) {
+          this.player.level++;
+          this.player.exp -= this.player.nextExp;
+          this.player.nextExp = Math.floor(this.player.nextExp * 1.5);
+          
+          const hpGain = 5 + Math.floor(ROT.RNG.getUniform() * 4);
+          this.player.maxHp += hpGain;
+          this.player.hp = Math.min(this.player.maxHp, this.player.hp + hpGain);
+          this.player.baseAtk += 2;
+          if (this.player.level % 2 === 0) this.player.baseDef += 1;
+
+          this.log(`レベルアップ！ LV ${this.player.level} に到達！ (最大HP+${hpGain}, 攻撃+2)`, "#facc15");
+        }
+      }
+
+      endTurn() {
+        this.turns++;
+
+        // Natural HP regeneration or Poison decay
+        if (this.player.poisoned > 0) {
+          this.player.poisoned--;
+          this.player.hp -= 1;
+          this.log("毒の苦痛！ (HP -1)", "#c084fc");
+          if (this.player.hp <= 0) {
+            this.triggerGameOver("毒の痛みに耐えきれず倒れた...");
+            return;
+          }
+        } else if (this.turns % 8 === 0 && this.player.hp < this.player.maxHp) {
+          this.player.hp = Math.min(this.player.maxHp, this.player.hp + 1);
+        }
+
+        // Fast Enemy Turn Processing (only awake nearby enemies)
+        this.processMonsterTurns();
+
+        this.computeFOV();
+        this.draw();
+        this.updateUI();
+      }
+
+      /* Ultra-lightweight AI: avoids full-map pathfinding lag */
+      processMonsterTurns() {
+        const px = this.player.x;
+        const py = this.player.y;
+
+        for (let i = 0; i < this.monsters.length; i++) {
+          const m = this.monsters[i];
+
+          // 1. Confusion state
+          if (m.confused > 0) {
+            m.confused--;
+            const rx = Math.floor(ROT.RNG.getUniform() * 3) - 1;
+            const ry = Math.floor(ROT.RNG.getUniform() * 3) - 1;
+            this.moveMonster(m, m.x + rx, m.y + ry);
+            continue;
+          }
+
+          // Chebyshev Distance
+          const dx = px - m.x;
+          const dy = py - m.y;
+          const dist = Math.max(Math.abs(dx), Math.abs(dy));
+
+          // Melee Attack
+          if (dist === 1) {
+            this.monsterAttack(m);
+            if (this.isGameOver) return;
+            continue;
+          }
+
+          // Skip monsters far away (> 9 tiles) to keep frame rate silky smooth
+          if (dist > 9 && !this.visible[`${m.x},${m.y}`]) {
+            continue;
+          }
+
+          // Ranged attacks (Mage, Elf, Beholder, Lich)
+          if (m.ai === 'ranged' && dist <= 4 && this.hasLineOfSight(m.x, m.y, px, py)) {
+            const spellDmg = Math.max(2, Math.floor(m.atk * 0.75) - this.getEffectiveDef());
+            this.player.hp -= spellDmg;
+            this.log(`${m.name} の呪術が直撃！ ${spellDmg} のダメージ！`, "#ef4444");
+            if (this.player.hp <= 0) {
+              this.triggerGameOver(`${m.name} の遠隔魔法で力尽きた...`);
+              return;
+            }
+            continue;
+          }
+
+          // Fast direct stepping towards player
+          if (m.ai === 'erratic' && ROT.RNG.getUniform() < 0.4) {
+            const rx = Math.floor(ROT.RNG.getUniform() * 3) - 1;
+            const ry = Math.floor(ROT.RNG.getUniform() * 3) - 1;
+            this.moveMonster(m, m.x + rx, m.y + ry);
+          } else {
+            const stepX = Math.sign(dx);
+            const stepY = Math.sign(dy);
+
+            // Attempt diagonal then straight steps
+            if (!this.moveMonster(m, m.x + stepX, m.y + stepY)) {
+              if (stepX !== 0 && this.moveMonster(m, m.x + stepX, m.y)) {
+                // moved x
+              } else if (stepY !== 0 && this.moveMonster(m, m.x, m.y + stepY)) {
+                // moved y
+              }
+            }
+          }
+        }
+      }
+
+      hasLineOfSight(x0, y0, x1, y1) {
+        // rot.js 2.2.0 には ROT.Line が無いため、ブレゼンハム法で自前判定
+        let x = x0, y = y0;
+        const dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
+        const sx = x0 < x1 ? 1 : -1, sy = y0 < y1 ? 1 : -1;
+        let err = dx - dy;
+        while (!(x === x1 && y === y1)) {
+          const e2 = 2 * err;
+          if (e2 > -dy) { err -= dy; x += sx; }
+          if (e2 < dx) { err += dx; y += sy; }
+          if (x === x1 && y === y1) break;
+          const cell = this.map[`${x},${y}`];
+          if (!cell || !cell.see) return false;
+        }
+        return true;
+      }
+
+      moveMonster(m, targetX, targetY) {
+        const k = `${targetX},${targetY}`;
+        if (!this.map[k] || !this.map[k].walk) return false;
+        if (targetX === this.player.x && targetY === this.player.y) return false;
+        for (let i = 0; i < this.monsters.length; i++) {
+          if (this.monsters[i] !== m && this.monsters[i].x === targetX && this.monsters[i].y === targetY) {
+            return false;
+          }
+        }
+
+        m.x = targetX;
+        m.y = targetY;
+        return true;
+      }
+
+      monsterAttack(m) {
+        const dmg = Math.max(1, m.atk - this.getEffectiveDef() + Math.floor(ROT.RNG.getUniform() * 3) - 1);
+        this.player.hp -= dmg;
+        this.log(`${m.name} の攻撃！ ${dmg} のダメージを受けた。`, "#f87171");
+
+        if (m.special === 'poison' && ROT.RNG.getUniform() < 0.35 && this.player.poisoned === 0) {
+          this.player.poisoned = 10;
+          this.log(`${m.name} の毒牙に蝕まれてしまった！`, "#c084fc");
+        } else if (m.special === 'drain' && ROT.RNG.getUniform() < 0.3) {
+          m.curHp = Math.min(m.hp, m.curHp + dmg);
+          this.log(`${m.name} は生命力を吸収した！`, "#dc2626");
+        }
+
+        if (this.player.hp <= 0) {
+          this.triggerGameOver(`${m.name} に敗北した...`);
+        }
+      }
+
+      useItem(index) {
+        if (index < 0 || index >= this.player.inventory.length) return;
+        const item = this.player.inventory[index];
+
+        if (item.type === 'herb') {
+          if (item.heal) {
+            const actualHeal = Math.min(item.heal, this.player.maxHp - this.player.hp);
+            this.player.hp += actualHeal;
+            this.log(`${item.name} を使用した。HPが ${actualHeal} 回復！`, "#4ade80");
+          }
+          if (item.curePoison) {
+            this.player.poisoned = 0;
+            this.log(`体内の毒が綺麗に消え去った！`, "#38bdf8");
+          }
+          this.player.inventory.splice(index, 1);
+        } else if (item.type === 'scroll') {
+          if (item.effect === 'warp') {
+            const pos = this.getRandomEmptyFloorCell();
+            if (pos) {
+              this.player.x = pos.x;
+              this.player.y = pos.y;
+              this.log(`空間が歪曲し、安全な場所へと瞬間移動した！`, "#818cf8");
+            }
+          } else if (item.effect === 'fire') {
+            let hitCount = 0;
+            for (let i = this.monsters.length - 1; i >= 0; i--) {
+              const m = this.monsters[i];
+              if (this.visible[`${m.x},${m.y}`]) {
+                m.curHp -= FIRE_DAMAGE;
+                hitCount++;
+                if (m.curHp <= 0) {
+                  this.gainExp(m.exp);
+                  this.monstersDefeated++;
+                  this.monsters.splice(i, 1);
+                }
+              }
+            }
+            this.log(`火炎放射！ 視界内の敵 ${hitCount} 体に${FIRE_DAMAGE}ダメージを与えた！`, "#ef4444");
+          } else if (item.effect === 'confuse') {
+            let count = 0;
+            for (let i = 0; i < this.monsters.length; i++) {
+              const m = this.monsters[i];
+              if (this.visible[`${m.x},${m.y}`]) {
+                // 読んだターン自体にも1回減るため+1して、読んだ後に丸CONFUSE_TURNS回ぶん行動できるようにする
+                m.confused = CONFUSE_TURNS + 1;
+                count++;
+              }
+            }
+            this.log(`眩い光が放たれ、視界内の敵 ${count} 体が混乱した！`, "#facc15");
+          }
+          this.player.inventory.splice(index, 1);
+        } else if (item.type === 'weapon') {
+          if (this.player.equippedWeapon === item) {
+            this.player.equippedWeapon = null;
+            this.log(`${item.name} を外した。`, "#94a3b8");
+          } else {
+            this.player.equippedWeapon = item;
+            this.log(`${item.name} を装備した！ (攻撃力+${item.bonus})`, "#f97316");
+          }
+        } else if (item.type === 'armor') {
+          if (this.player.equippedArmor === item) {
+            this.player.equippedArmor = null;
+            this.log(`${item.name} を外した。`, "#94a3b8");
+          } else {
+            this.player.equippedArmor = item;
+            this.log(`${item.name} を装備した！ (防御力+${item.bonus})`, "#38bdf8");
+          }
+        }
+
+        this.closeInventory();
+        this.endTurn();
+      }
+
+      dropItem(index) {
+        if (index < 0 || index >= this.player.inventory.length) return;
+        const item = this.player.inventory[index];
+        if (this.player.equippedWeapon === item) this.player.equippedWeapon = null;
+        if (this.player.equippedArmor === item) this.player.equippedArmor = null;
+
+        item.x = this.player.x;
+        item.y = this.player.y;
+        this.items.push(item);
+        this.player.inventory.splice(index, 1);
+        this.log(`${item.name} を足元に置いた。`, "#94a3b8");
+
+        this.renderInventory();
+        this.updateUI();
+        this.draw();
+      }
+
+      log(msg, color = '#e2e8f0') {
+        const logBox = document.getElementById("message-log");
+        const entry = document.createElement("div");
+        entry.className = "log-item leading-tight";
+        entry.style.color = color;
+        entry.textContent = `> ${msg}`;
+        logBox.insertBefore(entry, logBox.firstChild);
+
+        while (logBox.children.length > 40) {
+          logBox.removeChild(logBox.lastChild);
+        }
+      }
+
+      updateUI() {
+        document.getElementById("stat-floor").textContent = `B${this.floor}F`;
+        document.getElementById("stat-lv").textContent = this.player.level;
+        document.getElementById("stat-hp").textContent = this.player.hp;
+        document.getElementById("stat-maxhp").textContent = this.player.maxHp;
+        document.getElementById("stat-atk").textContent = this.getEffectiveAtk();
+        document.getElementById("stat-def").textContent = this.getEffectiveDef();
+        document.getElementById("stat-exp").textContent = this.player.exp;
+        document.getElementById("stat-next").textContent = this.player.nextExp;
+        document.getElementById("stat-turn").textContent = this.turns;
+
+        const wpnText = this.player.equippedWeapon ? `${this.player.equippedWeapon.name} (+${this.player.equippedWeapon.bonus})` : '素手 (+0)';
+        const armText = this.player.equippedArmor ? `${this.player.equippedArmor.name} (+${this.player.equippedArmor.bonus})` : '平服 (+0)';
+        document.getElementById("equip-weapon").textContent = wpnText;
+        document.getElementById("equip-armor").textContent = armText;
+
+        if (this.player.poisoned > 0) {
+          document.getElementById("stat-hp").className = "text-purple-400 font-bold animate-pulse";
+        } else {
+          document.getElementById("stat-hp").className = "text-red-400 font-bold";
+        }
+      }
+
+      openInventory() {
+        const modal = document.getElementById("modal-inventory");
+        modal.classList.remove("hidden");
+        this.renderInventory();
+      }
+
+      closeInventory() {
+        document.getElementById("modal-inventory").classList.add("hidden");
+      }
+
+      renderInventory() {
+        const list = document.getElementById("inventory-list");
+        const countSpan = document.getElementById("inv-count");
+        list.innerHTML = "";
+        countSpan.textContent = this.player.inventory.length;
+
+        if (this.player.inventory.length === 0) {
+          list.innerHTML = '<div class="text-slate-500 text-center py-4">所持品はありません</div>';
+          return;
+        }
+
+        this.player.inventory.forEach((item, index) => {
+          const row = document.createElement("div");
+          row.className = "flex items-center justify-between bg-slate-800/80 p-2 rounded border border-slate-700";
+
+          const isEquipped = (item === this.player.equippedWeapon || item === this.player.equippedArmor);
+          const equipBadge = isEquipped ? '<span class="text-emerald-400 text-xs font-bold">[装備中]</span> ' : '';
+
+          row.innerHTML = `
+            <div class="flex flex-col">
+              <span class="font-bold flex items-center gap-1.5" style="color: ${item.color}">
+                <span>${item.char}</span>
+                <span>${item.name}</span>
+                ${equipBadge}
+              </span>
+              <span class="text-[11px] text-slate-400">${item.desc || ''}</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <button class="btn-use bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-2.5 py-1 rounded font-bold transition">
+                ${item.type === 'weapon' || item.type === 'armor' ? (isEquipped ? '外す' : '装備') : '使う'}
+              </button>
+              <button class="btn-drop bg-rose-900/60 hover:bg-rose-800 text-rose-200 text-xs px-2 py-1 rounded transition">
+                捨てる
+              </button>
+            </div>
+          `;
+
+          row.querySelector(".btn-use").addEventListener("click", () => this.useItem(index));
+          row.querySelector(".btn-drop").addEventListener("click", () => this.dropItem(index));
+          list.appendChild(row);
+        });
+      }
+
+      triggerGameOver(cause) {
+        this.isGameOver = true;
+        const modal = document.getElementById("modal-gameover");
+        const title = document.getElementById("modal-title");
+        title.textContent = "GAME OVER";
+        title.className = "text-2xl font-bold text-red-500 tracking-wider";
+        document.getElementById("modal-desc").textContent = cause;
+
+        document.getElementById("res-floor").textContent = `B${this.floor}F`;
+        document.getElementById("res-lv").textContent = this.player.level;
+        document.getElementById("res-kills").textContent = this.monstersDefeated;
+        document.getElementById("res-turns").textContent = this.turns;
+
+        modal.classList.remove("hidden");
+      }
+
+      triggerVictory() {
+        this.isGameOver = true;
+        const modal = document.getElementById("modal-gameover");
+        const title = document.getElementById("modal-title");
+        title.textContent = "★ GAME CLEAR ★";
+        title.className = "text-2xl font-bold text-amber-400 tracking-wider animate-pulse";
+        
+        document.getElementById("modal-desc").innerHTML = 
+          `<span class="text-sky-300 font-bold">至高の宝『破邪の剣』を手に入れた！</span><br>迷宮を覆っていた深き魔気は消え失せ、真の凱旋を果たした。`;
+
+        document.getElementById("res-floor").textContent = `B${this.floor}F (完全踏破)`;
+        document.getElementById("res-lv").textContent = this.player.level;
+        document.getElementById("res-kills").textContent = this.monstersDefeated;
+        document.getElementById("res-turns").textContent = this.turns;
+
+        modal.classList.remove("hidden");
+      }
+
+      /* スタート画面を閉じて冒険を始める */
+      beginAdventure() {
+        const startModal = document.getElementById("modal-start");
+        if (startModal.classList.contains("hidden")) return;
+        startModal.classList.add("hidden");
+        // ボタンにフォーカスが残るとEnter/スペースが二重に反応するため外す
+        if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+      }
+
+      /* Setup listeners strictly once across entire runtime */
+      initGlobalEventListeners() {
+        window.addEventListener("keydown", (e) => {
+          // スタート画面の表示中は、Enter / スペースで開始し、それ以外の入力は受け付けない
+          const startModal = document.getElementById("modal-start");
+          if (!startModal.classList.contains("hidden")) {
+            if (e.key === "Enter" || e.key === " ") {
+              this.beginAdventure();
+              e.preventDefault();
+            }
+            return;
+          }
+
+          if (this.isGameOver) return;
+
+          const invModal = document.getElementById("modal-inventory");
+          if (!invModal.classList.contains("hidden")) {
+            if (e.key === "Escape" || e.key === "i" || e.key === "I") {
+              this.closeInventory();
+            }
+            return;
+          }
+
+          let handled = false;
+          switch (e.key) {
+            case "ArrowUp":
+            case "k":
+            case "K":
+            case "8":
+              this.handlePlayerMove(0, -1);
+              handled = true;
+              break;
+            case "ArrowDown":
+            case "j":
+            case "J":
+            case "2":
+              this.handlePlayerMove(0, 1);
+              handled = true;
+              break;
+            case "ArrowLeft":
+            case "h":
+            case "H":
+            case "4":
+              this.handlePlayerMove(-1, 0);
+              handled = true;
+              break;
+            case "ArrowRight":
+            case "l":
+            case "L":
+            case "6":
+              this.handlePlayerMove(1, 0);
+              handled = true;
+              break;
+
+            case "y":
+            case "Y":
+            case "7":
+              this.handlePlayerMove(-1, -1);
+              handled = true;
+              break;
+            case "u":
+            case "U":
+            case "9":
+              this.handlePlayerMove(1, -1);
+              handled = true;
+              break;
+            case "b":
+            case "B":
+            case "1":
+              this.handlePlayerMove(-1, 1);
+              handled = true;
+              break;
+            case "n":
+            case "N":
+            case "3":
+              this.handlePlayerMove(1, 1);
+              handled = true;
+              break;
+
+            case " ":
+            case ".":
+            case "5":
+              this.passTurn();
+              handled = true;
+              break;
+            case ">":
+            case "Enter":
+              this.useStairs();
+              handled = true;
+              break;
+            case "i":
+            case "I":
+              this.openInventory();
+              handled = true;
+              break;
+          }
+
+          if (handled) {
+            e.preventDefault();
+          }
+        });
+
+        // Touch D-Pad
+        document.querySelectorAll(".dpad-btn").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const dx = parseInt(btn.getAttribute("data-dx"), 10);
+            const dy = parseInt(btn.getAttribute("data-dy"), 10);
+            this.handlePlayerMove(dx, dy);
+          });
+        });
+
+        document.getElementById("dpad-center").addEventListener("click", () => this.passTurn());
+        document.getElementById("btn-wait").addEventListener("click", () => this.passTurn());
+        document.getElementById("btn-stairs").addEventListener("click", () => this.useStairs());
+        document.getElementById("btn-inventory").addEventListener("click", () => this.openInventory());
+        document.getElementById("btn-close-inv").addEventListener("click", () => this.closeInventory());
+
+        document.getElementById("btn-start").addEventListener("click", () => this.beginAdventure());
+
+        document.getElementById("btn-restart").addEventListener("click", () => {
+          document.getElementById("modal-gameover").classList.add("hidden");
+          this.startNewGame();
+        });
+      }
+    }
+
+    // Launch once on window load
+    window.addEventListener("DOMContentLoaded", () => {
+      window.game = new FastRogueEngine();
+    });
+  </script>
+</body>
+</html>
