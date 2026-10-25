@@ -1,237 +1,228 @@
-<!-- 対象ファイル: index.html -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOEIC RE:BOOT 730 | 50代からの高回転・即断自習トレーニング</title>
+  <meta name="description" content="50代会社員が独学730点を奪還するために構築した実践型トレーニング道場。頻出コロケーションとPart 5英文法1,000問超を完全無料・登録不要で高速反復。">
   
-  <!-- キャッシュ完全無効化（アクセス毎に最新版を取得） -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-
-  <title>TOEIC RE:BOOT 730 | 40代後半・50代からの高回転・即断自習ポータル</title>
-  
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS & FontAwesome CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: 視認性に優れたUD系・角ゴシック -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Inter:wght@600;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
-  <!-- FontAwesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
     body {
-      background-color: #0f172a; /* 落ち着いたダークスレート */
-      color: #f1f5f9;
-      font-family: 'Noto Sans JP', 'Inter', sans-serif;
-      font-size: 16px;
-      line-height: 1.7;
-    }
-    .base-card {
-      background: #1e293b;
-      border: 1px solid #334155;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-slate-950">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-amber-500 selection:text-slate-950">
 
-  <!-- ヘッダー -->
-  <header class="sticky top-0 z-50 bg-[#0f172a]/95 backdrop-blur border-b border-slate-700 px-4 py-3.5">
-    <div class="max-w-xl mx-auto flex items-center justify-between gap-2">
-      <div class="flex items-center gap-2.5 shrink-0">
-        <span class="w-2.5 h-6 bg-sky-400 rounded-sm"></span>
-        <span class="font-extrabold text-lg tracking-wide text-white">
-          TOEIC RE:BOOT <span class="text-sky-400">730</span>
+  <!-- ================= HEADER ================= -->
+  <header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-xl mx-auto px-4 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse"></span>
+        <span class="font-black tracking-wider text-base text-white">
+          TOEIC RE:BOOT <span class="text-amber-400">730</span>
         </span>
       </div>
-      <div class="flex items-center gap-1.5 text-xs font-bold">
-        <a href="recommend.html" class="text-amber-300 bg-amber-950/70 px-2.5 py-1.5 rounded-lg border border-amber-800 hover:border-amber-400 transition">
-          おすすめ教材
+      <nav class="flex items-center gap-3 text-xs font-semibold">
+        <a href="recommend.html" class="text-slate-300 hover:text-white px-2.5 py-1.5 rounded-lg hover:bg-slate-800/80 transition-colors">
+          教材4選
         </a>
-        <a href="profile.html" class="text-sky-400 bg-sky-950/80 px-2.5 py-1.5 rounded-lg border border-sky-800 hover:border-sky-400 transition truncate">
-          中の人・スコア
+        <a href="profile.html" class="text-slate-300 hover:text-white px-2.5 py-1.5 rounded-lg hover:bg-slate-800/80 transition-colors">
+          奪還録
         </a>
-      </div>
+      </nav>
     </div>
   </header>
 
-  <!-- スマホ・ファーストビュー -->
-  <div class="max-w-xl mx-auto px-4 pt-6 pb-2 w-full">
-    <div class="base-card rounded-2xl p-5 sm:p-7 border-l-4 border-l-sky-400 space-y-3">
-      <div class="flex flex-wrap items-center gap-2">
-        <span class="text-xs font-bold text-amber-400 bg-amber-950/60 px-2.5 py-0.5 rounded border border-amber-800">
-          <i class="fa-solid fa-unlock-keyhole mr-1"></i> だれでも完全無料・登録不要
+  <!-- ================= HERO (FV) ================= -->
+  <section class="border-b border-slate-800/80 bg-gradient-to-b from-slate-900/60 to-slate-950 py-8 px-4">
+    <div class="max-w-xl mx-auto text-left">
+      
+      <!-- 特長バッジ -->
+      <div class="flex flex-wrap items-center gap-2 mb-3">
+        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          <i class="fa-solid fa-lock-open text-[10px]"></i> 完全無料・登録不要
         </span>
-        <span class="text-xs font-bold text-emerald-400 bg-emerald-950/60 px-2.5 py-0.5 rounded border border-emerald-800 font-mono">
-          文法1,000問超 ＋ 頻出語彙
+        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold bg-amber-500/10 text-amber-300 border border-amber-500/20">
+          <i class="fa-solid fa-mobile-screen text-[10px]"></i> 片手操作・音なし対応
         </span>
       </div>
-      
-      <h1 class="text-2xl sm:text-3xl font-black text-white leading-snug">
-        数年前の730点から、<br>
-        英語力が消滅？<br>
-        <span class="text-sky-400">大人の「高回転・即断」奪還録。</span>
+
+      <!-- キャッチコピー -->
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight tracking-tight">
+        昔の730点、<br>
+        英語力が抜けていませんか？<br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-400 to-amber-500">
+          大人の「1問10秒・即断」反復道場。
+        </span>
       </h1>
 
-      <p class="text-sm text-slate-300 leading-relaxed">
-        若い頃の丸暗記は当てになりません！通勤の5分、公式問題集の論点をとりあえず回す。1,000問を超える演習データと頻出フレーズをAIと自作した個人の練習道場です。
+      <!-- リード文 -->
+      <p class="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed">
+        丸暗記が効かない大人に必要なのは、知識の詰め込みではなく「瞬時に見抜く脊髄反射」。通勤の5分、片手スマホで回せる自習用Webアプリです。
       </p>
 
-      <!-- 実数値グラフ手記（profile.html）への誘導ボタン -->
-      <div class="pt-2">
-        <a href="profile.html" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-sky-400 text-slate-300 hover:text-white text-xs font-bold transition flex items-center justify-between shadow">
-          <span><i class="fa-solid fa-chart-line text-sky-400 mr-1.5"></i> 395点から730点までの苦闘の全記録（推移グラフ）</span>
-          <i class="fa-solid fa-chevron-right text-sky-400"></i>
+      <!-- FV内クイック導線 -->
+      <div class="mt-5 flex flex-col sm:flex-row items-center gap-2.5">
+        <a href="#step-collocation" class="w-full sm:w-auto flex-1 py-3 px-4 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm rounded-xl text-center shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-2 active:scale-[0.98]">
+          <i class="fa-solid fa-bolt"></i>
+          <span>まずは語彙・コロケーションから（STEP 1）</span>
+        </a>
+        <a href="profile.html" class="w-full sm:w-auto text-xs text-slate-400 hover:text-slate-200 py-2 px-3 text-center transition-colors">
+          <span>395点→730点の奪還録</span> <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
         </a>
       </div>
+
     </div>
-  </div>
+  </section>
 
-  <!-- メインツール選択 -->
-  <main class="max-w-xl mx-auto px-4 py-4 space-y-4 flex-1 w-full">
-    
-    <div class="flex items-center justify-between px-1">
-      <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">
-        <i class="fa-solid fa-bolt text-sky-400 mr-1"></i> 無料トレーニングモジュール
-      </span>
-      <span class="text-[11px] font-bold text-sky-400 font-mono">
-        全問いつでも開放中
-      </span>
-    </div>
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="max-w-xl mx-auto px-4 py-8 space-y-8 flex-1 w-full">
 
-    <!-- 1. 文法論点特訓 -->
-    <a href="lang-eng-grammar.html" class="base-card p-5 sm:p-6 rounded-2xl block hover:border-sky-400 transition space-y-3 relative overflow-hidden">
-      <div class="absolute top-0 right-0 bg-gradient-to-l from-sky-600 to-cyan-600 text-[10px] font-bold text-white px-3 py-1 rounded-bl-xl font-mono shadow">
-        1,000問超 収録
+    <!-- ----------------------------------------------------
+         【STEP 1】コロケーション・フレーズ高速攻略コーナー（最優先独立枠）
+         ---------------------------------------------------- -->
+    <section id="step-collocation" class="p-5 sm:p-6 bg-gradient-to-b from-slate-900 to-slate-900/90 border-2 border-amber-500/40 rounded-2xl shadow-xl relative overflow-hidden">
+      <div class="absolute -right-10 -top-10 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+      <!-- コーナー見出し -->
+      <div class="flex items-center justify-between mb-2">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+          <i class="fa-solid fa-flag-checkered text-[11px]"></i> STEP 1｜速読・即断の土台
+        </span>
+        <span class="text-[11px] text-amber-400/90 font-bold">目標 700点レベル</span>
       </div>
 
-      <div class="flex items-center justify-between pt-1">
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 text-2xl shrink-0">
-            <i class="fa-solid fa-crosshairs"></i>
-          </div>
-          <div>
-            <h2 class="text-lg font-bold text-white flex items-center gap-2">
-              Part 5 英文法論点特訓
-            </h2>
-            <div class="text-xs font-bold text-sky-400">空所の前後判定 ✕ 1,000問超の高回転ループ</div>
-          </div>
-        </div>
-        <i class="fa-solid fa-chevron-right text-slate-500"></i>
-      </div>
-      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-        1問10秒で切る。5文型から接続詞・仮定法まで、市販本を超える大ボリュームを完全無料で即座に特訓。
+      <h2 class="text-xl font-bold text-white tracking-wide">
+        頻出コロケーション・フレーズ反復
+      </h2>
+      <p class="text-xs sm:text-sm text-amber-300 font-semibold mt-1">
+        まずは基本動詞をフラッシュカードで高速攻略
       </p>
-    </a>
 
-    <!-- 2. コロケーション・単語特訓（ぼかし表現適用） -->
-    <a href="lang-flashcard.html" class="base-card p-5 sm:p-6 rounded-2xl block hover:border-emerald-400 transition space-y-3 relative overflow-hidden">
-      <div class="absolute top-0 right-0 bg-gradient-to-l from-emerald-600 to-teal-600 text-[10px] font-bold text-white px-3 py-1 rounded-bl-xl font-mono shadow">
-        頻出フレーズ網羅
+      <!-- 説得メッセージ -->
+      <div class="mt-3.5 p-3.5 bg-slate-950/70 rounded-xl border border-slate-800 text-xs text-slate-300 leading-relaxed space-y-2">
+        <p>
+          Reading対策は文法も大切ですが、よく出るコロケーションやフレーズを<strong>「塊」でまとめて覚えること</strong>が速読への最短ルートです。
+        </p>
+        <p class="text-slate-400 text-[11px]">
+          多数受験した経験感覚をもとにAIと厳選設計。まずは基本動詞7つ、続いて一般フレーズを回すことで、Part 5の空所前後を瞬時に見抜く反射神経を叩き込みます。
+        </p>
       </div>
 
-      <div class="flex items-center justify-between pt-1">
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl shrink-0">
-            <i class="fa-solid fa-layer-group"></i>
-          </div>
-          <div>
-            <h2 class="text-lg font-bold text-white">頻出コロケーション・フレーズ反復</h2>
-            <div class="text-xs font-bold text-emerald-400">1秒1単語 ✕ 高回転フラッシュ</div>
-          </div>
+      <!-- ボリューム内訳バッジ -->
+      <div class="grid grid-cols-2 gap-2 mt-3.5">
+        <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700/60 text-center">
+          <div class="text-[11px] text-slate-400 font-medium">基本動詞（7種）</div>
+          <div class="text-sm sm:text-base font-extrabold text-amber-300 mt-0.5">各 約50問</div>
         </div>
-        <i class="fa-solid fa-chevron-right text-slate-500"></i>
-      </div>
-      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-        丸暗記不要。標準コロケーションや基本動詞（make, have, take, get等）の連語を目と耳（音声合成）で強制刷り込み。
-      </p>
-    </a>
-
-    <!-- 3. おすすめ教材への誘導カード -->
-    <a href="recommend.html" class="base-card p-5 sm:p-6 rounded-2xl block hover:border-amber-400 transition space-y-3">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl shrink-0">
-            <i class="fa-solid fa-book-bookmark"></i>
-          </div>
-          <div>
-            <h2 class="text-lg font-bold text-white">実際に使って役立った教材（4選）</h2>
-            <div class="text-xs font-bold text-amber-400">公式問題集 / でる1000 / 金フレ / 特急II</div>
-          </div>
+        <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700/60 text-center">
+          <div class="text-[11px] text-slate-400 font-medium">一般頻出フレーズ</div>
+          <div class="text-sm sm:text-base font-extrabold text-emerald-300 mt-0.5">約400問</div>
         </div>
-        <i class="fa-solid fa-chevron-right text-slate-500"></i>
       </div>
-      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-        あれこれ手を出さずに最後まで残った4冊と、その理由をまとめています。
-      </p>
-    </a>
 
-    <!-- プロフィール概要 ＆ 手記案内 -->
-    <section class="base-card p-6 sm:p-7 rounded-2xl border-slate-700 mt-8">
+      <!-- メインボタン -->
+      <a href="lang-flashcard.html" class="mt-4 w-full py-3.5 px-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 active:scale-[0.98] transition-all">
+        <span>フラッシュカード特訓を起動する</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+      <p class="text-[11px] text-center text-slate-400 mt-2">
+        1秒1単語・音声合成読み上げ対応
+      </p>
+    </section>
+
+    <!-- ----------------------------------------------------
+         【STEP 2】Part 5 英文法論点特訓コーナー
+         ---------------------------------------------------- -->
+    <section class="p-5 sm:p-6 bg-slate-900/80 border border-cyan-500/30 rounded-2xl shadow-lg relative overflow-hidden">
       
-      <div class="flex items-center gap-3 pb-3 border-b border-slate-700">
-        <div class="w-11 h-11 rounded-full bg-slate-800 border-2 border-sky-400 flex items-center justify-center text-sky-400 text-lg">
-          <i class="fa-solid fa-user-tie"></i>
+      <div class="flex items-center justify-between mb-2">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">
+          <i class="fa-solid fa-stopwatch text-[11px]"></i> STEP 2｜実践・即断特訓
+        </span>
+        <span class="text-xs font-bold text-cyan-400">1,000問超 収録</span>
+      </div>
+
+      <div class="flex items-start gap-3 mt-2">
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-lg flex-shrink-0">
+          <i class="fa-solid fa-bolt-lightning"></i>
         </div>
         <div>
-          <span class="text-[11px] font-bold text-sky-400 uppercase tracking-wider">Producer Profile</span>
-          <h2 class="text-base sm:text-lg font-bold text-white">開発者について</h2>
+          <h2 class="text-lg sm:text-xl font-bold text-white">
+            Part 5 英文法論点特訓
+          </h2>
+          <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+            1問10秒で切る。品詞判定・接続詞・前置詞・関係詞など、公式の頻出急所を空所前後判定×超高回転ループで演習。
+          </p>
         </div>
       </div>
 
-      <div class="mt-4 p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between">
-        <div class="flex items-center gap-2.5">
-          <i class="fa-solid fa-award text-amber-400 text-xl"></i>
+      <a href="lang-eng-grammar.html" class="mt-4 w-full py-3 px-4 bg-slate-800 hover:bg-slate-700/80 border border-cyan-500/40 hover:border-cyan-400 text-cyan-300 font-bold text-sm rounded-xl flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+        <span>Part 5 英文法特訓を開始する</span>
+        <i class="fa-solid fa-chevron-right text-xs"></i>
+      </a>
+    </section>
+
+    <!-- ----------------------------------------------------
+         【STEP 3】厳選教材・書籍紹介
+         ---------------------------------------------------- -->
+    <section class="p-4 bg-slate-900/50 border border-slate-800 hover:border-slate-700 rounded-xl transition duration-200">
+      <a href="recommend.html" class="flex items-center justify-between group">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-base">
+            <i class="fa-solid fa-book"></i>
+          </div>
           <div>
-            <div class="text-[11px] text-slate-400">公式スコア実績</div>
-            <div class="text-sm font-bold text-white">TOEIC 730点（独学取得）➔ 奪還中</div>
+            <h3 class="text-sm font-bold text-slate-200 group-hover:text-amber-400 transition-colors">
+              実際に使って役立った教材（4選）
+            </h3>
+            <p class="text-[11px] text-slate-400">公式問題集 / でる1000 / 金フレ / 特急II</p>
           </div>
         </div>
-        <a href="profile.html" class="text-xs font-bold text-sky-400 hover:underline">
-          推移詳細 &rarr;
+        <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-amber-400 transition-colors"></i>
+      </a>
+    </section>
+
+    <!-- ----------------------------------------------------
+         【Profile】開発者ストーリー
+         ---------------------------------------------------- -->
+    <section class="p-5 bg-slate-900/30 border border-slate-800/80 rounded-2xl">
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-slate-500"></span>
+          <span class="text-xs font-bold text-slate-400 tracking-wider uppercase">Producer</span>
+        </div>
+        <a href="profile.html" class="text-xs text-amber-400 hover:underline font-medium">
+          スコア推移グラフ →
         </a>
       </div>
 
-      <div class="mt-4 space-y-3.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+      <div class="text-xs text-slate-400 leading-relaxed space-y-2">
         <p>
           数年前に必死で730点を取得したものの、実務で使わないうちに英語力が抜け落ちてしまった現役の会社員です。
         </p>
         <p>
-          50代を過ぎて奮起したものの、再びテキストを開いた時に直面したのが「若い頃の勉強法では要領が悪い過ぎた」という絶望でした。大人の脳に必要なのは、時間をかけた理解より<strong class="text-sky-400 font-bold">「1問15秒・1単語1秒で何十周も回す脊髄反射（高回転学習）」</strong>でした。
+          50代を迎え再びテキストを開いた時、大人の脳に必要なのは理解より<strong>「1問10秒・1単語1秒で何十周も回す脊髄反射（高回転学習）」</strong>だと痛感し、この自習環境を構築しました。
         </p>
       </div>
-
-      <!-- note案内（準備中表示） -->
-      <div class="mt-6 pt-5 border-t border-slate-700/80 space-y-2">
-        <div class="text-xs text-slate-400 font-bold">
-          <i class="fa-solid fa-book-open text-amber-400 mr-1"></i> より詳しいノウハウと公式問題集の解体録
-        </div>
-        <div class="w-full py-3 px-4 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-400 text-sm font-bold flex items-center justify-between">
-          <span class="flex items-center gap-2">
-            <i class="fa-solid fa-pen-nib text-slate-500"></i>
-            <span>なぜ公式問題集の高回転なのか？（note手記）</span>
-          </span>
-          <span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-amber-400 border border-slate-700 font-mono">
-            準備中
-          </span>
-        </div>
-      </div>
-
     </section>
 
   </main>
 
-  <!-- フッター -->
-  <footer class="mt-8 text-center text-xs text-slate-500 py-6 border-t border-slate-800 space-y-2">
-  <p class="font-bold text-slate-400">&copy; 2026 TOEIC RE:BOOT 730<a href="ura_index.html" class="opacity-10 hover:opacity-100 transition-opacity ml-0.5 select-none text-slate-400" style="text-decoration: none;">.</a></p>
-  <p class="text-[11px] text-slate-600">40代後半・50代からの高回転・即断自習トレーニング環境</p>
-  <p class="text-[10px] text-slate-500 pt-1">Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。</p>
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-slate-800/80 bg-slate-950 py-6 px-4 text-center text-[11px] text-slate-400 space-y-1.5">
+    <p>© 2026 TOEIC RE:BOOT 730<a href="ura_index.html" class="text-slate-800 hover:text-slate-600">.</a></p>
+    <p>50代からの高回転・即断自習トレーニング環境</p>
+    <p class="text-[10px] text-slate-400">Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。</p>
   </footer>
+
 </body>
 </html>
