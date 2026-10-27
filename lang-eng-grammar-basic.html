@@ -205,11 +205,19 @@
               </div>
             </div>
 
-            <!-- 完成文 -->
-            <div class="bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80">
-              <div class="text-[11px] text-slate-400 font-bold mb-0.5">完成した文:</div>
-              <div id="cardFullSentence" class="text-xs sm:text-sm text-slate-300 italic leading-relaxed">
-                -
+            <!-- 完成文 & 日本語訳枠（追加） -->
+            <div class="bg-slate-900/60 p-2.5 rounded-xl border border-slate-800/80 space-y-1.5">
+              <div>
+                <div class="text-[11px] text-slate-400 font-bold mb-0.5">完成した文:</div>
+                <div id="cardFullSentence" class="text-xs sm:text-sm text-slate-300 italic leading-relaxed">
+                  -
+                </div>
+              </div>
+              <div class="pt-1.5 border-t border-slate-800/80">
+                <div class="text-[11px] text-emerald-400 font-bold mb-0.5">日本語訳:</div>
+                <div id="cardFullSentenceJa" class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                  -
+                </div>
               </div>
             </div>
           </div>
@@ -285,7 +293,6 @@
 
   <!-- ================= スクリプト制御 ================= -->
   <script>
-    // 500点突破に特化した全5ブロック（計120問想定）のマッピング定義
     const GRAMMAR_FILES = {
       block1_pos: 'eng_grammar-basic_block1_pos.json',
       block2_sv: 'eng_grammar-basic_block2_sv_tense.json',
@@ -294,7 +301,6 @@
       block5_verb: 'eng_grammar-basic_block5_verb_forms.json'
     };
 
-    // ドロップダウン連動カテゴリ設定
     const CATEGORIES = {
       all: [
         { key: 'all', label: '★ 全120問一括ランダム演習' }
@@ -343,6 +349,7 @@
     const cardAnswer = document.getElementById('cardAnswer');
     const cardRule = document.getElementById('cardRule');
     const cardFullSentence = document.getElementById('cardFullSentence');
+    const cardFullSentenceJa = document.getElementById('cardFullSentenceJa');
     const progressIndex = document.getElementById('progressIndex');
     const unmasteredBadge = document.getElementById('unmasteredBadge');
     const listModal = document.getElementById('listModal');
@@ -440,6 +447,7 @@
         cardAnswer.textContent = "-";
         cardRule.textContent = "-";
         cardFullSentence.textContent = "-";
+        cardFullSentenceJa.textContent = "-";
         cardStatusBadge.classList.add('hidden');
         return;
       }
@@ -459,6 +467,8 @@
       
       const full = item.question ? item.question.replace('______', item.answer) : "";
       cardFullSentence.textContent = full ? `"${full}"` : "-";
+      // 裏面の完成文の日本語訳を表示（question_jaがあればそれを優先、なければexample_ja）
+      cardFullSentenceJa.textContent = item.question_ja || item.example_ja || "-";
 
       if (stats.review[item.id]) {
         cardStatusBadge.classList.remove('hidden');
