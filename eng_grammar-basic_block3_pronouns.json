@@ -1,0 +1,222 @@
+[
+  {
+    "id": 201,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "名詞の前を修飾する所有格（her）",
+    "example_en": "This is her new notebook.",
+    "example_ja": "これは彼女の新しいノートです。",
+    "question": "Ms. Green submitted ______ final sales report before the deadline.",
+    "options": "[ her / she / hers / herself ]",
+    "answer": "her",
+    "rule": "後ろの名詞句「final sales report」を修飾して「彼女の〜」という意味を作るため、所有格herが正解です。"
+  },
+  {
+    "id": 202,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "他動詞の直後に置く目的格（us）",
+    "example_en": "The manager called us yesterday.",
+    "example_ja": "課長は昨日私たちに電話をくれました。",
+    "question": "The branch manager contacted ______ to confirm the meeting schedule.",
+    "options": "[ us / we / our / ours ]",
+    "answer": "us",
+    "rule": "他動詞「contacted」の目的語（〜に連絡する）となる位置には、目的格の代名詞usが入ります。"
+  },
+  {
+    "id": 203,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "文頭の主語となる主格（They）",
+    "example_en": "They attended the meeting yesterday.",
+    "example_ja": "彼らは昨日その会議に出席しました。",
+    "question": "______ will participate in the annual sales conference tomorrow.",
+    "options": "[ They / Them / Their / Themselves ]",
+    "answer": "They",
+    "rule": "助動詞「will participate」に対する文の主語（S）となる位置には、主格代名詞Theyが必要です。"
+  },
+  {
+    "id": 204,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "前置詞の直後に置く目的格（him）",
+    "example_en": "Please send an email to me.",
+    "example_ja": "私にメールを送ってください。",
+    "question": "The department director prepared the presentation slides for ______.",
+    "options": "[ him / he / his / himself ]",
+    "answer": "him",
+    "rule": "前置詞「for」の目的語となる位置には、目的格代名詞himを置くのが文法上の規則です。"
+  },
+  {
+    "id": 205,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "単独で「〜のもの」を表す所有代名詞（hers）",
+    "example_en": "Your desk is bigger than mine.",
+    "example_ja": "あなたの机は私のものより大きいです。",
+    "question": "My computer is old, but ______ is brand new.",
+    "options": "[ hers / her / she / herself ]",
+    "answer": "hers",
+    "rule": "「her computer」の反復を避けて単独で主語になれる所有代名詞hers（彼女のもの）が正解です。"
+  },
+  {
+    "id": 206,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "主語自身の動作を表す再帰代名詞（himself）",
+    "example_en": "He introduced himself to the team.",
+    "example_ja": "彼はチームに自己紹介をしました。",
+    "question": "Mr. Tanaka introduced ______ to the new marketing staff.",
+    "options": "[ himself / him / his / he ]",
+    "answer": "himself",
+    "rule": "主語（Mr. Tanaka）と動詞の目的語が同一人物を指す場合、「〜自身を」を表す再帰代名詞himselfを用います。"
+  },
+  {
+    "id": 207,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "熟語 by oneself（独力で、自分で）",
+    "example_en": "She solved the problem by herself.",
+    "example_ja": "彼女は自分でその問題を解決しました。",
+    "question": "The junior programmer fixed the system bug by ______.",
+    "options": "[ himself / him / his / he ]",
+    "answer": "himself",
+    "rule": "前置詞byと組み合わせて「独力で・一人で」を意味する熟語「by oneself（himself）」を完成させます。"
+  },
+  {
+    "id": 208,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "複数名詞を修飾する所有格（their）",
+    "example_en": "Students must clean their desks.",
+    "example_ja": "生徒たちは自分の机を掃除しなければなりません。",
+    "question": "All employees should keep ______ personal belongings in the lockers.",
+    "options": "[ their / them / they / theirs ]",
+    "answer": "their",
+    "rule": "後ろの名詞句「personal belongings」を修飾し、主語「All employees」を受ける所有格theirが正解です。"
+  },
+  {
+    "id": 209,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "動名詞の意味上の主語となる所有格（his）",
+    "example_en": "We were surprised at his leaving.",
+    "example_ja": "私たちは彼が去ったことに驚きました。",
+    "question": "The board approved ______ being promoted to general manager.",
+    "options": "[ his / him / he / himself ]",
+    "answer": "his",
+    "rule": "動名詞「being promoted」の前に置き、動作主（誰が昇進するのか）を示す際は所有格hisを用います。"
+  },
+  {
+    "id": 210,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "モノの所有格（its）",
+    "example_en": "The cat moved its tail.",
+    "example_ja": "その猫は尻尾を動かしました。",
+    "question": "The airline announced ______ new international flight schedule.",
+    "options": "[ its / it / them / their ]",
+    "answer": "its",
+    "rule": "単数の組織・会社「The airline」を受ける所有格（それの・その会社の）はitsです。it's（it isの短縮）との混同に注意。"
+  },
+  {
+    "id": 211,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "モノ・組織を指す単数目的格（it）",
+    "example_en": "I received the file and read it.",
+    "example_ja": "私はファイルを受け取って、それを読みました。",
+    "question": "We examined the contract carefully before signing ______.",
+    "options": "[ it / them / its / itself ]",
+    "answer": "it",
+    "rule": "前置詞signing（動名詞）の目的語として、単数名詞「the contract」を指す代名詞itが入ります。"
+  },
+  {
+    "id": 212,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "複数名詞を指す目的格（them）",
+    "example_en": "I bought books and read them.",
+    "example_ja": "私は本を買ってそれらを読みました。",
+    "question": "Please review the updated documents and return ______ tomorrow.",
+    "options": "[ them / it / their / theirs ]",
+    "answer": "them",
+    "rule": "動詞「return」の目的語として、複数名詞「the updated documents」を指す代名詞themが入ります。"
+  },
+  {
+    "id": 213,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "所有格代名詞の強調表現（on one's own）",
+    "example_en": "He did the work on his own.",
+    "example_ja": "彼は自分でその仕事をしました。",
+    "question": "Ms. Carter completed the market research project on ______ own.",
+    "options": "[ her / she / hers / herself ]",
+    "answer": "her",
+    "rule": "「on one's own（独力で）」という超頻出表現です。one'sの部分には所有格herが入ります。"
+  },
+  {
+    "id": 214,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "主語の直後で強調する再帰代名詞",
+    "example_en": "The president himself attended.",
+    "example_ja": "社長自らが出席しました。",
+    "question": "The CEO ______ visited the regional manufacturing plant.",
+    "options": "[ himself / him / his / he ]",
+    "answer": "himself",
+    "rule": "主語「The CEO」の直後で「社長自らが」と主語を強調する用法（強調用法）の再帰代名詞himselfが正解です。"
+  },
+  {
+    "id": 215,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "比較構文における所有代名詞（theirs）",
+    "example_en": "Our office is wider than theirs.",
+    "example_ja": "私たちのオフィスは彼らのものより広いです。",
+    "question": "Our sales revenue was higher than ______ this quarter.",
+    "options": "[ theirs / their / them / they ]",
+    "answer": "theirs",
+    "rule": "thanの後ろで「their sales revenue」を1語で表す所有代名詞theirs（彼らのもの、彼らの売上）を用います。"
+  },
+  {
+    "id": 216,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "第一人称単数の主格（I）",
+    "example_en": "I will send the email now.",
+    "example_ja": "私が今メールを送ります。",
+    "question": "Although tired, ______ managed to meet the project deadline.",
+    "options": "[ I / me / my / myself ]",
+    "answer": "I",
+    "rule": "主節の動詞「managed」に対する主語となる位置なので、第一人称の主格代名詞Iが入ります。"
+  },
+  {
+    "id": 217,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "第一人称複数・私たちの（our）",
+    "example_en": "This is our primary office.",
+    "example_ja": "これが私たちの主要なオフィスです。",
+    "question": "We must increase ______ production capacity next month.",
+    "options": "[ our / us / we / ours ]",
+    "answer": "our",
+    "rule": "後ろの名詞句「production capacity」を修飾し、主語「We」に対応する所有格our（私たちの）が正解です。"
+  },
+  {
+    "id": 218,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "前置詞 between の後ろに来る目的格",
+    "example_en": "Keep this between you and me.",
+    "example_ja": "ここだけの話にしておいてください。",
+    "question": "The agreement between ______ and the supplier was finalized.",
+    "options": "[ us / we / our / ours ]",
+    "answer": "us",
+    "rule": "前置詞「between」の目的語となるため、目的格usを用います（between you and usなどの形）。"
+  },
+  {
+    "id": 219,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "文末で動作主を強調する再帰代名詞",
+    "example_en": "I fixed the chair myself.",
+    "example_ja": "私は自分でその椅子を修理しました。",
+    "question": "The director wrote the entire annual report ______.",
+    "options": "[ herself / her / she / hers ]",
+    "answer": "herself",
+    "rule": "文末において「他の誰でもなく彼女自身の手で書いた」と主語を強調する再帰代名詞herselfが適切です。"
+  },
+  {
+    "id": 220,
+    "block": "Block 3 代名詞の格変化",
+    "topic": "二人称の所有格（your）と丁寧な依頼文",
+    "example_en": "Please write your address here.",
+    "example_ja": "ここにあなたのご住所を書いてください。",
+    "question": "Please attach ______ receipt when requesting a travel refund.",
+    "options": "[ your / you / yours / yourself ]",
+    "answer": "your",
+    "rule": "後ろの名詞「receipt」を修飾して「あなたの領収書」とするため、所有格yourが入ります。"
+  }
+]
