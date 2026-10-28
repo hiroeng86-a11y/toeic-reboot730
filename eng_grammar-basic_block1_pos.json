@@ -6,6 +6,7 @@
     "example_en": "Please check your schedule.",
     "example_ja": "あなたの予定を確認してください。",
     "question": "Please sign your ______ on the form.",
+    "question_ja": "用紙にあなたのお名前をご署名ください。",
     "options": "[ 名詞 / 動詞 / 形容詞 / 副詞 ]",
     "answer": "名詞",
     "rule": "所有格「your（あなたの）」の後ろには、修飾される「名詞」が置かれます。※例: name"
@@ -17,6 +18,7 @@
     "example_en": "We bought a new desk.",
     "example_ja": "私たちは新しい机を買いました。",
     "question": "She drives a ______ car.",
+    "question_ja": "彼女は小さな車を運転します。",
     "options": "[ 形容詞 / 動詞 / 副詞 / 前置詞 ]",
     "answer": "形容詞",
     "rule": "後ろの名詞「car」を修飾して「どんな車か」を説明できるのは「形容詞」です。※例: small"
@@ -28,6 +30,7 @@
     "example_en": "They work in Tokyo.",
     "example_ja": "彼らは東京で働いています。",
     "question": "Mr. Sato ______ reports every Friday.",
+    "question_ja": "佐藤さんは毎週金曜日にレポートを書きます。",
     "options": "[ 動詞 / 名詞 / 形容詞 / 副詞 ]",
     "answer": "動詞",
     "rule": "主語「Mr. Sato」の直後には、文の述語となる「動詞」が必要です。※例: writes"
@@ -39,6 +42,7 @@
     "example_en": "He walked slowly.",
     "example_ja": "彼はゆっくり歩きました。",
     "question": "The train arrived ______ this morning.",
+    "question_ja": "今朝、電車は無事に到着しました。",
     "options": "[ 副詞 / 形容詞 / 名詞 / 前置詞 ]",
     "answer": "副詞",
     "rule": "文が第1文型（SV）で完結しているため、動詞「arrived」を修飾する「副詞」が入ります。※例: safely"
@@ -50,6 +54,7 @@
     "example_en": "The meeting was successful.",
     "example_ja": "会議は成功でした。",
     "question": "The newly opened store is very ______.",
+    "question_ja": "新しく開店した店舗はとても人気があります。",
     "options": "[ 形容詞 / 動詞 / 副詞 / 前置詞 ]",
     "answer": "形容詞",
     "rule": "be動詞「is」の後ろで主語の状態を説明し、very（とても）に修飾されるのは「形容詞」です。※例: popular"
@@ -61,6 +66,7 @@
     "example_en": "Thank you for your help.",
     "example_ja": "助けていただきありがとうございます。",
     "question": "They talked about the new ______.",
+    "question_ja": "彼らは新しい計画について話し合いました。",
     "options": "[ 名詞 / 動詞 / 形容詞 / 副詞 ]",
     "answer": "名詞",
     "rule": "前置詞「about」の後ろには、前置詞の目的語となる「名詞（または代名詞・動名詞）」が必要です。※例: plan"
@@ -72,6 +78,7 @@
     "example_en": "She found an apartment.",
     "example_ja": "彼女はアパートを見つけました。",
     "question": "He gave me a ______ yesterday.",
+    "question_ja": "彼は昨日、私にプレゼントをくれました。",
     "options": "[ 名詞 / 動詞 / 形容詞 / 副詞 ]",
     "answer": "名詞",
     "rule": "不定冠詞「a」の後ろに単独で置けるのは「名詞」です。※例: present"
@@ -83,6 +90,7 @@
     "example_en": "You can use this pen.",
     "example_ja": "このペンを使って構いません。",
     "question": "We must ______ our ID badges.",
+    "question_ja": "私たちはIDバッジを着用しなければなりません。",
     "options": "[ 動詞の原形 / 名詞 / 形容詞 / 副詞 ]",
     "answer": "動詞の原形",
     "rule": "助動詞「must」の直後には、必ず「動詞の原形」が続きます。※例: wear"
@@ -94,6 +102,7 @@
     "example_en": "She carefully read the contract.",
     "example_ja": "彼女は注意深く契約書を読みました。",
     "question": "The clerk ______ checked the ticket numbers.",
+    "question_ja": "係員はチケット番号を注意深く確認しました。",
     "options": "[ 副詞 / 形容詞 / 名詞 / 接続詞 ]",
     "answer": "副詞",
     "rule": "主語（The clerk）と動詞（checked）の間に入り、動詞の動作を詳しく説明するのは「副詞」です。※例: carefully"
@@ -105,6 +114,7 @@
     "example_en": "The test was extremely difficult.",
     "example_ja": "その試験は極めて難しかったです。",
     "question": "This coffee is ______ hot.",
+    "question_ja": "このコーヒーはとても熱いです。",
     "options": "[ 副詞 / 形容詞 / 名詞 / 前置詞 ]",
     "answer": "副詞",
     "rule": "形容詞「hot」の程度を修飾して「どのくらい熱いか」を説明できるのは「副詞」です。※例: really"
@@ -116,6 +126,7 @@
     "example_en": "I need some information.",
     "example_ja": "いくつか情報が必要です。",
     "question": "The company sells ______ online.",
+    "question_ja": "その会社はオンラインで本を販売しています。",
     "options": "[ 名詞 / 動詞 / 形容詞 / 副詞 ]",
     "answer": "名詞",
     "rule": "他動詞「sells」の後ろには、「何を売るのか」を表す目的語（名詞）が必要です。※例: books"
@@ -127,6 +138,7 @@
     "example_en": "Open the window.",
     "example_ja": "窓を開けてください。",
     "question": "______ your passport at the counter.",
+    "question_ja": "カウンターでパスポートをご提示ください。",
     "options": "[ 動詞の原形 / 名詞 / 形容詞 / 副詞 ]",
     "answer": "動詞の原形",
     "rule": "相手に対する指示・依頼を表す命令文の文頭には「動詞の原形」が来ます。※例: Show"
@@ -138,6 +150,7 @@
     "example_en": "Fortunately, the weather was nice.",
     "example_ja": "幸運なことに、天気は良かったです。",
     "question": "______, the bus arrived on time.",
+    "question_ja": "幸運なことに、バスは定刻通りに到着しました。",
     "options": "[ 副詞 / 形容詞 / 名詞 / 接続詞 ]",
     "answer": "副詞",
     "rule": "カンマで区切られ、文全体を修飾できる品詞は「副詞」です。※例: Luckily"
@@ -149,6 +162,7 @@
     "example_en": "It is an important meeting.",
     "example_ja": "それは重要な会議です。",
     "question": "She works in a ______ office.",
+    "question_ja": "彼女は近代的なオフィスで働いています。",
     "options": "[ 形容詞 / 動詞 / 副詞 / 前置詞 ]",
     "answer": "形容詞",
     "rule": "冠詞「a」と名詞「office」の間に挟まり、オフィスを修飾するのは「形容詞」です。※例: modern"
@@ -160,6 +174,7 @@
     "example_en": "Put the box under the table.",
     "example_ja": "箱をテーブルの下に置いてください。",
     "question": "We had lunch ______ the cafeteria.",
+    "question_ja": "私たちはカフェテリアで昼食をとりました。",
     "options": "[ 前置詞 / 接続詞 / 形容詞 / 副詞 ]",
     "answer": "前置詞",
     "rule": "名詞句「the cafeteria」の前に置き、場所の関係を示す言葉は「前置詞」です。※例: at"
@@ -171,6 +186,7 @@
     "example_en": "I was tired, but I studied.",
     "example_ja": "疲れていましたが、勉強しました。",
     "question": "He likes apples ______ oranges.",
+    "question_ja": "彼はリンゴとオレンジが好きです。",
     "options": "[ 接続詞 / 前置詞 / 形容詞 / 副詞 ]",
     "answer": "接続詞",
     "rule": "名詞「apples」と名詞「oranges」を対等につなぐ働きをするのは「接続詞」です。※例: and"
@@ -182,6 +198,7 @@
     "example_en": "He speaks very clearly.",
     "example_ja": "彼はとてもはっきりと話します。",
     "question": "She finished the work ______ quickly.",
+    "question_ja": "彼女はかなり素早く仕事を終えました。",
     "options": "[ 副詞 / 形容詞 / 名詞 / 前置詞 ]",
     "answer": "副詞",
     "rule": "後ろの副詞「quickly」の度合いを強めることができるのは「副詞」です。※例: quite"
@@ -193,6 +210,7 @@
     "example_en": "The room is cleaned daily.",
     "example_ja": "その部屋は毎日掃除されます。",
     "question": "The letters were ______ by Ken.",
+    "question_ja": "手紙はケンによって送られました。",
     "options": "[ 過去分詞（動詞） / 名詞 / 形容詞 / 副詞 ]",
     "answer": "過去分詞（動詞）",
     "rule": "「〜される」という受動態を作るため、be動詞（were）の後ろには「過去分詞」が入ります。※例: sent"
@@ -204,6 +222,7 @@
     "example_en": "I bought two sandwiches.",
     "example_ja": "私はサンドイッチを2つ買いました。",
     "question": "We visited three ______ yesterday.",
+    "question_ja": "私たちは昨日、3つの博物館を訪れました。",
     "options": "[ 複数名詞 / 動詞 / 形容詞 / 副詞 ]",
     "answer": "複数名詞",
     "rule": "数詞「three」の後ろには、数えられるものの「複数名詞」が置かれます。※例: museums"
@@ -215,6 +234,7 @@
     "example_en": "They enjoyed swimming.",
     "example_ja": "彼らは水泳を楽しみました。",
     "question": "I ______ playing tennis on weekends.",
+    "question_ja": "私は週末にテニスをするのを楽しみます。",
     "options": "[ 動詞 / 名詞 / 形容詞 / 前置詞 ]",
     "answer": "動詞",
     "rule": "主語「I」の後ろで「〜することを楽しむ」という述語になる「動詞」が必要です。※例: enjoy"
@@ -226,6 +246,7 @@
     "example_en": "This problem is difficult.",
     "example_ja": "この問題は難しいです。",
     "question": "That ______ belongs to Mr. Brown.",
+    "question_ja": "あのカバンはブラウンさんのものです。",
     "options": "[ 単数名詞 / 動詞 / 形容詞 / 副詞 ]",
     "answer": "単数名詞",
     "rule": "指示代名詞「That（あの・その）」の後ろには修飾される「単数名詞」が置かれます。※例: bag"
@@ -237,6 +258,7 @@
     "example_en": "Call me when you arrive.",
     "example_ja": "到着したら電話してください。",
     "question": "I will wait ______ you return.",
+    "question_ja": "あなたが戻るまで私は待ちます。",
     "options": "[ 接続詞 / 前置詞 / 形容詞 / 名詞 ]",
     "answer": "接続詞",
     "rule": "後ろに文（you return）が続き、「〜するまで」という条件・時を表す節を作るのは「接続詞」です。※例: until"
@@ -248,6 +270,7 @@
     "example_en": "She is very kind.",
     "example_ja": "彼女はとても親切です。",
     "question": "The food was very ______.",
+    "question_ja": "その食べ物はとても美味しかったです。",
     "options": "[ 形容詞 / 動詞 / 副詞 / 前置詞 ]",
     "answer": "形容詞",
     "rule": "be動詞（was）の補語となり、副詞「very」で修飾されるのは「形容詞」です。※例: delicious"
@@ -259,6 +282,7 @@
     "example_en": "Please write clearly.",
     "example_ja": "はっきりと書いてください。",
     "question": "Speak ______ into the microphone.",
+    "question_ja": "マイクに向かって大きな声で話してください。",
     "options": "[ 副詞 / 形容詞 / 名詞 / 前置詞 ]",
     "answer": "副詞",
     "rule": "命令文の動詞「Speak」の話し方を修飾して詳しく説明するのは「副詞」です。※例: loudly"
@@ -270,6 +294,7 @@
     "example_en": "I want to learn English.",
     "example_ja": "私は英語を学びたいです。",
     "question": "She decided to ______ a new laptop.",
+    "question_ja": "彼女は新しいノートパソコンを買うことに決めました。",
     "options": "[ 動詞の原形 / 名詞 / 形容詞 / 副詞 ]",
     "answer": "動詞の原形",
     "rule": "「to 不定詞」を完成させるため、「to」の後ろには必ず「動詞の原形」が入ります。※例: buy"

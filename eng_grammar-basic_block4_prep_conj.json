@@ -6,6 +6,7 @@
     "example_en": "The meeting starts at 9:00 AM.",
     "example_ja": "会議は午前9時に始まります。",
     "question": "The morning express train will depart ______ 8:30 AM sharp.",
+    "question_ja": "朝の急行列車は午前8時30分ちょうどに出発します。",
     "options": "[ at / on / in / for ]",
     "answer": "at",
     "rule": "「8:30 AM」のようにピンポイントの時刻を表す場合、前置詞はatを用います。"
@@ -17,6 +18,7 @@
     "example_en": "We have an interview on Monday.",
     "example_ja": "私たちは月曜日に面接があります。",
     "question": "The new employee orientation will take place ______ Friday morning.",
+    "question_ja": "新入社員研修は金曜日の朝に行われます。",
     "options": "[ on / at / in / to ]",
     "answer": "on",
     "rule": "「Friday morning」のように曜日や特定の日を表す語句の前には前置詞onを置きます。"
@@ -28,6 +30,7 @@
     "example_en": "The branch opened in April.",
     "example_ja": "その支店は4月にオープンしました。",
     "question": "Our head office will be relocated ______ October.",
+    "question_ja": "当社本社は10月に移転する予定です。",
     "options": "[ in / at / on / of ]",
     "answer": "in",
     "rule": "「October」のように月や年、季節といった比較的幅のある期間を表す場合はinを用います。"
@@ -39,6 +42,7 @@
     "example_en": "She stayed in Boston for three days.",
     "example_ja": "彼女はボストンに3日間滞在しました。",
     "question": "Mr. Kato has lived in London ______ two years.",
+    "question_ja": "加藤さんはロンドンに2年間住んでいます。",
     "options": "[ for / during / since / at ]",
     "answer": "for",
     "rule": "「two years」のように数字を伴う時間の長さを表し、「〜の間」とする場合はforを用います。"
@@ -50,6 +54,7 @@
     "example_en": "Please remain seated during the flight.",
     "example_ja": "フライト中は着席したままでいてください。",
     "question": "Cell phones must be turned off ______ the seminar.",
+    "question_ja": "セミナー中は携帯電話の電源をお切りください。",
     "options": "[ during / for / while / between ]",
     "answer": "during",
     "rule": "「the seminar」のように特定のイベントや時期を表す名詞の前には前置詞duringを用います。whileは接続詞です。"
@@ -61,6 +66,7 @@
     "example_en": "The task was difficult, but we finished it.",
     "example_ja": "その仕事は難しかったですが、やり遂げました。",
     "question": "The hotel room was small ______ very clean and comfortable.",
+    "question_ja": "ホテルの部屋は小さかったですが、とても清潔で快適でした。",
     "options": "[ but / and / so / or ]",
     "answer": "but",
     "rule": "「小さい（マイナス）」と「清潔で快適（プラス）」という対比・逆接の関係を結ぶためbutが適切です。"
@@ -72,6 +78,7 @@
     "example_en": "She designed and built the website.",
     "example_ja": "彼女がそのウェブサイトを設計し、構築しました。",
     "question": "The manager reviewed the sales report ______ approved the budget.",
+    "question_ja": "課長は売上報告書を確認し、予算を承認しました。",
     "options": "[ and / but / yet / nor ]",
     "answer": "and",
     "rule": "「報告書を確認した」と「予算を承認した」という2つの連続した動作を対等に結ぶ接続詞andが入ります。"
@@ -83,6 +90,7 @@
     "example_en": "It started raining, so I took an umbrella.",
     "example_ja": "雨が降り始めたので、傘を持って行きました。",
     "question": "The train was delayed, ______ many workers arrived late.",
+    "question_ja": "電車が遅れたため、多くの社員が遅刻しました。",
     "options": "[ so / for / or / yet ]",
     "answer": "so",
     "rule": "「電車が遅れた（原因）」$\rightarrow$「多くの社員が遅刻した（結果）」という因果関係を結ぶ等位接続詞soが正解です。"
@@ -94,6 +102,7 @@
     "example_en": "You can pay by cash or credit card.",
     "example_ja": "現金またはクレジットカードでお支払いいただけます。",
     "question": "Clients may contact us by phone ______ by email.",
+    "question_ja": "お客様はお電話または電子メールにてお問い合わせいただけます。",
     "options": "[ or / and / so / but ]",
     "answer": "or",
     "rule": "「電話で」または「メールで」という二者択一の選択肢を提示する接続詞orが適切です。"
@@ -105,6 +114,7 @@
     "example_en": "Submit the form by 5:00 PM.",
     "example_ja": "午後5時までに用紙を提出してください。",
     "question": "Please return the survey questionnaire ______ Friday afternoon.",
+    "question_ja": "金曜日の午後までにアンケート調査票をご返送ください。",
     "options": "[ by / until / since / for ]",
     "answer": "by",
     "rule": "「金曜日の午後までに（提出を完了する）」という完了の期限を表すため前置詞byを用います。"
@@ -116,6 +126,7 @@
     "example_en": "The store is open until 9:00 PM.",
     "example_ja": "その店は午後9時まで開いています。",
     "question": "The maintenance work will continue ______ 6:00 PM today.",
+    "question_ja": "メンテナンス作業は本日の午後6時まで続きます。",
     "options": "[ until / by / at / on ]",
     "answer": "until",
     "rule": "動詞continue（継続する）とともに「6時までずっと」という状態の継続を表すためuntilが正解です。"
@@ -127,6 +138,7 @@
     "example_en": "He has worked here since 2015.",
     "example_ja": "彼は2015年からここで働いています。",
     "question": "The company has maintained strong profits ______ last year.",
+    "question_ja": "その会社は昨年以来、堅調な利益を維持しています。",
     "options": "[ since / for / in / from ]",
     "answer": "since",
     "rule": "現在完了形（has maintained）とともに用い、「過去の起点（last year）以来ずっと」を表すsinceが正解です。"
@@ -138,6 +150,7 @@
     "example_en": "He goes to the office by train.",
     "example_ja": "彼は電車でオフィスへ通っています。",
     "question": "Most overseas shipments are delivered ______ air cargo.",
+    "question_ja": "ほとんどの海外発送品は航空貨物便で配達されます。",
     "options": "[ by / in / on / with ]",
     "answer": "by",
     "rule": "交通手段や運送手段を表す場合、「by + 無冠詞名詞（air cargo）」の形を用います。"
@@ -149,6 +162,7 @@
     "example_en": "Please write with a black pen.",
     "example_ja": "黒いペンで記入してください。",
     "question": "You can open the security door ______ this electronic key.",
+    "question_ja": "この電子キーを使ってセキュリティドアを開けることができます。",
     "options": "[ with / by / in / at ]",
     "answer": "with",
     "rule": "具体的な道具や器具（this electronic key）を使って動作を行うことを表す前置詞はwithです。"
@@ -160,6 +174,7 @@
     "example_en": "The bank is between the post office and the cafe.",
     "example_ja": "その銀行は郵便局とカフェの間にあります。",
     "question": "There is a brief rest break ______ the first and second sessions.",
+    "question_ja": "第1部と第2部のセッションの間に短い休憩があります。",
     "options": "[ between / among / within / through ]",
     "answer": "between",
     "rule": "「between A and B」の形で「2つのものの間」を表します。3つ以上の集団内を表す場合はamongです。"
@@ -171,6 +186,7 @@
     "example_en": "The plan was popular among young staff.",
     "example_ja": "その計画は若手社員の間で人気がありました。",
     "question": "The product is very popular ______ university students.",
+    "question_ja": "その製品は大学生の間で非常に人気があります。",
     "options": "[ among / between / across / into ]",
     "answer": "among",
     "rule": "「university students（大学生という集団・3者以上）」の間で、という意味を表すためamongが適切です。"
@@ -182,6 +198,7 @@
     "example_en": "Deliver the package within two days.",
     "example_ja": "2日以内にその荷物を配達してください。",
     "question": "Customers will receive an answer ______ twenty-four hours.",
+    "question_ja": "お客様は24時間以内に回答を受け取ることができます。",
     "options": "[ within / by / until / for ]",
     "answer": "within",
     "rule": "「twenty-four hours（24時間）という期間の枠内・以内」を表すため前置詞withinを用います。"
@@ -193,6 +210,7 @@
     "example_en": "She speaks both English and French.",
     "example_ja": "彼女は英語とフランス語の両方を話します。",
     "question": "The hotel provides both free parking ______ wireless internet access.",
+    "question_ja": "そのホテルは無料駐車場と無線インターネットアクセスの両方を提供しています。",
     "options": "[ and / or / but / as ]",
     "answer": "and",
     "rule": "「both A and B（AとBの両方）」という相関接続詞の定型パターンです。"
@@ -204,6 +222,7 @@
     "example_en": "You can choose either tea or coffee.",
     "example_ja": "紅茶かコーヒーのどちらかをお選びいただけます。",
     "question": "Applicants may take the test either in person ______ online.",
+    "question_ja": "応募者は対面かオンラインのいずれかで試験を受けることができます。",
     "options": "[ or / and / nor / but ]",
     "answer": "or",
     "rule": "「either A or B（AかBのどちらか一方）」を導くため、orを選択します。"
@@ -215,6 +234,7 @@
     "example_en": "He drinks neither tea nor coffee.",
     "example_ja": "彼は紅茶もコーヒーも飲みません。",
     "question": "Neither the manager ______ the assistant was available yesterday.",
+    "question_ja": "昨日は課長もアシスタントも手が空いていませんでした。",
     "options": "[ nor / or / and / but ]",
     "answer": "nor",
     "rule": "「neither A nor B（AもBも〜ない）」という否定の相関接続詞を作るためnorが入ります。"
@@ -226,6 +246,7 @@
     "example_en": "He is not only smart but also diligent.",
     "example_ja": "彼は賢いだけでなく勤勉でもあります。",
     "question": "The software is not only reliable ______ extremely fast.",
+    "question_ja": "そのソフトウェアは信頼性が高いだけでなく、極めて高速です。",
     "options": "[ but also / and also / or else / as well ]",
     "answer": "but also",
     "rule": "「not only A but also B（AだけでなくBも）」の定型構文です。"
@@ -237,6 +258,7 @@
     "example_en": "Wait inside the building.",
     "example_ja": "建物の中でお待ちください。",
     "question": "Eating and drinking are strictly prohibited ______ the laboratory.",
+    "question_ja": "実験室の内部での飲食は固く禁じられています。",
     "options": "[ inside / between / toward / onto ]",
     "answer": "inside",
     "rule": "「研究所の内部で」という閉ざされた空間の内側を表すためinsideが正解です。"
@@ -248,6 +270,7 @@
     "example_en": "They have stores across the country.",
     "example_ja": "彼らは全国に店舗を持っています。",
     "question": "Our products are widely sold in retail shops ______ Japan.",
+    "question_ja": "当社製品は日本全国の小売店で広く販売されています。",
     "options": "[ across / between / against / toward ]",
     "answer": "across",
     "rule": "「across Japan」で「日本全土で・日本各地で」という場所の広がりを表します。"
@@ -259,6 +282,7 @@
     "example_en": "Do not leave without permission.",
     "example_ja": "許可なしに立ち去らないでください。",
     "question": "Visitors cannot enter the factory ______ a security pass.",
+    "question_ja": "来場者はセキュリティパスなしでは工場に入場できません。",
     "options": "[ without / except / besides / along ]",
     "answer": "without",
     "rule": "「セキュリティカードなしでは入場できない」という意味を作るためwithout（〜なしで）を用います。"
@@ -270,6 +294,7 @@
     "example_en": "We discussed about the issue.",
     "example_ja": "私たちはその問題について話し合いました。",
     "question": "For inquiries ______ the upcoming conference, please call our office.",
+    "question_ja": "今度の会議に関するお問い合わせは、当社事務所までお電話ください。",
     "options": "[ about / along / over / across ]",
     "answer": "about",
     "rule": "「〜に関する問い合わせ」という意味を作るため、関連を表す前置詞aboutを用います。"

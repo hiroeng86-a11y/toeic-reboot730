@@ -6,6 +6,7 @@
     "example_en": "She works at a local bank.",
     "example_ja": "彼女は地元の銀行で働いています。",
     "question": "The office manager ______ the building at 8:00 AM every morning.",
+    "question_ja": "オフィスマネージャーは毎朝午前8時に建物を開けます。",
     "options": "[ opens / open / opening / opened will ]",
     "answer": "opens",
     "rule": "主語「The office manager」は単数名詞であり、「every morning（毎朝）」という現在の習慣を表すため、三人称単数現在形のopensが正解です。"
@@ -17,6 +18,7 @@
     "example_en": "I received the package yesterday.",
     "example_ja": "私は昨日その荷物を受け取りました。",
     "question": "Our sales team ______ the monthly sales target yesterday.",
+    "question_ja": "私たちの営業チームは昨日、月間売上目標を達成しました。",
     "options": "[ reached / reaches / reaching / will reach ]",
     "answer": "reached",
     "rule": "文末に明確な過去を表す副詞「yesterday（昨日）」があるため、述語動詞には過去形のreachedを用います。"
@@ -28,6 +30,7 @@
     "example_en": "We will visit Kyoto next week.",
     "example_ja": "私たちは来週京都を訪れる予定です。",
     "question": "The CEO ______ an opening speech at the ceremony tomorrow.",
+    "question_ja": "CEOは明日、式典で開会のスピーチを行う予定です。",
     "options": "[ will give / gave / gives / giving ]",
     "answer": "will give",
     "rule": "文末に未来を表す「tomorrow（明日）」があるため、助動詞willを用いた未来時制「will give」が正解です。"
@@ -39,6 +42,7 @@
     "example_en": "They attend meetings on Mondays.",
     "example_ja": "彼らは月曜日に会議に出席します。",
     "question": "All employees in our marketing team ______ English fluently.",
+    "question_ja": "マーケティングチームのすべての社員は英語を流暢に話します。",
     "options": "[ speak / speaks / speaking / is speak ]",
     "answer": "speak",
     "rule": "主語は「All employees（複数名詞）」です。前置詞句「in our marketing team」に惑わされず、三人称単数のsが付かない原形speakを選びます。"
@@ -50,6 +54,7 @@
     "example_en": "They are having lunch now.",
     "example_ja": "彼らは今、昼食をとっています。",
     "question": "The software engineers are ______ the new application right now.",
+    "question_ja": "ソフトウェアエンジニアたちは今まさに新しいアプリをテストしています。",
     "options": "[ testing / test / tested / tests ]",
     "answer": "testing",
     "rule": "be動詞「are」と「right now（今まさに）」があるため、現在進行形を完成させる現在分詞「testing」が入ります。"
@@ -61,6 +66,7 @@
     "example_en": "He was reading a book then.",
     "example_ja": "彼はその時、本を読んでいました。",
     "question": "Ms. Tanaka was ______ a client when the phone rang.",
+    "question_ja": "電話が鳴ったとき、田中さんは顧客と面談中でした。",
     "options": "[ meeting / meet / meets / met ]",
     "answer": "meeting",
     "rule": "be動詞の過去形「was」の後ろで、その時進行中だった動作を表す過去進行形「meeting」が正解です。"
@@ -72,6 +78,7 @@
     "example_en": "I have lived here for ten years.",
     "example_ja": "私はここに10年間住んでいます。",
     "question": "Mr. Davis has ______ at this firm for five years.",
+    "question_ja": "デイビスさんはこの事務所で5年間働いています。",
     "options": "[ worked / working / works / work ]",
     "answer": "worked",
     "rule": "助動詞「has」と期間を表す「for five years」があるため、継続を表す現在完了形の過去分詞「worked」が入ります。"
@@ -83,6 +90,7 @@
     "example_en": "The key to the doors is here.",
     "example_ja": "それらのドアの鍵はここにあります。",
     "question": "The quality of these products ______ outstanding.",
+    "question_ja": "これらの製品の品質は極めて優れています。",
     "options": "[ is / are / were / be ]",
     "answer": "is",
     "rule": "直前に複数名詞「products」がありますが、文の本当の主語は単数名詞の「The quality」です。したがって単数扱いの「is」が正解です。"
@@ -94,6 +102,7 @@
     "example_en": "She left two hours ago.",
     "example_ja": "彼女は2時間前に出発しました。",
     "question": "The design committee ______ the proposal three days ago.",
+    "question_ja": "デザイン委員会は3日前にその提案を承認しました。",
     "options": "[ approved / approves / approving / will approve ]",
     "answer": "approved",
     "rule": "「three days ago（3日前）」という過去の一時点を表す表現があるため、動詞の過去形「approved」を選択します。"
@@ -105,6 +114,7 @@
     "example_en": "The company was founded in 2010.",
     "example_ja": "その会社は2010年に設立されました。",
     "question": "Our company ______ its first overseas branch in 2018.",
+    "question_ja": "当社は2018年に最初の海外支店を開設しました。",
     "options": "[ opened / opens / will open / opening ]",
     "answer": "opened",
     "rule": "「in 2018」のように過去の年号が明示されている文では、過去形「opened」を用います。"
@@ -116,6 +126,7 @@
     "example_en": "The sun rises in the east.",
     "example_ja": "太陽は東から昇ります。",
     "question": "The express train usually ______ at platform number two.",
+    "question_ja": "急行列車は通常、2番線ホームに停車します。",
     "options": "[ stops / stopped / stopping / will stop ]",
     "answer": "stops",
     "rule": "「usually（普段は）」という頻度を表す副詞があり、現在の習慣・反復動作を表すため現在形「stops」が正解です。"
@@ -127,6 +138,7 @@
     "example_en": "I have already finished my work.",
     "example_ja": "私はすでに仕事を終えました。",
     "question": "They have already ______ the contract documents.",
+    "question_ja": "彼らはすでに契約書類に署名しました。",
     "options": "[ signed / sign / signing / signs ]",
     "answer": "signed",
     "rule": "have already の後ろには、完了を表す現在完了形を作る「過去分詞（signed）」が続きます。"
@@ -138,6 +150,7 @@
     "example_en": "He does not drink coffee.",
     "example_ja": "彼はコーヒーを飲みません。",
     "question": "Mr. Miller does not ______ the final decision alone.",
+    "question_ja": "ミラーさんは単独で最終決定を下すことはしません。",
     "options": "[ make / makes / making / made ]",
     "answer": "make",
     "rule": "助動詞「does not」の後ろには、必ず動詞の原形「make」を置きます。"
@@ -149,6 +162,7 @@
     "example_en": "She did not attend the class.",
     "example_ja": "彼女はその授業に出席しませんでした。",
     "question": "The clerk did not ______ the confirmation email last night.",
+    "question_ja": "その係員は昨夜、確認メールを送信しませんでした。",
     "options": "[ send / sent / sending / sends ]",
     "answer": "send",
     "rule": "過去の助動詞「did not」の後ろには、動詞の原形「send」を置く必要があります。sentにしないよう注意。"
@@ -160,6 +174,7 @@
     "example_en": "I will call you when I arrive.",
     "example_ja": "到着したら電話します。",
     "question": "We will start the project as soon as the client ______ the budget.",
+    "question_ja": "クライアントが予算を承認し次第、私たちはプロジェクトを開始します。",
     "options": "[ approves / will approve / approved / approving ]",
     "answer": "approves",
     "rule": "「as soon as（〜するとすぐに）」が導く副詞節の中では、未来のことでも現在形「approves」で表します。"
@@ -171,6 +186,7 @@
     "example_en": "There is a car in the garage.",
     "example_ja": "車庫に車が1台あります。",
     "question": "There ______ many vacant seats in the auditorium right now.",
+    "question_ja": "現在、講堂には空席がたくさんあります。",
     "options": "[ are / is / was / be ]",
     "answer": "are",
     "rule": "There is/are 構文では、be動詞の後ろにある名詞が主語です。「many vacant seats（複数名詞）」なので「are」が正解です。"
@@ -182,6 +198,7 @@
     "example_en": "Water is essential for life.",
     "example_ja": "水は生命に不可欠です。",
     "question": "The information provided by the consultant ______ very useful.",
+    "question_ja": "コンサルタントから提供された情報は非常に役立ちます。",
     "options": "[ is / are / were / be ]",
     "answer": "is",
     "rule": "主語の「information」は不可算名詞（単数扱い）です。過去分詞句「provided by...」を省いて考えると「is」が導けます。"
@@ -193,6 +210,7 @@
     "example_en": "I am going to study tonight.",
     "example_ja": "私は今夜勉強するつもりです。",
     "question": "The board members are going to ______ the budget proposal tomorrow.",
+    "question_ja": "役員たちは明日、予算案について話し合う予定です。",
     "options": "[ discuss / discusses / discussing / discussed ]",
     "answer": "discuss",
     "rule": "未来を表す熟語「be going to」の後ろには、動詞の原形「discuss」が入ります。"
@@ -204,6 +222,7 @@
     "example_en": "Learning languages is interesting.",
     "example_ja": "言語を学ぶことは面白いです。",
     "question": "Handling customer complaints ______ patience and experience.",
+    "question_ja": "顧客からの苦情に対応することには、忍耐と経験が必要です。",
     "options": "[ requires / require / requiring / are require ]",
     "answer": "requires",
     "rule": "主語は動名詞「Handling（対応すること）」です。後ろに複数名詞「complaints」があっても主語全体は単数扱いとなるため、三人称単数現在の「requires」が正解です。"
@@ -215,6 +234,7 @@
     "example_en": "To finish this work takes time.",
     "example_ja": "この仕事を終えるには時間がかかります。",
     "question": "To complete the survey ______ only five minutes.",
+    "question_ja": "アンケートを完了するのにわずか5分しかかかりません。",
     "options": "[ takes / take / taking / are taken ]",
     "answer": "takes",
     "rule": "主語が「To complete（〜すること）」というto不定詞の名詞的用法である場合、単数扱いとなるため三人称単数の「takes」が正解です。"
@@ -226,6 +246,7 @@
     "example_en": "I have been busy since Monday.",
     "example_ja": "私は月曜日からずっと忙しいです。",
     "question": "Mr. Yamamoto has managed this division since he ______ to Tokyo.",
+    "question_ja": "山本さんは東京に異動して以来、この部門を管理しています。",
     "options": "[ moved / moves / moving / has moved ]",
     "answer": "moved",
     "rule": "「since + 過去の起点（S+V）」の節内では、過去の出来事を表すため動詞の過去形「moved」を用います。"
@@ -237,6 +258,7 @@
     "example_en": "This car was made in Japan.",
     "example_ja": "この車は日本で作られました。",
     "question": "The annual report was ______ to all shareholders last week.",
+    "question_ja": "年次報告書は先週、すべての株主に送付されました。",
     "options": "[ delivered / deliver / delivers / delivering ]",
     "answer": "delivered",
     "rule": "主語「The annual report」は「配達される」側なので、受動態を作る過去分詞「delivered」が正解です。"
@@ -248,6 +270,7 @@
     "example_en": "Every student has a locker.",
     "example_ja": "すべての生徒にロッカーがあります。",
     "question": "Each candidate ______ an individual interview with the director.",
+    "question_ja": "それぞれの候補者は部長との個別面接を受けます。",
     "options": "[ receives / receive / receiving / are receive ]",
     "answer": "receives",
     "rule": "「Each + 単数名詞」は単数として扱います。したがって述語動詞には三人称単数の「receives」が入ります。"
@@ -259,6 +282,7 @@
     "example_en": "Did you see that movie?",
     "example_ja": "その映画を見ましたか？",
     "question": "Did the delivery service ______ the package this morning?",
+    "question_ja": "宅配業者は今朝その荷物を届けましたか？",
     "options": "[ bring / brought / brings / bringing ]",
     "answer": "bring",
     "rule": "過去の疑問文を作る助動詞「Did」が文頭にあるため、主語の後ろに置く述語動詞は原形「bring」が正解です。"
@@ -270,6 +294,7 @@
     "example_en": "The package arrived yesterday.",
     "example_ja": "その荷物は昨日到着しました。",
     "question": "The experienced accountant ______ the financial statement yesterday.",
+    "question_ja": "経験豊富な会計士が昨日、財務諸表を監査しました。",
     "options": "[ audited / auditing / auditor / audits will ]",
     "answer": "audited",
     "rule": "文全体に述語動詞（V）が存在しません。「yesterday」があるため、過去の述語動詞「audited（監査した）」を補います。"

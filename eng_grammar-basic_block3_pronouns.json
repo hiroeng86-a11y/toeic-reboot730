@@ -6,6 +6,7 @@
     "example_en": "This is her new notebook.",
     "example_ja": "これは彼女の新しいノートです。",
     "question": "Ms. Green submitted ______ final sales report before the deadline.",
+    "question_ja": "グリーンさんは締め切り前に自身の最終売上報告書を提出しました。",
     "options": "[ her / she / hers / herself ]",
     "answer": "her",
     "rule": "後ろの名詞句「final sales report」を修飾して「彼女の〜」という意味を作るため、所有格herが正解です。"
@@ -17,6 +18,7 @@
     "example_en": "The manager called us yesterday.",
     "example_ja": "課長は昨日私たちに電話をくれました。",
     "question": "The branch manager contacted ______ to confirm the meeting schedule.",
+    "question_ja": "支店長は会議の日程を確認するために私たちに連絡しました。",
     "options": "[ us / we / our / ours ]",
     "answer": "us",
     "rule": "他動詞「contacted」の目的語（〜に連絡する）となる位置には、目的格の代名詞usが入ります。"
@@ -28,6 +30,7 @@
     "example_en": "They attended the meeting yesterday.",
     "example_ja": "彼らは昨日その会議に出席しました。",
     "question": "______ will participate in the annual sales conference tomorrow.",
+    "question_ja": "彼らは明日、年次営業会議に参加する予定です。",
     "options": "[ They / Them / Their / Themselves ]",
     "answer": "They",
     "rule": "助動詞「will participate」に対する文の主語（S）となる位置には、主格代名詞Theyが必要です。"
@@ -39,6 +42,7 @@
     "example_en": "Please send an email to me.",
     "example_ja": "私にメールを送ってください。",
     "question": "The department director prepared the presentation slides for ______.",
+    "question_ja": "部門長は彼のためにプレゼンテーションのスライドを準備しました。",
     "options": "[ him / he / his / himself ]",
     "answer": "him",
     "rule": "前置詞「for」の目的語となる位置には、目的格代名詞himを置くのが文法上の規則です。"
@@ -50,6 +54,7 @@
     "example_en": "Your desk is bigger than mine.",
     "example_ja": "あなたの机は私のものより大きいです。",
     "question": "My computer is old, but ______ is brand new.",
+    "question_ja": "私のパソコンは古いですが、彼女のものは新品です。",
     "options": "[ hers / her / she / herself ]",
     "answer": "hers",
     "rule": "「her computer」の反復を避けて単独で主語になれる所有代名詞hers（彼女のもの）が正解です。"
@@ -61,6 +66,7 @@
     "example_en": "He introduced himself to the team.",
     "example_ja": "彼はチームに自己紹介をしました。",
     "question": "Mr. Tanaka introduced ______ to the new marketing staff.",
+    "question_ja": "田中さんは新しいマーケティング担当社員に自己紹介をしました。",
     "options": "[ himself / him / his / he ]",
     "answer": "himself",
     "rule": "主語（Mr. Tanaka）と動詞の目的語が同一人物を指す場合、「〜自身を」を表す再帰代名詞himselfを用います。"
@@ -72,6 +78,7 @@
     "example_en": "She solved the problem by herself.",
     "example_ja": "彼女は自分でその問題を解決しました。",
     "question": "The junior programmer fixed the system bug by ______.",
+    "question_ja": "新人プログラマーは自力でシステムバグを修正しました。",
     "options": "[ himself / him / his / he ]",
     "answer": "himself",
     "rule": "前置詞byと組み合わせて「独力で・一人で」を意味する熟語「by oneself（himself）」を完成させます。"
@@ -83,6 +90,7 @@
     "example_en": "Students must clean their desks.",
     "example_ja": "生徒たちは自分の机を掃除しなければなりません。",
     "question": "All employees should keep ______ personal belongings in the lockers.",
+    "question_ja": "すべての従業員は私物をロッカーに保管してください。",
     "options": "[ their / them / they / theirs ]",
     "answer": "their",
     "rule": "後ろの名詞句「personal belongings」を修飾し、主語「All employees」を受ける所有格theirが正解です。"
@@ -94,6 +102,7 @@
     "example_en": "We were surprised at his leaving.",
     "example_ja": "私たちは彼が去ったことに驚きました。",
     "question": "The board approved ______ being promoted to general manager.",
+    "question_ja": "取締役会は彼が本部長に昇進することを承認しました。",
     "options": "[ his / him / he / himself ]",
     "answer": "his",
     "rule": "動名詞「being promoted」の前に置き、動作主（誰が昇進するのか）を示す際は所有格hisを用います。"
@@ -105,6 +114,7 @@
     "example_en": "The cat moved its tail.",
     "example_ja": "その猫は尻尾を動かしました。",
     "question": "The airline announced ______ new international flight schedule.",
+    "question_ja": "その航空会社は新しい国際便のスケジュールを発表しました。",
     "options": "[ its / it / them / their ]",
     "answer": "its",
     "rule": "単数の組織・会社「The airline」を受ける所有格（それの・その会社の）はitsです。it's（it isの短縮）との混同に注意。"
@@ -116,6 +126,7 @@
     "example_en": "I received the file and read it.",
     "example_ja": "私はファイルを受け取って、それを読みました。",
     "question": "We examined the contract carefully before signing ______.",
+    "question_ja": "私たちは署名する前にその契約書を注意深く確認しました。",
     "options": "[ it / them / its / itself ]",
     "answer": "it",
     "rule": "前置詞signing（動名詞）の目的語として、単数名詞「the contract」を指す代名詞itが入ります。"
@@ -127,6 +138,7 @@
     "example_en": "I bought books and read them.",
     "example_ja": "私は本を買ってそれらを読みました。",
     "question": "Please review the updated documents and return ______ tomorrow.",
+    "question_ja": "更新された書類を確認し、明日それらを返却してください。",
     "options": "[ them / it / their / theirs ]",
     "answer": "them",
     "rule": "動詞「return」の目的語として、複数名詞「the updated documents」を指す代名詞themが入ります。"
@@ -138,6 +150,7 @@
     "example_en": "He did the work on his own.",
     "example_ja": "彼は自分でその仕事をしました。",
     "question": "Ms. Carter completed the market research project on ______ own.",
+    "question_ja": "カーターさんは自力で市場調査プロジェクトを完了しました。",
     "options": "[ her / she / hers / herself ]",
     "answer": "her",
     "rule": "「on one's own（独力で）」という超頻出表現です。one'sの部分には所有格herが入ります。"
@@ -149,6 +162,7 @@
     "example_en": "The president himself attended.",
     "example_ja": "社長自らが出席しました。",
     "question": "The CEO ______ visited the regional manufacturing plant.",
+    "question_ja": "CEO自らがその地域の製造工場を視察しました。",
     "options": "[ himself / him / his / he ]",
     "answer": "himself",
     "rule": "主語「The CEO」の直後で「社長自らが」と主語を強調する用法（強調用法）の再帰代名詞himselfが正解です。"
@@ -160,6 +174,7 @@
     "example_en": "Our office is wider than theirs.",
     "example_ja": "私たちのオフィスは彼らのものより広いです。",
     "question": "Our sales revenue was higher than ______ this quarter.",
+    "question_ja": "今四半期の当社の売上高は彼らのものより高かったです。",
     "options": "[ theirs / their / them / they ]",
     "answer": "theirs",
     "rule": "thanの後ろで「their sales revenue」を1語で表す所有代名詞theirs（彼らのもの、彼らの売上）を用います。"
@@ -171,6 +186,7 @@
     "example_en": "I will send the email now.",
     "example_ja": "私が今メールを送ります。",
     "question": "Although tired, ______ managed to meet the project deadline.",
+    "question_ja": "疲れていましたが、私は何とかプロジェクトの締め切りに間に合わせました。",
     "options": "[ I / me / my / myself ]",
     "answer": "I",
     "rule": "主節の動詞「managed」に対する主語となる位置なので、第一人称の主格代名詞Iが入ります。"
@@ -182,6 +198,7 @@
     "example_en": "This is our primary office.",
     "example_ja": "これが私たちの主要なオフィスです。",
     "question": "We must increase ______ production capacity next month.",
+    "question_ja": "私たちは来月、生産能力を拡大しなければなりません。",
     "options": "[ our / us / we / ours ]",
     "answer": "our",
     "rule": "後ろの名詞句「production capacity」を修飾し、主語「We」に対応する所有格our（私たちの）が正解です。"
@@ -193,6 +210,7 @@
     "example_en": "Keep this between you and me.",
     "example_ja": "ここだけの話にしておいてください。",
     "question": "The agreement between ______ and the supplier was finalized.",
+    "question_ja": "私たちと供給業者との間の合意が完了しました。",
     "options": "[ us / we / our / ours ]",
     "answer": "us",
     "rule": "前置詞「between」の目的語となるため、目的格usを用います（between you and usなどの形）。"
@@ -204,6 +222,7 @@
     "example_en": "I fixed the chair myself.",
     "example_ja": "私は自分でその椅子を修理しました。",
     "question": "The director wrote the entire annual report ______.",
+    "question_ja": "部長は年次報告書全体を自らの手で書き上げました。",
     "options": "[ herself / her / she / hers ]",
     "answer": "herself",
     "rule": "文末において「他の誰でもなく彼女自身の手で書いた」と主語を強調する再帰代名詞herselfが適切です。"
@@ -215,6 +234,7 @@
     "example_en": "Please write your address here.",
     "example_ja": "ここにあなたのご住所を書いてください。",
     "question": "Please attach ______ receipt when requesting a travel refund.",
+    "question_ja": "出張経費の払い戻しを申請する際は、領収書を添付してください。",
     "options": "[ your / you / yours / yourself ]",
     "answer": "your",
     "rule": "後ろの名詞「receipt」を修飾して「あなたの領収書」とするため、所有格yourが入ります。"
