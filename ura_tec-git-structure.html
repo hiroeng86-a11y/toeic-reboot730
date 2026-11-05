@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git & GitHub アーキテクチャ・インフォグラフィック</title>
+  <style>
+    :root {
+      --bg: #FAF9F5;
+      --card-bg: #FFFFFF;
+      --text-main: #2D3136;
+      --text-muted: #6B7280;
+      --border: #E5E7EB;
+      --accent-work: #4B6584;
+      --accent-stage: #D980FA;
+      --accent-local: #10B981;
+      --accent-remote: #3B82F6;
+      --accent-danger: #EF4444;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    h1 {
+      font-size: 26px;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 36px 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      background-color: var(--text-main);
+      border-radius: 2px;
+    }
+
+    /* 4領域と3コマンドのフロー */
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      position: relative;
+    }
+
+    @media (max-width: 900px) {
+      .flow-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .card-header {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .card h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      flex-grow: 1;
+    }
+
+    .card .location {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border);
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: monospace;
+    }
+
+    /* コマンド矢印バッジ */
+    .command-badge {
+      background-color: var(--text-main);
+      color: #FFF;
+      font-family: monospace;
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      margin-top: 16px;
+      text-align: center;
+      display: block;
+    }
+
+    /* 復元セクション */
+    .restore-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .restore-grid { grid-template-columns: 1fr; }
+    }
+
+    .restore-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .restore-card h4 {
+      font-size: 15px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .code-box {
+      background: #F3F4F6;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #1F2937;
+      margin: 12px 0;
+    }
+
+    .badge-local { border-top: 4px solid var(--accent-local); }
+    .badge-remote { border-top: 4px solid var(--accent-remote); }
+    .badge-danger { border-top: 4px solid var(--accent-danger); }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Git & GitHub 構造とデータの所在</h1>
+      <p>「手元の隠しフォルダ (.git)」と「クラウド保管庫 (GitHub)」の分離構造</p>
+    </header>
+
+    <!-- 4領域と3ステップ -->
+    <div class="section-title">データフローと「お決まりの3行」</div>
+    <div class="flow-grid">
+
+      <!-- Step 1 -->
+      <div class="card">
+        <span class="card-header" style="color: var(--accent-work);">領域 1</span>
+        <h3>作業ディレクトリ</h3>
+        <p>画面で見えているファイル群。コードを書いたり編集したりする作業場。</p>
+        <div class="location">場所: 通常のフォルダ</div>
+        <div class="command-badge">1. git add . ➔</div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="card">
+        <span class="card-header" style="color: var(--accent-stage);">領域 2</span>
+        <h3>ステージング</h3>
+        <p>「次のセーブに何を含めるか」を登録する荷造り台（インデックス）。</p>
+        <div class="location">場所: .git/index（手元）</div>
+        <div class="command-badge">2. git commit -m "..." ➔</div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="card badge-local">
+        <span class="card-header" style="color: var(--accent-local);">領域 3（中核）</span>
+        <h3>ローカルリポジトリ</h3>
+        <p><strong>タイムマシン本体。</strong>過去の全履歴が圧縮保存されたPC内のセーブデータ保管庫。</p>
+        <div class="location">場所: .git/objects/（手元）</div>
+        <div class="command-badge">3. git push ➔</div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="card badge-remote">
+        <span class="card-header" style="color: var(--accent-remote);">領域 4</span>
+        <h3>リモート保管庫</h3>
+        <p>手元のセーブ履歴の完全コピー。共有とバックアップを担う外部倉庫。</p>
+        <div class="location">場所: MS Azure サーバー群</div>
+        <div style="margin-top: 16px; font-size: 11px; text-align: center; color: var(--text-muted);">クラウドへ反映完了</div>
+      </div>
+
+    </div>
+
+    <!-- 復元と事故対策 -->
+    <div class="section-title">復元のメカニズムとトラブル時の挙動</div>
+    <div class="restore-grid">
+
+      <div class="restore-card">
+        <h4>⚡ 基本は「ローカル（.git）」から復元</h4>
+        <p style="font-size: 13px; color: var(--text-muted);">
+          全履歴が自分のPC内（.git）に揃っているため、ネット環境がなくても過去のどのコミット地点へも一瞬で戻せます。
+        </p>
+        <div class="code-box">git checkout &lt;コミットID&gt;</div>
+        <p style="font-size: 12px; color: var(--text-muted);">※確認が終わったら <code>git switch main</code> で最新状態へ即座に復帰可能。</p>
+      </div>
+
+      <div class="restore-card badge-danger">
+        <h4>🚨 .git フォルダを誤って消去した場合</h4>
+        <p style="font-size: 13px; color: var(--text-muted);">
+          手元のコードは残りますが、履歴管理機能は全滅します。しかし、事前に push してあればマイクロソフトのサーバーから完全復旧できます。
+        </p>
+        <div class="code-box">git clone https://github.com/...</div>
+        <p style="font-size: 12px; color: var(--text-muted);">※クラウド上のセーブデータからローカル環境を再構築。</p>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

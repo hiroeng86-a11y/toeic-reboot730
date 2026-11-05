@@ -3,22 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>英語リスニング学習ツール</title>
+<title>英語リスニング学習ツール | TOEIC RE:BOOT 730</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
   :root{
-    --bg-page:#11151c;
-    --bg-panel:#1c222d;
-    --bg-well:#242c39;
-    --bg-input:#161b24;
-    --text-primary:#ECE8DD;
-    --text-secondary:#8B93A3;
-    --text-muted:#5B6373;
-    --amber:#E3A63E;
-    --teal:#4FADA0;
-    --coral:#D8674A;
-    --border:#323b4a;
-    --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Roboto,sans-serif;
-    --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+    --bg-page:#F4F7FB;
+    --bg-panel:#FFFFFF;
+    --bg-well:#F4F7FB;
+    --bg-input:#FFFFFF;
+    --text-primary:#102542;
+    --text-secondary:#475569;
+    --text-muted:#8B93A3;
+    --navy:#102542;
+    --red:#CD2D2D;
+    --amber:#d97706;
+    --teal:#0284c7;
+    --coral:#CD2D2D;
+    --border:#DCE4EE;
+    --font-sans:'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     --script-size:20px;
   }
   *{ box-sizing:border-box; }
@@ -28,34 +34,86 @@
     background:var(--bg-page);
     font-family:var(--font-sans);
     color:var(--text-primary);
-    padding:20px 12px 60px;
+    padding:0 0 60px;
+    -webkit-font-smoothing:antialiased;
   }
-  .wrap{ max-width:560px; margin:0 auto; }
-  header{ margin-bottom:16px; }
-  .eyebrow{ font-size:11px; letter-spacing:.14em; color:var(--amber); font-weight:600; margin:0 0 2px; }
-  h1{ font-size:19px; font-weight:500; margin:0; }
+  
+  /* 神戸タータン統一トップバー */
+  .top-accent{
+    height:3px;
+    background:var(--red);
+    width:100%;
+  }
+  .site-header{
+    background:#FFFFFF;
+    border-bottom:1px solid var(--border);
+    padding:12px 16px;
+    margin-bottom:20px;
+  }
+  .site-header-inner{
+    max-width:560px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    color:var(--text-secondary);
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+    transition:color .15s;
+  }
+  .back-link:hover{
+    color:var(--red);
+  }
+  .header-badge{
+    font-family:'Chakra Petch', sans-serif;
+    font-size:12px;
+    font-weight:700;
+    color:var(--navy);
+    background:var(--bg-well);
+    padding:4px 8px;
+    border-radius:6px;
+    border:1px solid var(--border);
+  }
+  .header-badge span{ color:var(--red); }
+
+  .wrap{ max-width:560px; margin:0 auto; padding:0 12px; }
+  header.tool-head{ margin-bottom:16px; }
+  .eyebrow{ font-size:11px; letter-spacing:.14em; color:var(--red); font-weight:700; margin:0 0 4px; font-family:'Chakra Petch', sans-serif; }
+  h1{ font-size:20px; font-weight:800; margin:0; color:var(--navy); }
 
   .card{
     background:var(--bg-panel);
     border:1px solid var(--border);
-    border-radius:12px;
-    padding:16px;
+    border-radius:16px;
+    padding:18px;
     margin-bottom:14px;
+    box-shadow:0 4px 12px -2px rgba(16, 37, 66, 0.05);
+    transition:border-color .2s;
   }
-  .card h2{ font-size:13px; font-weight:600; color:var(--text-secondary); margin:0 0 10px; letter-spacing:.03em; }
+  .card:hover{
+    border-color:rgba(205, 45, 45, 0.35);
+  }
+  .card h2{ font-size:13px; font-weight:700; color:var(--navy); margin:0 0 12px; letter-spacing:.03em; display:flex; align-items:center; gap:6px; }
 
   button{
     font-family:var(--font-sans);
     cursor:pointer;
     border:1px solid var(--border);
-    background:var(--bg-well);
+    background:var(--bg-panel);
     color:var(--text-primary);
     border-radius:8px;
     font-size:13px;
+    font-weight:600;
     padding:8px 10px;
-    transition:background .15s, border-color .15s;
+    transition:background .15s, border-color .15s, transform .1s;
   }
-  button:hover:not(:disabled){ background:#2c3546; border-color:#455063; }
+  button:hover:not(:disabled){ background:var(--bg-well); border-color:var(--navy); }
   button:active:not(:disabled){ transform:scale(0.97); }
   button:disabled{ opacity:.4; cursor:not-allowed; }
 
@@ -63,9 +121,9 @@
   .script-toolbar{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
   .script-toolbar button{ flex:0 0 auto; }
   .script-box{
-    background:var(--bg-input);
+    background:var(--bg-well);
     border:1px solid var(--border);
-    border-radius:8px;
+    border-radius:10px;
     padding:14px;
     min-height:160px;
     max-height:340px;
@@ -74,6 +132,7 @@
     line-height:1.7;
     white-space:pre-wrap;
     word-break:break-word;
+    color:var(--text-primary);
   }
   .script-box.empty{ color:var(--text-muted); font-size:14px; }
   .script-box textarea{
@@ -90,92 +149,128 @@
   }
 
   /* ---- Now playing / transport ---- */
-  .now-playing{ font-size:13px; color:var(--text-secondary); margin-bottom:8px; min-height:16px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .counter-row{ display:flex; align-items:baseline; gap:8px; font-family:var(--font-mono); margin-bottom:8px; }
-  .counter{ font-size:26px; font-weight:500; }
+  .now-playing{ font-size:13px; color:var(--text-secondary); margin-bottom:8px; min-height:16px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:500; }
+  .counter-row{ display:flex; align-items:baseline; gap:8px; font-family:var(--font-mono); margin-bottom:10px; }
+  .counter{ font-size:28px; font-weight:700; color:var(--navy); }
   .counter-total{ font-size:14px; color:var(--text-muted); }
 
-  .scrub-wrap{ position:relative; margin-bottom:6px; }
-  input[type=range]{ -webkit-appearance:none; width:100%; height:4px; border-radius:2px; background:var(--border); outline:none; }
-  input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; width:16px; height:16px; border-radius:50%; background:var(--amber); cursor:pointer; margin-top:-6px; }
-  input[type=range]::-moz-range-thumb{ width:16px; height:16px; border:none; border-radius:50%; background:var(--amber); cursor:pointer; }
-  .marker{ position:absolute; top:-4px; width:2px; height:12px; pointer-events:none; }
+  .scrub-wrap{ position:relative; margin-bottom:8px; }
+  input[type=range]{ -webkit-appearance:none; width:100%; height:5px; border-radius:3px; background:var(--border); outline:none; }
+  input[type=range]::-webkit-slider-thumb{ -webkit-appearance:none; width:16px; height:16px; border-radius:50%; background:var(--red); cursor:pointer; margin-top:-5.5px; box-shadow:0 0 6px rgba(205,45,45,0.4); }
+  input[type=range]::-moz-range-thumb{ width:16px; height:16px; border:none; border-radius:50%; background:var(--red); cursor:pointer; }
+  .marker{ position:absolute; top:-4px; width:2px; height:13px; pointer-events:none; }
   .marker.a{ background:var(--teal); }
   .marker.b{ background:var(--coral); }
   .ab-labels{ display:flex; justify-content:space-between; font-size:11px; color:var(--text-muted); margin-bottom:16px; font-family:var(--font-mono); }
-  .ab-labels .a-val{ color:var(--teal); }
-  .ab-labels .b-val{ color:var(--coral); }
+  .ab-labels .a-val{ color:var(--teal); font-weight:700; }
+  .ab-labels .b-val{ color:var(--coral); font-weight:700; }
 
-  .transport{ display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:16px; }
-  .btn-skip{ width:46px; height:40px; font-size:12px; font-weight:500; }
+  .transport{ display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:16px; }
+  .btn-skip{ width:46px; height:42px; font-size:12px; font-weight:600; background:#FFFFFF; border-color:var(--border); }
+  .btn-skip:hover:not(:disabled){ border-color:var(--navy); background:var(--bg-well); }
   .btn-skip[aria-label="前の曲"], .btn-skip[aria-label="次の曲"]{ font-size:18px; }
   .btn-play{
     width:56px; height:56px; border-radius:50%;
-    background:var(--amber); border-color:var(--amber); color:#1c1405;
+    background:var(--navy); border-color:var(--navy); color:#FFFFFF;
     position:relative; flex-shrink:0;
+    box-shadow:0 4px 10px rgba(16, 37, 66, 0.2);
   }
-  .btn-play:hover:not(:disabled){ background:#eeb757; }
+  .btn-play:hover:not(:disabled){ background:#1a3860; border-color:#1a3860; }
   .btn-play::before{
     content:''; position:absolute; top:50%; left:50%;
     border-top:9px solid transparent; border-bottom:9px solid transparent;
-    border-left:15px solid #1c1405; transform:translate(-40%,-50%);
+    border-left:15px solid #FFFFFF; transform:translate(-40%,-50%);
   }
   .btn-play.playing::before{
-    border:none; width:5px; height:16px; background:#1c1405;
-    box-shadow:8px 0 0 #1c1405; transform:translate(-50%,-50%);
+    border:none; width:5px; height:16px; background:#FFFFFF;
+    box-shadow:8px 0 0 #FFFFFF; transform:translate(-50%,-50%);
   }
 
   .field-row{ display:flex; align-items:center; gap:10px; margin-bottom:12px; }
   .field-row:last-child{ margin-bottom:0; }
-  .field-label{ font-size:12px; color:var(--text-secondary); width:64px; flex-shrink:0; }
-  .field-val{ font-family:var(--font-mono); font-size:13px; width:46px; text-align:right; flex-shrink:0; }
+  .field-label{ font-size:12px; color:var(--text-secondary); width:64px; flex-shrink:0; font-weight:600; }
+  .field-val{ font-family:var(--font-mono); font-size:13px; width:46px; text-align:right; flex-shrink:0; color:var(--navy); font-weight:700; }
 
   .ab-buttons{ display:flex; gap:8px; flex:1; }
   .ab-buttons button{ flex:1; }
-  .btn-a{ border-color:var(--teal); color:var(--teal); }
-  .btn-b{ border-color:var(--coral); color:var(--coral); }
+  .btn-a{ border-color:var(--teal); color:var(--teal); background:#f0f9ff; }
+  .btn-a:hover:not(:disabled){ background:#e0f2fe; }
+  .btn-b{ border-color:var(--coral); color:var(--coral); background:#fef2f2; }
+  .btn-b:hover:not(:disabled){ background:#fee2e2; }
   .btn-clear{ color:var(--text-secondary); }
 
-  .switch-row{ display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text-secondary); }
-  .switch{ width:34px; height:19px; border-radius:10px; background:var(--bg-input); border:1px solid var(--border); position:relative; cursor:pointer; flex-shrink:0; }
-  .switch::after{ content:''; position:absolute; width:13px; height:13px; border-radius:50%; background:var(--text-muted); top:2px; left:2px; transition:left .15s, background .15s; }
-  .switch.on{ border-color:var(--amber); }
-  .switch.on::after{ left:17px; background:var(--amber); }
+  .switch-row{ display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text-secondary); font-weight:500; }
+  .switch{ width:34px; height:19px; border-radius:10px; background:var(--border); border:1px solid var(--border); position:relative; cursor:pointer; flex-shrink:0; transition:background .15s; }
+  .switch::after{ content:''; position:absolute; width:13px; height:13px; border-radius:50%; background:#FFFFFF; top:2px; left:2px; transition:left .15s; box-shadow:0 1px 3px rgba(0,0,0,0.2); }
+  .switch.on{ border-color:var(--navy); background:var(--navy); }
+  .switch.on::after{ left:17px; }
 
   /* ---- Playlist ---- */
-  .playlist-toolbar{ display:flex; gap:8px; margin-bottom:10px; }
-  .playlist-toolbar button{ flex:1; }
+  .playlist-toolbar{ display:flex; gap:8px; margin-bottom:12px; }
+  .playlist-toolbar button{ flex:1; background:var(--navy); color:#FFFFFF; border-color:var(--navy); font-weight:700; padding:10px; }
+  .playlist-toolbar button:hover{ background:#1a3860; border-color:#1a3860; }
   .track-row{
     display:flex; align-items:center; gap:8px;
-    padding:9px 6px; border-bottom:1px solid var(--border);
+    padding:8px 6px; border-bottom:1px solid var(--border);
   }
   .track-row:last-child{ border-bottom:none; }
-  .track-row.active{ background:var(--bg-well); border-radius:6px; }
+  .track-row.active{ background:var(--bg-well); border-radius:8px; }
   .track-info{
     flex:1; display:flex; align-items:center; gap:8px;
     background:none; border:none; color:var(--text-primary);
     text-align:left; padding:4px; font-size:13px; cursor:pointer;
-    overflow:hidden;
+    overflow:hidden; font-weight:600;
   }
   .track-name{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .track-dot{ width:7px; height:7px; border-radius:50%; background:var(--border); flex-shrink:0; }
   .track-dot.has-script{ background:var(--teal); }
   .track-actions{ display:flex; gap:4px; flex-shrink:0; }
-  .tiny{ width:30px; height:30px; padding:0; font-size:13px; }
+  .tiny{ width:30px; height:30px; padding:0; font-size:13px; background:#FFFFFF; border-color:var(--border); }
   .empty-msg{ font-size:13px; color:var(--text-muted); padding:8px 4px; }
 
   input[type=file]{ display:none; }
+
+  .site-footer{
+    margin-top:40px;
+    padding:24px 16px;
+    background:#FFFFFF;
+    border-top:1px solid var(--border);
+    text-align:center;
+    font-size:12px;
+    color:var(--text-secondary);
+    width:100%;
+  }
+  .site-footer p{ margin:4px 0; }
+  .site-footer .copyright{ font-weight:700; color:var(--navy); }
+  .site-footer .sub-text{ font-size:12px; color:var(--text-secondary); }
+  .site-footer .privacy-note{ font-size:11px; color:var(--text-muted); }
+  .site-footer .secret-link{ color:var(--border); text-decoration:none; }
+  .site-footer .secret-link:hover{ color:var(--text-muted); }
 </style>
 </head>
 <body>
+
+<!-- 神戸タータン統一ヘッダー -->
+<div class="top-accent"></div>
+<div class="site-header">
+  <div class="site-header-inner">
+    <a href="index.html" class="back-link">
+      <i class="fa-solid fa-arrow-left"></i> 自習システムトップへ
+    </a>
+    <div class="header-badge">
+      LISTENING <span>LAB</span>
+    </div>
+  </div>
+</div>
+
 <div class="wrap">
-<header>
-  <p class="eyebrow">LISTENING LAB</p>
+<header class="tool-head">
+  <p class="eyebrow">PART 2.3.4 SPECIALIZED</p>
   <h1>英語リスニング学習ツール</h1>
 </header>
 
 <div class="card">
-  <h2>スクリプト</h2>
+  <h2><i class="fa-solid fa-file-lines" style="color:var(--red);"></i> スクリプト</h2>
   <div class="script-toolbar">
     <button id="toggleScript">非表示</button>
     <button id="fontMinus">文字 -</button>
@@ -189,6 +284,7 @@
 </div>
 
 <div class="card">
+  <h2><i class="fa-solid fa-sliders" style="color:var(--navy);"></i> 再生コントロール</h2>
   <p class="now-playing" id="nowPlaying">未読み込み</p>
   <div class="counter-row">
     <span class="counter" id="counter">00:00</span>
@@ -240,7 +336,7 @@
 </div>
 
 <div class="card">
-  <h2>プレイリスト</h2>
+  <h2><i class="fa-solid fa-list-check" style="color:var(--navy);"></i> プレイリスト</h2>
   <div class="playlist-toolbar">
     <button id="addAudioBtn">音声+スクリプトをまとめて追加</button>
     <input type="file" id="audioInput" accept="audio/*,.mp3,.txt,text/plain" multiple>
@@ -258,6 +354,12 @@
 </div>
 
 </div>
+
+<footer class="site-footer">
+  <p class="copyright">© 2026 TOEIC RE:BOOT 730<a href="ura_index.html" class="secret-link">.</a></p>
+  <p class="sub-text">50代からのスコア奪還 自習システム</p>
+  <p class="privacy-note">追加した音声・テキストはお使いの端末内でのみ処理されます（完全ローカル動作）</p>
+</footer>
 
 <audio id="audio"></audio>
 
@@ -384,7 +486,9 @@ audioInput.addEventListener('change', (e) => {
     loadScriptFiles(txtFiles, (unmatched) => {
       renderPlaylist();
       if(unmatched.length){
-        alert('スクリプトを一時保管しました(対応する音声がまだありません。同じ名前の音声を追加すると自動で紐付きます):\n' + unmatched.join('\n'));
+        alert('スクリプトを一時保管しました(対応する音声がまだありません。同じ名前の音声を追加すると自動で紐付きます):
+' + unmatched.join('
+'));
       }
     });
   }
@@ -398,7 +502,9 @@ scriptInput.addEventListener('change', (e) => {
     renderPlaylist();
     scriptInput.value = '';
     if(unmatched.length){
-      alert('対応する音声ファイルが見つかりませんでした(保留し、同じ名前の音声を追加すると自動で紐付きます):\n' + unmatched.join('\n'));
+      alert('対応する音声ファイルが見つかりませんでした(保留し、同じ名前の音声を追加すると自動で紐付きます):
+' + unmatched.join('
+'));
     }
   });
 });
@@ -432,17 +538,17 @@ function renderPlaylist(){
     actions.className = 'track-actions';
 
     const up = document.createElement('button');
-    up.className = 'tiny'; up.type = 'button'; up.textContent = '\u2191';
+    up.className = 'tiny'; up.type = 'button'; up.textContent = '↑';
     up.disabled = i === 0;
     up.addEventListener('click', () => moveTrack(i, -1));
 
     const down = document.createElement('button');
-    down.className = 'tiny'; down.type = 'button'; down.textContent = '\u2193';
+    down.className = 'tiny'; down.type = 'button'; down.textContent = '↓';
     down.disabled = i === tracks.length - 1;
     down.addEventListener('click', () => moveTrack(i, 1));
 
     const remove = document.createElement('button');
-    remove.className = 'tiny'; remove.type = 'button'; remove.textContent = '\u2715';
+    remove.className = 'tiny'; remove.type = 'button'; remove.textContent = '✕';
     remove.addEventListener('click', () => removeTrack(i));
 
     actions.appendChild(up);

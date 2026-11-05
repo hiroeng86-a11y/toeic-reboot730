@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git構造解読 & 実践操作インフォグラフィック・ダッシュボード</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+      background-color: #0a0e17;
+      color: #e2e8f0;
+    }
+    .code-font {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+    }
+    .glass-panel {
+      background: rgba(21, 29, 47, 0.88);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(51, 65, 85, 0.6);
+    }
+    .glass-card {
+      background: rgba(26, 37, 59, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(71, 85, 105, 0.4);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      transform: translateY(-3px);
+      border-color: #f97316;
+      box-shadow: 0 10px 25px -5px rgba(249, 115, 22, 0.15);
+    }
+    .card-active {
+      border-color: #f97316 !important;
+      box-shadow: 0 0 20px 2px rgba(249, 115, 22, 0.4) !important;
+      background: rgba(43, 58, 88, 0.95) !important;
+    }
+    .card-related {
+      border-color: #38bdf8 !important;
+      box-shadow: 0 0 16px 1px rgba(56, 189, 248, 0.35) !important;
+      background: rgba(30, 48, 77, 0.9) !important;
+    }
+    .card-dimmed {
+      opacity: 0.25 !important;
+      transform: scale(0.98);
+      filter: grayscale(80%);
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0e17;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-16 antialiased selection:bg-orange-500 selection:text-white">
+
+  <!-- ヘッダー & タイトル -->
+  <header class="border-b border-slate-800 bg-[#0a0e17]/90 sticky top-0 z-40 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-orange-500/10 text-orange-400 border border-orange-500/30">
+            <i class="fa-brands fa-git-alt"></i> YouTube実践講座連動
+          </span>
+          <span class="text-xs text-slate-400">IT ビギナーズ -プログラミング塾- 準拠</span>
+        </div>
+        <h1 class="text-xl sm:text-2xl font-extrabold text-white tracking-tight mt-1 flex items-center gap-2">
+          Git 構造解読 & 実践操作ダッシュボード
+        </h1>
+      </div>
+      
+      <!-- カテゴリーフィルター -->
+      <div class="flex items-center gap-1.5 overflow-x-auto py-1 scrollbar-none" id="filter-bar">
+        <button onclick="filterCategory('all')" class="filter-btn active px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-orange-500 text-white shadow-lg shadow-orange-500/20" data-cat="all">
+          すべて (16)
+        </button>
+        <button onclick="filterCategory('concept')" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="concept">
+          基本概念
+        </button>
+        <button onclick="filterCategory('setup')" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="setup">
+          初期設定・初期化
+        </button>
+        <button onclick="filterCategory('workflow')" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="workflow">
+          3層記録 & 差分
+        </button>
+        <button onclick="filterCategory('branch')" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="branch">
+          ブランチ & 競合解消
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 space-y-8">
+
+    <!-- KPIサマリーバー -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="glass-panel p-4 rounded-xl border border-slate-800 flex items-center gap-3.5">
+        <div class="w-12 h-12 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 text-xl flex-shrink-0">
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
+        <div>
+          <div class="text-xs text-slate-400 font-medium">基本階層構造</div>
+          <div class="text-2xl font-black text-white">3 <span class="text-sm font-semibold text-slate-400">層</span></div>
+          <div class="text-[11px] text-slate-400">作業場 &rarr; ステージ &rarr; 履歴</div>
+        </div>
+      </div>
+
+      <div class="glass-panel p-4 rounded-xl border border-slate-800 flex items-center gap-3.5">
+        <div class="w-12 h-12 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 text-xl flex-shrink-0">
+          <i class="fa-solid fa-code-branch"></i>
+        </div>
+        <div>
+          <div class="text-xs text-slate-400 font-medium">並行開発ポインタ</div>
+          <div class="text-2xl font-black text-white">41 <span class="text-xs font-semibold text-slate-400">バイト</span></div>
+          <div class="text-[11px] text-slate-400">軽量なハッシュ参照構造</div>
+        </div>
+      </div>
+
+      <div class="glass-panel p-4 rounded-xl border border-slate-800 flex items-center gap-3.5">
+        <div class="w-12 h-12 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl flex-shrink-0">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div>
+          <div class="text-xs text-slate-400 font-medium">競合発生のトリガー</div>
+          <div class="text-2xl font-black text-white">1 <span class="text-sm font-semibold text-slate-400">行重複</span></div>
+          <div class="text-[11px] text-slate-400">同一行への異ブランチ編集</div>
+        </div>
+      </div>
+
+      <div class="glass-panel p-4 rounded-xl border border-slate-800 flex items-center gap-3.5">
+        <div class="w-12 h-12 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-xl flex-shrink-0">
+          <i class="fa-solid fa-rotate-left"></i>
+        </div>
+        <div>
+          <div class="text-xs text-slate-400 font-medium">安全復元コマンド</div>
+          <div class="text-2xl font-black text-white">restore</div>
+          <div class="text-[11px] text-slate-400">直前コミット状態へ即座に復旧</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 対比チャートエリア（2つの対比チャート） -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- チャート1: 手動・集中型 vs Git分散型の作業工数/安全指標の比較（縦棒） -->
+      <div class="glass-panel p-5 rounded-2xl border border-slate-800">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-chart-column text-sky-400"></i>
+              管理方式の比較指標（スコア評価: 100点満点）
+            </h2>
+            <p class="text-xs text-slate-400 mt-0.5">手動ファイル複製方式 vs 集中型サーバー vs 分散型Git</p>
+          </div>
+          <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">指標比較</span>
+        </div>
+        <div class="relative h-64 w-full">
+          <canvas id="comparisonChart"></canvas>
+        </div>
+      </div>
+
+      <!-- チャート2: 開発における脆弱性・失敗要因の割合（独立した指標・水平バーチャート 100%上限） -->
+      <div class="glass-panel p-5 rounded-2xl border border-slate-800">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-chart-bar text-orange-400"></i>
+              初学者の事故・停滞発生リスク（上限100% 水平バー）
+            </h2>
+            <p class="text-xs text-slate-400 mt-0.5">母集団が独立したリスク要因の測定（円グラフ不使用）</p>
+          </div>
+          <span class="text-[11px] px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">リスク分析</span>
+        </div>
+        <div class="relative h-64 w-full">
+          <canvas id="riskBarChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- インタラクティブ構造シミュレーター（計算・因果関係） -->
+    <section class="glass-panel p-6 rounded-2xl border border-slate-800 bg-gradient-to-r from-slate-900/90 via-slate-900/50 to-orange-950/20">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+        <div>
+          <h2 class="text-base font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-calculator text-orange-400"></i>
+            Git導入効果 & コンフリクト予測シミュレーター
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">
+            チーム規模・開発並行数・ファイル更新頻度から、手動管理との工数差とコンフリクト潜在確率を構造試算します。
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs text-orange-400 font-mono font-bold bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/30">
+            試算モデル: 並行開発係数
+          </span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">
+            チーム人数 / 並行作業ブランチ数: <span id="branchesVal" class="text-orange-400 font-mono font-bold">4</span>
+          </label>
+          <input type="range" id="branchesInput" min="1" max="15" value="4" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-orange-500" oninput="calcSimulator()">
+          <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+            <span>1人 (個人)</span>
+            <span>8人 (チーム)</span>
+            <span>15人 (大規模)</span>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">
+            1日あたりの平均コミット/変更回数: <span id="commitsVal" class="text-orange-400 font-mono font-bold">12</span> 回
+          </label>
+          <input type="range" id="commitsInput" min="2" max="50" value="12" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-orange-500" oninput="calcSimulator()">
+          <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+            <span>2回 (小規模)</span>
+            <span>25回 (標準)</span>
+            <span>50回 (高頻度)</span>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">
+            共通ファイルの重複タッチ率 (%): <span id="overlapVal" class="text-orange-400 font-mono font-bold">30</span> %
+          </label>
+          <input type="range" id="overlapInput" min="5" max="90" value="30" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-orange-500" oninput="calcSimulator()">
+          <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+            <span>5% (疎結合)</span>
+            <span>50% (密結合)</span>
+            <span>90% (同ファイル集中)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 計算結果アウトプット -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 pt-5 border-t border-slate-800/80">
+        <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800">
+          <div class="text-[11px] text-slate-400">手動退避との月間削減工数</div>
+          <div class="text-xl font-black text-emerald-400 mt-1" id="savedHours">約 57.6 時間/月</div>
+          <div class="text-[10px] text-slate-500 mt-0.5">（手動バックアップ・先祖返り調査防止効果）</div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800">
+          <div class="text-[11px] text-slate-400">マージ時コンフリクト発生予測率</div>
+          <div class="text-xl font-black text-amber-400 mt-1" id="conflictRisk">約 24.8 %</div>
+          <div class="text-[10px] text-slate-500 mt-0.5">（同一行衝突の統計的期待値）</div>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-900/60 border border-slate-800">
+          <div class="text-[11px] text-slate-400">推奨アプローチ</div>
+          <div class="text-xs font-bold text-sky-400 mt-1 leading-snug" id="recommendation">
+            featureブランチ細分化 ＋ こまめな本流マージが有効
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- インタラクティブ・カードグリッド（基幹指標 & コマンド群） -->
+    <section>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-diagram-project text-orange-500"></i>
+            基幹指標 & 実践オペレーション・カード (16)
+          </h2>
+          <p class="text-xs text-slate-400">
+            カードをクリックすると、因果関係・依存性のあるカードがハイライト（点灯）します。
+          </p>
+        </div>
+        <button onclick="resetHighlight()" class="text-xs text-slate-400 hover:text-white px-3 py-1 rounded bg-slate-800 hover:bg-slate-700 transition self-start sm:self-auto border border-slate-700">
+          <i class="fa-solid fa-arrow-rotate-right mr-1"></i> 選択解除
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="cards-container">
+        <!-- JSで動的レンダリング -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- カード詳細モーダル（必要時） -->
+  <div id="modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="glass-panel w-full max-w-xl rounded-2xl p-6 border border-slate-700 shadow-2xl relative">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <script>
+    // 基幹データ定義（動画の内容を構造分解）
+    const cardData = [
+      {
+        id: 1,
+        cat: 'concept',
+        no: '01',
+        title: '分散型リポジトリ',
+        metric: '完全自律',
+        unit: 'ローカルDB',
+        desc: '中央サーバーが停止しても、手元のローカルPC（.git）内に完全な変更履歴を保持して独立運用可能。',
+        cmd: '.git フォルダ',
+        related: [2, 4, 11]
+      },
+      {
+        id: 2,
+        cat: 'concept',
+        no: '02',
+        title: 'ワークツリー (Working Tree)',
+        metric: '第1層',
+        unit: '実際の作業場',
+        desc: 'エディタで直接開いて文字入力・ファイル変更を行っている最中の領域。まだGitの追跡予約はされていない。',
+        cmd: 'エクスプローラー / VSCode',
+        related: [3, 6, 8]
+      },
+      {
+        id: 3,
+        cat: 'concept',
+        no: '03',
+        title: 'ステージング領域 (Index)',
+        metric: '第2層',
+        unit: 'コミット予約場',
+        desc: '作業ツリーの変更から、次の履歴に保存したいファイルのみを選択・登録する中間待機スペース。',
+        cmd: 'git add <file>',
+        related: [2, 4, 7, 8]
+      },
+      {
+        id: 4,
+        cat: 'concept',
+        no: '04',
+        title: 'リポジトリ (Repository)',
+        metric: '第3層',
+        unit: '履歴確定領域',
+        desc: 'コミットにより確定したスナップショットが安全に保存される場所。ハッシュIDによりいつでも過去を復元。',
+        cmd: 'git commit -m "msg"',
+        related: [1, 3, 9, 10]
+      },
+      {
+        id: 5,
+        cat: 'setup',
+        no: '05',
+        title: 'ユーザー識別設定',
+        metric: '初回必須',
+        unit: 'グローバル設定',
+        desc: 'コミット履歴に「誰が変更したか」を正確に刻むための名前とメールアドレス設定（未設定だとコミット拒絶）。',
+        cmd: 'git config --global user.name "..."',
+        related: [4, 7]
+      },
+      {
+        id: 6,
+        cat: 'setup',
+        no: '06',
+        title: 'リポジトリ初期化',
+        metric: '起点',
+        unit: 'git init',
+        desc: '対象フォルダ内に隠しフォルダ「.git」を生成し、Gitによる追跡とバージョン管理を開始する。',
+        cmd: 'git init',
+        related: [1, 2, 7]
+      },
+      {
+        id: 7,
+        cat: 'workflow',
+        no: '07',
+        title: '状態モニタリング',
+        metric: '超頻出',
+        unit: 'git status',
+        desc: 'Untracked（未追跡）、Changes to be committed（予約済）、Modified（変更あり）の状態を色分け確認。',
+        cmd: 'git status',
+        related: [3, 4, 8, 9]
+      },
+      {
+        id: 8,
+        cat: 'workflow',
+        no: '08',
+        title: 'ステージング登録',
+        metric: '選別登録',
+        unit: 'git add .',
+        desc: '単一ファイル、または「.」で全変更ファイルをステージング領域へ移動しコミット待機状態にする。',
+        cmd: 'git add .',
+        related: [2, 3, 7, 9]
+      },
+      {
+        id: 9,
+        cat: 'workflow',
+        no: '09',
+        title: 'コミット確定',
+        metric: 'セーブ地点',
+        unit: 'git commit',
+        desc: '変更内容の説明メッセージを添えて、現時点の完全なスナップショットをリポジトリへ永続記録する。',
+        cmd: 'git commit -m "メッセージ"',
+        related: [3, 4, 7, 8, 10]
+      },
+      {
+        id: 10,
+        cat: 'workflow',
+        no: '10',
+        title: '履歴照会ログ',
+        metric: '追跡性',
+        unit: 'git log',
+        desc: 'これまでに作成された全コミットの履歴、コミットハッシュ、日時、コミットメッセージを時系列表示。',
+        cmd: 'git log',
+        related: [4, 9, 14]
+      },
+      {
+        id: 11,
+        cat: 'workflow',
+        no: '11',
+        title: '差分解析 (Diff)',
+        metric: '行単位差分',
+        unit: 'git diff',
+        desc: '最後に記録されたコミットと、現在作業中のファイルとの間の追加・削除行（+ / -）をリアルタイム可視化。',
+        cmd: 'git diff',
+        related: [2, 7, 12]
+      },
+      {
+        id: 12,
+        cat: 'workflow',
+        no: '12',
+        title: '安全巻き戻し (Restore)',
+        metric: '緊急脱出',
+        unit: 'git restore',
+        desc: '実験的な変更で動作不能になった作業ツリーのファイルを、最新コミット時の正常状態へワンショット復旧。',
+        cmd: 'git restore <file>',
+        related: [2, 11]
+      },
+      {
+        id: 13,
+        cat: 'branch',
+        no: '13',
+        title: 'ブランチ分岐線',
+        metric: '安全な並行世界',
+        unit: 'git branch',
+        desc: 'メイン（master/main）の安定稼働を保証したまま、新機能（feature）開発を隔離して進める分岐ポインタ。',
+        cmd: 'git branch <branch-name>',
+        related: [14, 15, 16]
+      },
+      {
+        id: 14,
+        cat: 'branch',
+        no: '14',
+        title: '世界線の切り替え',
+        metric: '空間移動',
+        unit: 'git switch',
+        desc: '指定したブランチへ切り替える。実行した瞬間、作業フォルダ内の全ファイル構成がそのブランチ状態へ即座に入れ替わる。',
+        cmd: 'git switch <branch-name>',
+        related: [13, 15]
+      },
+      {
+        id: 15,
+        cat: 'branch',
+        no: '15',
+        title: '合流・マージ (Merge)',
+        metric: '成果統合',
+        unit: 'git merge',
+        desc: '受取先ブランチ（masterなど）に切り替えた上で、別ブランチの変更履歴を取り込んで一本化する。',
+        cmd: 'git merge <branch-name>',
+        related: [13, 14, 16]
+      },
+      {
+        id: 16,
+        cat: 'branch',
+        no: '16',
+        title: '競合発生と解消 (Conflict)',
+        metric: '同一行衝突',
+        unit: '手動裁定',
+        desc: '異なるブランチが「同じファイルの同一行」を変更した場合に発生。余分な記号を削除・手動統合して再コミット。',
+        cmd: '手動修正 & git commit',
+        related: [13, 15]
+      }
+    ];
+
+    let currentSelectedId = null;
+
+    // カード描画
+    function renderCards(filter = 'all') {
+      const container = document.getElementById('cards-container');
+      container.innerHTML = '';
+
+      const filtered = filter === 'all' ? cardData : cardData.filter(c => c.cat === filter);
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = `glass-card p-4 rounded-xl cursor-pointer relative overflow-hidden flex flex-col justify-between`;
+        card.id = `card-${item.id}`;
+        card.setAttribute('onclick', `handleCardClick(${item.id})`);
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-mono font-bold text-orange-400 bg-orange-500/10 px-2 py-0.5 rounded border border-orange-500/20">
+                #${item.no}
+              </span>
+              <span class="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">
+                ${item.cat}
+              </span>
+            </div>
+
+            <div class="text-xs text-slate-400 font-medium">${item.title}</div>
+            <div class="text-lg font-black text-white mt-0.5 mb-1.5 flex items-baseline gap-1.5">
+              <span>${item.metric}</span>
+              <span class="text-xs font-normal text-slate-400 font-mono">(${item.unit})</span>
+            </div>
+
+            <p class="text-xs text-slate-300 leading-relaxed mb-3">
+              ${item.desc}
+            </p>
+          </div>
+
+          <div class="pt-2 border-t border-slate-700/60 mt-auto">
+            <div class="code-font text-[11px] text-sky-400 bg-slate-950/80 px-2.5 py-1.5 rounded border border-slate-800 truncate">
+              ${item.cmd}
+            </div>
+            <div class="flex items-center justify-between mt-2 text-[10px] text-slate-500">
+              <span>連動ID: ${item.related.map(r => '#' + String(r).padStart(2,'0')).join(', ')}</span>
+              <span class="text-orange-400/80 group-hover:text-orange-400"><i class="fa-solid fa-link"></i></span>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+
+      // 選択状態の復元
+      if (currentSelectedId) {
+        highlightRelations(currentSelectedId);
+      }
+    }
+
+    // カードクリック時の連動ハイライト制御
+    function handleCardClick(id) {
+      if (currentSelectedId === id) {
+        resetHighlight();
+        return;
+      }
+      currentSelectedId = id;
+      highlightRelations(id);
+    }
+
+    function highlightRelations(activeId) {
+      const activeItem = cardData.find(c => c.id === activeId);
+      if (!activeItem) return;
+
+      const relatedIds = activeItem.related;
+
+      cardData.forEach(item => {
+        const el = document.getElementById(`card-${item.id}`);
+        if (!el) return;
+
+        el.classList.remove('card-active', 'card-related', 'card-dimmed');
+
+        if (item.id === activeId) {
+          el.classList.add('card-active');
+        } else if (relatedIds.includes(item.id)) {
+          el.classList.add('card-related');
+        } else {
+          el.classList.add('card-dimmed');
+        }
+      });
+    }
+
+    function resetHighlight() {
+      currentSelectedId = null;
+      cardData.forEach(item => {
+        const el = document.getElementById(`card-${item.id}`);
+        if (!el) return;
+        el.classList.remove('card-active', 'card-related', 'card-dimmed');
+      });
+    }
+
+    // カテゴリー絞り込み
+    function filterCategory(cat) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-cat') === cat) {
+          btn.classList.add('bg-orange-500', 'text-white', 'shadow-lg', 'shadow-orange-500/20');
+          btn.classList.remove('bg-slate-800', 'text-slate-300');
+        } else {
+          btn.classList.remove('bg-orange-500', 'text-white', 'shadow-lg', 'shadow-orange-500/20');
+          btn.classList.add('bg-slate-800', 'text-slate-300');
+        }
+      });
+      renderCards(cat);
+    }
+
+    // 構造試算シミュレーター計算
+    function calcSimulator() {
+      const branches = parseInt(document.getElementById('branchesInput').value, 10);
+      const commits = parseInt(document.getElementById('commitsInput').value, 10);
+      const overlap = parseInt(document.getElementById('overlapInput').value, 10);
+
+      document.getElementById('branchesVal').textContent = branches;
+      document.getElementById('commitsVal').textContent = commits;
+      document.getElementById('overlapVal').textContent = overlap;
+
+      // 手動バックアップ削減時間 (月20稼働日、1回あたり約12分のバックアップ・差分目視確認工数削減)
+      const dailySavedMinutes = commits * 12;
+      const monthlySavedHours = ((dailySavedMinutes * 20) / 60) * (branches * 0.4 + 0.6);
+      document.getElementById('savedHours').textContent = `約 ${monthlySavedHours.toFixed(1)} 時間/月`;
+
+      // コンフリクト予測確率 (並行数・重複率の相乗効果モデル)
+      let conflictProb = 0;
+      if (branches > 1) {
+        conflictProb = (1 - Math.pow(1 - (overlap / 100) * 0.15, branches * (commits / 8))) * 100;
+        conflictProb = Math.min(conflictProb, 95.0);
+      }
+      document.getElementById('conflictRisk').textContent = `約 ${conflictProb.toFixed(1)} %`;
+
+      // レコメンデーション
+      let rec = '';
+      if (conflictProb < 15) {
+        rec = 'リスク低: 現在のブランチ運用で極めて安定した統合が可能です。';
+      } else if (conflictProb < 45) {
+        rec = 'リスク中: featureブランチを短命に保ち、1日1回masterをmerge/rebase推奨。';
+      } else {
+        rec = 'リスク高: 共通ファイルの責任分離（モジュール分割）とGUIマージツール導入が急務です。';
+      }
+      document.getElementById('recommendation').textContent = rec;
+    }
+
+    // Chart.js レンダリング
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCards('all');
+      calcSimulator();
+
+      // チャート1: 縦棒グラフ（比較指標）
+      const ctx1 = document.getElementById('comparisonChart').getContext('2d');
+      new Chart(ctx1, {
+        type: 'bar',
+        data: {
+          labels: ['オフライン作業性', '履歴復元スピード', '並行開発安全性', 'ファイル軽量度'],
+          datasets: [
+            {
+              label: '手動複製方式',
+              data: [90, 20, 10, 15],
+              backgroundColor: 'rgba(148, 163, 184, 0.5)',
+              borderColor: 'rgba(148, 163, 184, 0.8)',
+              borderWidth: 1
+            },
+            {
+              label: '集中型 (SVN等)',
+              data: [25, 60, 50, 65],
+              backgroundColor: 'rgba(56, 189, 248, 0.6)',
+              borderColor: 'rgba(56, 189, 248, 1)',
+              borderWidth: 1
+            },
+            {
+              label: 'Git 分散型',
+              data: [98, 95, 92, 90],
+              backgroundColor: 'rgba(249, 115, 22, 0.8)',
+              borderColor: 'rgba(249, 115, 22, 1)',
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              grid: { color: 'rgba(51, 65, 85, 0.4)' },
+              ticks: { color: '#94a3b8', font: { size: 10 } }
+            },
+            x: {
+              grid: { display: false },
+              ticks: { color: '#cbd5e1', font: { size: 11 } }
+            }
+          },
+          plugins: {
+            legend: {
+              labels: { color: '#cbd5e1', font: { size: 11 }, boxWidth: 12 }
+            }
+          }
+        }
+      });
+
+      // チャート2: 水平バーチャート（独立したリスク要因・上限100%固定・円グラフ厳禁ルール準拠）
+      const ctx2 = document.getElementById('riskBarChart').getContext('2d');
+      new Chart(ctx2, {
+        type: 'bar',
+        indexAxis: 'y',
+        data: {
+          labels: [
+            '同ファイル同一行マージ時の競合 (Conflict)',
+            'add忘れによる未記録 (Untracked残存)',
+            'コミット先ブランチの誤認 (checkout忘れ)',
+            '差分未確認 (diffスキップ) による誤混入',
+            '手動コメントアウトによるコード肥大化'
+          ],
+          datasets: [{
+            label: '初学者チームでの発生頻度・危険度（上限100%）',
+            data: [78, 64, 58, 49, 82],
+            backgroundColor: [
+              'rgba(239, 68, 68, 0.75)',
+              'rgba(249, 115, 22, 0.75)',
+              'rgba(245, 158, 11, 0.75)',
+              'rgba(56, 189, 248, 0.75)',
+              'rgba(168, 85, 247, 0.75)'
+            ],
+            borderColor: [
+              '#ef4444',
+              '#f97316',
+              '#f59e0b',
+              '#38bdf8',
+              '#a855f7'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              beginAtZero: true,
+              max: 100,
+              grid: { color: 'rgba(51, 65, 85, 0.4)' },
+              ticks: {
+                color: '#94a3b8',
+                callback: function(val) { return val + '%'; },
+                font: { size: 10 }
+              }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { color: '#cbd5e1', font: { size: 10 } }
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return ` 危険指数: ${context.parsed.x}%`;
+                }
+              }
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

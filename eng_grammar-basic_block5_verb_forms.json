@@ -6,6 +6,7 @@
     "example_en": "You should check the details carefully.",
     "example_ja": "詳細を慎重に確認すべきです。",
     "question": "All factory visitors must ______ in at the front security gate.",
+    "question_ja": "すべての工場来場者は正面警備ゲートで記名手続きを行わなければなりません。",
     "options": "[ sign / signed / signing / signs ]",
     "answer": "sign",
     "rule": "助動詞「must（〜しなければならない）」の直後には、必ず動詞の原形「sign」が入ります。"
@@ -17,6 +18,7 @@
     "example_en": "I went to the store to buy milk.",
     "example_ja": "牛乳を買うために店へ行きました。",
     "question": "She attended the workshop ______ new digital marketing skills.",
+    "question_ja": "彼女は新しいデジタルマーケティングのスキルを習得するためにワークショップに参加しました。",
     "options": "[ to learn / learn / learning / learned ]",
     "answer": "to learn",
     "rule": "「新しいスキルを身につけるために」という目的を付け足す、to不定詞の副詞的用法が適切です。"
@@ -28,6 +30,7 @@
     "example_en": "I want to visit Paris someday.",
     "example_ja": "いつかパリを訪れたいです。",
     "question": "The client wants ______ the project director this afternoon.",
+    "question_ja": "クライアントは今日の午後にプロジェクト責任者と会うことを希望しています。",
     "options": "[ to meet / meeting / met / meet ]",
     "answer": "to meet",
     "rule": "動詞「want」は動名詞をとらず、to不定詞を目的語にとって「want to do（〜したい）」の形を作ります。"
@@ -39,6 +42,7 @@
     "example_en": "Thank you for helping me.",
     "example_ja": "手伝ってくれてありがとうございます。",
     "question": "Thank you for ______ our annual customer satisfaction survey.",
+    "question_ja": "年次顧客満足度アンケートにご記入いただきありがとうございます。",
     "options": "[ completing / complete / completed / to complete ]",
     "answer": "completing",
     "rule": "前置詞「for」の後ろに動詞の動作を置く場合は、名詞の働きをする動名詞「completing」にします。"
@@ -50,6 +54,7 @@
     "example_en": "He finished reading the report.",
     "example_ja": "彼は報告書を読み終えました。",
     "question": "The team finished ______ the presentation materials on time.",
+    "question_ja": "チームは時間通りにプレゼンテーション資料の準備を終えました。",
     "options": "[ preparing / to prepare / prepare / preparation ]",
     "answer": "preparing",
     "rule": "動詞「finish」はto不定詞ではなく動名詞（-ing）を目的語にとる代表的な動詞です。"
@@ -61,6 +66,7 @@
     "example_en": "You should arrive early.",
     "example_ja": "早く到着すべきです。",
     "question": "Employees should ______ their supervisor if they are sick.",
+    "question_ja": "体調不良の場合、従業員は上司に報告すべきです。",
     "options": "[ notify / notified / notifying / notification ]",
     "answer": "notify",
     "rule": "助動詞「should」の後ろには、本動詞の原形「notify（知らせる）」が入ります。"
@@ -72,6 +78,7 @@
     "example_en": "You may leave now.",
     "example_ja": "もう帰っても構いません。",
     "question": "Conference guests may ______ their cars in the east parking lot.",
+    "question_ja": "会議の来場者は東駐車場にお車をお停めいただけます。",
     "options": "[ park / parked / parking / parks ]",
     "answer": "park",
     "rule": "助動詞「may」の直後には動詞の原形「park（駐車する）」が続きます。"
@@ -83,6 +90,7 @@
     "example_en": "We plan to expand our business.",
     "example_ja": "事業を拡大する計画です。",
     "question": "The company plans ______ a new branch office next year.",
+    "question_ja": "同社は来年、新しい支店を開設する予定です。",
     "options": "[ to open / opening / opened / open ]",
     "answer": "to open",
     "rule": "動詞「plan」は未来志向の動詞であり、目的語にto不定詞（to open）をとります。"
@@ -94,6 +102,7 @@
     "example_en": "I enjoy playing tennis.",
     "example_ja": "テニスをするのを楽しんでいます。",
     "question": "Many local residents enjoy ______ at the community center.",
+    "question_ja": "多くの地域住民がコミュニティセンターでの集まりを楽しんでいます。",
     "options": "[ gathering / to gather / gathered / gather ]",
     "answer": "gathering",
     "rule": "動詞「enjoy」はto不定詞をとらず、動名詞（gathering）を目的語にとる頻出動詞です。"
@@ -105,6 +114,7 @@
     "example_en": "I look forward to meeting you.",
     "example_ja": "お会いできるのを楽しみにしております。",
     "question": "We look forward to ______ from you soon.",
+    "question_ja": "近いうちにご連絡をいただけることを楽しみにしております。",
     "options": "[ hearing / hear / heard / to hear ]",
     "answer": "hearing",
     "rule": "「look forward to」の「to」は前置詞であるため、後ろには動詞の原形ではなく動名詞「hearing」が続きます。"
@@ -116,6 +126,7 @@
     "example_en": "She decided to change her career.",
     "example_ja": "彼女は転職を決意しました。",
     "question": "The board decided ______ the product launch date.",
+    "question_ja": "取締役会は製品の発売日を延期することを決定しました。",
     "options": "[ to postpone / postponing / postpone / postponed ]",
     "answer": "to postpone",
     "rule": "動詞「decide」は後ろにto不定詞をとって「decide to do（〜することを決める）」とします。"
@@ -127,6 +138,7 @@
     "example_en": "Avoid making careless mistakes.",
     "example_ja": "不注意なミスを避けてください。",
     "question": "Please drive slowly to avoid ______ an accident.",
+    "question_ja": "事故を避けるため、速度を落として運転してください。",
     "options": "[ causing / to cause / cause / caused ]",
     "answer": "causing",
     "rule": "動詞「avoid（〜を避ける）」は目的語に動名詞（causing）をとります。to不定詞は不可です。"
@@ -138,6 +150,7 @@
     "example_en": "I hope to see you again.",
     "example_ja": "またお会いできることを願っています。",
     "question": "The applicant hopes ______ a positive response by Friday.",
+    "question_ja": "応募者は金曜日までに良い返事をもらえることを望んでいます。",
     "options": "[ to receive / receiving / receive / received ]",
     "answer": "to receive",
     "rule": "動詞「hope」は未来の実現を望む動詞のため、目的語にto不定詞（to receive）をとります。"
@@ -149,6 +162,7 @@
     "example_en": "Do not leave without saying goodbye.",
     "example_ja": "別れの挨拶なしに帰らないでください。",
     "question": "He left the office without ______ his computer.",
+    "question_ja": "彼はパソコンをシャットダウンせずにオフィスを立ち去りました。",
     "options": "[ shutting down / shut down / to shut down / shuts down ]",
     "answer": "shutting down",
     "rule": "前置詞「without」の後ろに動作を続けるため、動名詞「shutting down」が正解です。"
@@ -160,6 +174,7 @@
     "example_en": "We need to hire more staff.",
     "example_ja": "私たちはもっとスタッフを雇う必要があります。",
     "question": "You need ______ your password every three months.",
+    "question_ja": "パスワードは3か月ごとに更新する必要があります。",
     "options": "[ to update / updating / update / updated ]",
     "answer": "to update",
     "rule": "「need to do（〜する必要がある）」の形で、目的語にto不定詞（to update）をとります。"
@@ -171,6 +186,7 @@
     "example_en": "He can speak three languages.",
     "example_ja": "彼は3つの言語を話せます。",
     "question": "The technician could not ______ the cause of the network error.",
+    "question_ja": "技術者はネットワークエラーの原因を特定できませんでした。",
     "options": "[ identify / identified / identifying / identification ]",
     "answer": "identify",
     "rule": "過去の助動詞「could not」の直後には、動詞の原形「identify（特定する）」が必要です。"
@@ -182,6 +198,7 @@
     "example_en": "They postponed holding the event.",
     "example_ja": "彼らはイベントの開催を延期しました。",
     "question": "The committee suggested postponing ______ the contract.",
+    "question_ja": "委員会は契約の調印を延期することを提案しました。",
     "options": "[ signing / to sign / sign / signed ]",
     "answer": "signing",
     "rule": "動詞「postpone（〜を延期する）」は動名詞（signing）を目的語にとる動詞です。"
@@ -193,6 +210,7 @@
     "example_en": "The room is large enough to hold forty people.",
     "example_ja": "その部屋は40人を収容するのに十分な広さです。",
     "question": "The instructions were clear enough ______ easily.",
+    "question_ja": "その指示は簡単に理解できるほど明確でした。",
     "options": "[ to understand / understand / understanding / understood ]",
     "answer": "to understand",
     "rule": "「形容詞 + enough + to do（〜するのに十分…）」の定型構文です。"
@@ -204,6 +222,7 @@
     "example_en": "Wash your hands before eating.",
     "example_ja": "食事の前に手を洗ってください。",
     "question": "Please turn off the lights before ______ the room.",
+    "question_ja": "部屋を出る前に照明を消してください。",
     "options": "[ leaving / leave / to leave / left ]",
     "answer": "leaving",
     "rule": "前置詞「before」の目的語として動名詞「leaving」が適切です。"
@@ -215,6 +234,7 @@
     "example_en": "I have a lot of work to do today.",
     "example_ja": "今日やるべき仕事がたくさんあります。",
     "question": "She has no time ______ lunch with colleagues today.",
+    "question_ja": "彼女は今日、同僚と昼食をとる時間がありません。",
     "options": "[ to eat / eating / eat / eaten ]",
     "answer": "to eat",
     "rule": "直前の名詞「time」を後ろから修飾して「昼食を食べる時間」とする形容詞的用法のto不定詞です。"
@@ -226,6 +246,7 @@
     "example_en": "He is used to working under pressure.",
     "example_ja": "彼はプレッシャーの下で働くことに慣れています。",
     "question": "The new manager is used to ______ large international teams.",
+    "question_ja": "新しいマネージャーは大規模な国際チームを率いることに慣れています。",
     "options": "[ leading / lead / led / to lead ]",
     "answer": "leading",
     "rule": "「be used to -ing（〜することに慣れている）」のtoは前置詞のため、動名詞leadingが正解です。"
@@ -237,6 +258,7 @@
     "example_en": "Exercising regularly is good for your health.",
     "example_ja": "定期的に運動することは健康に良いです。",
     "question": "______ client feedback helps us improve our customer service.",
+    "question_ja": "顧客からのフィードバックを収集することは、顧客サービスの向上に役立ちます。",
     "options": "[ Collecting / Collect / Collected / Collector ]",
     "answer": "Collecting",
     "rule": "文全体の述語動詞「helps」に対する主語（〜を集めること）となる動名詞Collectingが正解です。"
@@ -248,6 +270,7 @@
     "example_en": "He promised to deliver the package today.",
     "example_ja": "彼は今日その荷物を届けると約束しました。",
     "question": "The contractor promised ______ the repair work by Friday.",
+    "question_ja": "請負業者は金曜日までに修理作業を終えると約束しました。",
     "options": "[ to finish / finishing / finish / finished ]",
     "answer": "to finish",
     "rule": "動詞「promise」は目的語にto不定詞をとり、「promise to do（〜すると約束する）」の形になります。"
@@ -259,6 +282,7 @@
     "example_en": "She spent two hours studying English.",
     "example_ja": "彼女は英語の勉強に2時間を費やしました。",
     "question": "The marketing team spent three weeks ______ the new campaign.",
+    "question_ja": "マーケティングチームは新しいキャンペーンの設計に3週間を費やしました。",
     "options": "[ designing / to design / design / designed ]",
     "answer": "designing",
     "rule": "「spend + 時間 + -ing（〜することに時間を費やす）」の定型表現です。"
@@ -270,6 +294,7 @@
     "example_en": "We are considering hiring an assistant.",
     "example_ja": "アシスタントの雇用を検討しています。",
     "question": "The company is considering ______ a larger warehouse in Osaka.",
+    "question_ja": "同社は大阪に、より大きな倉庫を借りることを検討しています。",
     "options": "[ leasing / to lease / lease / leased ]",
     "answer": "leasing",
     "rule": "動詞「consider（〜を検討する）」は目的語に動名詞（leasing）をとる頻出語法です。"

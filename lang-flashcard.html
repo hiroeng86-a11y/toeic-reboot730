@@ -1,234 +1,343 @@
+<!-- 対象ファイル: lang-flashcard.html -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flashcard Lab | TOEIC RE:BOOT 730</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>頻出コロケーション・フレーズ反復特訓 | TOEIC RE:BOOT 730</title>
+  
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+
   <style>
-    body { 
-      font-family: 'Noto Sans JP', sans-serif;
-      background-color: #050811;
+    body {
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+      background-color: #F4F7FB;
+      color: #102542;
+      user-select: none;
     }
     .font-chakra { font-family: 'Chakra Petch', sans-serif; }
-    .perspective { perspective: 1000px; }
+    .perspective-1000 { perspective: 1000px; }
     .transform-style-3d { transform-style: preserve-3d; }
     .backface-hidden { backface-visibility: hidden; }
     .rotate-y-180 { transform: rotateY(180deg); }
 
-    .neon-text-green {
-      color: #22c55e;
-      text-shadow: 0 0 12px rgba(34, 197, 94, 0.45);
+    .kobe-navy { color: #102542; }
+    .kobe-bg-navy { background-color: #102542; }
+    .kobe-red { color: #CD2D2D; }
+    .kobe-bg-red { background-color: #CD2D2D; }
+
+    .card-frame {
+      background: #FFFFFF;
+      border: 1px solid #DCE4EE;
+      box-shadow: 0 4px 12px -2px rgba(16, 37, 66, 0.06);
     }
-    .neon-border-green {
-      border-color: rgba(34, 197, 94, 0.35);
-      box-shadow: 0 0 15px rgba(34, 197, 94, 0.1);
+    .kobe-btn-glow {
+      transition: all 0.2s ease;
     }
-    .neon-border-green:hover {
-      border-color: rgba(74, 222, 128, 0.7);
-      box-shadow: 0 0 20px rgba(34, 197, 94, 0.25);
+    .kobe-btn-glow:hover {
+      border-color: #CD2D2D;
+      box-shadow: 0 0 14px rgba(205, 45, 45, 0.25);
     }
   </style>
 </head>
-<body class="text-slate-100 min-h-screen flex flex-col antialiased selection:bg-green-500 selection:text-black">
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-blue-100 selection:text-blue-900">
 
-  <!-- ヘッダー -->
-  <header class="border-b border-slate-800/80 bg-[#050811]/90 backdrop-blur sticky top-0 z-40">
-    <div class="max-w-3xl mx-auto px-4 h-14 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-2 text-xs font-medium text-slate-400 hover:text-green-400 transition">
-        <i class="fa-solid fa-arrow-left"></i>
-        <span>ポータルへ戻る</span>
-      </a>
-      <div class="flex items-center gap-3">
-        <!-- 一覧モーダルボタン -->
-        <button id="btnOpenList" class="text-xs px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 hover:border-green-400 text-slate-300 hover:text-green-400 transition flex items-center gap-1.5">
-          <i class="fa-solid fa-list-ul"></i> 一覧表示
+  <!-- ヘッダー（神戸タータン仕様：上部に赤ライン） -->
+  <header class="border-b border-[#DCE4EE] bg-white/95 backdrop-blur sticky top-0 z-40">
+    <div class="h-[3px] bg-[#CD2D2D] w-full"></div>
+    <div class="max-w-xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+      <!-- 左：戻る + タイトル -->
+      <div class="flex items-center gap-2.5 shrink-0">
+        <a href="index.html" class="text-slate-500 hover:text-[#CD2D2D] transition text-base p-1" title="自習システムトップへ">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <h1 class="text-base sm:text-lg font-black tracking-wide text-[#102542] flex items-center gap-2">
+          <span class="text-[#CD2D2D]"><i class="fa-solid fa-bolt"></i></span>
+          <span>コロケーション特訓</span>
+        </h1>
+      </div>
+
+      <!-- 右：文字サイズ + 一覧ボタン -->
+      <div class="flex items-center gap-1.5 shrink-0">
+        <div class="flex items-center bg-[#F4F7FB] border border-[#DCE4EE] rounded-lg overflow-hidden text-xs">
+          <button onclick="adjustFontSize(-1)" class="px-2.5 py-1.5 text-slate-600 hover:text-[#102542] hover:bg-white transition font-bold" title="文字を小さく">A-</button>
+          <button onclick="adjustFontSize(1)" class="px-2.5 py-1.5 text-slate-600 hover:text-[#102542] hover:bg-white transition border-l border-[#DCE4EE] font-bold" title="文字を大きく">A+</button>
+        </div>
+        <button id="btnOpenList" class="px-3 py-1.5 rounded-lg bg-white hover:bg-[#F4F7FB] border border-[#DCE4EE] text-[#102542] hover:text-[#CD2D2D] text-xs font-bold flex items-center gap-1 shadow-sm transition">
+          <i class="fa-solid fa-list-ul text-[#CD2D2D]"></i> 一覧
         </button>
-        <span class="font-chakra text-sm font-bold neon-text-green">
-          FLASHCARD <span class="text-white">LAB</span>
-        </span>
       </div>
     </div>
   </header>
 
-  <main class="max-w-2xl mx-auto px-4 py-6 flex-1 w-full space-y-4">
-
-    <!-- コントロールバー -->
-    <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-3.5 space-y-3">
-      <div class="flex flex-wrap items-center justify-between gap-2">
-        <!-- 教材選択 -->
-        <div class="flex items-center gap-2 text-xs text-slate-300 w-full sm:w-auto">
-          <span class="text-slate-400"><i class="fa-solid fa-book text-green-400 mr-1"></i>教材:</span>
-          <select id="dictSelect" class="bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-green-400 flex-1 sm:w-60">
-            <option value="ALL">★ すべての辞書を結合 (全データ)</option>
-            <option value="words.json">一般ビジネス・頻出コロケーション</option>
-            <option value="words-run.json">基本動詞: run</option>
-            <option value="words-take.json">基本動詞: take</option>
-            <option value="words-get.json">基本動詞: get</option>
-            <option value="words-make.json">基本動詞: make</option>
-            <option value="words-have.json">基本動詞: have</option>
-            <option value="words-hold.json">基本動詞: hold</option>
-            <option value="words-give.json">基本動詞: give</option>
-            <option value="words-verbs.json">重要動詞まとめ (混合版)</option>
-          </select>
-        </div>
-
-        <!-- オートタイマー設定（3秒 / 10秒 / 15秒 / OFF） -->
-        <div class="flex items-center gap-1.5 text-xs text-slate-400">
-          <i class="fa-regular fa-clock text-green-400"></i>
-          <span>めくり後次問:</span>
-          <select id="timerSelect" class="bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1 text-xs text-white focus:outline-none focus:border-green-400 font-medium">
-            <option value="0">OFF</option>
-            <option value="3">3秒（即断）</option>
-            <option value="10" selected>10秒（標準）</option>
-            <option value="15">15秒（音読）</option>
-          </select>
-        </div>
+  <!-- 直感的セレクター（2段構成） -->
+  <section class="w-full max-w-xl mx-auto px-3 pt-3 pb-1 space-y-2.5">
+    <div class="bg-white p-3.5 rounded-2xl border border-[#DCE4EE] space-y-2.5 shadow-sm">
+      <!-- 1段目：教材選択 -->
+      <div class="flex items-center gap-2">
+        <label for="dictSelect" class="text-xs text-[#102542] font-bold shrink-0 w-16">
+          <i class="fa-solid fa-book mr-1 text-[#CD2D2D]"></i>教材集:
+        </label>
+        <select id="dictSelect" 
+          class="bg-[#F4F7FB] text-[#102542] border border-[#DCE4EE] rounded-xl px-3 py-2 text-xs sm:text-sm font-bold focus:outline-none focus:border-[#CD2D2D] flex-1">
+          <option value="ALL">★ すべての辞書を結合 (全データ一括)</option>
+          <option value="words.json">一般ビジネス・頻出コロケーション</option>
+          <option value="words-run.json">基本動詞: run</option>
+          <option value="words-take.json">基本動詞: take</option>
+          <option value="words-get.json">基本動詞: get</option>
+          <option value="words-make.json">基本動詞: make</option>
+          <option value="words-have.json">基本動詞: have</option>
+          <option value="words-hold.json">基本動詞: hold</option>
+          <option value="words-give.json">基本動詞: give</option>
+          <option value="words-verbs.json">重要動詞まとめ (混合版)</option>
+        </select>
       </div>
 
-      <!-- 進捗 & カウンター -->
-      <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-800/80">
-        <div class="flex items-center gap-3">
-          <span id="currentDatasetTitle" class="text-slate-400 truncate max-w-[180px]">読み込み中...</span>
-          <label class="flex items-center gap-1.5 text-slate-400 cursor-pointer">
-            <input type="checkbox" id="onlyReviewCheck" class="rounded accent-green-500">
-            <span class="text-[11px]">未習得のみ</span>
-          </label>
-        </div>
-        <div class="font-chakra text-slate-300 font-bold">
-          <span id="currentIndex" class="text-green-400">0</span> / <span id="totalCount">0</span>
-        </div>
+      <!-- 2段目：オートタイマー ＆ 自動遷移 -->
+      <div class="flex items-center gap-2">
+        <label for="timerSelect" class="text-xs text-[#CD2D2D] font-bold shrink-0 w-16">
+          <i class="fa-regular fa-clock mr-1"></i>タイマー:
+        </label>
+        <select id="timerSelect" 
+          class="bg-[#F4F7FB] text-[#102542] border border-[#DCE4EE] rounded-xl px-3 py-2 text-xs sm:text-sm font-bold focus:outline-none focus:border-[#CD2D2D] flex-1">
+          <option value="0">OFF（手動でめくる・送る）</option>
+          <option value="3">3秒（瞬時・即断モード）</option>
+          <option value="10" selected>10秒（標準・確認モード）</option>
+          <option value="15">15秒（音読・反復モード）</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- メインエリア -->
+  <main class="w-full max-w-xl mx-auto my-auto px-3 py-1 flex flex-col items-center flex-1 justify-center">
+    
+    <!-- サブコントロールバー -->
+    <div class="w-full flex items-center justify-between mb-2.5 text-xs px-1">
+      <div class="flex items-center gap-2 font-mono">
+        <span class="text-[#CD2D2D] font-bold text-sm" id="progressIndex">0 / 0</span>
+        <span class="text-slate-300">|</span>
+        <label for="deckSizeSelect" class="text-slate-500 font-sans font-medium">出題:</label>
+        <select id="deckSizeSelect" onchange="changeDeckSize(this.value)" 
+          class="bg-white text-[#102542] border border-[#DCE4EE] rounded-lg px-2 py-1 text-xs focus:outline-none font-bold">
+          <option value="10">10問</option>
+          <option value="20">20問</option>
+          <option value="50">50問</option>
+          <option value="all" selected>全問</option>
+        </select>
       </div>
 
-      <!-- プログレスバー -->
-      <div class="w-full bg-slate-950 h-1.5 rounded-full overflow-hidden">
-        <div id="progressBar" class="bg-green-500 h-full w-0 transition-all duration-200"></div>
+      <div class="flex items-center gap-1.5">
+        <button onclick="setFilterMode('all')" id="btnFilterAll" 
+          class="px-3 py-1 rounded-lg text-xs font-bold bg-[#102542] text-white transition">
+          すべて
+        </button>
+        <button onclick="setFilterMode('review')" id="btnFilterReview" 
+          class="px-2.5 py-1 rounded-lg text-xs font-bold bg-white border border-[#DCE4EE] text-slate-500 hover:text-[#CD2D2D] transition flex items-center gap-1">
+          <i class="fa-solid fa-xmark text-[#CD2D2D]"></i> 未習得 (<span id="unmasteredBadge">0</span>)
+        </button>
       </div>
     </div>
 
-    <!-- カード領域 -->
-    <div class="perspective w-full h-[320px] cursor-pointer" id="cardContainer">
-      <div id="cardInner" class="transform-style-3d transition-transform duration-300 relative w-full h-full">
+    <!-- 3Dカード本体 -->
+    <div class="w-full min-h-[410px] sm:min-h-[420px] perspective-1000 cursor-pointer" onclick="flipCard()">
+      <div id="flashCard" class="w-full h-full relative transform-style-3d transition-transform duration-500 rounded-2xl">
 
-        <!-- 表面（問題） -->
-        <div class="backface-hidden absolute inset-0 bg-slate-900/80 border border-slate-800 hover:border-green-400/50 rounded-2xl p-6 flex flex-col justify-between shadow-xl">
-          <div class="flex items-center justify-between text-xs">
-            <span id="cardCategory" class="px-2.5 py-0.5 rounded bg-green-500/10 text-green-400 border border-green-500/30 font-bold uppercase tracking-wider font-chakra">
-              PHRASE
+        <!-- 【表面】フレーズ・問題面 -->
+        <div class="card-frame rounded-2xl p-5 sm:p-6 flex flex-col justify-between items-center text-center min-h-[410px] sm:min-h-[420px]">
+          <!-- 上部バッジ行 -->
+          <div class="w-full flex items-center justify-between gap-2">
+            <span id="cardCategoryBadge" class="text-xs font-bold px-3 py-1 rounded-full bg-[#F4F7FB] text-[#102542] border border-[#DCE4EE] truncate max-w-[240px]">
+              COLLOCATION
             </span>
-            <span class="text-slate-500 text-[11px]"><i class="fa-solid fa-repeat mr-1"></i>タップで意味を表示</span>
+            <div class="flex items-center gap-2 shrink-0">
+              <button onclick="playSpeech(event)" class="text-slate-400 hover:text-[#CD2D2D] transition text-base p-1" title="音声再生">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+              <span id="cardStatusBadge" class="text-xs font-bold px-2 py-0.5 rounded bg-red-50 text-[#CD2D2D] border border-red-200 hidden">
+                要復習
+              </span>
+            </div>
           </div>
 
-          <div class="text-center my-auto px-2">
-            <h2 id="cardWord" class="text-2xl sm:text-3xl font-extrabold text-white tracking-wide leading-tight">
-              Loading...
-            </h2>
+          <!-- 中央：ターゲットフレーズ ＆ 例文 -->
+          <div class="my-auto py-2 w-full space-y-3.5">
+            <!-- 例文枠 -->
+            <div id="exampleBoxEn" class="bg-[#F4F7FB] rounded-xl p-3 sm:p-3.5 border border-[#DCE4EE] text-left space-y-1.5">
+              <div class="text-xs text-[#CD2D2D] font-bold uppercase tracking-wider flex items-center gap-1.5">
+                <i class="fa-solid fa-lightbulb"></i> <span>コンテクスト・用例</span>
+              </div>
+              <div id="cardExampleEn" class="text-sm sm:text-base font-semibold text-[#102542] leading-relaxed italic">
+                --
+              </div>
+            </div>
+
+            <!-- 単語・フレーズ本体（特大表示） -->
+            <div class="space-y-2 pt-1 text-center">
+              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                <i class="fa-solid fa-crosshairs mr-1 text-[#CD2D2D]"></i> Target Expression:
+              </div>
+              <div id="cardWord" class="font-extrabold text-[#102542] text-2xl sm:text-3xl tracking-tight leading-tight transition-all duration-200 px-2">
+                読み込み中...
+              </div>
+            </div>
           </div>
 
-          <div class="flex items-center justify-between text-xs text-slate-500">
-            <button id="btnSpeak" class="p-2 hover:text-green-400 transition" title="音声再生">
-              <i class="fa-solid fa-volume-high text-sm"></i>
-            </button>
-            <span class="text-[11px]">Space / Tap で裏返す</span>
+          <!-- 最下部操作案内 -->
+          <div class="text-xs text-slate-400 font-semibold">
+            <i class="fa-solid fa-rotate mr-1 text-[#CD2D2D]"></i> タップまたは Space で意味を確認
           </div>
         </div>
 
-        <!-- 裏面（解答） -->
-        <div class="backface-hidden rotate-y-180 absolute inset-0 bg-slate-900/90 border border-green-500/60 rounded-2xl p-6 flex flex-col justify-between shadow-xl">
-          <div class="flex items-center justify-between text-xs">
-            <span class="px-2.5 py-0.5 rounded bg-slate-800 text-green-300 font-bold font-chakra">ANSWER</span>
-            <span class="text-slate-500 text-[11px]"><i class="fa-solid fa-repeat mr-1"></i>タップで表面へ</span>
+        <!-- 【裏面】解答・日本語訳・解説 -->
+        <div class="absolute inset-0 backface-hidden rotate-y-180 card-frame rounded-2xl p-5 sm:p-6 flex flex-col justify-between items-center text-center min-h-[410px] sm:min-h-[420px] border-2 border-[#102542] bg-white">
+          <div class="w-full flex items-center justify-between pb-2 border-b border-[#DCE4EE]">
+            <span class="text-xs font-bold text-emerald-700 uppercase tracking-widest flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-check text-emerald-600"></i> 正解 ＆ 日本語訳
+            </span>
+            <span class="text-xs text-slate-400">タップで表面へ戻る</span>
           </div>
 
-          <div class="space-y-4 my-auto">
+          <!-- 解答本体 -->
+          <div class="my-auto py-2 w-full space-y-3.5 text-left">
             <div>
-              <div class="text-xs text-green-400 font-bold">日本語訳</div>
-              <p id="cardMeaning" class="text-lg sm:text-xl font-bold text-white mt-1">--</p>
+              <div class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">意味・訳語</div>
+              <div id="cardMeaning" class="text-2xl sm:text-3xl font-black text-[#CD2D2D] tracking-wide leading-tight">
+                --
+              </div>
             </div>
-            <div id="exampleBox" class="bg-slate-950/70 p-3 rounded-lg border border-slate-800 text-xs space-y-1">
-              <div class="text-slate-400 font-medium">例文</div>
-              <p id="cardExampleEn" class="text-slate-200 font-semibold">--</p>
-              <p id="cardExampleJa" class="text-slate-400">--</p>
+
+            <!-- 例文・和訳枠 -->
+            <div class="bg-[#F4F7FB] p-3 sm:p-4 rounded-xl border border-[#DCE4EE] space-y-1.5">
+              <div class="text-xs text-[#102542] font-bold uppercase tracking-wider flex items-center gap-1.5">
+                <i class="fa-solid fa-language text-[#CD2D2D]"></i> 例文と対訳:
+              </div>
+              <div id="cardExampleEnBack" class="text-xs sm:text-sm font-semibold text-[#102542] italic leading-relaxed">
+                --
+              </div>
+              <div id="cardExampleJa" class="text-xs sm:text-sm text-slate-600 leading-relaxed pt-1 border-t border-[#DCE4EE]">
+                --
+              </div>
+            </div>
+
+            <!-- オートタイマー進行表示 -->
+            <div class="text-center text-[11px] text-slate-500 font-medium" id="timerStatusText">
+              下のボタンで習得状況を記録してください
             </div>
           </div>
 
-          <!-- オートタイマー進行表示 -->
-          <div class="text-center text-[11px] text-slate-400" id="timerStatusText">
-            タップで表面に戻ります
+          <div class="text-xs text-slate-400 font-semibold">
+            Space / Tap で問題面へ戻る
           </div>
         </div>
 
       </div>
     </div>
 
-    <!-- 習得ステータス選択（未習得 / 習得済み 独立ボタン形式） -->
-    <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-2.5 flex items-center gap-2">
-      <span class="text-[11px] text-slate-400 font-bold pl-1 hidden sm:inline">定着度:</span>
-
-      <!-- 未習得ボタン -->
-      <button id="btnMarkUnlearned" class="flex-1 py-2 rounded-lg font-bold text-xs transition flex items-center justify-center gap-1.5 border border-slate-800 bg-slate-950 text-slate-400 hover:text-amber-300">
-        <i class="fa-solid fa-rotate-left text-xs"></i>
-        <span>要復習（未習得）</span>
+    <!-- 判定ボタン（特大タップ領域） -->
+    <div class="w-full grid grid-cols-2 gap-3 mt-3.5">
+      <button onclick="handleGrade(false)" 
+        class="py-4 px-4 rounded-2xl bg-white hover:bg-red-50 border border-[#DCE4EE] hover:border-[#CD2D2D] text-[#CD2D2D] font-black text-sm sm:text-base transition flex items-center justify-center gap-2 shadow-sm active:scale-95">
+        <i class="fa-solid fa-xmark text-lg"></i>
+        <span>要復習・迷った (↓)</span>
       </button>
-
-      <!-- 習得済みボタン -->
-      <button id="btnMarkMastered" class="flex-1 py-2 rounded-lg font-bold text-xs transition flex items-center justify-center gap-1.5 border border-slate-800 bg-slate-950 text-slate-400 hover:text-green-300">
-        <i class="fa-solid fa-circle-check text-xs"></i>
-        <span>覚えた（習得済）</span>
+      <button onclick="handleGrade(true)" 
+        class="py-4 px-4 rounded-2xl bg-white hover:bg-emerald-50 border border-[#DCE4EE] hover:border-emerald-600 text-emerald-700 font-black text-sm sm:text-base transition flex items-center justify-center gap-2 shadow-sm active:scale-95">
+        <i class="fa-solid fa-check text-lg"></i>
+        <span>覚えた・即答 (↑)</span>
       </button>
     </div>
 
-    <!-- ナビゲーション（前へ / 次へ） -->
-    <div class="flex items-center justify-between gap-3 pt-1">
-      <button id="btnPrev" class="w-1/3 py-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 font-bold text-xs transition flex items-center justify-center gap-1.5">
-        <i class="fa-solid fa-chevron-left"></i> 前へ
+    <!-- ナビゲーション操作ボタン -->
+    <div class="w-full flex items-center justify-center gap-3 mt-2.5 mb-4">
+      <button onclick="prevCard()" class="px-5 py-3 rounded-xl bg-white hover:bg-[#F4F7FB] border border-[#102542] text-[#102542] text-xs sm:text-sm font-bold transition flex items-center gap-1.5 active:scale-95 kobe-btn-glow">
+        <i class="fa-solid fa-chevron-left text-xs"></i> 前へ
       </button>
-
-      <button id="btnNext" class="w-2/3 py-3 rounded-xl bg-green-500 hover:bg-green-400 text-slate-950 font-bold text-xs transition flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(34,197,94,0.3)]">
-        次へ進む <i class="fa-solid fa-chevron-right"></i>
+      <button onclick="flipCard()" class="flex-1 max-w-[200px] py-3 rounded-xl bg-[#102542] hover:bg-[#1a3860] border border-[#102542] hover:border-[#CD2D2D] text-white text-xs sm:text-sm font-black transition flex items-center justify-center gap-2 shadow-sm active:scale-95 kobe-btn-glow">
+        <i class="fa-solid fa-rotate text-red-400"></i> めくる (Space)
+      </button>
+      <button onclick="nextCard()" class="px-5 py-3 rounded-xl bg-white hover:bg-[#F4F7FB] border border-[#102542] text-[#102542] text-xs sm:text-sm font-bold transition flex items-center gap-1.5 active:scale-95 kobe-btn-glow">
+        次へ <i class="fa-solid fa-chevron-right text-xs"></i>
       </button>
     </div>
 
-    <p class="text-center text-[11px] text-slate-500">
-      キー操作：[Space] めくる ｜ [←][→] 前後移動 ｜ [1] 要復習 ｜ [2] 習得済
-    </p>
+    <!-- 教材導線バナー（金のフレーズ） -->
+    <div class="w-full p-4 rounded-2xl bg-white border border-[#DCE4EE] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs shadow-sm">
+      <div class="space-y-1 text-center sm:text-left">
+        <div class="flex items-center justify-center sm:justify-start gap-1.5 text-[#CD2D2D] font-bold">
+          <i class="fa-solid fa-book-bookmark"></i>
+          <span>単語・フレーズの脊髄反射を極めるなら</span>
+        </div>
+        <p class="text-slate-600 text-[11px] leading-relaxed">
+          当ツールのコロケーションを回しつつ、頻出単語を網羅するなら『金のフレーズ』が王道にして必須の1冊です。
+        </p>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="recommend.html" class="px-3 py-2 rounded-xl bg-[#F4F7FB] hover:bg-slate-200 border border-[#DCE4EE] text-[#102542] font-bold transition">
+          教材詳細
+        </a>
+        <a href="https://www.amazon.co.jp/dp/4023315682" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-[#102542] hover:bg-[#1a3860] border border-[#102542] hover:border-[#CD2D2D] text-white font-bold transition flex items-center gap-1.5 shadow-sm kobe-btn-glow">
+          <span>Amazonで確認</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-red-400"></i>
+        </a>
+      </div>
+    </div>
 
   </main>
 
-  <!-- 一覧表示モーダル -->
-  <div id="listModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl w-full max-w-xl max-h-[80vh] flex flex-col shadow-2xl">
-      <div class="p-4 border-b border-slate-800 flex items-center justify-between">
-        <h3 class="text-sm font-bold text-white flex items-center gap-2">
-          <i class="fa-solid fa-list-ul text-green-400"></i> 単語リスト一覧
-        </h3>
-        <button id="btnCloseList" class="text-slate-400 hover:text-white p-1">
-          <i class="fa-solid fa-xmark text-base"></i>
+  <!-- 単語・フレーズの一覧モーダル -->
+  <div id="listModal" class="fixed inset-0 bg-[#102542]/70 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 z-50">
+    <div class="max-w-xl w-full h-[85vh] bg-white rounded-2xl p-4 sm:p-5 flex flex-col border border-[#DCE4EE] shadow-2xl overflow-hidden">
+      <div class="flex items-center justify-between pb-3 border-b border-[#DCE4EE]">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-list-ul text-[#CD2D2D]"></i>
+          <h3 class="text-sm sm:text-base font-bold text-[#102542]">収録フレーズ一覧</h3>
+          <span class="text-xs text-slate-500 font-mono" id="modalListCount"></span>
+        </div>
+        <button id="btnCloseList" class="text-slate-400 hover:text-[#102542] text-lg p-1">
+          <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
-      <div class="p-3 overflow-y-auto flex-1 divide-y divide-slate-800/60 text-xs" id="wordListTable">
-        <!-- JSで動的生成 -->
+
+      <div class="py-3">
+        <div class="relative">
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-xs text-slate-400"></i>
+          <input type="text" id="listSearchInput" oninput="filterList()" placeholder="英語フレーズ、日本語訳、例文で検索..." 
+            class="w-full pl-8 pr-3 py-2 rounded-xl bg-[#F4F7FB] border border-[#DCE4EE] text-xs text-[#102542] placeholder:text-slate-400 focus:outline-none focus:border-[#CD2D2D]">
+        </div>
       </div>
-      <div class="p-3 border-t border-slate-800 text-right">
-        <button id="btnCloseListFooter" class="px-4 py-1.5 rounded-lg bg-slate-800 text-slate-300 text-xs font-semibold hover:bg-slate-700">閉じる</button>
-      </div>
+
+      <div class="flex-1 overflow-y-auto space-y-2.5 pr-1" id="listContainer"></div>
     </div>
   </div>
 
+  <!-- フッター -->
+  <footer class="border-t border-[#DCE4EE] bg-white py-6 text-center text-xs text-slate-500 space-y-1 mt-6">
+    <p class="font-semibold text-[#102542]">© 2026 TOEIC RE:BOOT 730<a href="ura_index.html" class="text-slate-400 hover:text-slate-600">.</a></p>
+    <p>50代からのスコア奪還 自習システム</p>
+    <p class="text-[11px] text-slate-400">Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。</p>
+  </footer>
+
+  <!-- スクリプト制御 -->
   <script>
     // --- 状態管理 ---
     let currentWords = [];
-    let filteredIndices = [];
-    let currentPos = 0;
+    let activeDeck = [];
+    let currentIndex = 0;
     let isFlipped = false;
+    let filterMode = 'all';
     let autoTimer = null;
     let countdownInterval = null;
 
-    // 習得済み保存ストレージ (localStorage)
     const STORAGE_KEY = "toeic_mastered_words_v1";
     let masteredSet = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"));
 
@@ -236,39 +345,39 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify([...masteredSet]));
     }
 
+    const fontSizes = [
+      { w: 'text-xl sm:text-2xl', ex: 'text-xs sm:text-sm' },
+      { w: 'text-2xl sm:text-3xl', ex: 'text-sm sm:text-base' }, // 標準
+      { w: 'text-3xl sm:text-4xl', ex: 'text-base sm:text-lg' }
+    ];
+    let currentFontIndex = parseInt(localStorage.getItem('flashcard_font_level') || '1', 10);
+
     // --- DOM要素 ---
     const dictSelect = document.getElementById("dictSelect");
     const timerSelect = document.getElementById("timerSelect");
-    const onlyReviewCheck = document.getElementById("onlyReviewCheck");
-    const currentDatasetTitle = document.getElementById("currentDatasetTitle");
-    const currentIndex = document.getElementById("currentIndex");
-    const totalCount = document.getElementById("totalCount");
-    const progressBar = document.getElementById("progressBar");
-
-    const cardContainer = document.getElementById("cardContainer");
-    const cardInner = document.getElementById("cardInner");
-    const cardCategory = document.getElementById("cardCategory");
+    const flashCard = document.getElementById("flashCard");
+    const cardCategoryBadge = document.getElementById("cardCategoryBadge");
+    const cardStatusBadge = document.getElementById("cardStatusBadge");
     const cardWord = document.getElementById("cardWord");
-    const cardMeaning = document.getElementById("cardMeaning");
     const cardExampleEn = document.getElementById("cardExampleEn");
+    const cardExampleEnBack = document.getElementById("cardExampleEnBack");
+    const cardMeaning = document.getElementById("cardMeaning");
     const cardExampleJa = document.getElementById("cardExampleJa");
     const timerStatusText = document.getElementById("timerStatusText");
-
-    const btnPrev = document.getElementById("btnPrev");
-    const btnNext = document.getElementById("btnNext");
-    const btnMarkUnlearned = document.getElementById("btnMarkUnlearned");
-    const btnMarkMastered = document.getElementById("btnMarkMastered");
-    const btnSpeak = document.getElementById("btnSpeak");
-
+    const progressIndex = document.getElementById("progressIndex");
+    const unmasteredBadge = document.getElementById("unmasteredBadge");
+    const listModal = document.getElementById("listModal");
     const btnOpenList = document.getElementById("btnOpenList");
     const btnCloseList = document.getElementById("btnCloseList");
-    const btnCloseListFooter = document.getElementById("btnCloseListFooter");
-    const listModal = document.getElementById("listModal");
-    const wordListTable = document.getElementById("wordListTable");
+
+    async function initApp() {
+      applyFontClasses();
+      loadDictionary(dictSelect.value);
+    }
 
     // --- データ読み込み ---
     async function loadDictionary(filename) {
-      currentDatasetTitle.textContent = "データ読み込み中...";
+      const cacheBuster = '?t=' + new Date().getTime();
       try {
         let list = [];
         if (filename === "ALL") {
@@ -276,93 +385,71 @@
             "words.json", "words-run.json", "words-take.json", "words-get.json",
             "words-make.json", "words-have.json", "words-hold.json", "words-give.json"
           ];
-          for (const f of files) {
-            try {
-              const res = await fetch(f);
-              if (res.ok) {
-                const data = await res.json();
-                list = list.concat(data);
-              }
-            } catch (err) {}
-          }
+          const promises = files.map(f => fetch(f + cacheBuster).then(r => r.ok ? r.json() : []));
+          const results = await Promise.all(promises);
+          list = results.flat();
         } else {
-          const res = await fetch(filename);
+          const res = await fetch(filename + cacheBuster);
           if (res.ok) list = await res.json();
         }
 
         currentWords = list;
-        currentDatasetTitle.textContent = dictSelect.options[dictSelect.selectedIndex].text;
-        applyFilter();
+        rebuildDeck();
       } catch (err) {
-        currentDatasetTitle.textContent = "読み込みエラー";
-        cardWord.textContent = "データを読み込めませんでした";
+        console.error("Dictionary load error:", err);
+        currentWords = [];
+        rebuildDeck();
       }
     }
 
-    function applyFilter() {
-      const onlyReview = onlyReviewCheck.checked;
-      filteredIndices = [];
-      for (let i = 0; i < currentWords.length; i++) {
-        const item = currentWords[i];
-        const isMastered = masteredSet.has(item.word || item.phrase || item.english);
-        if (!onlyReview || !isMastered) {
-          filteredIndices.push(i);
-        }
-      }
-      currentPos = 0;
-      updateUI();
+    function changeDeckSize(val) {
+      rebuildDeck();
     }
 
-    // --- UI更新 ---
-    function updateUI() {
-      clearTimer();
-      isFlipped = false;
-      cardInner.classList.remove("rotate-y-180");
-      timerStatusText.textContent = "タップで表面に戻ります";
+    function setFilterMode(mode) {
+      filterMode = mode;
+      const btnAll = document.getElementById('btnFilterAll');
+      const btnRev = document.getElementById('btnFilterReview');
 
-      if (filteredIndices.length === 0) {
-        currentIndex.textContent = "0";
-        totalCount.textContent = "0";
-        progressBar.style.width = "0%";
-        cardWord.textContent = "該当する単語はありません";
-        cardMeaning.textContent = "--";
-        cardExampleEn.textContent = "--";
-        cardExampleJa.textContent = "--";
-        renderStatusButtons(false);
-        return;
-      }
-
-      const rawIdx = filteredIndices[currentPos];
-      const item = currentWords[rawIdx];
-      const wordText = item.word || item.phrase || item.english || "";
-      const meanText = item.meaning || item.japanese || item.translation || "";
-      const exEn = item.example || item.example_en || "";
-      const exJa = item.example_ja || item.example_jp || "";
-
-      cardWord.textContent = wordText;
-      cardMeaning.textContent = meanText;
-      cardExampleEn.textContent = exEn || "--";
-      cardExampleJa.textContent = exJa || "--";
-      cardCategory.textContent = item.category || "COLLOCATION";
-
-      currentIndex.textContent = currentPos + 1;
-      totalCount.textContent = filteredIndices.length;
-      progressBar.style.width = `${((currentPos + 1) / filteredIndices.length) * 100}%`;
-
-      renderStatusButtons(masteredSet.has(wordText));
-    }
-
-    // 独立した2ボタンのハイライト切り替え
-    function renderStatusButtons(isMastered) {
-      if (isMastered) {
-        // 「覚えた」がアクティブ
-        btnMarkMastered.className = "flex-1 py-2 rounded-lg font-bold text-xs transition flex items-center justify-center gap-1.5 border border-green-500 bg-green-500/20 text-green-300 shadow-[0_0_10px_rgba(34,197,94,0.2)]";
-        btnMarkUnlearned.className = "flex-1 py-2 rounded-lg font-bold text-xs transition flex items-center justify-center gap-1.5 border border-slate-800 bg-slate-950 text-slate-500 hover:text-slate-300 opacity-60";
+      if (mode === 'all') {
+        btnAll.className = 'px-3 py-1 rounded-lg text-xs font-bold bg-[#102542] text-white transition';
+        btnRev.className = 'px-2.5 py-1 rounded-lg text-xs font-bold bg-white border border-[#DCE4EE] text-slate-500 hover:text-[#CD2D2D] transition flex items-center gap-1';
       } else {
-        // 「要復習」がアクティブ
-        btnMarkUnlearned.className = "flex-1 py-2 rounded-lg font-bold text-xs transition flex items-center justify-center gap-1.5 border border-amber-500/60 bg-amber-500/15 text-amber-300 shadow-[0_0_10px_rgba(245,158,11,0.15)]";
-        btnMarkMastered.className = "flex-1 py-2 rounded-lg font-bold text-xs transition flex items-center justify-center gap-1.5 border border-slate-800 bg-slate-950 text-slate-500 hover:text-slate-300 opacity-60";
+        btnRev.className = 'px-2.5 py-1 rounded-lg text-xs font-bold bg-[#CD2D2D] text-white transition flex items-center gap-1';
+        btnAll.className = 'px-3 py-1 rounded-lg text-xs font-bold bg-white border border-[#DCE4EE] text-slate-500 hover:text-[#102542] transition';
       }
+      rebuildDeck();
+    }
+
+    function rebuildDeck() {
+      let pool = [...currentWords];
+
+      if (filterMode === 'review') {
+        pool = pool.filter(item => {
+          const wordText = item.word || item.phrase || item.english || "";
+          return !masteredSet.has(wordText);
+        });
+      }
+
+      const sizeVal = document.getElementById('deckSizeSelect').value;
+      if (sizeVal !== 'all') {
+        const limit = parseInt(sizeVal, 10);
+        pool = pool.sort(() => Math.random() - 0.5).slice(0, limit);
+      }
+
+      activeDeck = pool;
+      currentIndex = 0;
+      updateUnmasteredCount();
+      loadCard(0);
+    }
+
+    function updateUnmasteredCount() {
+      let unmasteredCount = 0;
+      currentWords.forEach(item => {
+        const wordText = item.word || item.phrase || item.english || "";
+        if (!masteredSet.has(wordText)) unmasteredCount++;
+      });
+      unmasteredBadge.textContent = unmasteredCount;
     }
 
     function clearTimer() {
@@ -372,60 +459,102 @@
       countdownInterval = null;
     }
 
+    function loadCard(index) {
+      clearTimer();
+      isFlipped = false;
+      flashCard.classList.remove('rotate-y-180');
+      timerStatusText.textContent = "下のボタンで習得状況を記録してください";
+
+      if (!activeDeck || activeDeck.length === 0) {
+        progressIndex.textContent = "0 / 0";
+        cardCategoryBadge.textContent = "なし";
+        cardWord.textContent = "対象の語彙はありません";
+        cardExampleEn.textContent = "すべて習得済みか、データが見つかりません。";
+        cardExampleEnBack.textContent = "--";
+        cardMeaning.textContent = "--";
+        cardExampleJa.textContent = "--";
+        cardStatusBadge.classList.add('hidden');
+        return;
+      }
+
+      const item = activeDeck[index];
+      const wordText = item.word || item.phrase || item.english || "";
+      const meanText = item.meaning || item.japanese || item.translation || "";
+      const exEn = item.example || item.example_en || "";
+      const exJa = item.example_ja || item.example_jp || "";
+
+      cardCategoryBadge.textContent = item.category || "COLLOCATION";
+      cardWord.textContent = wordText;
+      cardExampleEn.textContent = exEn ? `"${exEn}"` : "(例文なし)";
+      cardExampleEnBack.textContent = exEn ? `"${exEn}"` : "--";
+      cardMeaning.textContent = meanText || "--";
+      cardExampleJa.textContent = exJa || "--";
+
+      const isMastered = masteredSet.has(wordText);
+      if (!isMastered) {
+        cardStatusBadge.classList.remove('hidden');
+      } else {
+        cardStatusBadge.classList.add('hidden');
+      }
+
+      progressIndex.textContent = `${index + 1} / ${activeDeck.length}`;
+    }
+
     function flipCard() {
-      if (filteredIndices.length === 0) return;
+      if (activeDeck.length === 0) return;
       isFlipped = !isFlipped;
-      cardInner.classList.toggle("rotate-y-180", isFlipped);
+      flashCard.classList.toggle('rotate-y-180', isFlipped);
 
       clearTimer();
 
       const timerSec = parseInt(timerSelect.value, 10);
       if (isFlipped && timerSec > 0) {
         let remain = timerSec;
-        timerStatusText.innerHTML = `<span class="text-green-400 font-bold">${remain}秒後</span> に自動で次問へ`;
+        timerStatusText.innerHTML = `<span class="text-[#CD2D2D] font-bold">${remain}秒後</span> に自動で次問へ`;
         
         countdownInterval = setInterval(() => {
           remain--;
           if (remain > 0) {
-            timerStatusText.innerHTML = `<span class="text-green-400 font-bold">${remain}秒後</span> に自動で次問へ`;
+            timerStatusText.innerHTML = `<span class="text-[#CD2D2D] font-bold">${remain}秒後</span> に自動で次問へ`;
           } else {
             clearInterval(countdownInterval);
           }
         }, 1000);
 
         autoTimer = setTimeout(() => {
-          nextWord();
+          nextCard();
         }, timerSec * 1000);
       } else {
-        timerStatusText.textContent = "タップで表面に戻ります";
+        timerStatusText.textContent = "下のボタンで習得状況を記録してください";
       }
     }
 
-    function nextWord() {
-      if (filteredIndices.length === 0) return;
-      if (currentPos < filteredIndices.length - 1) {
-        currentPos++;
+    function prevCard() {
+      if (activeDeck.length === 0) return;
+      if (currentIndex > 0) {
+        currentIndex--;
+        loadCard(currentIndex);
       } else {
-        currentPos = 0;
+        currentIndex = activeDeck.length - 1;
+        loadCard(currentIndex);
       }
-      updateUI();
     }
 
-    function prevWord() {
-      if (filteredIndices.length === 0) return;
-      if (currentPos > 0) {
-        currentPos--;
+    function nextCard() {
+      if (activeDeck.length === 0) return;
+      if (currentIndex < activeDeck.length - 1) {
+        currentIndex++;
+        loadCard(currentIndex);
       } else {
-        currentPos = filteredIndices.length - 1;
+        currentIndex = 0;
+        loadCard(0);
       }
-      updateUI();
     }
 
-    // 「覚えた」を設定
-    function setMastered(isMastered) {
-      if (filteredIndices.length === 0) return;
-      const rawIdx = filteredIndices[currentPos];
-      const wordText = currentWords[rawIdx].word || currentWords[rawIdx].phrase || currentWords[rawIdx].english;
+    function handleGrade(isMastered) {
+      if (activeDeck.length === 0) return;
+      const currentItem = activeDeck[currentIndex];
+      const wordText = currentItem.word || currentItem.phrase || currentItem.english || "";
 
       if (isMastered) {
         masteredSet.add(wordText);
@@ -433,106 +562,122 @@
         masteredSet.delete(wordText);
       }
       saveMastered();
-      renderStatusButtons(isMastered);
+      updateUnmasteredCount();
 
-      if (onlyReviewCheck.checked && isMastered) {
-        applyFilter();
+      if (filterMode === 'review' && isMastered) {
+        rebuildDeck();
+      } else {
+        nextCard();
       }
     }
 
-    // --- 音声再生 ---
-    function speakWord() {
-      if (filteredIndices.length === 0) return;
-      const rawIdx = filteredIndices[currentPos];
-      const text = currentWords[rawIdx].word || currentWords[rawIdx].phrase || currentWords[rawIdx].english;
-      if (!text) return;
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = "en-US";
-      u.rate = 0.95;
-      speechSynthesis.speak(u);
+    function adjustFontSize(delta) {
+      const nextIndex = currentFontIndex + delta;
+      if (nextIndex >= 0 && nextIndex < fontSizes.length) {
+        currentFontIndex = nextIndex;
+        localStorage.setItem('flashcard_font_level', currentFontIndex);
+        applyFontClasses();
+      }
     }
 
-    // --- 一覧モーダル生成 ---
-    function renderListModal() {
-      wordListTable.innerHTML = "";
-      if (currentWords.length === 0) {
-        wordListTable.innerHTML = `<div class="p-4 text-center text-slate-500">データがありません</div>`;
+    function applyFontClasses() {
+      const allW = fontSizes.map(f => f.w.split(' ')).flat();
+      cardWord.classList.remove(...allW);
+      cardWord.classList.add(...fontSizes[currentFontIndex].w.split(' '));
+    }
+
+    function playSpeech(e) {
+      if (e) e.stopPropagation();
+      if (activeDeck.length === 0) return;
+      const currentItem = activeDeck[currentIndex];
+      const textToRead = currentItem.word || currentItem.phrase || currentItem.english || "";
+      if (!textToRead) return;
+      const uttr = new SpeechSynthesisUtterance(textToRead);
+      uttr.lang = 'en-US';
+      uttr.rate = 0.95;
+      window.speechSynthesis.speak(uttr);
+    }
+
+    // --- 一覧モーダル ---
+    function openListModal() {
+      renderList(currentWords);
+      listModal.classList.remove('hidden');
+      document.getElementById('listSearchInput').value = '';
+    }
+
+    function closeListModal() {
+      listModal.classList.add('hidden');
+    }
+
+    function filterList() {
+      const q = document.getElementById('listSearchInput').value.toLowerCase();
+      const filtered = currentWords.filter(item => {
+        const w = (item.word || item.phrase || item.english || "").toLowerCase();
+        const m = (item.meaning || item.japanese || "").toLowerCase();
+        const ex = (item.example || item.example_en || "").toLowerCase();
+        return w.includes(q) || m.includes(q) || ex.includes(q);
+      });
+      renderList(filtered);
+    }
+
+    function renderList(items) {
+      const container = document.getElementById('listContainer');
+      document.getElementById('modalListCount').textContent = `(${items.length} 件)`;
+      container.innerHTML = '';
+
+      if (items.length === 0) {
+        container.innerHTML = '<p class="text-xs text-slate-500 text-center py-8">該当する語彙は見つかりませんでした</p>';
         return;
       }
 
-      currentWords.forEach((item, idx) => {
+      items.forEach((item, idx) => {
         const wordText = item.word || item.phrase || item.english || "";
         const meanText = item.meaning || item.japanese || "";
+        const exEn = item.example || item.example_en || "";
         const isMastered = masteredSet.has(wordText);
 
-        const row = document.createElement("div");
-        row.className = "py-2 px-2 flex items-center justify-between hover:bg-slate-800/50 rounded cursor-pointer";
+        const row = document.createElement('div');
+        row.className = 'p-3 rounded-xl bg-[#F4F7FB] border border-[#DCE4EE] space-y-1.5 hover:border-[#102542] transition';
         row.innerHTML = `
-          <div class="flex items-center gap-2 flex-1 pr-2">
-            <span class="${isMastered ? 'text-green-400' : 'text-slate-600'}">
-              <i class="fa-solid ${isMastered ? 'fa-circle-check' : 'fa-circle'} text-[10px]"></i>
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-mono text-[#102542] font-bold px-2 py-0.5 rounded bg-white border border-[#DCE4EE]">
+              ${item.category || 'Phrase'}
             </span>
-            <span class="font-bold text-white">${wordText}</span>
-            <span class="text-slate-400 truncate max-w-[200px]">${meanText}</span>
+            <div class="flex items-center gap-1.5">
+              ${isMastered ? '<span class="text-[9px] px-1.5 py-0.2 rounded bg-emerald-50 text-emerald-700 border border-emerald-300 font-bold">習得済</span>' : '<span class="text-[9px] px-1.5 py-0.2 rounded bg-red-50 text-[#CD2D2D] border border-red-200 font-bold">要復習</span>'}
+            </div>
           </div>
-          <button class="text-[11px] px-2 py-0.5 rounded bg-slate-800 hover:bg-green-500 hover:text-black font-semibold text-slate-300">
-            ジャンプ
-          </button>
+          <div class="text-sm font-bold text-[#102542]">${wordText}</div>
+          <div class="text-xs font-bold text-[#CD2D2D]">${meanText}</div>
+          ${exEn ? `<div class="text-[11px] text-slate-600 bg-white p-2 rounded-lg border border-[#DCE4EE] italic font-semibold">${exEn}</div>` : ''}
         `;
-        row.addEventListener("click", () => {
-          const matchPos = filteredIndices.indexOf(idx);
-          if (matchPos !== -1) {
-            currentPos = matchPos;
-          } else {
-            onlyReviewCheck.checked = false;
-            applyFilter();
-            currentPos = filteredIndices.indexOf(idx);
+        row.addEventListener('click', () => {
+          filterMode = 'all';
+          document.getElementById('deckSizeSelect').value = 'all';
+          rebuildDeck();
+          const matchIndex = activeDeck.findIndex(it => (it.word || it.phrase || it.english) === wordText);
+          if (matchIndex !== -1) {
+            currentIndex = matchIndex;
+            loadCard(currentIndex);
           }
-          updateUI();
-          listModal.classList.add("hidden");
+          closeListModal();
         });
-        wordListTable.appendChild(row);
+        container.appendChild(row);
       });
     }
 
-    // --- イベントリスナー ---
-    cardContainer.addEventListener("click", flipCard);
-    btnNext.addEventListener("click", (e) => { e.stopPropagation(); nextWord(); });
-    btnPrev.addEventListener("click", (e) => { e.stopPropagation(); prevWord(); });
-    btnMarkUnlearned.addEventListener("click", (e) => { e.stopPropagation(); setMastered(false); });
-    btnMarkMastered.addEventListener("click", (e) => { e.stopPropagation(); setMastered(true); });
-    btnSpeak.addEventListener("click", (e) => { e.stopPropagation(); speakWord(); });
-
+    // イベントリスナー
     dictSelect.addEventListener("change", () => loadDictionary(dictSelect.value));
-    onlyReviewCheck.addEventListener("change", applyFilter);
-
-    // 一覧モーダル
-    btnOpenList.addEventListener("click", () => {
-      renderListModal();
-      listModal.classList.remove("hidden");
+    timerSelect.addEventListener("change", () => {
+      clearTimer();
+      if (isFlipped) flipCard();
     });
-    btnCloseList.addEventListener("click", () => listModal.classList.add("hidden"));
-    btnCloseListFooter.addEventListener("click", () => listModal.classList.add("hidden"));
+    btnOpenList.addEventListener("click", openListModal);
+    btnCloseList.addEventListener("click", closeListModal);
 
-    // キーボード操作
-    window.addEventListener("keydown", (e) => {
-      if (!listModal.classList.contains("hidden")) return;
-      if (e.code === "Space") {
-        e.preventDefault();
-        flipCard();
-      } else if (e.code === "ArrowRight") {
-        nextWord();
-      } else if (e.code === "ArrowLeft") {
-        prevWord();
-      } else if (e.key === "1") {
-        setMastered(false);
-      } else if (e.key === "2") {
-        setMastered(true);
-      }
-    });
-
-    // 初期起動
-    loadDictionary(dictSelect.value);
-  </script>
-</body>
-</html>
+    // キーボードショートカット
+    document.addEventListener('keydown', (e) => {
+      if (listModal.classList.contains('hidden')) {
+        if (e.code === 'Space') { e.preventDefault(); flipCard(); }
+        else if (e.code === 'ArrowUp' || e.key === '2') { e.preventDefault(); handleGrade(true); }
+        else if (e.code === 'ArrowDown' || e.key === '1') { e.preventDefault(); handleGrade(

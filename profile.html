@@ -1,4 +1,3 @@
-<!-- 対象ファイル: profile.html -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -11,10 +10,10 @@
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: 視認性に優れたUD系・角ゴシック -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@600;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
   <!-- FontAwesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <!-- Chart.js CDN -->
@@ -22,33 +21,57 @@
 
   <style>
     body {
-      background-color: #0f172a;
-      color: #f1f5f9;
-      font-family: 'Noto Sans JP', 'Inter', sans-serif;
+      background-color: #F4F7FB;
+      color: #102542;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       font-size: 16px;
       line-height: 1.8;
     }
+    .font-chakra { font-family: 'Chakra Petch', sans-serif; }
+    
+    .kobe-navy { color: #102542; }
+    .kobe-bg-navy { background-color: #102542; }
+    .kobe-red { color: #CD2D2D; }
+    .kobe-bg-red { background-color: #CD2D2D; }
+
     .base-card {
-      background: #1e293b;
-      border: 1px solid #334155;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      background: #FFFFFF;
+      border: 1px solid #DCE4EE;
+      box-shadow: 0 4px 6px -1px rgba(16, 37, 66, 0.05), 0 2px 4px -1px rgba(16, 37, 66, 0.03);
+    }
+    .kobe-card-glow {
+      border: 1px solid #DCE4EE;
+      box-shadow: 0 4px 6px -1px rgba(16, 37, 66, 0.05);
+      transition: all 0.25s ease;
+    }
+    .kobe-card-glow:hover {
+      border-color: rgba(205, 45, 45, 0.5);
+      box-shadow: 0 10px 25px -3px rgba(16, 37, 66, 0.12), 0 0 18px rgba(205, 45, 45, 0.15);
+    }
+    .kobe-btn-glow {
+      transition: all 0.2s ease;
+    }
+    .kobe-btn-glow:hover {
+      border-color: #CD2D2D;
+      box-shadow: 0 0 14px rgba(205, 45, 45, 0.25);
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-sky-500 selection:text-slate-950">
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-blue-100 selection:text-blue-900">
 
-  <!-- ヘッダー（戻るボタン ＆ おすすめ教材リンク配置） -->
-  <header class="sticky top-0 z-50 bg-[#0f172a]/95 backdrop-blur border-b border-slate-700 px-4 py-3.5">
-    <div class="max-w-2xl mx-auto flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-2 text-slate-300 hover:text-sky-400 font-bold text-sm transition">
+  <!-- ヘッダー（神戸タータン仕様：上部に赤ライン） -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-[#DCE4EE]">
+    <div class="h-[3px] bg-[#CD2D2D] w-full"></div>
+    <div class="max-w-2xl mx-auto px-4 py-3.5 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 text-slate-600 hover:text-[#CD2D2D] font-bold text-sm transition">
         <i class="fa-solid fa-arrow-left"></i>
-        <span>ポータルへ戻る</span>
+        <span>自習システムトップへ</span>
       </a>
-      <div class="flex items-center gap-2">
-        <a href="recommend.html" class="text-xs font-bold text-amber-300 bg-amber-950/70 px-2.5 py-1 rounded border border-amber-800 hover:border-amber-400 transition">
+      <div class="flex items-center gap-2.5">
+        <a href="recommend.html" class="text-xs font-bold text-[#102542] bg-[#F4F7FB] px-2.5 py-1 rounded border border-[#DCE4EE] hover:border-[#CD2D2D] transition">
           おすすめ教材
         </a>
-        <span class="text-xs font-mono font-bold text-sky-400 bg-sky-950/80 px-2.5 py-1 rounded border border-sky-800">
+        <span class="text-xs font-mono font-bold text-[#CD2D2D] bg-red-50 px-2.5 py-1 rounded border border-red-200">
           PRODUCER LOG
         </span>
       </div>
@@ -60,32 +83,32 @@
 
     <!-- タイトルエリア -->
     <div class="space-y-3">
-      <div class="inline-flex items-center gap-2 text-xs font-bold text-amber-400 bg-amber-950/60 px-3 py-1 rounded-full border border-amber-800">
-        <i class="fa-solid fa-chart-line"></i> 実数値データ公開 
+      <div class="inline-flex items-center gap-2 text-xs font-semibold bg-red-50 text-[#CD2D2D] px-3 py-1 rounded-full border border-red-200">
+        <i class="fa-solid fa-chart-line"></i> 実数値データ公開
       </div>
-      <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-white leading-tight">
-        395点から730点までの悪戦苦闘、<br>
-        そして再度の錆びつき。<br>
-        <span class="text-sky-400">大人のTOEIC奪還・全記録。</span>
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-[#102542] leading-tight">
+        395点からの再出発と、長期停滞。<br>
+        大人が730点を奪還するまでの<br class="hidden sm:block">
+        <span class="kobe-red">検証と実践の全記録。</span>
       </h1>
-      <p class="text-xs sm:text-sm text-slate-400 font-mono">
+      <p class="text-xs sm:text-sm text-slate-500 font-mono">
         First Test: 2021.03 ➔ Peak: 730 (2024.02) ➔ Current: Re:Booting
       </p>
     </div>
 
-    <!-- 実績グラフエリア（Chart.jsで完全再現） -->
-    <section class="base-card p-5 sm:p-7 rounded-2xl border-slate-700 space-y-4">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-700 pb-3">
+    <!-- 実績グラフエリア（Chart.js） -->
+    <section class="base-card p-5 sm:p-7 rounded-2xl space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#DCE4EE] pb-3">
         <div>
-          <span class="text-xs font-bold text-sky-400 uppercase tracking-wider">Official Score History</span>
-          <h2 class="text-lg font-bold text-white flex items-center gap-2">
-            TOEIC公式スコアの実際の推移
+          <span class="text-xs font-bold text-[#CD2D2D] uppercase tracking-wider font-chakra">Official Score History</span>
+          <h2 class="text-lg font-bold text-[#102542] flex items-center gap-2">
+            TOEIC公式スコアの実推移
           </h2>
         </div>
         <div class="flex items-center gap-3 text-xs font-mono">
-          <span class="flex items-center gap-1.5"><span class="w-3 h-3 bg-sky-500 rounded-sm"></span>L</span>
-          <span class="flex items-center gap-1.5"><span class="w-3 h-3 bg-amber-500 rounded-sm"></span>R</span>
-          <span class="flex items-center gap-1.5"><span class="w-3 h-3 bg-slate-400 rounded-sm"></span>Total</span>
+          <span class="flex items-center gap-1.5 text-slate-600"><span class="w-3 h-3 bg-[#102542] rounded-sm"></span>L</span>
+          <span class="flex items-center gap-1.5 text-slate-600"><span class="w-3 h-3 bg-[#CD2D2D] rounded-sm"></span>R</span>
+          <span class="flex items-center gap-1.5 text-slate-600"><span class="w-3 h-3 bg-slate-400 rounded-sm"></span>Total</span>
         </div>
       </div>
 
@@ -94,105 +117,104 @@
         <canvas id="scoreChart"></canvas>
       </div>
 
-      <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800 text-xs text-slate-400 leading-relaxed">
-        <i class="fa-solid fa-circle-info text-sky-400 mr-1"></i>
-        <strong>グラフの真実：</strong> 2021年の300点台からスタートし、2022年に一度710点に到達。しかしそこから長い停滞と点数急落（600点台の泥沼）を味わい、2024年初頭にようやく730点を記録。語学学習に単純な「右肩上がり」などあり得ません。
+      <div class="p-3 bg-[#F4F7FB] rounded-xl border border-[#DCE4EE] text-xs text-slate-600 leading-relaxed">
+        <i class="fa-solid fa-circle-info text-[#102542] mr-1"></i>
+        <strong>データから見える現実：</strong> 2021年に300点台から学習をスタートし、2022年に一度710点へ到達。しかしそこから約1年半にわたる600点台の停滞を経て、2024年初頭に730点を達成しました。語学学習は単純な右肩上がりではなく、停滞期を前提とした仕組みが必要です。
       </div>
     </section>
 
-    <!-- 手記本文（地味なリアルと高回転学習へ） -->
-    <article class="base-card p-6 sm:p-8 rounded-2xl border-slate-700 space-y-6 text-slate-300 text-sm sm:text-base leading-relaxed">
+    <!-- 手記本文（落ち着いた検証型トーン） -->
+    <article class="base-card p-6 sm:p-8 rounded-2xl space-y-7 text-slate-700 text-sm sm:text-base leading-relaxed">
       
       <div class="space-y-3">
-        <h3 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2.5">
-          <span class="w-2 h-6 bg-sky-400 rounded-sm"></span>
-          1. 300点台からのスタートと、最初の壁
+        <h3 class="text-lg sm:text-xl font-bold text-[#102542] flex items-center gap-2.5">
+          <span class="w-1.5 h-5 bg-[#102542] rounded-sm"></span>
+          1. 300点台からの再開と、直面した壁
         </h3>
-        <p>
-          世の中の英語学習本を見れば、「3ヶ月で700点突破！」「スキマ時間で無理なく合格」といった耳触りの良いフレーズばかりが並んでいます。しかし、実際に40代後半を過ぎてからTOEICに向き合った私の現実は、上のグラフの通り過酷そのものでした。
+        <p class="text-slate-600">
+          語学学習の書籍や広告には、「数ヶ月で急伸」「無理のない短時間学習」といった表現が少なくありません。しかし、40代後半から実務の合間を縫ってTOEICに向き合った実際の記録は、上のグラフの通り地道な試行錯誤の連続でした。
         </p>
-        <p>
-          最初の受験（2021年3月）はわずか395点。学生時代の記憶など完全に消え去り、リスニングは呪文にしか聞こえず、リーディングはPart 7の途中でタイムアップ。そこから必死で問題集を開き、2022年春になんとか710点にタッチした時は「あと一息！」と思いました。しかし、本当の試練はそこからでした。
+        <p class="text-slate-600">
+          再挑戦の初回（2021年3月）は395点。学生時代の文法知識や単語の記憶は薄れ、リスニングのスピードには追いつけず、リーディングはPart 7の途中でタイムアップ。そこから教材を地道に回し、2022年春に710点まで引き上げたものの、本質的な課題はその先にありました。
         </p>
       </div>
 
       <div class="space-y-3 pt-2">
-        <h3 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2.5">
-          <span class="w-2 h-6 bg-amber-400 rounded-sm"></span>
-          2. 600点台の長期停滞と、大人の脳の限界
+        <h3 class="text-lg sm:text-xl font-bold text-[#102542] flex items-center gap-2.5">
+          <span class="w-1.5 h-5 bg-[#CD2D2D] rounded-sm"></span>
+          2. 600点台の長期停滞と、記憶の定着課題
         </h3>
-        <p>
-          700点を一度超えた安心感から惰性の学習になったんでしょう・・・、スコアはあっという間に620点〜630点台へと急降下しました。グラフを見ていただければ分かる通り、2022年後半から2023年にかけて、受けども受けども600点台後半の天井を破れない「長期の停滞期」が続きました。
+        <p class="text-slate-600">
+          一度700点に到達したものの、学習リズムの乱れとともにスコアは620〜630点台へと後退。2022年後半から2023年にかけて、何度受験しても600点台後半の壁を越えられない時期が続きました。
         </p>
-        <p>
-          大人の脳は、時間をかけて理解しても翌日には綺麗さっぱり抜けていくのです。平日の仕事で疲れ果てた頭に、長時間の学習時間も取れず厳しい時期がありました。
+        <p class="text-slate-600">
+          多忙な業務を抱える社会人にとって、時間をかけて丸暗記した知識は短期間で抜け落ちます。長時間の学習枠を確保することが物理的に難しい環境では、従来のやり方そのものを見直す必要がありました。
         </p>
       </div>
 
       <div class="space-y-3 pt-2">
-        <h3 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2.5">
-          <span class="w-2 h-6 bg-emerald-400 rounded-sm"></span>
-          3. 行き着いた「公式問題集 ✕ 高回転・即断」の結論
+        <h3 class="text-lg sm:text-xl font-bold text-[#102542] flex items-center gap-2.5">
+          <span class="w-1.5 h-5 bg-[#102542] rounded-sm"></span>
+          3. 行き着いた「公式教材の集中活用 ✕ パターン認識」
         </h3>
-        <p>
-          そこで勉強法を根本から破壊しました。自分に合わないと思った難問集をすべて撤去し、<strong class="text-white font-bold">「ETS公式問題集を集中して正解しても何度も解き潰す」</strong>ことだけに絞り込みました。
+        <p class="text-slate-600">
+          難問集や手を広げすぎた参考書を一度整理し、学習の軸を<strong class="text-[#102542]">「公式問題集の徹底周回」</strong>と<strong class="text-[#102542]">「頻出パターンの自動化」</strong>に絞り込みました。
         </p>
-        <p>
-          Part 5の文法は「１問回答までに15秒で見切る」。単語帳は「1秒1単語のテンポで何十周もカードを弾く」。思考を介さずにパターン認識で反射させる<strong class="text-sky-400 font-bold">「高回転ループ学習」</strong>に切り替えたのです。
-        </p>
-        <p>
-          その結果、2024年2月に**念願の730点**を奪取することができました。
+        <p class="text-slate-600">
+          Part 5は「迷う時間を極小化し、型で素早く正解を選ぶ」。語彙は「1問10秒単位で高回転に回す」。知識を思い出す負荷を減らし、反射的に正解の形を見抜く反復ルーティンへ移行したことで、2024年2月に730点へ到達することができました。
         </p>
       </div>
 
-      <!-- おすすめ教材ページ（recommend.html）への誘導バナー -->
+      <!-- おすすめ教材ページへの誘導バナー -->
       <div class="pt-2">
-        <a href="recommend.html" class="p-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-400 block transition group">
+        <a href="recommend.html" class="p-4 rounded-xl bg-[#F4F7FB] border border-[#DCE4EE] hover:border-[#CD2D2D] block transition kobe-btn-glow group">
           <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
-              <i class="fa-solid fa-book-bookmark text-amber-400 text-lg"></i>
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg bg-red-50 text-[#CD2D2D] flex items-center justify-center border border-red-100">
+                <i class="fa-solid fa-book-bookmark text-sm"></i>
+              </div>
               <div>
-                <div class="text-xs font-bold text-amber-400">実体験から厳選</div>
-                <div class="text-sm font-bold text-white group-hover:text-amber-300">
+                <div class="text-[11px] font-bold text-[#CD2D2D]">実体験からの選定</div>
+                <div class="text-sm font-bold text-[#102542] group-hover:text-[#CD2D2D] transition-colors">
                   実際に使って役立った教材（最後まで手元に残った4冊）
                 </div>
               </div>
             </div>
-            <i class="fa-solid fa-arrow-right text-xs text-slate-500 group-hover:text-amber-300 group-hover:translate-x-1 transition"></i>
+            <i class="fa-solid fa-chevron-right text-xs text-slate-400 group-hover:text-[#CD2D2D] transition-colors"></i>
           </div>
         </a>
       </div>
 
       <div class="space-y-3 pt-2">
-        <h3 class="text-lg sm:text-xl font-bold text-white flex items-center gap-2.5">
-          <span class="w-2 h-6 bg-rose-400 rounded-sm"></span>
-          4. なぜいま、自作ツールを公開したのか？（RE:BOOT）
+        <h3 class="text-lg sm:text-xl font-bold text-[#102542] flex items-center gap-2.5">
+          <span class="w-1.5 h-5 bg-[#CD2D2D] rounded-sm"></span>
+          4. なぜいま、自作システムを公開したのか
         </h3>
-        <p>
-          しかし、英語は残酷です。730点を取ってから実務で使わない時期が続くと、直近（2025年〜2026年）のテストでは再びスコアが下がり始め、英語力が錆びついていくのを実感しました。
+        <p class="text-slate-600">
+          語学のスキルは、使用しない期間が続くと徐々に鈍化します。730点取得から実務での使用頻度が落ちると、記憶の引き出しに時間がかかる状態を肌で感じました。
         </p>
-        <p>
-          「このままでは全てが水泡に帰す。もう一度、奪還するしかない」。そう決意した時、仕事の合間に分厚い公式問題集を開く物理的な限界を痛感しました。だからこそ、頻出語彙だけをスマホで1秒単位で高回転させるために、このWebポータルをAIと共同で自作しました。
+        <p class="text-slate-600">
+          「もう一度、安定したスコアを取り戻す」。そう考えた際、日々の隙間時間で効率よく頻出フレーズや文法論点を回せる環境が必要でした。市販のツールではカバーしきれない反復のしやすさを求め、自らの学習基盤として構築したのが本サイトです。
         </p>
-        <p>
-          このサイトは、同じように仕事や家庭を抱えながら、衰えゆく記憶力と闘ってスコアを奪取したい大人のための「実践の道場」です。
+        <p class="text-slate-600">
+          多忙な日常の中で、限られた時間を確実に成果へつなげたい大人の学習者に向けて、無駄のない自習環境を提供しています。
         </p>
       </div>
 
-      <!-- note案内（行き止まりリンクを排除した準備中表示） -->
-      <div class="mt-8 pt-6 border-t border-slate-700/80 space-y-3">
-        <div class="text-sm text-slate-300 font-bold">
-          <i class="fa-solid fa-book-open text-amber-400 mr-1.5"></i> さらに詳細な教材の周回スケジュール・回し方
+      <!-- note案内 -->
+      <div class="mt-8 pt-6 border-t border-[#DCE4EE] space-y-3">
+        <div class="text-sm text-[#102542] font-bold">
+          <i class="fa-solid fa-book-open text-[#CD2D2D] mr-1.5"></i> 公式問題集の具体的な周回設計・学習記録
         </div>
-        <p class="text-xs sm:text-sm text-slate-400">
-          私がボロボロになるまで使い倒した公式問題集の具体的なテスト回し方や、停滞期を脱出した際の決め手になった出来事は、noteに詳しく書き残します。
+        <p class="text-xs sm:text-sm text-slate-500">
+          使用した公式問題集の具体的な回転計画や、停滞期を脱出した際の記録は、別途noteに整理しています。
         </p>
-        <div class="w-full py-3 px-4 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-400 text-sm font-bold flex items-center justify-between">
+        <div class="w-full py-3 px-4 rounded-xl bg-[#F4F7FB] border border-[#DCE4EE] text-slate-600 text-sm font-semibold flex items-center justify-between">
           <span class="flex items-center gap-2">
-            <i class="fa-solid fa-pen-nib text-slate-500"></i>
-            <span>公式問題集・高回転奪還手記（note）</span>
+            <i class="fa-solid fa-pen-nib text-slate-400"></i>
+            <span>公式問題集・反復実践記録（note）</span>
           </span>
-          <span class="text-xs px-2 py-0.5 rounded bg-slate-800 text-amber-400 border border-slate-700 font-mono">
+          <span class="text-xs px-2.5 py-0.5 rounded bg-white text-slate-500 border border-[#DCE4EE] font-mono">
             準備中
           </span>
         </div>
@@ -200,24 +222,24 @@
 
     </article>
 
-    <!-- ポータルへ戻る特大ボタン -->
+    <!-- ポータルへ戻るボタン -->
     <div class="pt-2 pb-6">
-      <a href="index.html" class="w-full py-3.5 px-4 rounded-xl bg-slate-900 border border-slate-700 hover:border-sky-400 text-slate-300 hover:text-white text-sm font-bold transition flex items-center justify-center gap-2 shadow-lg">
-        <i class="fa-solid fa-bolt text-sky-400"></i>
-        <span>高回転トレーニングを開始する（ポータルへ）</span>
+      <a href="index.html" class="w-full py-3.5 px-4 rounded-xl bg-[#102542] hover:bg-[#1a3860] border border-[#102542] hover:border-[#CD2D2D] text-white text-sm font-bold transition flex items-center justify-center gap-2 shadow-sm kobe-btn-glow">
+        <i class="fa-solid fa-arrow-left text-red-400"></i>
+        <span>自習システムトップへ戻る</span>
       </a>
     </div>
 
   </main>
 
-  <!-- フッター（Amazonアソシエイト指定規約文言を追加） -->
-  <footer class="mt-8 text-center text-xs text-slate-500 py-6 border-t border-slate-800 space-y-2">
-    <p class="font-bold text-slate-400">&copy; 2026 TOEIC RE:BOOT 730</p>
-    <p class="text-[11px] text-slate-600">大人の「じたん・ジタン・時短」高速自習道場</p>
-    <p class="text-[10px] text-slate-500 pt-1">Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。</p>
+  <!-- フッター（同一サイト文言統一） -->
+  <footer class="border-t border-[#DCE4EE] bg-white py-6 text-center text-xs text-slate-500 space-y-1">
+    <p class="font-semibold text-[#102542]">© 2026 TOEIC RE:BOOT 730<a href="ura_index.html" class="text-slate-400 hover:text-slate-600">.</a></p>
+    <p>50代からのスコア奪還 自習システム</p>
+    <p class="text-[11px] text-slate-400">Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。</p>
   </footer>
 
-  <!-- Chart.js グラフ描画スクリプト（実データプロット） -->
+  <!-- Chart.js グラフ描画スクリプト（神戸タータンカラー対応） -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const ctx = document.getElementById('scoreChart').getContext('2d');
@@ -259,11 +281,11 @@
               type: 'line',
               label: 'Total Score',
               data: totalScores,
-              borderColor: '#94a3b8',
-              backgroundColor: '#94a3b8',
+              borderColor: '#64748b',
+              backgroundColor: '#64748b',
               borderWidth: 2,
               tension: 0.2,
-              pointRadius: 3,
+              pointRadius: 2.5,
               pointHoverRadius: 5,
               yAxisID: 'y'
             },
@@ -271,7 +293,7 @@
               type: 'bar',
               label: 'Listening',
               data: listeningScores,
-              backgroundColor: '#0284c7',
+              backgroundColor: '#102542',
               borderRadius: 3,
               yAxisID: 'y'
             },
@@ -279,7 +301,7 @@
               type: 'bar',
               label: 'Reading',
               data: readingScores,
-              backgroundColor: '#d97706',
+              backgroundColor: '#CD2D2D',
               borderRadius: 3,
               yAxisID: 'y'
             }
@@ -295,10 +317,10 @@
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: '#0f172a',
+              backgroundColor: '#102542',
               titleColor: '#fff',
               bodyColor: '#e2e8f0',
-              borderColor: '#334155',
+              borderColor: '#DCE4EE',
               borderWidth: 1,
               padding: 10
             }
@@ -312,7 +334,7 @@
               min: 200,
               max: 800,
               ticks: { color: '#64748b', stepSize: 100, font: { size: 10 } },
-              grid: { color: '#1e293b' }
+              grid: { color: '#E2E8F0' }
             }
           }
         }
