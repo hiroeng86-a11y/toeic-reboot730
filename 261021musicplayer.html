@@ -228,7 +228,18 @@
   .tiny{ width:30px; height:30px; padding:0; font-size:13px; background:#FFFFFF; border-color:var(--border); }
   .empty-msg{ font-size:13px; color:var(--text-muted); padding:8px 4px; }
 
-  input[type=file]{ display:none; }
+  input[type=file]{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
 
   .site-footer{
     margin-top:40px;
@@ -278,7 +289,7 @@
     <button id="editScript" disabled>編集</button>
     <button id="saveScript" disabled>.txtで保存</button>
     <button id="loadScriptBtn">.txtだけを後から追加</button>
-    <input type="file" id="scriptInput" accept=".txt" multiple>
+    <input type="file" id="scriptInput" accept=".txt,text/plain,text/*" multiple>
   </div>
   <div class="script-box empty" id="scriptBox">音声ファイルを選択すると、対応するスクリプトがあればここに表示されます。</div>
 </div>
@@ -339,7 +350,7 @@
   <h2><i class="fa-solid fa-list-check" style="color:var(--navy);"></i> プレイリスト</h2>
   <div class="playlist-toolbar">
     <button id="addAudioBtn">音声+スクリプトをまとめて追加</button>
-    <input type="file" id="audioInput" accept="audio/*,.mp3,.txt,text/plain" multiple>
+    <input type="file" id="audioInput" accept=".mp3,.m4a,.wav,.aac,.ogg,.txt,text/plain,audio/*" multiple>
   </div>
   <div class="field-row" style="margin-bottom:10px;">
     <span class="field-label">自動再生</span>
