@@ -1,3 +1,4 @@
+<!-- 対象ファイル: 261021musicplayer.html -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -228,17 +229,14 @@
   .tiny{ width:30px; height:30px; padding:0; font-size:13px; background:#FFFFFF; border-color:var(--border); }
   .empty-msg{ font-size:13px; color:var(--text-muted); padding:8px 4px; }
 
-  input[type=file]{
-    position: absolute;
+  /* 安全なファイル入力非表示（display:noneに頼らず、タップ遮断も起こさない） */
+  .hidden-file-input{
+    position: fixed;
+    top: -1000px;
+    left: -1000px;
+    opacity: 0;
     width: 1px;
     height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-    opacity: 0;
-    pointer-events: none;
   }
 
   .site-footer{
@@ -289,7 +287,7 @@
     <button id="editScript" disabled>編集</button>
     <button id="saveScript" disabled>.txtで保存</button>
     <button id="loadScriptBtn">.txtだけを後から追加</button>
-    <input type="file" id="scriptInput" accept=".txt,text/plain,text/*" multiple>
+    <input type="file" id="scriptInput" class="hidden-file-input" accept=".txt,text/plain" multiple>
   </div>
   <div class="script-box empty" id="scriptBox">音声ファイルを選択すると、対応するスクリプトがあればここに表示されます。</div>
 </div>
@@ -350,7 +348,7 @@
   <h2><i class="fa-solid fa-list-check" style="color:var(--navy);"></i> プレイリスト</h2>
   <div class="playlist-toolbar">
     <button id="addAudioBtn">音声+スクリプトをまとめて追加</button>
-    <input type="file" id="audioInput" accept=".mp3,.m4a,.wav,.aac,.ogg,.txt,text/plain,audio/*" multiple>
+    <input type="file" id="audioInput" class="hidden-file-input" accept=".mp3,.m4a,.wav,.aac,.ogg,.txt,audio/*,text/plain" multiple>
   </div>
   <div class="field-row" style="margin-bottom:10px;">
     <span class="field-label">自動再生</span>
@@ -432,7 +430,6 @@ function fmt(sec){
 function stripExt(name){ return name.replace(/\.[^/.]+$/, ''); }
 function current(){ return currentIndex >= 0 ? tracks[currentIndex] : null; }
 
-// ファイル名(拡張子なし)をキーに、まだ対応する音声が見つかっていないスクリプトを一時保管する
 let pendingScripts = {};
 
 function addAudioTracks(files){
@@ -448,7 +445,6 @@ function addAudioTracks(files){
       pointB: null,
       loopEnabled: false
     };
-    // 先に読み込み済みのスクリプトが待機していれば自動で紐付ける
     if(Object.prototype.hasOwnProperty.call(pendingScripts, name)){
       track.script = pendingScripts[name];
       delete pendingScripts[name];
@@ -470,7 +466,6 @@ function loadScriptFiles(files, callback){
         track.script = reader.result;
         if(current() === track) renderScript();
       } else {
-        // 対応する音声がまだ無い場合は保留しておき、後で同名の音声が追加されたら自動で紐付く
         pendingScripts[base] = reader.result;
         unmatched.push(file.name);
       }
@@ -497,9 +492,7 @@ audioInput.addEventListener('change', (e) => {
     loadScriptFiles(txtFiles, (unmatched) => {
       renderPlaylist();
       if(unmatched.length){
-        alert('スクリプトを一時保管しました(対応する音声がまだありません。同じ名前の音声を追加すると自動で紐付きます):
-' + unmatched.join('
-'));
+        alert('スクリプトを一時保管しました(対応する音声がまだありません。同じ名前の音声を追加すると自動で紐付きます):\n' + unmatched.join('\n'));
       }
     });
   }
@@ -513,9 +506,7 @@ scriptInput.addEventListener('change', (e) => {
     renderPlaylist();
     scriptInput.value = '';
     if(unmatched.length){
-      alert('対応する音声ファイルが見つかりませんでした(保留し、同じ名前の音声を追加すると自動で紐付きます):
-' + unmatched.join('
-'));
+      alert('対応する音声ファイルが見つかりませんでした(保留し、同じ名前の音声を追加すると自動で紐付きます):\n' + unmatched.join('\n'));
     }
   });
 });
