@@ -372,7 +372,7 @@
 
     async function initApp() {
       applyFontClasses();
-      loadDictionary(dictSelect.value);
+      await loadDictionary(dictSelect.value);
     }
 
     // --- データ読み込み ---
@@ -383,17 +383,26 @@
         if (filename === "ALL") {
           const files = [
             "words.json", "words-run.json", "words-take.json", "words-get.json",
-            "words-make.json", "words-have.json", "words-hold.json", "words-give.json"
+            "words-make.json", "words-have.json", "words-hold.json", "words-give.json",
+            "words-verbs.json"
           ];
-          const promises = files.map(f => fetch(f + cacheBuster).then(r => r.ok ? r.json() : []));
+          const promises = files.map(f => 
+            fetch(f + cacheBuster)
+              .then(r => r.ok ? r.json() : [])
+              .catch(() => [])
+          );
           const results = await Promise.all(promises);
           list = results.flat();
         } else {
           const res = await fetch(filename + cacheBuster);
-          if (res.ok) list = await res.json();
+          if (res.ok) {
+            list = await res.json();
+          } else {
+            console.warn(`File not found or failed to load: ${filename}`);
+          }
         }
 
-        currentWords = list;
+        currentWords = Array.isArray(list) ? list : [];
         rebuildDeck();
       } catch (err) {
         console.error("Dictionary load error:", err);
@@ -637,7 +646,7 @@
         const isMastered = masteredSet.has(wordText);
 
         const row = document.createElement('div');
-        row.className = 'p-3 rounded-xl bg-[#F4F7FB] border border-[#DCE4EE] space-y-1.5 hover:border-[#102542] transition';
+        row.className = 'p-3 rounded-xl bg-[#F4F7FB] border border-[#DCE4EE] space-y-1.5 hover:border-[#102542] transition cursor-pointer';
         row.innerHTML = `
           <div class="flex items-center justify-between gap-2">
             <span class="text-[10px] font-mono text-[#102542] font-bold px-2 py-0.5 rounded bg-white border border-[#DCE4EE]">
@@ -678,6 +687,27 @@
     // キーボードショートカット
     document.addEventListener('keydown', (e) => {
       if (listModal.classList.contains('hidden')) {
-        if (e.code === 'Space') { e.preventDefault(); flipCard(); }
-        else if (e.code === 'ArrowUp' || e.key === '2') { e.preventDefault(); handleGrade(true); }
-        else if (e.code === 'ArrowDown' || e.key === '1') { e.preventDefault(); handleGrade(
+        if (e.code === 'Space') { 
+          e.preventDefault(); 
+          flipCard(); 
+        } else if (e.code === 'ArrowUp' || e.key === '2') { 
+          e.preventDefault(); 
+          handleGrade(true); 
+        } else if (e.code === 'ArrowDown' || e.key === '1') { 
+          e.preventDefault(); 
+          handleGrade(false); 
+        } else if (e.code === 'ArrowLeft') {
+          e.preventDefault();
+          prevCard();
+        } else if (e.code === 'ArrowRight') {
+          e.preventDefault();
+          nextCard();
+        }
+      }
+    });
+
+    // 画面初期化のトリガー
+    window.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>
