@@ -26,7 +26,6 @@
       box-shadow: 0 4px 6px -1px rgba(16, 37, 66, 0.05), 0 2px 4px -1px rgba(16, 37, 66, 0.03);
     }
     
-    /* 神戸タータン調の枠線グロー効果（ネイビー・レッドの洗練された光彩） */
     .kobe-card-glow {
       border: 1px solid #DCE4EE;
       box-shadow: 0 4px 6px -1px rgba(16, 37, 66, 0.05);
@@ -55,22 +54,23 @@
     <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
       <div class="flex items-center gap-2.5">
         <span class="w-3 h-3 rounded-full bg-[#CD2D2D] shadow-[0_0_10px_rgba(205,45,45,0.4)] animate-pulse"></span>
-        <span class="font-chakra text-xl font-bold tracking-wider text-[#102542]">
+        <a href="index.html" class="font-chakra text-xl font-bold tracking-wider text-[#102542] hover:opacity-90 transition">
           TOEIC RE:BOOT <span class="kobe-red">730</span>
-        </span>
+        </a>
       </div>
       <nav class="flex items-center gap-5 text-sm font-semibold text-slate-600">
+        <!-- プロフィール横の重複していた「資料室」リンクを削除し、プロフィールのみに整理 -->
         <a href="profile.html" class="hover:text-[#CD2D2D] transition-colors">プロフィール</a>
       </nav>
     </div>
   </header>
 
-  <!-- ヒーローセクション（ボタンなし・視認性特化） -->
+  <!-- ヒーローセクション -->
   <section class="border-b border-[#DCE4EE] py-10 md:py-14 bg-gradient-to-b from-white via-white to-[#F4F7FB]">
     <div class="max-w-3xl mx-auto px-4 text-center space-y-4">
       
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-red-50 text-[#CD2D2D] border border-red-200">
-        <i class="fa-solid fa-bolt text-[#CD2D2D]"></i> 完全無料・登録不要 ｜ 瞬時に見抜く反復システム
+        <i class="fa-solid fa-bolt text-[#CD2D2D]"></i> 完全無料・登録不要 ｜ 2年おきの再受験・スコアキープ時短自習室
       </div>
 
       <h1 class="text-2xl md:text-4xl font-extrabold tracking-tight text-[#102542] leading-tight">
@@ -185,6 +185,33 @@
         <span>リスニング音声プレイヤーを起動する</span>
         <i class="fa-solid fa-arrow-right text-xs text-red-400 group-hover:translate-x-1 transition-transform"></i>
       </a>
+    </section>
+
+    <!-- 資料室コーナー（文言を研ぎ澄まし、余計なタグを排したスリム設計） -->
+    <section class="bg-white rounded-2xl p-6 md:p-8 relative overflow-hidden transition duration-300 kobe-card-glow border-2 border-[#102542]/10">
+      <div class="flex items-center justify-between gap-2 mb-3">
+        <span class="text-xs font-bold text-[#CD2D2D] uppercase tracking-widest font-chakra flex items-center gap-1.5">
+          <i class="fa-solid fa-book-bookmark text-[#CD2D2D]"></i> SPECIAL CORNER ｜ 得点力直結・知識庫
+        </span>
+        <span class="text-xs px-2.5 py-0.5 rounded-full bg-red-50 text-[#CD2D2D] border border-red-200 font-bold">Part 5 瞬殺ロジック</span>
+      </div>
+
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+        <div class="space-y-1.5 max-w-xl">
+          <h2 class="text-xl md:text-2xl font-bold text-[#102542]">
+            TOEIC 文法・品詞判定 資料室
+          </h2>
+          <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+            TOEIC Part 5 でスコアを分けるのは腹落ちするロジックです。各論点に特化した資料室。
+          </p>
+        </div>
+
+        <a href="lang-eng-siryoroom.html" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#102542] hover:bg-[#1a3860] border border-[#102542] hover:border-[#CD2D2D] text-white font-bold text-sm transition shrink-0 group kobe-btn-glow shadow-md">
+          <i class="fa-solid fa-folder-open text-red-400"></i>
+          <span>資料室へ入室する</span>
+          <i class="fa-solid fa-arrow-right text-xs text-red-400 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
     </section>
 
     <!-- 教材案内 -->

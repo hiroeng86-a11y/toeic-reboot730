@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>正解の肢として出される「副詞・副詞句・副詞節」完全攻略 | TOEIC RE:BOOT 730 資料室</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+      background-color: #F4F7FB;
+      color: #102542;
+    }
+    .font-chakra { font-family: 'Chakra Petch', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    .kobe-navy { color: #102542; }
+    .kobe-bg-navy { background-color: #102542; }
+    .kobe-red { color: #CD2D2D; }
+    .kobe-bg-red { background-color: #CD2D2D; }
+
+    .kobe-card-glow {
+      border: 1px solid #DCE4EE;
+      box-shadow: 0 4px 6px -1px rgba(16, 37, 66, 0.05);
+      transition: all 0.25s ease;
+    }
+    .kobe-card-glow:hover {
+      border-color: rgba(205, 45, 45, 0.4);
+      box-shadow: 0 10px 25px -3px rgba(16, 37, 66, 0.08);
+    }
+
+    .kobe-btn-glow {
+      transition: all 0.2s ease;
+    }
+    .kobe-btn-glow:hover {
+      border-color: #CD2D2D;
+      box-shadow: 0 0 14px rgba(205, 45, 45, 0.25);
+    }
+
+    /* 文構造分解用 トークンバッジ */
+    .token-s { @apply bg-blue-100 text-blue-900 border border-blue-300 px-1.5 py-0.5 rounded font-mono text-xs font-semibold; }
+    .token-v { @apply bg-rose-100 text-rose-900 border border-rose-300 px-1.5 py-0.5 rounded font-mono text-xs font-semibold; }
+    .token-o { @apply bg-purple-100 text-purple-900 border border-purple-300 px-1.5 py-0.5 rounded font-mono text-xs font-semibold; }
+    .token-m-adv { @apply bg-red-100 text-[#CD2D2D] border border-red-300 px-1.5 py-0.5 rounded font-mono text-xs font-bold; }
+    .token-m-prep { @apply bg-sky-100 text-sky-900 border border-sky-300 px-1.5 py-0.5 rounded font-mono text-xs font-bold; }
+    .token-m-conj { @apply bg-emerald-100 text-emerald-900 border border-emerald-300 px-1.5 py-0.5 rounded font-mono text-xs font-bold; }
+    .token-noun { @apply bg-amber-100 text-amber-900 border border-amber-300 px-1.5 py-0.5 rounded font-mono text-xs font-semibold; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-red-100 selection:text-red-900">
+
+  <!-- ヘッダー（統一仕様：白背景 ＋ 赤のアクセントライン ＋ 神戸ネイビー文字） -->
+  <header class="border-b border-[#DCE4EE] bg-white/95 backdrop-blur sticky top-0 z-50">
+    <div class="h-[3px] bg-[#CD2D2D] w-full"></div>
+    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <span class="w-3 h-3 rounded-full bg-[#CD2D2D] shadow-[0_0_10px_rgba(205,45,45,0.4)] animate-pulse"></span>
+        <a href="index.html" class="font-chakra text-xl font-bold tracking-wider text-[#102542] hover:opacity-90 transition">
+          TOEIC RE:BOOT <span class="kobe-red">730</span>
+        </a>
+      </div>
+      <nav class="flex items-center gap-4 text-xs sm:text-sm font-semibold text-slate-600">
+        <a href="lang-eng-siryoroom.html" class="hover:text-[#CD2D2D] transition-colors flex items-center gap-1.5 text-[#102542]">
+          <i class="fa-solid fa-folder-open text-[#CD2D2D]"></i>
+          <span>資料室一覧</span>
+        </a>
+        <a href="index.html" class="hover:text-[#CD2D2D] transition-colors flex items-center gap-1.5">
+          <i class="fa-solid fa-house text-xs"></i>
+          <span>TOP</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- タイトルヒーローセクション（余計な目次ボタンを削除しクリーンに整理） -->
+  <section class="border-b border-[#DCE4EE] py-10 md:py-12 bg-gradient-to-b from-white via-white to-[#F4F7FB]">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-red-50 text-[#CD2D2D] border border-red-200 mb-3">
+        <i class="fa-solid fa-graduation-cap text-[#CD2D2D]"></i>
+        <span>TOEIC L&R Part 5 実戦ロジック資料</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#102542] leading-tight mb-3">
+        正解の肢として出される <span class="text-[#CD2D2D]">「副詞・副詞句・副詞節」</span> 完全攻略
+      </h1>
+      <p class="text-xs sm:text-sm text-slate-600 max-w-3xl leading-relaxed">
+        英文の骨格（SVOC）と肉付け（修飾語：M）の関係から、単体の副詞、2語以上の「副詞句」、そして文を従える「副詞節」までの構造判定ロジックを整理しました。
+      </p>
+    </div>
+  </section>
+
+  <!-- メインコンテンツ -->
+  <main class="max-w-5xl mx-auto px-4 py-8 sm:py-12 space-y-8 flex-1 w-full">
+
+    <!-- ==========================================
+         SECTION 1: 副詞の根本的定義
+         ========================================== -->
+    <section id="section-adverb" class="bg-white rounded-2xl p-6 sm:p-8 kobe-card-glow scroll-mt-20">
+      <div class="flex items-center gap-2.5 mb-2">
+        <span class="w-7 h-7 rounded-lg bg-[#102542] text-white flex items-center justify-center font-bold text-xs font-chakra">01</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#102542] tracking-tight">副詞の根本的定義</h2>
+      </div>
+      <p class="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed">
+        英語のすべての単語は「骨格」か「修飾語」に分かれます。副詞は文の骨格（SVOC）になれず、**名詞以外**をすべて修飾する万能デコレーションです。
+      </p>
+
+      <!-- 形容詞 vs 副詞 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="bg-amber-50/70 border border-amber-200 rounded-xl p-4">
+          <div class="flex items-center gap-2 font-bold text-amber-900 text-xs sm:text-sm mb-1.5">
+            <i class="fa-solid fa-cube text-amber-600"></i>
+            <span>形容詞（Adjective）の役割</span>
+          </div>
+          <p class="text-xs text-amber-800 mb-2">修飾先：<strong class="text-amber-950 font-bold underline">名詞のみ</strong></p>
+          <div class="bg-white rounded-lg p-2.5 border border-amber-200 font-mono text-xs text-slate-800">
+            a <span class="bg-amber-200 text-amber-900 px-1 py-0.5 rounded font-bold">successful</span> project
+            <div class="text-[11px] text-slate-500 font-sans mt-0.5">「成功した（形容詞）→ プロジェクト（名詞）」</div>
+          </div>
+        </div>
+
+        <div class="bg-red-50/50 border border-red-200 rounded-xl p-4">
+          <div class="flex items-center gap-2 font-bold text-[#CD2D2D] text-xs sm:text-sm mb-1.5">
+            <i class="fa-solid fa-wand-magic-sparkles text-[#CD2D2D]"></i>
+            <span>副詞（Adverb）の役割</span>
+          </div>
+          <p class="text-xs text-slate-700 mb-2">修飾先：<strong class="text-[#CD2D2D] font-bold underline">名詞以外すべて（動詞・形容詞・他の副詞・文全体）</strong></p>
+          <div class="bg-white rounded-lg p-2.5 border border-red-200 font-mono text-xs text-slate-800">
+            a <span class="bg-red-100 text-[#CD2D2D] px-1 py-0.5 rounded font-bold">highly</span> successful project
+            <div class="text-[11px] text-slate-500 font-sans mt-0.5">「極めて（副詞）→ 成功した（形容詞）」</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4ターゲット -->
+      <h3 class="font-bold text-[#102542] text-sm mb-3 flex items-center gap-1.5">
+        <i class="fa-solid fa-crosshairs text-[#CD2D2D]"></i> 副詞が狙い撃ちする4つの修飾対象
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-3.5 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#CD2D2D] bg-red-100 px-1.5 py-0.5 rounded font-chakra">Target 01</span>
+            <h4 class="font-bold text-[#102542] text-xs mt-1.5 mb-1">動詞（Verb）を修飾</h4>
+            <p class="text-[11px] text-slate-500 mb-2">「どのように行うか」動作の様子・程度を説明</p>
+          </div>
+          <div class="bg-white p-2.5 rounded-lg border border-[#DCE4EE] text-xs font-mono">
+            arrived <span class="bg-red-100 text-[#CD2D2D] px-1 py-0.5 rounded font-bold">promptly</span>.
+            <div class="text-[10px] font-sans text-slate-500 mt-0.5">（時間通りに到着した）</div>
+          </div>
+        </div>
+
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-3.5 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#CD2D2D] bg-red-100 px-1.5 py-0.5 rounded font-chakra">Target 02</span>
+            <h4 class="font-bold text-[#102542] text-xs mt-1.5 mb-1">形容詞（Adj）を修飾</h4>
+            <p class="text-[11px] text-slate-500 mb-2">形容詞の度合い・程度を強めたり限定する</p>
+          </div>
+          <div class="bg-white p-2.5 rounded-lg border border-[#DCE4EE] text-xs font-mono">
+            <span class="bg-red-100 text-[#CD2D2D] px-1 py-0.5 rounded font-bold">extremely</span> good.
+            <div class="text-[10px] font-sans text-slate-500 mt-0.5">（極めて良好だった）</div>
+          </div>
+        </div>
+
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-3.5 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#CD2D2D] bg-red-100 px-1.5 py-0.5 rounded font-chakra">Target 03</span>
+            <h4 class="font-bold text-[#102542] text-xs mt-1.5 mb-1">他の副詞を修飾</h4>
+            <p class="text-[11px] text-slate-500 mb-2">すでに副詞になっている言葉をさらに強調する</p>
+          </div>
+          <div class="bg-white p-2.5 rounded-lg border border-[#DCE4EE] text-xs font-mono">
+            <span class="bg-red-100 text-[#CD2D2D] px-1 py-0.5 rounded font-bold">very</span> clearly.
+            <div class="text-[10px] font-sans text-slate-500 mt-0.5">（とてもはっきりと話した）</div>
+          </div>
+        </div>
+
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-3.5 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#CD2D2D] bg-red-100 px-1.5 py-0.5 rounded font-chakra">Target 04</span>
+            <h4 class="font-bold text-[#102542] text-xs mt-1.5 mb-1">文全体（Sentence）修飾</h4>
+            <p class="text-[11px] text-slate-500 mb-2">文頭やカンマ前で、発言全体の前提を示す</p>
+          </div>
+          <div class="bg-white p-2.5 rounded-lg border border-[#DCE4EE] text-xs font-mono">
+            <span class="bg-red-100 text-[#CD2D2D] px-1 py-0.5 rounded font-bold">Unfortunately</span>, it was...
+            <div class="text-[10px] font-sans text-slate-500 mt-0.5">（あいにく中止になった）</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 2: 副詞句とは何か（3大分類）
+         ========================================== -->
+    <section id="section-phrase" class="bg-white rounded-2xl p-6 sm:p-8 kobe-card-glow scroll-mt-20">
+      <div class="flex items-center gap-2.5 mb-2">
+        <span class="w-7 h-7 rounded-lg bg-[#102542] text-white flex items-center justify-center font-bold text-xs font-chakra">02</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#102542] tracking-tight">副詞句とは何か？（3大分類）</h2>
+      </div>
+      <p class="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed">
+        「句（phrase）」とは、<strong>2語以上の単語が集まって1つの品詞として働くカタマリ（ただし主語＋述語動詞のペアは含まない）</strong>のことです。<br class="hidden sm:inline">
+        したがって「副詞句」とは、<strong>カタマリ全体で動詞・形容詞・文全体を修飾するグループ</strong>を指します。
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Phrase 1: 前置詞＋名詞 -->
+        <div class="border border-[#DCE4EE] rounded-xl p-4 bg-[#F4F7FB] flex flex-col justify-between">
+          <div>
+            <div class="w-8 h-8 rounded-lg bg-[#102542] text-white flex items-center justify-center text-xs font-bold mb-2">
+              <i class="fa-solid fa-map-pin text-red-400"></i>
+            </div>
+            <span class="text-[10px] font-extrabold text-[#CD2D2D] uppercase font-chakra">Category 01</span>
+            <h3 class="text-sm font-bold text-[#102542] mt-0.5 mb-1.5">前置詞 ＋ 名詞</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              時・場所・理由・手段を付け足す、英語で最も出現率の高い副詞句です。
+            </p>
+          </div>
+          <div class="bg-white p-3 rounded-lg border border-[#DCE4EE] text-xs font-mono space-y-1">
+            <div>works <span class="bg-sky-100 text-sky-900 border border-sky-300 px-1 py-0.5 rounded font-bold">[ at the headquarters ]</span>.</div>
+            <div class="text-[10px] font-sans text-slate-500">→ works（動詞）を「本社で」修飾</div>
+          </div>
+        </div>
+
+        <!-- Phrase 2: to不定詞 -->
+        <div class="border border-[#DCE4EE] rounded-xl p-4 bg-[#F4F7FB] flex flex-col justify-between">
+          <div>
+            <div class="w-8 h-8 rounded-lg bg-[#102542] text-white flex items-center justify-center text-xs font-bold mb-2">
+              <i class="fa-solid fa-bullseye text-red-400"></i>
+            </div>
+            <span class="text-[10px] font-extrabold text-[#CD2D2D] uppercase font-chakra">Category 02</span>
+            <h3 class="text-sm font-bold text-[#102542] mt-0.5 mb-1.5">to不定詞の副詞的用法</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              「〜するために（目的）」や「〜して（感情の原因）」として動詞を修飾します。
+            </p>
+          </div>
+          <div class="bg-white p-3 rounded-lg border border-[#DCE4EE] text-xs font-mono space-y-1">
+            <div>took a taxi <span class="bg-red-100 text-[#CD2D2D] border border-red-300 px-1 py-0.5 rounded font-bold">[ to attend the seminar ]</span>.</div>
+            <div class="text-[10px] font-sans text-slate-500">→ took a taxi を「参加するために」修飾</div>
+          </div>
+        </div>
+
+        <!-- Phrase 3: 分詞構文 -->
+        <div class="border border-[#DCE4EE] rounded-xl p-4 bg-[#F4F7FB] flex flex-col justify-between">
+          <div>
+            <div class="w-8 h-8 rounded-lg bg-[#102542] text-white flex items-center justify-center text-xs font-bold mb-2">
+              <i class="fa-solid fa-layer-group text-red-400"></i>
+            </div>
+            <span class="text-[10px] font-extrabold text-[#CD2D2D] uppercase font-chakra">Category 03</span>
+            <h3 class="text-sm font-bold text-[#102542] mt-0.5 mb-1.5">分詞構文 (-ing / -ed)</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              「接続詞＋S＋V」を短縮してカタマリ化し、主節の動詞を修飾します。
+            </p>
+          </div>
+          <div class="bg-white p-3 rounded-lg border border-[#DCE4EE] text-xs font-mono space-y-1">
+            <div><span class="bg-emerald-100 text-emerald-900 border border-emerald-300 px-1 py-0.5 rounded font-bold">[ Reviewing the data ]</span>, he found...</div>
+            <div class="text-[10px] font-sans text-slate-500">→ found（見つけた時）の状況を修飾</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 3: Part 5での副詞の3大頻出位置
+         ========================================== -->
+    <section id="section-position" class="bg-white rounded-2xl p-6 sm:p-8 kobe-card-glow scroll-mt-20">
+      <div class="flex items-center gap-2.5 mb-2">
+        <span class="w-7 h-7 rounded-lg bg-[#102542] text-white flex items-center justify-center font-bold text-xs font-chakra">03</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#102542] tracking-tight">TOEIC Part 5 で狙われる「副詞の3大頻出位置」</h2>
+      </div>
+      <p class="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed">
+        「空欄を指で隠しても、英文の骨格（SVOC）が完全に成立している」場合、その空欄に入るのは100%<strong>副詞</strong>です。
+      </p>
+
+      <div class="space-y-4">
+        <!-- Position A -->
+        <div class="p-4 sm:p-5 bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+            <span class="text-xs font-bold text-[#CD2D2D] bg-red-50 border border-red-200 px-2.5 py-0.5 rounded-full uppercase">パターン A【最頻出】</span>
+            <span class="text-xs font-mono text-slate-600 font-semibold">助動詞 / be動詞 / have ＋ [ 空欄 ] ＋ 本動詞</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-3">
+            動詞のカタマリの「真ん中の隙間」は副詞の専用シートです。受動態（be ＋ 過去分詞）や完了形（have ＋ 過去分詞）の間にも頻出します。
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 font-mono text-xs">
+            <div class="bg-white p-2.5 rounded-lg border border-[#DCE4EE]">
+              <span class="text-slate-400 block text-[10px] mb-0.5">// 助動詞と原形の間</span>
+              will <span class="bg-red-100 text-[#CD2D2D] font-bold px-1 py-0.5 rounded">regularly</span> update
+            </div>
+            <div class="bg-white p-2.5 rounded-lg border border-[#DCE4EE]">
+              <span class="text-slate-400 block text-[10px] mb-0.5">// 受動態の隙間</span>
+              was <span class="bg-red-100 text-[#CD2D2D] font-bold px-1 py-0.5 rounded">unanimously</span> approved
+            </div>
+            <div class="bg-white p-2.5 rounded-lg border border-[#DCE4EE]">
+              <span class="text-slate-400 block text-[10px] mb-0.5">// 完了形の隙間</span>
+              have <span class="bg-red-100 text-[#CD2D2D] font-bold px-1 py-0.5 rounded">sharply</span> increased
+            </div>
+          </div>
+        </div>
+
+        <!-- Position B -->
+        <div class="p-4 sm:p-5 bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+            <span class="text-xs font-bold text-[#102542] bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-full uppercase">パターン B</span>
+            <span class="text-xs font-mono text-slate-600 font-semibold">[ 空欄 ] , ＋ 完全な文 (S + V ...)</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-3">
+            文頭に空欄があり、後ろにカンマ（,）で区切られた完全な文が続く場合、文全体を修飾する副詞が入ります。
+          </p>
+          <div class="bg-white p-3 rounded-lg border border-[#DCE4EE] font-mono text-xs">
+            <span class="bg-blue-100 text-[#102542] font-bold px-1.5 py-0.5 rounded border border-blue-200">Currently</span>, the marketing department is analyzing the feedback.
+            <div class="text-[11px] font-sans text-slate-500 mt-1">「現在は、マーケティング部門がフィードバックを分析している最中です。」</div>
+          </div>
+        </div>
+
+        <!-- Position C -->
+        <div class="p-4 sm:p-5 bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+            <span class="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full uppercase">パターン C</span>
+            <span class="text-xs font-mono text-slate-600 font-semibold">完全な文 (S + V + O) ＋ [ 空欄 ] .</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-3">
+            必要な要素（S・V・Oなど）が揃い切った文の末尾に置かれ、動詞の動作を修飾します。
+          </p>
+          <div class="bg-white p-3 rounded-lg border border-[#DCE4EE] font-mono text-xs">
+            The supervisor reviewed the submitted proposal <span class="bg-emerald-100 text-emerald-900 font-bold px-1.5 py-0.5 rounded border border-emerald-200">thoroughly</span>.
+            <div class="text-[11px] font-sans text-slate-500 mt-1">「主任は提出された提案書を<strong class="text-slate-700">徹底的に</strong>吟味した。」（reviewedを修飾）</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 4: 句 vs 節（前置詞・接続詞の峻別）
+         ========================================== -->
+    <section id="section-flowchart" class="space-y-6 scroll-mt-20">
+      
+      <!-- 走査フローチャート（カード枠を白ベースの統一スタイルにリファクタ） -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 kobe-card-glow">
+        <div class="flex items-center gap-2.5 mb-2">
+          <span class="w-7 h-7 rounded-lg bg-[#102542] text-white flex items-center justify-center font-bold text-xs font-chakra">04</span>
+          <h2 class="text-xl sm:text-2xl font-bold text-[#102542] tracking-tight">副詞句（前置詞） vs 副詞節（接続詞）の構造峻別</h2>
+        </div>
+        <p class="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed">
+          どちらも文全体から見ると「修飾語（M）」ですが、**内部に「述語動詞（V）」を含むか含まないか**で副詞句か副詞節かが完全に決まります。
+        </p>
+
+        <!-- フローボックス（サイト標準のクリーンUI） -->
+        <div class="max-w-3xl mx-auto bg-[#F4F7FB] border border-[#DCE4EE] rounded-2xl p-6 shadow-sm">
+          <div class="text-center mb-5">
+            <span class="text-xs font-mono font-bold text-[#CD2D2D] bg-red-50 px-3 py-1 rounded-full border border-red-200 uppercase font-chakra">3-Second Scan Flow</span>
+            <h3 class="text-lg sm:text-xl font-bold text-[#102542] mt-2">Part 5 空欄3秒判定ステップ</h3>
+          </div>
+
+          <div class="flex flex-col items-center space-y-3">
+            <div class="w-full max-w-md bg-white border border-[#DCE4EE] rounded-xl p-3 text-center shadow-xs">
+              <div class="text-[10px] text-slate-400 font-chakra font-bold">STEP 01</div>
+              <div class="font-bold text-xs sm:text-sm text-[#102542]">空欄の直後からカンマ（,）またはピリオドまでを視線走査</div>
+            </div>
+
+            <i class="fa-solid fa-arrow-down text-slate-400 text-xs"></i>
+
+            <div class="w-full max-w-md bg-red-50 border-2 border-red-300 rounded-xl p-3.5 text-center shadow-xs">
+              <div class="text-[10px] text-[#CD2D2D] font-bold font-chakra">CRUCIAL CHECK</div>
+              <div class="font-extrabold text-sm sm:text-base text-[#102542]">後ろに「述語動詞（V）」が存在するか？</div>
+              <div class="text-[10px] text-slate-500 mt-0.5">※ -ing 単独や to不定詞は述語動詞（V）にはなれません！</div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full pt-1">
+              <!-- 前置詞ルート（副詞句） -->
+              <div class="bg-white border-2 border-sky-300 rounded-xl p-4 text-center shadow-xs">
+                <span class="inline-block bg-sky-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full mb-1">動詞なし（名詞句のみ）</span>
+                <div class="text-base font-black text-sky-800">前置詞 を選択</div>
+                <div class="text-[11px] text-slate-600 mt-0.5">[ 前置詞 ＋ 名詞 ] ＝ <span class="text-[#102542] font-bold underline">副詞句 (M)</span></div>
+                <div class="mt-2.5 bg-sky-50/60 p-2 rounded border border-sky-100 text-xs text-left font-mono text-slate-800">
+                  <span class="text-sky-700 font-bold">Despite</span> the heavy rain,<br>
+                  <span class="text-[10px] text-slate-500 font-sans">※ rainは名詞</span>
+                </div>
+              </div>
+
+              <!-- 接続詞ルート（副詞節） -->
+              <div class="bg-white border-2 border-emerald-300 rounded-xl p-4 text-center shadow-xs">
+                <span class="inline-block bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full mb-1">動詞あり（S ＋ V）</span>
+                <div class="text-base font-black text-emerald-800">従属接続詞 を選択</div>
+                <div class="text-[11px] text-slate-600 mt-0.5">[ 接続詞 ＋ S ＋ V ] ＝ <span class="text-[#102542] font-bold underline">副詞節 (M)</span></div>
+                <div class="mt-2.5 bg-emerald-50/60 p-2 rounded border border-emerald-100 text-xs text-left font-mono text-slate-800">
+                  <span class="text-emerald-700 font-bold">Although</span> it rained,<br>
+                  <span class="text-[10px] text-slate-500 font-sans">※ it(S) + rained(V)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 最頻出ペア対比マトリクス -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 kobe-card-glow">
+        <h3 class="text-lg sm:text-xl font-bold text-[#102542] mb-1 flex items-center gap-2">
+          <i class="fa-solid fa-code-compare text-[#CD2D2D]"></i> 意味が同一で形が分かれる「句 vs 節」対比表
+        </h3>
+        <p class="text-slate-600 text-xs mb-5">
+          副詞句（前置詞）と副詞節（接続詞）で迷いやすい3大重要ペアです。
+        </p>
+
+        <div class="space-y-4">
+          <!-- Pair 1: 譲歩 -->
+          <div class="border border-[#DCE4EE] rounded-xl overflow-hidden">
+            <div class="bg-[#F4F7FB] border-b border-[#DCE4EE] text-[#102542] px-4 py-2.5 flex items-center justify-between text-xs sm:text-sm font-bold">
+              <span>① 「〜にもかかわらず」（譲歩）</span>
+              <span class="text-xs font-mono text-[#CD2D2D]">出題頻度 ★★★★★</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#DCE4EE]">
+              <div class="p-4 bg-sky-50/30">
+                <div class="text-[10px] font-bold text-sky-800 uppercase tracking-wider mb-0.5">副詞句をつくる（前置詞 ＋ 名詞）</div>
+                <div class="text-sm font-bold text-slate-900 mb-1.5">despite / in spite of</div>
+                <div class="bg-white p-2.5 rounded-lg border border-sky-100 text-xs font-mono space-y-0.5">
+                  <div>succeeded <span class="token-m-prep">despite</span> <span class="token-noun">the storm</span>.</div>
+                  <div class="text-[10px] font-sans text-slate-500">暴風雨<span class="font-bold text-slate-700">にもかかわらず</span>成功した。</div>
+                </div>
+              </div>
+              <div class="p-4 bg-emerald-50/30">
+                <div class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider mb-0.5">副詞節をつくる（接続詞 ＋ S ＋ V）</div>
+                <div class="text-sm font-bold text-slate-900 mb-1.5">although / even though / though</div>
+                <div class="bg-white p-2.5 rounded-lg border border-emerald-100 text-xs font-mono space-y-0.5">
+                  <div>succeeded <span class="token-m-conj">although</span> <span class="token-s">it</span> <span class="token-v">rained</span>.</div>
+                  <div class="text-[10px] font-sans text-slate-500">雨が降った<span class="font-bold text-slate-700">にもかかわらず</span>成功した。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pair 2: 理由 -->
+          <div class="border border-[#DCE4EE] rounded-xl overflow-hidden">
+            <div class="bg-[#F4F7FB] border-b border-[#DCE4EE] text-[#102542] px-4 py-2.5 flex items-center justify-between text-xs sm:text-sm font-bold">
+              <span>② 「〜のために・理由で」（理由）</span>
+              <span class="text-xs font-mono text-[#CD2D2D]">出題頻度 ★★★★★</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#DCE4EE]">
+              <div class="p-4 bg-sky-50/30">
+                <div class="text-[10px] font-bold text-sky-800 uppercase tracking-wider mb-0.5">副詞句をつくる（前置詞 ＋ 名詞）</div>
+                <div class="text-sm font-bold text-slate-900 mb-1.5">because of / due to / owing to</div>
+                <div class="bg-white p-2.5 rounded-lg border border-sky-100 text-xs font-mono space-y-0.5">
+                  <div>delayed <span class="token-m-prep">due to</span> <span class="token-noun">dense fog</span>.</div>
+                  <div class="text-[10px] font-sans text-slate-500">濃霧の<span class="font-bold text-slate-700">ため</span>遅延した。</div>
+                </div>
+              </div>
+              <div class="p-4 bg-emerald-50/30">
+                <div class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider mb-0.5">副詞節をつくる（接続詞 ＋ S ＋ V）</div>
+                <div class="text-sm font-bold text-slate-900 mb-1.5">because / since / as</div>
+                <div class="bg-white p-2.5 rounded-lg border border-emerald-100 text-xs font-mono space-y-0.5">
+                  <div>delayed <span class="token-m-conj">because</span> <span class="token-s">fog</span> <span class="token-v">was</span> dense.</div>
+                  <div class="text-[10px] font-sans text-slate-500">霧が濃かった<span class="font-bold text-slate-700">ため</span>遅延した。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pair 3: 期間 -->
+          <div class="border border-[#DCE4EE] rounded-xl overflow-hidden">
+            <div class="bg-[#F4F7FB] border-b border-[#DCE4EE] text-[#102542] px-4 py-2.5 flex items-center justify-between text-xs sm:text-sm font-bold">
+              <span>③ 「〜の間」（期間・時間）</span>
+              <span class="text-xs font-mono text-[#CD2D2D]">出題頻度 ★★★★☆</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#DCE4EE]">
+              <div class="p-4 bg-sky-50/30">
+                <div class="text-[10px] font-bold text-sky-800 uppercase tracking-wider mb-0.5">副詞句をつくる（前置詞 ＋ 名詞）</div>
+                <div class="text-sm font-bold text-slate-900 mb-1.5">during / for</div>
+                <div class="bg-white p-2.5 rounded-lg border border-sky-100 text-xs font-mono space-y-0.5">
+                  <div>seated <span class="token-m-prep">during</span> <span class="token-noun">the flight</span>.</div>
+                  <div class="text-[10px] font-sans text-slate-500">フライトの<span class="font-bold text-slate-700">間</span>は着席のままで。</div>
+                </div>
+              </div>
+              <div class="p-4 bg-emerald-50/30">
+                <div class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider mb-0.5">副詞節をつくる（接続詞 ＋ S ＋ V）</div>
+                <div class="text-sm font-bold text-slate-900 mb-1.5">while</div>
+                <div class="bg-white p-2.5 rounded-lg border border-emerald-100 text-xs font-mono space-y-0.5">
+                  <div>seated <span class="token-m-conj">while</span> <span class="token-s">the plane</span> <span class="token-v">is taking</span> off.</div>
+                  <div class="text-[10px] font-sans text-slate-500">離陸している<span class="font-bold text-slate-700">間</span>は着席のままで。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 5: 受験生が落としやすい落とし穴・注意点
+         ========================================== -->
+    <section id="section-traps" class="bg-white rounded-2xl p-6 sm:p-8 kobe-card-glow scroll-mt-20">
+      <div class="flex items-center gap-2.5 mb-2">
+        <span class="w-7 h-7 rounded-lg bg-[#CD2D2D] text-white flex items-center justify-center font-bold text-xs font-chakra">05</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#102542] tracking-tight">受験生が落としやすい「盲点・例外」4選</h2>
+      </div>
+      <p class="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed">
+        基本ルールを覚えた受験生をふるい落とす、TOEICテスト特有の引っかけパターンです。
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Pitfall 1 -->
+        <div class="border border-amber-200 rounded-xl p-4 bg-amber-50/30 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1.5 text-amber-800 font-bold text-xs mb-1">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span>落とし穴 ①</span>
+            </div>
+            <h3 class="text-sm font-bold text-slate-800 mb-1">-ly で終わる「形容詞」</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              通常「形容詞 + -ly = 副詞」ですが、<strong>「名詞 + -ly」は形容詞</strong>になります。副詞の位置に選ばないよう注意！
+            </p>
+          </div>
+          <div class="bg-white p-2.5 rounded-lg border border-amber-200 text-xs font-mono space-y-0.5">
+            <div><span class="font-bold text-amber-900">costly</span>（費用のかかる / 形容詞）</div>
+            <div><span class="font-bold text-amber-900">timely</span>（時機を得た / 形容詞）</div>
+            <div class="text-[10px] font-sans text-slate-500 pt-1 border-t border-slate-100">× a timely arrived report → ○ in a timely manner</div>
+          </div>
+        </div>
+
+        <!-- Pitfall 2 -->
+        <div class="border border-amber-200 rounded-xl p-4 bg-amber-50/30 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1.5 text-amber-800 font-bold text-xs mb-1">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span>落とし穴 ②</span>
+            </div>
+            <h3 class="text-sm font-bold text-slate-800 mb-1">同じ形で「形容詞・副詞」になる語</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              語尾が変わらない重要語です。特に <strong>hardly</strong> は「熱心に」ではなく「ほとんど〜ない」という別語です。
+            </p>
+          </div>
+          <div class="bg-white p-2.5 rounded-lg border border-amber-200 text-xs font-mono space-y-0.5">
+            <div><span class="font-bold text-amber-900">hard</span>（熱心な / 熱心に）<span class="text-slate-400">※hardly=めったに~ない</span></div>
+            <div><span class="font-bold text-amber-900">early / fast</span>（早い/早く・速い/速く）</div>
+            <div class="text-[10px] font-sans text-slate-500 pt-1 border-t border-slate-100">例: work hard（熱心に働く）/ hard worker（勤勉な人）</div>
+          </div>
+        </div>
+
+        <!-- Pitfall 3 -->
+        <div class="border border-red-200 rounded-xl p-4 bg-red-50/30 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1.5 text-[#CD2D2D] font-bold text-xs mb-1">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span>落とし穴 ③</span>
+            </div>
+            <h3 class="text-sm font-bold text-slate-800 mb-1">前置詞と接続詞の「両刀遣い」</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              後ろに「名詞」が来ても「S+V」が来ても両方正解になれる単語たち。品詞決め打ちで即消去してはいけません。
+            </p>
+          </div>
+          <div class="bg-white p-2.5 rounded-lg border border-red-200 text-xs font-mono space-y-0.5">
+            <div class="font-bold text-red-900">before / after / until / since</div>
+            <div class="text-[10px] font-sans text-slate-600 pt-1 border-t border-slate-100 space-y-0.5">
+              <div>・<span class="font-semibold">before 5:00 PM</span>（前置詞＋名詞）</div>
+              <div>・<span class="font-semibold">before the meeting starts</span>（接続詞＋S＋V）</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pitfall 4 -->
+        <div class="border border-red-200 rounded-xl p-4 bg-red-50/30 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1.5 text-[#CD2D2D] font-bold text-xs mb-1">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span>落とし穴 ④</span>
+            </div>
+            <h3 class="text-sm font-bold text-slate-800 mb-1">接続詞 ＋ 分詞構文（while -ing）</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              空欄後ろの -ing を動名詞と決めつけて「during」を選ぶ誤答が多発。during の直後に動名詞は置けません！
+            </p>
+          </div>
+          <div class="bg-white p-2.5 rounded-lg border border-red-200 text-xs font-mono space-y-0.5">
+            <div class="text-emerald-800 font-bold">○ while (you are) operating the machine</div>
+            <div class="text-red-600 line-through">× during operating the machine</div>
+            <div class="text-[10px] font-sans text-slate-500 pt-1 border-t border-slate-100">
+              ※ while + 分詞構文 は「主語+be動詞」の省略形。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 下部ナビゲーションリンク -->
+    <div class="pt-2 flex justify-center">
+      <a href="lang-eng-siryoroom.html" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#102542] hover:bg-[#1a3860] border border-[#102542] hover:border-[#CD2D2D] text-white font-bold text-xs transition kobe-btn-glow shadow-sm">
+        <i class="fa-solid fa-arrow-left text-red-400"></i>
+        <span>資料室トップへ戻る</span>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- フッター（同一仕様統一） -->
+  <footer class="border-t border-[#DCE4EE] bg-white py-6 text-center text-xs text-slate-500 space-y-1">
+    <p class="font-semibold text-[#102542]">© 2026 TOEIC RE:BOOT 730<a href="ura_index.html" class="text-slate-400 hover:text-slate-600">.</a></p>
+    <p>50代からのスコア奪還 自習システム</p>
+    <p class="text-[11px] text-slate-400">Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。</p>
+  </footer>
+
+</body>
+</html>
