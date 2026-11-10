@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ・不具合報告 | TOEIC RE:BOOT 730</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+      background-color: #F4F7FB;
+      color: #102542;
+    }
+    .font-chakra { font-family: 'Chakra Petch', sans-serif; }
+    
+    .kobe-navy { color: #102542; }
+    .kobe-bg-navy { background-color: #102542; }
+    .kobe-red { color: #CD2D2D; }
+    .kobe-bg-red { background-color: #CD2D2D; }
+
+    .kobe-card-glow {
+      border: 1px solid #DCE4EE;
+      box-shadow: 0 4px 6px -1px rgba(16, 37, 66, 0.05);
+      transition: all 0.25s ease;
+    }
+    .kobe-card-glow:hover {
+      border-color: rgba(205, 45, 45, 0.4);
+      box-shadow: 0 10px 25px -3px rgba(16, 37, 66, 0.08);
+    }
+
+    .kobe-btn-glow {
+      transition: all 0.2s ease;
+    }
+    .kobe-btn-glow:hover {
+      border-color: #CD2D2D;
+      box-shadow: 0 0 14px rgba(205, 45, 45, 0.25);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-blue-100 selection:text-blue-900">
+
+  <!-- ヘッダー（統一仕様：赤のアクセントライン ＋ 神戸ネイビー） -->
+  <header class="border-b border-[#DCE4EE] bg-white/95 backdrop-blur sticky top-0 z-50">
+    <div class="h-[3px] bg-[#CD2D2D] w-full"></div>
+    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <span class="w-3 h-3 rounded-full bg-[#CD2D2D] shadow-[0_0_10px_rgba(205,45,45,0.4)] animate-pulse"></span>
+        <a href="index.html" class="font-chakra text-xl font-bold tracking-wider text-[#102542] hover:opacity-90 transition">
+          TOEIC RE:BOOT <span class="kobe-red">730</span>
+        </a>
+      </div>
+      <nav class="flex items-center gap-5 text-sm font-semibold text-slate-600">
+        <a href="profile.html" class="hover:text-[#CD2D2D] transition-colors">プロフィール</a>
+        <a href="index.html" class="hover:text-[#CD2D2D] transition-colors flex items-center gap-1.5 text-xs">
+          <i class="fa-solid fa-house"></i>
+          <span>TOP</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- タイトルセクション -->
+  <section class="border-b border-[#DCE4EE] py-10 md:py-12 bg-gradient-to-b from-white via-white to-[#F4F7FB]">
+    <div class="max-w-3xl mx-auto px-4 text-center space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-red-50 text-[#CD2D2D] border border-red-200">
+        <i class="fa-solid fa-shield-halved text-[#CD2D2D]"></i> サイト改善・品質向上窓口
+      </div>
+      <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-[#102542]">
+        お問い合わせ ＆ 不具合・誤字報告
+      </h1>
+      <p class="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto leading-relaxed">
+        問題文の誤字・脱字、解説の不備、スクリプトの動作不具合など、お気づきの点がございましたら下記よりご連絡いただけますと幸いです。
+      </p>
+    </div>
+  </section>
+
+  <!-- メインコンテンツ -->
+  <main class="max-w-3xl mx-auto px-4 py-10 space-y-8 flex-1 w-full">
+
+    <div class="bg-white rounded-2xl p-6 md:p-8 kobe-card-glow space-y-6">
+      
+      <!-- 報告の案内枠 -->
+      <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-4 text-xs text-slate-600 space-y-2">
+        <div class="font-bold text-[#102542] flex items-center gap-1.5 text-sm">
+          <i class="fa-solid fa-circle-info text-[#CD2D2D]"></i>
+          <span>ご報告にあたって</span>
+        </div>
+        <p class="leading-relaxed">
+          ・当サイトは個人開発・自習用プラットフォームです。いただいたご報告は順次確認し、問題の修正・機能改善に役立てさせていただきます。<br>
+          ・問題の指摘の場合は、可能であれば<strong>「問題番号」や「出題フレーズ」</strong>を添えていただけますとスムーズに特定できます。
+        </p>
+      </div>
+
+      <!-- Googleフォーム埋め込み または リンクボタンエリア -->
+      <div class="space-y-4 pt-2">
+        
+        <!-- Googleフォーム埋め込み用プレースホルダー -->
+        <div class="w-full bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl overflow-hidden min-h-[500px] flex flex-col items-center justify-center p-6 text-center">
+          <!-- 
+            ※ 実際のGoogleフォームを作成後、以下のiframeタグに置き換えてください。
+            <iframe src="https://forms.gle/ct9YHdLWjNXcu4tK9" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
+          -->
+          <div class="w-12 h-12 rounded-full bg-red-50 text-[#CD2D2D] flex items-center justify-center text-xl mb-3">
+            <i class="fa-solid fa-envelope-open-text"></i>
+          </div>
+          <h3 class="text-base font-bold text-[#102542] mb-1">Googleフォーム連携窓口</h3>
+          <p class="text-xs text-slate-500 max-w-md mb-5 leading-relaxed">
+            匿名で送信いただけます。メールアドレス等の個人情報の入力は不要です。
+          </p>
+          
+          <a href="#" target="_blank" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#102542] hover:bg-[#1a3860] border border-[#102542] hover:border-[#CD2D2D] text-white font-bold text-xs transition kobe-btn-glow shadow-md">
+            <span>報告フォームを開く（Googleフォーム）</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-red-400"></i>
+          </a>
+          <span class="text-[10px] text-slate-400 mt-2">※別タブでGoogleフォームが開きます</span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- トップに戻るボタン -->
+    <div class="text-center pt-2">
+      <a href="index.html" class="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-[#CD2D2D] transition">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>自習室トップへ戻る</span>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- フッター（同一仕様統一） -->
+ <!-- 最適化したフッター（プロフィール重複なし） -->
+<footer class="border-t border-[#DCE4EE] bg-white py-6 text-center text-xs text-slate-500 space-y-1">
+  <p class="font-semibold text-[#102542]">© 2026 TOEIC RE:BOOT 730<a href="ura_index.html" class="text-slate-400 hover:text-slate-600">.</a></p>
+  <p>50代からのスコア奪還 自習システム</p>
+  <div class="pt-1">
+    <a href="contact.html" class="text-[11px] text-slate-400 hover:text-[#CD2D2D] underline">不具合・誤字報告</a>
+  </div>
+  <p class="text-[11px] text-slate-400">Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。</p>
+</footer>
+
+</body>
+</html>
