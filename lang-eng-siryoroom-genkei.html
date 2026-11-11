@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>正解の肢として出される「動詞の原形（Base Form）」完全攻略 | TOEIC RE:BOOT 730 資料室</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+      background-color: #F4F7FB;
+      color: #102542;
+    }
+    .font-chakra { font-family: 'Chakra Petch', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    .kobe-navy { color: #102542; }
+    .kobe-bg-navy { background-color: #102542; }
+    .kobe-red { color: #CD2D2D; }
+    .kobe-bg-red { background-color: #CD2D2D; }
+
+    .kobe-card-glow {
+      border: 1px solid #DCE4EE;
+      box-shadow: 0 4px 6px -1px rgba(16, 37, 66, 0.05);
+      transition: all 0.25s ease;
+    }
+    .kobe-card-glow:hover {
+      border-color: rgba(205, 45, 45, 0.4);
+      box-shadow: 0 10px 25px -3px rgba(16, 37, 66, 0.08);
+    }
+
+    .kobe-btn-glow {
+      transition: all 0.2s ease;
+    }
+    .kobe-btn-glow:hover {
+      border-color: #CD2D2D;
+      box-shadow: 0 0 14px rgba(205, 45, 45, 0.25);
+    }
+
+    /* 文構造分解用 トークンバッジ */
+    .token-s { @apply bg-blue-100 text-blue-900 border border-blue-300 px-1.5 py-0.5 rounded font-mono text-xs font-semibold; }
+    .token-v { @apply bg-rose-100 text-rose-900 border border-rose-300 px-1.5 py-0.5 rounded font-mono text-xs font-semibold; }
+    .token-o { @apply bg-purple-100 text-purple-900 border border-purple-300 px-1.5 py-0.5 rounded font-mono text-xs font-semibold; }
+    .token-c-base { @apply bg-red-100 text-[#CD2D2D] border border-red-300 px-1.5 py-0.5 rounded font-mono text-xs font-bold; }
+    .token-m-adv { @apply bg-amber-100 text-amber-900 border border-amber-300 px-1.5 py-0.5 rounded font-mono text-xs font-semibold; }
+    .token-modal { @apply bg-indigo-100 text-indigo-900 border border-indigo-300 px-1.5 py-0.5 rounded font-mono text-xs font-bold; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-red-100 selection:text-red-900">
+
+  <!-- ヘッダー（統一仕様：白背景 ＋ 赤のアクセントライン ＋ 神戸ネイビー文字） -->
+  <header class="border-b border-[#DCE4EE] bg-white/95 backdrop-blur sticky top-0 z-50">
+    <div class="h-[3px] bg-[#CD2D2D] w-full"></div>
+    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <span class="w-3 h-3 rounded-full bg-[#CD2D2D] shadow-[0_0_10px_rgba(205,45,45,0.4)] animate-pulse"></span>
+        <a href="index.html" class="font-chakra text-xl font-bold tracking-wider text-[#102542] hover:opacity-90 transition">
+          TOEIC RE:BOOT <span class="kobe-red">730</span>
+        </a>
+      </div>
+      <nav class="flex items-center gap-4 text-xs sm:text-sm font-semibold text-slate-600">
+        <a href="lang-eng-siryoroom.html" class="hover:text-[#CD2D2D] transition-colors flex items-center gap-1.5 text-[#102542]">
+          <i class="fa-solid fa-folder-open text-[#CD2D2D]"></i>
+          <span>資料室一覧</span>
+        </a>
+        <a href="index.html" class="hover:text-[#CD2D2D] transition-colors flex items-center gap-1.5">
+          <i class="fa-solid fa-house text-xs"></i>
+          <span>TOP</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- タイトルヒーローセクション -->
+  <section class="border-b border-[#DCE4EE] py-10 md:py-12 bg-gradient-to-b from-white via-white to-[#F4F7FB]">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-red-50 text-[#CD2D2D] border border-red-200 mb-3">
+        <i class="fa-solid fa-graduation-cap text-[#CD2D2D]"></i>
+        <span>TOEIC L&R Part 5 実戦ロジック資料</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#102542] leading-tight mb-3">
+        正解の肢として出される <span class="text-[#CD2D2D]">「動詞の原形（Base Form）」</span> 完全攻略
+      </h1>
+      <p class="text-xs sm:text-sm text-slate-600 max-w-3xl leading-relaxed">
+        三単現の -s や過去形（-ed）の引っかけを無力化する「動詞の原形」が必須となる全9パターンを徹底整理。助動詞の隙間から仮定法現在、使役・知覚・helpの原形不定詞までを完全網羅しました。
+      </p>
+    </div>
+  </section>
+
+  <!-- メインコンテンツ -->
+  <main class="max-w-5xl mx-auto px-4 py-8 sm:py-12 space-y-8 flex-1 w-full">
+
+    <!-- ==========================================
+         SECTION 1: 動詞の原形が現れる全9パターン体系マップ
+         ========================================== -->
+    <section class="bg-white rounded-2xl p-6 sm:p-8 kobe-card-glow">
+      <div class="flex items-center gap-2.5 mb-2">
+        <span class="w-7 h-7 rounded-lg bg-[#102542] text-white flex items-center justify-center font-bold text-xs font-chakra">01</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#102542] tracking-tight">「動詞の原形」が要求される全9パターンの全体像</h2>
+      </div>
+      <p class="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed">
+        英語で動詞の原形（Base Form / 原形不定詞）が正解となる構文は、以下の9系統に集約されます。TOEICでは時制の一致や主語の人称に惑わされず、この支配構造を見抜くことが鉄則です。
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+        <!-- Pattern 01 -->
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-3.5 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#CD2D2D] bg-red-100 px-1.5 py-0.5 rounded font-chakra">Pattern 01</span>
+            <h4 class="font-bold text-[#102542] text-xs mt-1.5 mb-1">助動詞 ＋ (副詞) ＋ 原形</h4>
+            <p class="text-[11px] text-slate-500 mb-2">will, can, mustなどの直後（副詞の割り込み注意）</p>
+          </div>
+          <div class="bg-white p-2 rounded-lg border border-[#DCE4EE] text-xs font-mono text-slate-800">
+            will carefully <span class="text-[#CD2D2D] font-bold underline">review</span>
+          </div>
+        </div>
+
+        <!-- Pattern 02 -->
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-3.5 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#CD2D2D] bg-red-100 px-1.5 py-0.5 rounded font-chakra">Pattern 02</span>
+            <h4 class="font-bold text-[#102542] text-xs mt-1.5 mb-1">to 不定詞（to ＋ 原形）</h4>
+            <p class="text-[11px] text-slate-500 mb-2">「前置詞のto（後ろは -ing）」との混同を排除</p>
+          </div>
+          <div class="bg-white p-2 rounded-lg border border-[#DCE4EE] text-xs font-mono text-slate-800">
+            plans to <span class="text-[#CD2D2D] font-bold underline">expand</span>
+          </div>
+        </div>
+
+        <!-- Pattern 03 -->
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-3.5 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#CD2D2D] bg-red-100 px-1.5 py-0.5 rounded font-chakra">Pattern 03</span>
+            <h4 class="font-bold text-[#102542] text-xs mt-1.5 mb-1">命令文の文頭</h4>
+            <p class="text-[11px] text-slate-500 mb-2">主語が欠落した指示・依頼構文</p>
+          </div>
+          <div class="bg-white p-2 rounded-lg border border-[#DCE4EE] text-xs font-mono text-slate-800">
+            Please <span class="text-[#CD2D2D] font-bold underline">submit</span> the form.
+          </div>
+        </div>
+
+        <!-- Pattern 04 -->
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-3.5 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#CD2D2D] bg-red-100 px-1.5 py-0.5 rounded font-chakra">Pattern 04</span>
+            <h4 class="font-bold text-[#102542] text-xs mt-1.5 mb-1">使役動詞 ＋ O ＋ 原形</h4>
+            <p class="text-[11px] text-slate-500 mb-2">make / have / let ＋ O ＋ 原形不定詞</p>
+          </div>
+          <div class="bg-white p-2 rounded-lg border border-[#DCE4EE] text-xs font-mono text-slate-800">
+            had the tech <span class="text-[#CD2D2D] font-bold underline">install</span> it
+          </div>
+        </div>
+
+        <!-- Pattern 05 -->
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-3.5 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#CD2D2D] bg-red-100 px-1.5 py-0.5 rounded font-chakra">Pattern 05</span>
+            <h4 class="font-bold text-[#102542] text-xs mt-1.5 mb-1">知覚動詞 ＋ O ＋ 原形</h4>
+            <p class="text-[11px] text-slate-500 mb-2">notice / see / hear ＋ O ＋ 原形不定詞</p>
+          </div>
+          <div class="bg-white p-2 rounded-lg border border-[#DCE4EE] text-xs font-mono text-slate-800">
+            noticed him <span class="text-[#CD2D2D] font-bold underline">enter</span>
+          </div>
+        </div>
+
+        <!-- Pattern 06 -->
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-3.5 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#CD2D2D] bg-red-100 px-1.5 py-0.5 rounded font-chakra">Pattern 06</span>
+            <h4 class="font-bold text-[#102542] text-xs mt-1.5 mb-1">help の特殊語法</h4>
+            <p class="text-[11px] text-slate-500 mb-2">help (O) (to) 原形 / 動詞2連続の許容</p>
+          </div>
+          <div class="bg-white p-2 rounded-lg border border-[#DCE4EE] text-xs font-mono text-slate-800">
+            helps <span class="text-[#CD2D2D] font-bold underline">prevent</span> disruptions
+          </div>
+        </div>
+
+        <!-- Pattern 07 -->
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-3.5 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#CD2D2D] bg-red-100 px-1.5 py-0.5 rounded font-chakra">Pattern 07</span>
+            <h4 class="font-bold text-[#102542] text-xs mt-1.5 mb-1">提案・要求 that 節（仮定法現在）</h4>
+            <p class="text-[11px] text-slate-500 mb-2">request / suggest that S (should) 原形</p>
+          </div>
+          <div class="bg-white p-2 rounded-lg border border-[#DCE4EE] text-xs font-mono text-slate-800">
+            requested that he <span class="text-[#CD2D2D] font-bold underline">wear</span>
+          </div>
+        </div>
+
+        <!-- Pattern 08 -->
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-3.5 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#CD2D2D] bg-red-100 px-1.5 py-0.5 rounded font-chakra">Pattern 08</span>
+            <h4 class="font-bold text-[#102542] text-xs mt-1.5 mb-1">助動詞的表現・慣用構文</h4>
+            <p class="text-[11px] text-slate-500 mb-2">had better / cannot help but 等の直後</p>
+          </div>
+          <div class="bg-white p-2 rounded-lg border border-[#DCE4EE] text-xs font-mono text-slate-800">
+            had better <span class="text-[#CD2D2D] font-bold underline">confirm</span> it
+          </div>
+        </div>
+
+        <!-- Pattern 09 -->
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-3.5 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#CD2D2D] bg-red-100 px-1.5 py-0.5 rounded font-chakra">Pattern 09</span>
+            <h4 class="font-bold text-[#102542] text-xs mt-1.5 mb-1">Why not 〜 ? 提案構文</h4>
+            <p class="text-[11px] text-slate-500 mb-2">リスニングやビジネス対話の定型提案</p>
+          </div>
+          <div class="bg-white p-2 rounded-lg border border-[#DCE4EE] text-xs font-mono text-slate-800">
+            Why not <span class="text-[#CD2D2D] font-bold underline">consult</span> legal?
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 2: Pattern 06 & 07 深掘り解説（help と 仮定法現在）
+         ========================================== -->
+    <section class="bg-white rounded-2xl p-6 sm:p-8 kobe-card-glow">
+      <div class="flex items-center gap-2.5 mb-2">
+        <span class="w-auto px-2.5 h-7 rounded-lg bg-[#102542] text-white flex items-center justify-center font-bold text-xs font-chakra">DEEP DIVE</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#102542] tracking-tight">Pattern 06 & 07 深掘り解説：help と 仮定法現在（that節）</h2>
+      </div>
+      <p class="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed">
+        全9パターンの中でも、受験生が特につまずきやすく正答率が大きく分かれる「Pattern 06（help）」と「Pattern 07（仮定法現在）」の構文構造を詳しく分解します。
+      </p>
+
+      <div class="space-y-6">
+        <!-- Pattern 06: help の2大構造 -->
+        <div class="border border-[#DCE4EE] rounded-xl p-5 bg-[#F4F7FB]">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-[#CD2D2D] bg-red-100 px-2.5 py-0.5 rounded-full font-chakra">Pattern 06 Focus</span>
+            <span class="text-xs font-mono text-slate-500">準使役動詞 help の二面性</span>
+          </div>
+          <h3 class="text-base font-bold text-[#102542] mb-2">help は「to」が省略されて原形が直接置かれる</h3>
+          <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+            現代のTOEIC本試験では、to 不定詞よりも「to が消えた原形不定詞」が圧倒的に好まれます。第3文型で動詞が2つ連続して見える形に惑わされないことが重要です。
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+            <div class="bg-white p-4 rounded-lg border border-[#DCE4EE] space-y-2">
+              <div class="text-[11px] font-sans font-bold text-[#102542]">① 第5文型（S ＋ help ＋ O ＋ 原形）</div>
+              <div class="text-slate-800">
+                The software helps <span class="token-o">staff</span> <span class="token-c-base">locate</span> items.
+              </div>
+              <p class="text-[11px] font-sans text-slate-500">「ソフトウェアはスタッフが品目を見つけ出すのを手助けする」</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border border-[#DCE4EE] space-y-2">
+              <div class="text-[11px] font-sans font-bold text-[#102542]">② 第3文型（S ＋ help ＋ 原形 ※動詞2連続）</div>
+              <div class="text-slate-800">
+                Regular maintenance helps <span class="token-c-base">prevent</span> breakdowns.
+              </div>
+              <p class="text-[11px] font-sans text-slate-500">「定期的な点検は故障を防ぐのに役立つ」（helps の直後に原形 prevent）</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pattern 07: 仮定法現在（request that） -->
+        <div class="border border-[#DCE4EE] rounded-xl p-5 bg-[#F4F7FB]">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold text-[#CD2D2D] bg-red-100 px-2.5 py-0.5 rounded-full font-chakra">Pattern 07 Focus</span>
+            <span class="text-xs font-mono text-slate-500">提案・要求動詞の that 節（仮定法現在）</span>
+          </div>
+          <h3 class="text-base font-bold text-[#102542] mb-2">時制の一致や三単現の -s を完全無視する「should の脱落」</h3>
+          <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+            要求・提案・命令を表す動詞に続く that 節内は、本来介在する意志の助動詞 <code>should</code> が省略されるため、主語が三人称単数でも、主節が過去形でも、<strong>動詞の原形</strong>になります。受動態のときは <strong>be ＋ 過去分詞</strong> になる点に注意してください。
+          </p>
+
+          <div class="bg-white p-4 rounded-lg border border-[#DCE4EE] space-y-3 font-mono text-xs">
+            <div class="text-slate-800">
+              The coordinator <span class="token-v">requested</span> that each participant <span class="text-slate-400">[should]</span> <span class="token-c-base">wear</span> an ID badge.
+            </div>
+            <div class="text-[11px] font-sans text-slate-500">
+              ※ 主節が requested（過去形）かつ each participant（単数）であっても、wears や wore ではなく原形の <strong>wear</strong>。
+            </div>
+            <div class="pt-2 border-t border-slate-100 text-slate-800">
+              Management <span class="token-v">recommended</span> that the proposal <span class="text-slate-400">[should]</span> <span class="token-c-base">be</span> approved immediately.
+            </div>
+            <div class="text-[11px] font-sans text-slate-500">
+              ※ 受動態の場合、is や was ではなく be動詞の原形 <strong>be</strong> を選択する。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 3: notice vs request の決定的な対比
+         ========================================== -->
+    <section class="bg-white rounded-2xl p-6 sm:p-8 kobe-card-glow">
+      <div class="flex items-center gap-2.5 mb-2">
+        <span class="w-7 h-7 rounded-lg bg-[#102542] text-white flex items-center justify-center font-bold text-xs font-chakra">03</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#102542] tracking-tight">受験生が混同しやすい「notice」と「request」の構造対比</h2>
+      </div>
+      <p class="text-slate-600 text-xs mb-5">
+        「原形」が使われる場所の違いを峻別します。知覚動詞は SVOC の C に原形が来ますが、that 節内は通常の時制になります。
+      </p>
+
+      <div class="border border-[#DCE4EE] rounded-xl overflow-hidden">
+        <table class="w-full text-left text-xs sm:text-sm border-collapse">
+          <thead>
+            <tr class="bg-[#F4F7FB] border-b border-[#DCE4EE] text-[#102542]">
+              <th class="py-3 px-4 font-bold">動詞の種類</th>
+              <th class="py-3 px-4 font-bold">SVOC（第5文型）での動作</th>
+              <th class="py-3 px-4 font-bold">that 節（第3文型）での動作</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[#DCE4EE] font-mono text-xs">
+            <tr class="hover:bg-slate-50/60 transition">
+              <td class="py-3 px-4 font-bold text-slate-900 font-sans">
+                notice<br><span class="text-[11px] text-slate-400 font-normal">（知覚動詞・事実の認知）</span>
+              </td>
+              <td class="py-3 px-4">
+                notice ＋ O ＋ <span class="token-c-base">原形不定詞</span><br>
+                <span class="text-[11px] font-sans text-slate-500">noticed him <strong>enter</strong> the room</span>
+              </td>
+              <td class="py-3 px-4">
+                notice that ＋ S ＋ <span class="bg-slate-100 text-slate-800 px-1 py-0.5 rounded font-bold font-sans">通常の時制（過去形等）</span><br>
+                <span class="text-[11px] font-sans text-slate-500">noticed that he <strong>entered</strong> / <strong>was</strong> absent</span>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50/60 transition">
+              <td class="py-3 px-4 font-bold text-[#CD2D2D] font-sans">
+                request<br><span class="text-[11px] text-slate-400 font-normal">（要求動詞・行動の促し）</span>
+              </td>
+              <td class="py-3 px-4">
+                request ＋ O ＋ <span class="bg-indigo-100 text-indigo-900 px-1 py-0.5 rounded font-bold">to 不定詞</span><br>
+                <span class="text-[11px] font-sans text-slate-500">requested him <strong>to enter</strong> the room</span>
+              </td>
+              <td class="py-3 px-4">
+                request that ＋ S ＋ <span class="token-c-base">動詞の原形（仮定法現在）</span><br>
+                <span class="text-[11px] font-sans text-slate-500">requested that he <strong>enter</strong> the room</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 4: Part 5 即断判定フローチャート
+         ========================================== -->
+    <section class="bg-white rounded-2xl p-6 sm:p-8 kobe-card-glow">
+      <div class="flex items-center gap-2.5 mb-2">
+        <span class="w-7 h-7 rounded-lg bg-[#CD2D2D] text-white flex items-center justify-center font-bold text-xs font-chakra">04</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#102542] tracking-tight">Part 5 空欄3秒判定ステップ（動詞の原形編）</h2>
+      </div>
+      <p class="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed">
+        選択肢に動詞のバリエーション（原形、過去形、三単現、分詞）が並んだ際の走査手順です。
+      </p>
+
+      <div class="max-w-3xl mx-auto bg-[#F4F7FB] border border-[#DCE4EE] rounded-2xl p-6 shadow-sm">
+        <div class="flex flex-col items-center space-y-3">
+          
+          <div class="w-full max-w-md bg-white border border-[#DCE4EE] rounded-xl p-3 text-center shadow-xs">
+            <div class="text-[10px] text-slate-400 font-chakra font-bold">STEP 01</div>
+            <div class="font-bold text-xs sm:text-sm text-[#102542]">文頭が空欄で主語がないか？</div>
+            <div class="text-[11px] text-[#CD2D2D] font-bold mt-0.5">YES $\rightarrow$ 命令文（動詞の原形）</div>
+          </div>
+
+          <i class="fa-solid fa-arrow-down text-slate-400 text-xs"></i>
+
+          <div class="w-full max-w-md bg-white border border-[#DCE4EE] rounded-xl p-3 text-center shadow-xs">
+            <div class="text-[10px] text-slate-400 font-chakra font-bold">STEP 02</div>
+            <div class="font-bold text-xs sm:text-sm text-[#102542]">直前に助動詞、または「助動詞＋副詞」があるか？</div>
+            <div class="text-[11px] text-[#CD2D2D] font-bold mt-0.5">YES $\rightarrow$ 助動詞の直後（動詞の原形）</div>
+          </div>
+
+          <i class="fa-solid fa-arrow-down text-slate-400 text-xs"></i>
+
+          <div class="w-full max-w-md bg-white border border-[#DCE4EE] rounded-xl p-3 text-center shadow-xs">
+            <div class="text-[10px] text-slate-400 font-chakra font-bold">STEP 03</div>
+            <div class="font-bold text-xs sm:text-sm text-[#102542]">make / have / let / notice / see / help ＋ 目的語 の直後か？</div>
+            <div class="text-[11px] text-[#CD2D2D] font-bold mt-0.5">YES $\rightarrow$ 原形不定詞（動詞の原形）</div>
+          </div>
+
+          <i class="fa-solid fa-arrow-down text-slate-400 text-xs"></i>
+
+          <div class="w-full max-w-md bg-red-50 border-2 border-red-300 rounded-xl p-3.5 text-center shadow-xs">
+            <div class="text-[10px] text-[#CD2D2D] font-bold font-chakra">STEP 04: HIGH-LEVEL CHECK</div>
+            <div class="font-extrabold text-sm sm:text-base text-[#102542]">主節に request, suggest, essential that があるか？</div>
+            <div class="text-[11px] text-[#CD2D2D] font-bold mt-1">that 節内は時制無視で「動詞の原形（仮定法現在）」！</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 下部ナビゲーションリンク -->
+    <div class="pt-2 flex justify-center">
+      <a href="lang-eng-siryoroom.html" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#102542] hover:bg-[#1a3860] border border-[#102542] hover:border-[#CD2D2D] text-white font-bold text-xs transition kobe-btn-glow shadow-sm">
+        <i class="fa-solid fa-arrow-left text-red-400"></i>
+        <span>資料室トップへ戻る</span>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- フッター（同一仕様統一） -->
+  <footer class="border-t border-[#DCE4EE] bg-white py-6 text-center text-xs text-slate-500 space-y-1.5">
+    <p class="font-semibold text-[#102542]">© 2026 TOEIC RE:BOOT 730<a href="ura_index.html" class="text-slate-400 hover:text-slate-600">.</a></p>
+    <p>50代からのスコア奪還 自習システム</p>
+    <p class="text-[11px] text-slate-400">
+      Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。
+      <span class="mx-1.5 text-slate-300">|</span>
+      <a href="contact.html" class="hover:text-[#CD2D2D] transition-colors">不具合・誤字報告</a>
+    </p>
+  </footer>
+
+</body>
+</html>
