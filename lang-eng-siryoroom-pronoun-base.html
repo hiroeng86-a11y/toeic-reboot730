@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>代名詞・疑問詞・関係詞の定義深掘り | TOEIC RE:BOOT 730 資料室</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+      background-color: #F4F7FB;
+      color: #102542;
+    }
+    .font-chakra { font-family: 'Chakra Petch', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    .kobe-navy { color: #102542; }
+    .kobe-bg-navy { background-color: #102542; }
+    .kobe-red { color: #CD2D2D; }
+    .kobe-bg-red { background-color: #CD2D2D; }
+
+    .kobe-card-glow {
+      border: 1px solid #DCE4EE;
+      box-shadow: 0 4px 6px -1px rgba(16, 37, 66, 0.05);
+      transition: all 0.25s ease;
+    }
+    .kobe-card-glow:hover {
+      border-color: rgba(205, 45, 45, 0.4);
+      box-shadow: 0 10px 25px -3px rgba(16, 37, 66, 0.08);
+    }
+
+    .kobe-btn-glow {
+      transition: all 0.2s ease;
+    }
+    .kobe-btn-glow:hover {
+      border-color: #CD2D2D;
+      box-shadow: 0 0 14px rgba(205, 45, 45, 0.25);
+    }
+
+    .token-s { background-color: #dbeafe; color: #1e3a8a; border: 1px solid #93c5fd; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 600; }
+    .token-v { background-color: #ffe4e6; color: #881337; border: 1px solid #fda4af; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 600; }
+    .token-o { background-color: #f3e8ff; color: #581c87; border: 1px solid #d8b4fe; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 600; }
+    .token-c-base { background-color: #fee2e2; color: #CD2D2D; border: 1px solid #fca5a5; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; }
+    .token-modal { background-color: #e0e7ff; color: #312e81; border: 1px solid #a5b4fc; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-red-100 selection:text-red-900">
+
+  <!-- ヘッダー（TOEIC RE:BOOT 730 統一仕様） -->
+  <header class="border-b border-[#DCE4EE] bg-white/95 backdrop-blur sticky top-0 z-50">
+    <div class="h-[3px] bg-[#CD2D2D] w-full"></div>
+    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <span class="w-3 h-3 rounded-full bg-[#CD2D2D] shadow-[0_0_10px_rgba(205,45,45,0.4)] animate-pulse"></span>
+        <a href="index.html" class="font-chakra text-xl font-bold tracking-wider text-[#102542] hover:opacity-90 transition">
+          TOEIC RE:BOOT <span class="kobe-red">730</span>
+        </a>
+      </div>
+      <nav class="flex items-center gap-4 text-xs sm:text-sm font-semibold text-slate-600">
+        <a href="lang-eng-siryoroom.html" class="hover:text-[#CD2D2D] transition-colors flex items-center gap-1.5 text-[#102542]">
+          <i class="fa-solid fa-folder-open text-[#CD2D2D]"></i>
+          <span>資料室一覧</span>
+        </a>
+        <a href="index.html" class="hover:text-[#CD2D2D] transition-colors flex items-center gap-1.5">
+          <i class="fa-solid fa-house text-xs"></i>
+          <span>TOP</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- タイトルヒーローセクション -->
+  <section class="border-b border-[#DCE4EE] py-10 md:py-12 bg-gradient-to-b from-white via-white to-[#F4F7FB]">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-red-50 text-[#CD2D2D] border border-red-200 mb-3">
+        <i class="fa-solid fa-graduation-cap text-[#CD2D2D]"></i>
+        <span>TOEIC L&amp;R 英文法コア理論資料</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#102542] leading-tight mb-3">
+        品詞と構造の根幹 <span class="text-[#CD2D2D]">「代名詞・疑問詞・関係詞」</span> 定義深掘りマップ
+      </h1>
+      <p class="text-xs sm:text-sm text-slate-600 max-w-3xl leading-relaxed">
+        普通の「代名詞」にどんな特殊能力が足されると「疑問詞」や「関係詞」になるのか？その進化の仕組みから、関係代名詞と関係副詞の構造的な違い、そして TOEIC Part 5 の空欄を3秒で仕留める判定ロジックまでを体系化しました。
+      </p>
+    </div>
+  </section>
+
+  <!-- メインコンテンツ -->
+  <main class="max-w-5xl mx-auto px-4 py-8 sm:py-12 space-y-8 flex-1 w-full">
+
+    <!-- ==========================================
+         SECTION 01: 代名詞の定義（すべての土台）
+         ========================================== -->
+    <section class="bg-white rounded-2xl p-6 sm:p-8 kobe-card-glow">
+      <div class="flex items-center gap-2.5 mb-2">
+        <span class="w-7 h-7 rounded-lg bg-[#102542] text-white flex items-center justify-center font-bold text-xs font-chakra">01</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#102542] tracking-tight">すべての出発点：「代名詞」の定義と4つの定位置</h2>
+      </div>
+      <p class="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed">
+        疑問代名詞・関係代名詞を理解する大前提は「代名詞（it, this, he 等）＝名詞の代わりをする箱」という定義です。名詞と同じ資格を持つため、英文中で以下の4箇所にのみ配置できます。
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-3.5">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-[#CD2D2D] bg-red-100 px-1.5 py-0.5 rounded font-chakra">Slot 01</span>
+          <h4 class="font-bold text-[#102542] text-xs mt-1.5 mb-1">主語（S）になる</h4>
+          <p class="text-[11px] text-slate-500">動詞の前に立ち、「〜は・〜が」の役割を担う。</p>
+        </div>
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-3.5">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-[#CD2D2D] bg-red-100 px-1.5 py-0.5 rounded font-chakra">Slot 02</span>
+          <h4 class="font-bold text-[#102542] text-xs mt-1.5 mb-1">目的語（O）になる</h4>
+          <p class="text-[11px] text-slate-500">他動詞の直後に置かれ、「〜を・〜に」の対象になる。</p>
+        </div>
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-3.5">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-[#CD2D2D] bg-red-100 px-1.5 py-0.5 rounded font-chakra">Slot 03</span>
+          <h4 class="font-bold text-[#102542] text-xs mt-1.5 mb-1">補語（C）になる</h4>
+          <p class="text-[11px] text-slate-500">be動詞などの後ろで「S ＝ C」の関係を作る。</p>
+        </div>
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-3.5">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-[#CD2D2D] bg-red-100 px-1.5 py-0.5 rounded font-chakra">Slot 04</span>
+          <h4 class="font-bold text-[#102542] text-xs mt-1.5 mb-1">前置詞の目的語</h4>
+          <p class="text-[11px] text-slate-500">in / at / for / to などの直後に着地する。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 02: 【橋渡し】代名詞が「疑問詞」「関係詞」へ進化する仕組み
+         ========================================== -->
+    <section class="bg-white rounded-2xl p-6 sm:p-8 kobe-card-glow">
+      <div class="flex items-center gap-2.5 mb-2">
+        <span class="w-7 h-7 rounded-lg bg-[#102542] text-white flex items-center justify-center font-bold text-xs font-chakra">02</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#102542] tracking-tight">なぜ同じ単語？「代名詞」＋「特殊能力」の合体メカニズム</h2>
+      </div>
+      <p class="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed">
+        普通の代名詞（<code>it</code> や <code>this</code>）は「名詞の代わり（S・O・C）」という<strong>1つの役割</strong>しか持ちません。ここに<strong>「もう1つの特殊能力」</strong>が合体したものが、疑問代名詞と関係代名詞です。
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Base: 代名詞 -->
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-600 bg-slate-200 px-2 py-0.5 rounded font-chakra">Base：1役のみ</span>
+            <h3 class="font-bold text-[#102542] text-sm mt-2 mb-1.5">普通の代名詞（it, this, he）</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              単なる<strong>「名詞の箱（S・O・C）」</strong>。指し示す対象はすでに決まっており、質問もしなければ文もつなぎません。
+            </p>
+          </div>
+          <div class="bg-white p-2.5 rounded-lg border border-[#DCE4EE] font-mono text-xs text-slate-800">
+            I want <span class="token-o">it</span>.（私は<strong>それ</strong>が欲しい）
+          </div>
+        </div>
+
+        <!-- Evolution 1: 疑問代名詞 -->
+        <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#102542] bg-blue-100 px-2 py-0.5 rounded font-chakra">合体①：代名詞 ＋ 質問力</span>
+            <h3 class="font-bold text-[#102542] text-sm mt-2 mb-1.5">疑問代名詞（what, who, which）</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              「名詞の箱（S・O・C）」に、<strong>「中身が不明だから教えて！（？）」</strong>という質問の力が合体した言葉です。
+            </p>
+          </div>
+          <div class="bg-white p-2.5 rounded-lg border border-[#DCE4EE] font-mono text-xs text-slate-800">
+            <span class="token-c-base">What</span> do you want?（<strong>何</strong>が欲しい？）
+          </div>
+        </div>
+
+        <!-- Evolution 2: 関係代名詞 -->
+        <div class="bg-red-50/40 border border-red-200 rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#CD2D2D] bg-red-100 px-2 py-0.5 rounded font-chakra">合体②：代名詞 ＋ 接着剤</span>
+            <h3 class="font-bold text-[#CD2D2D] text-sm mt-2 mb-1.5">関係代名詞（what, who, which, that）</h3>
+            <p class="text-xs text-slate-600 leading-relaxed mb-3">
+              「名詞の箱（S・O・C）」に、<strong>「2つの文を1つに結びつける接続詞（接着剤）の力」</strong>が合体した言葉です。質問はしません。
+            </p>
+          </div>
+          <div class="bg-white p-2.5 rounded-lg border border-red-200 font-mono text-xs text-slate-800">
+            This is <span class="token-c-base">what</span> I want.（欲しい<strong>もの</strong>）
+          </div>
+        </div>
+      </div>
+
+      <!-- 2文が合体する具体例 -->
+      <div class="mt-5 bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-4">
+        <div class="text-xs font-bold text-[#102542] mb-2 flex items-center gap-1.5">
+          <i class="fa-solid fa-link text-[#CD2D2D]"></i>
+          <span>関係代名詞「接着剤」の働きを分解して見る（2つの文 → 1つの文へ）</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
+          <div class="bg-white p-3 rounded-lg border border-[#DCE4EE]">
+            <div class="text-[11px] font-sans text-slate-400 mb-1">【合体前】2つの独立した文</div>
+            <div class="text-slate-800">① This is <span class="font-bold underline">the thing</span>.</div>
+            <div class="text-slate-800">② I wanted <span class="token-o">it</span>.</div>
+          </div>
+          <div class="bg-white p-3 rounded-lg border border-red-200">
+            <div class="text-[11px] font-sans text-[#CD2D2D] font-bold mb-1">【合体後】the thing ＋ 接続詞 ＋ it ＝ what</div>
+            <div class="text-slate-800">This is <span class="token-c-base">what</span> I wanted <span class="text-slate-400">[Oのitが移動]</span>.</div>
+            <div class="text-[11px] font-sans text-slate-500 mt-1">※ wanted の後ろの <code>it</code> が前に飛び出して接着剤になったため、後ろは O が欠けた「不完全な文」になります。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 03: 疑問詞 vs 関係詞の徹底比較 ＋ 関係副詞深掘り
+         ========================================== -->
+    <section class="bg-white rounded-2xl p-6 sm:p-8 kobe-card-glow">
+      <div class="flex items-center gap-2.5 mb-2">
+        <span class="w-7 h-7 rounded-lg bg-[#102542] text-white flex items-center justify-center font-bold text-xs font-chakra">03</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#102542] tracking-tight">品詞別の完全整理：「疑問詞」と「関係詞」の定義・構造対比</h2>
+      </div>
+      <p class="text-slate-600 text-xs mb-5">
+        「代名詞」の働きをするものだけでなく、「形容詞」「副詞」の働きをする仲間まで一覧で整理しました。後ろに続く文が「不完全」か「完全」かに注目してください。
+      </p>
+
+      <div class="border border-[#DCE4EE] rounded-xl overflow-hidden mb-6">
+        <table class="w-full text-left text-xs sm:text-sm border-collapse">
+          <thead>
+            <tr class="bg-[#F4F7FB] border-b border-[#DCE4EE] text-[#102542]">
+              <th class="py-3 px-4 font-bold">分類・品詞</th>
+              <th class="py-3 px-4 font-bold">本質的な役割と文構造</th>
+              <th class="py-3 px-4 font-bold">実戦例文と構造イメージ</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[#DCE4EE] text-xs">
+            <tr class="hover:bg-slate-50/60 transition">
+              <td class="py-3 px-4 font-bold text-[#102542]">
+                疑問代名詞<br><span class="text-[11px] text-slate-400 font-normal font-mono">who / what / which</span>
+              </td>
+              <td class="py-3 px-4 text-slate-700">
+                中身が不明な箱を指し「誰？何？どれ？」と尋ねる。単独で<strong>名詞（S/O/C）</strong>になる。
+              </td>
+              <td class="py-3 px-4 font-mono">
+                <span class="token-c-base">What</span> happened?<br>
+                <span class="text-[11px] font-sans text-slate-500">間接疑問文：I don't know <strong>what he wants</strong>.</span>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50/60 transition">
+              <td class="py-3 px-4 font-bold text-[#102542]">
+                疑問形容詞<br><span class="text-[11px] text-slate-400 font-normal font-mono">what / which / whose + N</span>
+              </td>
+              <td class="py-3 px-4 text-slate-700">
+                後ろの名詞を直接修飾して「何の〜・どちらの〜」と限定する。
+              </td>
+              <td class="py-3 px-4 font-mono">
+                <span class="token-c-base">What</span> color do you like?<br>
+                <span class="text-[11px] font-sans text-slate-500">「何色が好きですか？」</span>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50/60 transition">
+              <td class="py-3 px-4 font-bold text-[#102542]">
+                疑問副詞<br><span class="text-[11px] text-slate-400 font-normal font-mono">when / where / why / how</span>
+              </td>
+              <td class="py-3 px-4 text-slate-700">
+                時・場所・理由・方法を尋ねる。副詞なので<strong>S/O/Cにはならない</strong>。
+              </td>
+              <td class="py-3 px-4 font-mono">
+                <span class="token-c-base">Where</span> do you live?<br>
+                <span class="text-[11px] font-sans text-slate-500">「どこに住んでいますか？」</span>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50/60 transition bg-red-50/30">
+              <td class="py-3 px-4 font-bold text-[#CD2D2D]">
+                関係代名詞<br><span class="text-[11px] text-slate-500 font-normal font-mono">who / which / that / what</span>
+              </td>
+              <td class="py-3 px-4 text-slate-700">
+                「接続詞＋代名詞」の2役。後ろは S または O が欠けた<strong>「不完全な文」</strong>になる。
+              </td>
+              <td class="py-3 px-4 font-mono">
+                The book <span class="token-c-base">which</span> I bought <span class="text-red-400">[O欠落]</span><br>
+                <span class="text-[11px] font-sans text-slate-500">先行詞なし（名詞節）：<strong>what</strong> I bought</span>
+              </td>
+            </tr>
+            <tr class="hover:bg-slate-50/60 transition bg-indigo-50/40">
+              <td class="py-3 px-4 font-bold text-indigo-900">
+                関係副詞<br><span class="text-[11px] text-slate-500 font-normal font-mono">when / where / why / how</span>
+              </td>
+              <td class="py-3 px-4 text-slate-700">
+                「接続詞＋副詞（前置詞＋関係代名詞）」。後ろは S・O が揃った<strong>「完全な文」</strong>になる。
+              </td>
+              <td class="py-3 px-4 font-mono">
+                The town <span class="token-modal">where</span> I live <span class="text-indigo-700">[完全文]</span><br>
+                <span class="text-[11px] font-sans text-slate-500">＝ The town <strong>in which</strong> I live</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 関係副詞の深掘りボックス -->
+      <div class="bg-[#F4F7FB] border border-[#DCE4EE] rounded-xl p-5 space-y-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-indigo-900 bg-indigo-100 px-2.5 py-0.5 rounded-full font-chakra">DEEP DIVE：関係副詞の正体</span>
+            <h3 class="text-sm sm:text-base font-bold text-[#102542]">なぜ「関係副詞」の後ろは完全文になるのか？</h3>
+          </div>
+        </div>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          英語の文において、<strong>「副詞（場所・時・理由・方法などの補足情報）」は、取り除いても文の骨格（S・V・O・C）が成立するオマケの要素</strong>です。関係副詞は、2つ目の文の中にあった「前置詞＋名詞（＝副詞句）」が丸ごと合体して接着剤になったものなので、後ろの文から S や O が削られることはありません。
+        </p>
+
+        <!-- 合体プロセス図解 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
+          <div class="bg-white p-3.5 rounded-lg border border-[#DCE4EE]">
+            <div class="text-[11px] font-sans text-slate-400 mb-1">【合体前】2つの独立した文</div>
+            <div class="text-slate-800">① This is <span class="font-bold underline">the office</span>.</div>
+            <div class="text-slate-800">② <span class="token-s">I</span> <span class="token-v">work</span> <span class="bg-amber-100 text-amber-900 border border-amber-300 px-1 rounded">in it</span>.（← 場所を表す副詞句）</div>
+            <div class="text-[11px] font-sans text-slate-500 mt-1.5">※ <code>I work</code> だけで S＋V の完全な文が成立している！</div>
+          </div>
+          <div class="bg-white p-3.5 rounded-lg border border-indigo-200">
+            <div class="text-[11px] font-sans text-indigo-900 font-bold mb-1">【合体後】接続詞 ＋ in it（副詞） ＝ where</div>
+            <div class="text-slate-800">This is the office <span class="token-modal">where</span> <span class="token-s">I</span> <span class="token-v">work</span> <span class="text-indigo-700">[完全文]</span>.</div>
+            <div class="text-[11px] font-sans text-slate-500 mt-1.5">※ <code>where</code> ＝ <code>in which</code>（前置詞＋関係代名詞）と100%書き換え可能！</div>
+          </div>
+        </div>
+
+        <!-- 関係副詞 4種類一覧 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs">
+          <div class="bg-white p-3 rounded-lg border border-[#DCE4EE]">
+            <div class="font-bold text-indigo-900 font-mono">where（場所）</div>
+            <div class="text-[11px] text-slate-500 mt-0.5">先行詞：place, city, room, situation 等</div>
+            <div class="font-mono text-[11px] text-slate-800 mt-1">the room <strong>where</strong> we met</div>
+          </div>
+          <div class="bg-white p-3 rounded-lg border border-[#DCE4EE]">
+            <div class="font-bold text-indigo-900 font-mono">when（時）</div>
+            <div class="text-[11px] text-slate-500 mt-0.5">先行詞：time, day, year, moment 等</div>
+            <div class="font-mono text-[11px] text-slate-800 mt-1">the day <strong>when</strong> she arrived</div>
+          </div>
+          <div class="bg-white p-3 rounded-lg border border-[#DCE4EE]">
+            <div class="font-bold text-indigo-900 font-mono">why（理由）</div>
+            <div class="text-[11px] text-slate-500 mt-0.5">先行詞：the reason（ほぼ固定）</div>
+            <div class="font-mono text-[11px] text-slate-800 mt-1">the reason <strong>why</strong> he resigned</div>
+          </div>
+          <div class="bg-white p-3 rounded-lg border border-[#DCE4EE]">
+            <div class="font-bold text-indigo-900 font-mono">how（方法）</div>
+            <div class="text-[11px] text-slate-500 mt-0.5">※ the way と how は同時に使えない！</div>
+            <div class="font-mono text-[11px] text-slate-800 mt-1"><strong>how</strong> (＝the way) he solved it</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 04: Part 5 即断判定フローチャート（YES / NO 分岐＋例文完備版）
+         ========================================== -->
+    <section class="bg-white rounded-2xl p-6 sm:p-8 kobe-card-glow">
+      <div class="flex items-center gap-2.5 mb-2">
+        <span class="w-7 h-7 rounded-lg bg-[#102542] text-white flex items-center justify-center font-bold text-xs font-chakra">04</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-[#102542] tracking-tight">Part 5 空欄3秒判定ステップ（YES / NO 分岐フロー）</h2>
+      </div>
+      <p class="text-slate-600 text-xs sm:text-sm mb-6 leading-relaxed">
+        選択肢に <code>what / which / that / where</code> が並んだ際、「YES」と「NO」のどちらに進むかで迷わず正解を特定する走査フローです。
+      </p>
+
+      <div class="max-w-4xl mx-auto bg-[#F4F7FB] border border-[#DCE4EE] rounded-2xl p-5 sm:p-6 shadow-sm space-y-5">
+        
+        <!-- STEP 01 -->
+        <div class="bg-white border border-[#DCE4EE] rounded-xl p-4 shadow-xs">
+          <div class="text-center mb-3">
+            <span class="text-[10px] text-white bg-[#102542] px-2 py-0.5 rounded font-chakra font-bold">STEP 01：先行詞の有無</span>
+            <div class="font-bold text-sm sm:text-base text-[#102542] mt-1.5">空欄の直前に「先行詞（修飾される名詞）」があるか？</div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+            <!-- NO 分岐 -->
+            <div class="bg-red-50/70 border border-red-200 rounded-lg p-3.5 flex flex-col justify-between">
+              <div>
+                <div class="font-bold text-[#CD2D2D] flex items-center gap-1.5 mb-1.5">
+                  <span class="bg-[#CD2D2D] text-white text-[10px] px-1.5 py-0.5 rounded font-chakra">NO（名詞なし）</span>
+                  <span>→ ここで確定！</span>
+                </div>
+                <p class="text-slate-700 leading-relaxed mb-2">
+                  先行詞を取らない <strong>関係代名詞 what</strong>（「〜すること・もの」）または <strong>間接疑問文</strong>（what / who / where 等）が正解。（<code>which</code> や関係代名詞 <code>who</code> は除外）
+                </p>
+              </div>
+              <div class="bg-white/90 border border-red-200 rounded p-2 font-mono text-[11px] text-slate-800 space-y-1">
+                <div><span class="text-[#CD2D2D] font-bold">例1：</span>I bought <span class="underline font-bold text-[#CD2D2D]">what</span> I wanted.</div>
+                <div><span class="text-[#CD2D2D] font-bold">例2：</span>I don't know <span class="underline font-bold text-[#CD2D2D]">who</span> called me.</div>
+              </div>
+            </div>
+            <!-- YES 分岐 -->
+            <div class="bg-blue-50/70 border border-blue-200 rounded-lg p-3.5 flex flex-col justify-between">
+              <div>
+                <div class="font-bold text-[#102542] flex items-center gap-1.5 mb-1.5">
+                  <span class="bg-[#102542] text-white text-[10px] px-1.5 py-0.5 rounded font-chakra">YES（名詞あり）</span>
+                  <span>→ STEP 02 へ進む</span>
+                </div>
+                <p class="text-slate-700 leading-relaxed mb-2">
+                  直前の名詞を修飾する「関係詞」のグループ（<code>which / who / that / where / when</code>）に絞り込み、後ろの文の形を確認します。（<code>what</code> はここで除外）
+                </p>
+              </div>
+              <div class="bg-white/90 border border-blue-200 rounded p-2 font-mono text-[11px] text-slate-800 space-y-1">
+                <div><span class="text-[#102542] font-bold">例1：</span>the <span class="underline font-bold">book</span> [ ___ I bought ]</div>
+                <div><span class="text-[#102542] font-bold">例2：</span>the <span class="underline font-bold">town</span> [ ___ I live ]</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-center">
+          <i class="fa-solid fa-arrow-down text-slate-400 text-sm"></i>
+        </div>
+
+        <!-- STEP 02 -->
+        <div class="bg-white border border-[#DCE4EE] rounded-xl p-4 shadow-xs">
+          <div class="text-center mb-3">
+            <span class="text-[10px] text-white bg-[#102542] px-2 py-0.5 rounded font-chakra font-bold">STEP 02：後ろの文の完全性チェック（STEP 01 が YES の場合）</span>
+            <div class="font-bold text-sm sm:text-base text-[#102542] mt-1.5">空欄の後ろの文は「不完全（主語 S や目的語 O が欠落）」か？</div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+            <!-- YES 分岐 -->
+            <div class="bg-red-50/70 border border-red-200 rounded-lg p-3.5 flex flex-col justify-between">
+              <div>
+                <div class="font-bold text-[#CD2D2D] flex items-center gap-1.5 mb-1.5">
+                  <span class="bg-[#CD2D2D] text-white text-[10px] px-1.5 py-0.5 rounded font-chakra">YES（S や O が欠けている）</span>
+                  <span>→ 関係代名詞！</span>
+                </div>
+                <p class="text-slate-700 leading-relaxed mb-2">
+                  欠けている名詞の穴を埋める <strong>関係代名詞（who / which / that）</strong> が正解です。
+                </p>
+              </div>
+              <div class="bg-white/90 border border-red-200 rounded p-2 font-mono text-[11px] text-slate-800">
+                例：the book [<span class="underline font-bold text-[#CD2D2D]">which</span> I bought <u>(O欠落)</u>]
+              </div>
+            </div>
+            <!-- NO 分岐 -->
+            <div class="bg-indigo-50/70 border border-indigo-200 rounded-lg p-3.5 flex flex-col justify-between">
+              <div>
+                <div class="font-bold text-indigo-900 flex items-center gap-1.5 mb-1.5">
+                  <span class="bg-indigo-900 text-white text-[10px] px-1.5 py-0.5 rounded font-chakra">NO（S・V・O がすべて揃った完全文）</span>
+                  <span>→ 関係副詞！</span>
+                </div>
+                <p class="text-slate-700 leading-relaxed mb-2">
+                  名詞の穴がないため、副詞の働きをする <strong>関係副詞（where / when）</strong> または <strong>「前置詞 ＋ which」</strong> が正解です。
+                </p>
+              </div>
+              <div class="bg-white/90 border border-indigo-200 rounded p-2 font-mono text-[11px] text-slate-800">
+                例：the town [<span class="underline font-bold text-indigo-900">where</span> I live <u>(完全文)</u>]
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 下部ナビゲーションリンク（独立ページ仕様） -->
+    <div class="pt-2 flex justify-center">
+      <a href="lang-eng-siryoroom.html" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#102542] hover:bg-[#1a3860] border border-[#102542] hover:border-[#CD2D2D] text-white font-bold text-xs transition kobe-btn-glow shadow-sm">
+        <i class="fa-solid fa-arrow-left text-red-400"></i>
+        <span>資料室トップへ戻る</span>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- フッター（同一仕様統一） -->
+  <footer class="border-t border-[#DCE4EE] bg-white py-6 text-center text-xs text-slate-500 space-y-1.5">
+    <p class="font-semibold text-[#102542]">© 2026 TOEIC RE:BOOT 730<a href="ura_index.html" class="text-slate-400 hover:text-slate-600">.</a></p>
+    <p>50代からのスコア奪還 自習システム</p>
+    <p class="text-[11px] text-slate-400">
+      Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。
+      <span class="mx-1.5 text-slate-300">|</span>
+      <a href="contact.html" class="hover:text-[#CD2D2D] transition-colors">不具合・誤字報告</a>
+    </p>
+  </footer>
+
+</body>
+</html>
