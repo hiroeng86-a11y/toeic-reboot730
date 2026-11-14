@@ -1,0 +1,48 @@
+==================================================
+【TOEIC Part 3 サンプル】四半期売上報告書の確認
+==================================================
+
+■ 1. 英語スクリプト（Script）
+M: Excuse me, do you have a minute to look over the quarterly sales report before I send it to the regional director?
+W: Sure, I'd be happy to. Actually, I noticed a slight discrepancy in the figures for the Fukuoka branch when I checked the draft yesterday.
+M: Oh, really? Let me pull up the spreadsheet on my laptop. Which section was it?
+W: It's under the logistics expenses for October. The shipping costs seem much higher than usual. Could you double-check with the accounting team before noon?
+M: Good catch. I'll give Kenji in accounting a call right away and update the file.
+
+--------------------------------------------------
+■ 2. 日本語訳（Translation）
+男性：すみません、地域ディレクターに送る前に、四半期の売上報告書に目を通す時間はありますか？
+女性：ええ、喜んで。実は昨日下書きを確認した際、福岡支店の数字にわずかな食い違いがあることに気づいたんです。
+男性：え、本当ですか？ノートパソコンでスプレッドシートを開きますね。どのセクションでしたか？
+女性：10月の物流経費の項目です。配送コストがいつもよりかなり高いようです。正午前に経理チームに再確認してもらえますか？
+男性：よく気づきましたね。すぐに経理のケンジに電話して、ファイルを更新します。
+
+--------------------------------------------------
+■ 3. 文法・語法のポイント（Grammar & Usage）
+① before I send it to ~（時を表す副詞節の現在形）
+「これから送る前」という未来の内容ですが、before / when / if などの「時・条件を表す副詞節」の中では未来形（will send）ではなく現在形（send）を使います。Part 5でも頻出のルールです。
+
+② much higher than usual（比較級の強調）
+比較級（higher）を「ずっと・はるかに」と強調したいときは very ではなく much / far / a lot を使います。
+
+③ give [人] a call（～に電話をする）
+call [人] と同じ意味ですが、ビジネス会話では give Kenji a call のように「give + 人 + 名詞」の形がよく使われます。
+
+--------------------------------------------------
+■ 4. 聞き取りにくい「単語のつながり・音の変化」
+リスニングでつまずきやすい音声変化（リンキング・リダクション・フラッピング）のポイントです。
+
+● look over → 「ルッコーヴァー」
+look の語尾の k と、over の先頭の o がつながり（リンキング）、1つの単語のように発音されます。
+
+● send it to → 「センディットゥ」
+send の d と it の i がつながって「センディ」になり、さらに it の t と to の t が重なって1回分の音（リダクション）になります。
+
+● noticed a → 「ノーティスタ」
+noticed の語尾の ed（音は t）と a がつながり、「ノーティス・ア」ではなく「ノーティスタ」と聞こえます。
+
+● pull up → 「プラップ」
+pull の l と up の u がつながります。
+
+● update the file → 「アップデイッ・ザ・ファイル」
+update の語尾の t は破裂させず、舌を上あごにつけて息を止めるだけ（内破音）になるため、「アップデイト」の「ト」がほぼ聞こえません。
