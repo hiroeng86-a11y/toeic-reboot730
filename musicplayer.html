@@ -574,7 +574,7 @@ loadSampleBtn.addEventListener('click', async () => {
   loadSampleBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> サンプルを読み込み中...';
 
   try {
-    const res = await fetch('./sample_part3.txt');
+    const res = await fetch('./sample_part3.txt?v=' + Date.now());
     if(!res.ok) throw new Error('サンプルテキストの取得に失敗しました');
     const sampleText = await res.text();
 

@@ -1,7 +1,3 @@
-==================================================
-【TOEIC Part 3 サンプル】四半期売上報告書の確認
-==================================================
-
 ■ 1. 英語スクリプト（Script）
 M: Excuse me, do you have a minute to look over the quarterly sales report before I send it to the regional director?
 W: Sure, I'd be happy to. Actually, I noticed a slight discrepancy in the figures for the Fukuoka branch when I checked the draft yesterday.
