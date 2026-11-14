@@ -205,10 +205,37 @@
   .switch.on{ border-color:var(--navy); background:var(--navy); }
   .switch.on::after{ left:17px; }
 
-  /* ---- Playlist ---- */
-  .playlist-toolbar{ display:flex; gap:8px; margin-bottom:12px; }
-  .playlist-toolbar button{ flex:1; background:var(--navy); color:#FFFFFF; border-color:var(--navy); font-weight:700; padding:10px; }
-  .playlist-toolbar button:hover{ background:#1a3860; border-color:#1a3860; }
+  /* ---- Playlist & Sample ---- */
+  .playlist-toolbar{ display:flex; flex-direction:column; gap:8px; margin-bottom:12px; }
+  .playlist-toolbar button.btn-primary{ width:100%; background:var(--navy); color:#FFFFFF; border-color:var(--navy); font-weight:700; padding:11px; }
+  .playlist-toolbar button.btn-primary:hover{ background:#1a3860; border-color:#1a3860; }
+  .playlist-toolbar button.btn-sample{
+    width:100%; background:#fef2f2; color:var(--red); border-color:rgba(205, 45, 45, 0.4); font-weight:700; padding:9px 12px;
+    display:flex; align-items:center; justify-content:center; gap:6px;
+  }
+  .playlist-toolbar button.btn-sample:hover:not(:disabled){ background:#fee2e2; border-color:var(--red); }
+
+  .usage-guide{
+    background:var(--bg-well);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:12px 14px;
+    margin-bottom:12px;
+    font-size:12px;
+    color:var(--text-secondary);
+    line-height:1.65;
+  }
+  .usage-guide strong{ color:var(--navy); }
+  .usage-guide code{
+    background:#FFFFFF;
+    border:1px solid var(--border);
+    padding:1px 5px;
+    border-radius:4px;
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:var(--red);
+  }
+
   .track-row{
     display:flex; align-items:center; gap:8px;
     padding:8px 6px; border-bottom:1px solid var(--border);
@@ -226,9 +253,38 @@
   .track-dot.has-script{ background:var(--teal); }
   .track-actions{ display:flex; gap:4px; flex-shrink:0; }
   .tiny{ width:30px; height:30px; padding:0; font-size:13px; background:#FFFFFF; border-color:var(--border); }
-  .empty-msg{ font-size:13px; color:var(--text-muted); padding:8px 4px; }
+  .empty-msg{ font-size:13px; color:var(--text-muted); padding:8px 4px; margin:0; }
 
-  /* 安全なファイル入力非表示（display:noneに頼らず、タップ遮断も起こさない） */
+  /* ---- Recommend (Affiliate) Card ---- */
+  .rec-card{
+    background:var(--bg-panel);
+    border:1px solid var(--border);
+    border-left:4px solid var(--navy);
+    border-radius:16px;
+    padding:16px 18px;
+    margin-top:20px;
+    margin-bottom:14px;
+    box-shadow:0 4px 12px -2px rgba(16, 37, 66, 0.04);
+  }
+  .rec-card h2{ font-size:13px; font-weight:700; color:var(--navy); margin:0 0 8px; display:flex; align-items:center; gap:6px; }
+  .rec-card p{ font-size:12.5px; color:var(--text-secondary); line-height:1.6; margin:0 0 12px; }
+  .rec-links{ display:flex; flex-direction:column; gap:8px; }
+  .rec-link{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 14px;
+    background:var(--bg-well);
+    border:1px solid var(--border);
+    border-radius:10px;
+    text-decoration:none;
+    color:var(--navy);
+    font-weight:700;
+    font-size:13px;
+    transition:background .15s, border-color .15s;
+  }
+  .rec-link:hover{ background:#e2e8f0; border-color:var(--navy); }
+  .rec-link span.arrow{ color:var(--red); font-size:12px; }
+
+  /* 安全なファイル入力非表示 */
   .hidden-file-input{
     position: fixed;
     top: -1000px;
@@ -239,7 +295,7 @@
   }
 
   .site-footer{
-    margin-top:48px;
+    margin-top:40px;
     padding:24px 16px;
     background:#FFFFFF;
     border-top:1px solid var(--border);
@@ -291,7 +347,7 @@
     <button id="loadScriptBtn">.txtだけを後から追加</button>
     <input type="file" id="scriptInput" class="hidden-file-input" accept=".txt,text/plain" multiple>
   </div>
-  <div class="script-box empty" id="scriptBox">音声ファイルを選択すると、対応するスクリプトがあればここに表示されます。</div>
+  <div class="script-box empty" id="scriptBox">音声ファイルを選択するか、下の「サンプルを試す」を押すとスクリプトが表示されます。</div>
 </div>
 
 <div class="card">
@@ -348,10 +404,19 @@
 
 <div class="card">
   <h2><i class="fa-solid fa-list-check" style="color:var(--navy);"></i> プレイリスト</h2>
+  
+  <div class="usage-guide">
+    <strong>【使い方】</strong>お手持ちの音声（<code>.mp3</code> 等）と、<strong>同じ名前のテキストファイル</strong>（<code>.txt</code>）を一緒に選ぶと自動で紐付きます。まずは下のサンプルボタンで「スクリプト＋音声変化解説」の表示例をお試しください。
+  </div>
+
   <div class="playlist-toolbar">
-    <button id="addAudioBtn">音声+スクリプトをまとめて追加</button>
+    <button class="btn-primary" id="addAudioBtn">音声+スクリプトをまとめて追加</button>
+    <button class="btn-sample" id="loadSampleBtn" type="button">
+      <i class="fa-solid fa-play"></i> サンプルを試す（TOEIC Part 3・解説付）
+    </button>
     <input type="file" id="audioInput" class="hidden-file-input" accept=".mp3,.m4a,.wav,.aac,.ogg,.txt,audio/*,text/plain" multiple>
   </div>
+
   <div class="field-row" style="margin-bottom:10px;">
     <span class="field-label">自動再生</span>
     <div class="switch-row">
@@ -364,27 +429,26 @@
   </div>
 </div>
 
-</div>
-<!-- ▼ フッター直前のアフィリエイト（おすすめ学習アイテム）セクション ▼ -->
-<section class="affiliate-box" style="max-width: 800px; margin: 40px auto 24px; padding: 20px; background: #f8fafc; border: 1px solid #cbd5e1; border-left: 5px solid #1e3a8a; border-radius: 8px;">
-  <p style="font-size: 0.75rem; color: #64748b; margin: 0 0 8px;">※本ページはプロモーション（Amazonアソシエイト等）を含みます</p>
-  <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 10px;">🎧 リスニング学習の効率を上げるおすすめアイテム</h3>
-  <p style="font-size: 0.9rem; color: #334155; line-height: 1.6; margin: 0 0 14px;">
+<!-- ▼ スリム化したおすすめ学習アイテム枠（フッター表記と重複させない構成） ▼ -->
+<section class="rec-card">
+  <h2><i class="fa-solid fa-headphones" style="color:var(--red);"></i> リスニング学習の効率を上げるアイテム</h2>
+  <p>
     音のつながり（リンキング）を正確に聞き取るには、ノイズキャンセリング機能付きのイヤホンや、公式問題集の音声データ活用が効果的です。
   </p>
-  <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-    <!-- リンク1：公式問題集など -->
-    <a href="https://link.amazon/B0b06RzFW" target="_blank" rel="nofollow sponsored noopener"
-       style="flex: 1; min-width: 220px; display: block; padding: 12px 16px; background: #ffffff; border: 1px solid #94a3b8; border-radius: 6px; text-decoration: none; color: #1e3a8a; font-weight: bold; font-size: 0.9rem; text-align: center;">
-      📘 TOEIC L&R 公式問題集をチェック →
+  <div class="rec-links">
+    <a href="https://link.amazon/B0b06RzFW" target="_blank" rel="nofollow sponsored noopener" class="rec-link">
+      <span><i class="fa-solid fa-book" style="color:var(--navy); margin-right:6px;"></i>TOEIC L&R 公式問題集をチェック</span>
+      <span class="arrow">Amazonで見る →</span>
     </a>
-    <!-- リンク2：リスニング用イヤホンなど -->
-    <a href="https://link.amazon/B00QTt0No" target="_blank" rel="nofollow sponsored noopener"
-       style="flex: 1; min-width: 220px; display: block; padding: 12px 16px; background: #ffffff; border: 1px solid #94a3b8; border-radius: 6px; text-decoration: none; color: #1e3a8a; font-weight: bold; font-size: 0.9rem; text-align: center;">
-      🎧 英語学習向けノイズキャンセリングイヤホン →
+    <a href="https://link.amazon/B00QTt0No" target="_blank" rel="nofollow sponsored noopener" class="rec-link">
+      <span><i class="fa-solid fa-ear-listen" style="color:var(--navy); margin-right:6px;"></i>英語学習向けノイズキャンセリングイヤホン</span>
+      <span class="arrow">Amazonで見る →</span>
     </a>
   </div>
 </section>
+
+</div>
+
 <!-- 統一フッター -->
 <footer class="site-footer">
   <p class="copyright">© 2026 TOEIC RE:BOOT 730<a href="ura_index.html" class="secret-link">.</a></p>
@@ -433,6 +497,7 @@ const loadScriptBtn = document.getElementById('loadScriptBtn');
 const scriptInput = document.getElementById('scriptInput');
 
 const addAudioBtn = document.getElementById('addAudioBtn');
+const loadSampleBtn = document.getElementById('loadSampleBtn');
 const audioInput = document.getElementById('audioInput');
 const playlistBox = document.getElementById('playlistBox');
 const playlistEmpty = document.getElementById('playlistEmpty');
@@ -469,7 +534,8 @@ function addAudioTracks(files){
       script: '',
       pointA: null,
       pointB: null,
-      loopEnabled: false
+      loopEnabled: false,
+      isSample: false
     };
     if(Object.prototype.hasOwnProperty.call(pendingScripts, name)){
       track.script = pendingScripts[name];
@@ -501,6 +567,41 @@ function loadScriptFiles(files, callback){
     reader.readAsText(file);
   });
 }
+
+/* ---------- サンプル読み込み（1回限り） ---------- */
+loadSampleBtn.addEventListener('click', async () => {
+  loadSampleBtn.disabled = true;
+  loadSampleBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> サンプルを読み込み中...';
+
+  try {
+    const res = await fetch('./sample_part3.txt');
+    if(!res.ok) throw new Error('サンプルテキストの取得に失敗しました');
+    const sampleText = await res.text();
+
+    const sampleTrack = {
+      id: trackIdSeq++,
+      file: null,
+      url: './sample_part3.mp3',
+      name: '【サンプル】TOEIC Part 3 会話演習',
+      script: sampleText,
+      pointA: null,
+      pointB: null,
+      loopEnabled: false,
+      isSample: true
+    };
+
+    tracks.push(sampleTrack);
+    renderPlaylist();
+    selectTrack(tracks.length - 1);
+
+    loadSampleBtn.innerHTML = '<i class="fa-solid fa-check"></i> サンプル読込済（手持ちの音声も追加できます）';
+  } catch (err) {
+    console.error(err);
+    alert('サンプルファイルの読み込みに失敗しました。sample_part3.mp3 と sample_part3.txt が同じフォルダにあるか確認してください。');
+    loadSampleBtn.disabled = false;
+    loadSampleBtn.innerHTML = '<i class="fa-solid fa-play"></i> サンプルを試す（TOEIC Part 3・解説付）';
+  }
+});
 
 /* ---------- Playlist ---------- */
 addAudioBtn.addEventListener('click', () => audioInput.click());
@@ -599,7 +700,7 @@ function moveTrack(i, dir){
 
 function removeTrack(i){
   const t = tracks[i];
-  URL.revokeObjectURL(t.url);
+  if(!t.isSample && t.url) URL.revokeObjectURL(t.url);
   tracks.splice(i, 1);
   if(i === currentIndex){
     audio.pause();
@@ -777,7 +878,7 @@ function renderScript(){
   scriptBox.style.fontSize = scriptFontSize + 'px';
   if(!t){
     scriptBox.classList.add('empty');
-    scriptBox.textContent = '音声ファイルを選択すると、対応するスクリプトがあればここに表示されます。';
+    scriptBox.textContent = '音声ファイルを選択するか、下の「サンプルを試す」を押すとスクリプトが表示されます。';
   } else if(!t.script){
     scriptBox.classList.add('empty');
     scriptBox.textContent = 'このトラックにはまだスクリプトがありません。「.txtを読み込む」または「編集」から追加できます。';
