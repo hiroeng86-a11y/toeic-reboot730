@@ -242,10 +242,6 @@
               <div id="cardExampleJa" class="text-xs sm:text-sm text-slate-600 leading-relaxed pt-1 border-t border-[#DCE4EE]">
                 --
               </div>
-              <div id="cardNoteBox" class="hidden text-[11px] text-[#102542] bg-amber-50/80 border border-amber-200/80 rounded-lg p-2 mt-1.5 leading-relaxed">
-                <span class="font-bold text-amber-800"><i class="fa-solid fa-graduation-cap mr-1"></i>攻略ポイント:</span>
-                <span id="cardNoteText">--</span>
-              </div>
             </div>
 
             <!-- オートタイマー進行表示 -->
@@ -391,8 +387,6 @@
     const totalCorpusCount = document.getElementById("totalCorpusCount");
     const cardAnswerBox = document.getElementById("cardAnswerBox");
     const cardAnswerPhrase = document.getElementById("cardAnswerPhrase");
-    const cardNoteBox = document.getElementById("cardNoteBox");
-    const cardNoteText = document.getElementById("cardNoteText");
     const unmasteredBadge = document.getElementById("unmasteredBadge");
     const listModal = document.getElementById("listModal");
     const btnOpenList = document.getElementById("btnOpenList");
@@ -563,7 +557,6 @@
       const meanText = item.meaning || item.japanese || item.translation || "";
       const exEn = item.example || item.example_en || "";
       const exJa = item.example_ja || item.example_jp || "";
-      const noteText = item.note || "";
 
       const exampleBoxEn = document.getElementById("exampleBoxEn");
       cardCategoryBadge.textContent = item.category || "COLLOCATION";
@@ -581,13 +574,6 @@
       } else {
         if (exampleBoxEn) exampleBoxEn.classList.remove('hidden');
         cardAnswerBox.classList.add('hidden');
-      }
-
-      if (noteText) {
-        cardNoteText.textContent = noteText;
-        cardNoteBox.classList.remove('hidden');
-      } else {
-        cardNoteBox.classList.add('hidden');
       }
 
       const isMastered = masteredSet.has(wordText);
