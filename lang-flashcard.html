@@ -213,13 +213,21 @@
 
           <!-- 解答本体 -->
           <div class="my-auto py-2 w-full space-y-3 text-left">
-            <div>
-              <div id="cardAnswerBox" class="hidden mb-1.5">
-                <span class="text-[11px] font-bold text-[#102542] bg-[#F4F7FB] border border-[#DCE4EE] px-2.5 py-0.5 rounded-md font-mono" id="cardAnswerPhrase">--</span>
+            <div class="space-y-2">
+              <div id="cardAnswerBox" class="hidden bg-[#F4F7FB] border-2 border-[#102542]/15 rounded-xl px-3.5 py-2.5">
+                <div class="text-[11px] text-slate-500 font-bold uppercase tracking-wider mb-0.5 flex items-center justify-between">
+                  <span>正解フレーズ</span>
+                  <button onclick="playSpeech(event, true)" class="text-slate-500 hover:text-[#CD2D2D] transition text-xs px-1.5 py-0.5 rounded bg-white border border-[#DCE4EE]" title="正解フレーズを音声再生">
+                    <i class="fa-solid fa-volume-high mr-1 text-[#CD2D2D]"></i>発音
+                  </button>
+                </div>
+                <div id="cardAnswerPhrase" class="text-2xl sm:text-3xl font-black text-[#102542] tracking-tight leading-snug">--</div>
               </div>
-              <div class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">意味・訳語</div>
-              <div id="cardMeaning" class="text-xl sm:text-2xl font-black text-[#CD2D2D] tracking-wide leading-tight">
-                --
+              <div>
+                <div class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">意味・訳語</div>
+                <div id="cardMeaning" class="text-xl sm:text-2xl font-black text-[#CD2D2D] tracking-wide leading-tight">
+                  --
+                </div>
               </div>
             </div>
 
@@ -557,6 +565,7 @@
       const exJa = item.example_ja || item.example_jp || "";
       const noteText = item.note || "";
 
+      const exampleBoxEn = document.getElementById("exampleBoxEn");
       cardCategoryBadge.textContent = item.category || "COLLOCATION";
       cardWord.textContent = wordText;
       cardExampleEn.textContent = exEn ? `"${exEn}"` : "(例文なし)";
@@ -565,9 +574,12 @@
       cardExampleJa.textContent = exJa || "--";
 
       if (answerText) {
+        // 群動詞の穴埋め問題では、表面の例文に答えが載ってしまうため例文ボックスを非表示にする
+        if (exampleBoxEn) exampleBoxEn.classList.add('hidden');
         cardAnswerPhrase.textContent = answerText;
         cardAnswerBox.classList.remove('hidden');
       } else {
+        if (exampleBoxEn) exampleBoxEn.classList.remove('hidden');
         cardAnswerBox.classList.add('hidden');
       }
 
@@ -674,12 +686,23 @@
       cardWord.classList.add(...fontSizes[currentFontIndex].w.split(' '));
     }
 
-    function playSpeech(e) {
+    function playSpeech(e, forceAnswer = false) {
       if (e) e.stopPropagation();
       if (activeDeck.length === 0) return;
       const currentItem = activeDeck[currentIndex];
-      const textToRead = currentItem.example || currentItem.word || currentItem.phrase || "";
+      let textToRead = "";
+      if (currentItem.answer) {
+        // 群動詞問題：裏面（または発音ボタン）では正解フレーズ＋例文、表面では穴埋め部分を除いたフレーズを読み上げ
+        if (isFlipped || forceAnswer) {
+          textToRead = currentItem.example || currentItem.answer;
+        } else {
+          textToRead = (currentItem.front || "").replace(/\(\s*\)/g, "...");
+        }
+      } else {
+        textToRead = currentItem.example || currentItem.word || currentItem.phrase || "";
+      }
       if (!textToRead) return;
+      window.speechSynthesis.cancel();
       const uttr = new SpeechSynthesisUtterance(textToRead);
       uttr.lang = 'en-US';
       uttr.rate = 0.95;
