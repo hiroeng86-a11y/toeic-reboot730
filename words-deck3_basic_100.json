@@ -1,0 +1,1002 @@
+[
+  {
+    "id": 1,
+    "front": "carry (   ) market surveys",
+    "answer": "carry out",
+    "preposition": "out",
+    "meaning": "～を実行する、～を実施する",
+    "example": "The research and development team will carry out market surveys next quarter.",
+    "example_ja": "研究開発チームは来四半期に市場調査を実施する予定です。",
+    "note": "conduct, implement, executeと同義。Part 7の業務連絡や報告書で超頻出の他動詞句。"
+  },
+  {
+    "id": 2,
+    "front": "fill (   ) the registration form",
+    "answer": "fill out",
+    "preposition": "out",
+    "meaning": "（書類・用紙に）記入する",
+    "example": "Please fill out the registration form before entering the seminar room.",
+    "example_ja": "セミナー室に入る前に登録用紙にご記入ください。",
+    "note": "completeと同義。fill it outのように代名詞は間に挟む（分離可能動詞句）。イギリス英語ではfill inも同義。"
+  },
+  {
+    "id": 3,
+    "front": "fill (   ) the blanks on page 3",
+    "answer": "fill in",
+    "preposition": "in",
+    "meaning": "（空欄などを）埋める、～の代理を務める",
+    "example": "Could you please fill in the blanks on page 3 of the application form?",
+    "example_ja": "申請書の3ページの空欄を埋めていただけますか。",
+    "note": "「記入する」のほか、fill in for ～（～の代理を務める）としてPart 3/4の社内会話で頻出。"
+  },
+  {
+    "id": 4,
+    "front": "call (   ) the annual convention",
+    "answer": "call off",
+    "preposition": "off",
+    "meaning": "～を中止する、～を取り消す",
+    "example": "The organizers decided to call off the annual convention due to severe weather.",
+    "example_ja": "主催者は悪天候のため年次総会を中止することを決定した。",
+    "note": "cancelと同義。Part 5/7で同義語言い換え問題の定番。代名詞はcall it offの語順。"
+  },
+  {
+    "id": 5,
+    "front": "put (   ) the budget review",
+    "answer": "put off",
+    "preposition": "off",
+    "meaning": "～を延期する",
+    "example": "Management agreed to put off the budget review until next Tuesday.",
+    "example_ja": "経営陣は予算見直しを来週の火曜日まで延期することに同意した。",
+    "note": "postpone, delayと同義。Part 5やリスニングでput offとpostponeのパラフレーズが頻出。"
+  },
+  {
+    "id": 6,
+    "front": "set (   ) a conference call",
+    "answer": "set up",
+    "preposition": "up",
+    "meaning": "～を設置する、設立する、設定する",
+    "example": "We need to set up a conference call with our regional branches in Asia.",
+    "example_ja": "当社のアジア地域支店との電話会議を設定する必要があります。",
+    "note": "establish, arrangeと同義。会議の手配、機器のセットアップ、新規法人の設立まで広く使われる。"
+  },
+  {
+    "id": 7,
+    "front": "run (   ) printing supplies",
+    "answer": "run out of",
+    "preposition": "out of",
+    "meaning": "～を使い果たす、～が在庫切れになる",
+    "example": "The procurement department ran out of essential printing supplies yesterday.",
+    "example_ja": "調達部門は昨日、重要な印刷消耗品を使い果たしてしまった。",
+    "note": "be depleted, exhaustと同義。Part 3/4のオフィス内トラブルや注文時の在庫切れ文脈で頻出。"
+  },
+  {
+    "id": 8,
+    "front": "figure (   ) the cause of the glitch",
+    "answer": "figure out",
+    "preposition": "out",
+    "meaning": "～を理解する、～を解明・計算する",
+    "example": "The IT technician worked all morning to figure out the cause of the network glitch.",
+    "example_ja": "IT技術者は午前中ずっとネットワークの不具合の原因を突き止めようと作業した。",
+    "note": "understand, determine, solveと同義。Part 3/4の日常ビジネス会話で解決策を模索する場面に登場。"
+  },
+  {
+    "id": 9,
+    "front": "find (   ) what happened to the package",
+    "answer": "find out",
+    "preposition": "out",
+    "meaning": "～を発見する、～を知る、突き止める",
+    "example": "The customer service manager contacted the courier to find out what happened to the package.",
+    "example_ja": "カスタマーサービス責任者は荷物に何が起きたのかを突き止めるため配送業者に連絡した。",
+    "note": "discover, learn, ascertainと同義。find out whether/if/what節の形で多用される。"
+  },
+  {
+    "id": 10,
+    "front": "point (   ) several discrepancies",
+    "answer": "point out",
+    "preposition": "out",
+    "meaning": "～を指摘する、～に注意を向ける",
+    "example": "The external auditor pointed out several discrepancies in the financial report.",
+    "example_ja": "外部監査人は財務報告書の中のいくつかの不一致を指摘した。",
+    "note": "indicate, mentionと同義。point out that節の形でビジネスレポートや議事録に頻出。"
+  },
+  {
+    "id": 11,
+    "front": "work (   ) an agreeable settlement",
+    "answer": "work out",
+    "preposition": "out",
+    "meaning": "～をうまく解決する、（計画を）まとめる、計算する",
+    "example": "The legal departments of both companies worked out an agreeable settlement.",
+    "example_ja": "両社の法務部門は合意可能な和解案を取りまとめた。",
+    "note": "resolve, devise, calculateと同義。自動詞「うまくいく」と他動詞「～をまとめる」の双方で出題。"
+  },
+  {
+    "id": 12,
+    "front": "turn (   ) our initial employment offer",
+    "answer": "turn down",
+    "preposition": "down",
+    "meaning": "～を断る、却下する、～の音量を下げる",
+    "example": "The candidate unfortunately turned down our initial employment offer.",
+    "example_ja": "その応募者は残念ながら当社の当初の雇用提示（オファー）を断った。",
+    "note": "reject, declineと同義。Part 7の採用通知や商談でdeclineへの言い換え問題が頻出。"
+  },
+  {
+    "id": 13,
+    "front": "turn (   ) to be far more successful",
+    "answer": "turn out",
+    "preposition": "out",
+    "meaning": "～であることが判明する、結果として～になる",
+    "example": "The promotional launch turned out to be far more successful than projected.",
+    "example_ja": "販促キャンペーンの開始は予想していたよりもはるかに成功であることが判明した。",
+    "note": "prove to beと同義。turn out that節やturn out to beの構文で業績評価文脈に頻出。"
+  },
+  {
+    "id": 14,
+    "front": "turn (   ) their expense receipts",
+    "answer": "turn in",
+    "preposition": "in",
+    "meaning": "～を提出する",
+    "example": "All sales representatives must turn in their expense receipts by Friday noon.",
+    "example_ja": "すべての営業担当者は金曜日の正午までに経費の領収書を提出しなければならない。",
+    "note": "submit, hand inと同義。Part 5/7でsubmitとのパラフレーズが最頻出。代名詞はturn them in。"
+  },
+  {
+    "id": 15,
+    "front": "turn (   ) his responsibilities",
+    "answer": "turn over",
+    "preposition": "over",
+    "meaning": "～を引き渡す、譲渡する、売上を上げる",
+    "example": "The retiring branch manager will turn over his responsibilities to Ms. Hayes.",
+    "example_ja": "退任する支店長は業務責任をヘイズ氏に引き渡す予定です。",
+    "note": "transfer, surrenderと同義。turn over to人（人に引き渡す）。名詞turnover（離職率・売上高）も重要。"
+  },
+  {
+    "id": 16,
+    "front": "take (   ) the local logistics firm",
+    "answer": "take over",
+    "preposition": "over",
+    "meaning": "～を引き継ぐ、買収する",
+    "example": "A multinational conglomerate is preparing to take over the local logistics firm.",
+    "example_ja": "多国籍コングロマリットがその地元の物流企業を買収する準備を進めている。",
+    "note": "assume control of, acquireと同義。人事の引き継ぎやM&Aニュースで超頻出。"
+  },
+  {
+    "id": 17,
+    "front": "take (   ) additional client accounts",
+    "answer": "take on",
+    "preposition": "on",
+    "meaning": "（仕事・責任を）引き受ける、（人を）雇う",
+    "example": "The agency is ready to take on additional client accounts next month.",
+    "example_ja": "その代理店は来月、追加のクライアント口座（業務）を引き受ける準備ができている。",
+    "note": "assume, undertake, hireと同義。責任を引き受ける文脈でPart 5/7頻出。"
+  },
+  {
+    "id": 18,
+    "front": "take (   ) most of our afternoon",
+    "answer": "take up",
+    "preposition": "up",
+    "meaning": "（時間・場所を）占める、（問題などを）取り上げる",
+    "example": "Reviewing these lengthy legal clauses will take up most of our afternoon.",
+    "example_ja": "これらの長大な法的条項を検討することは、午後の大半の時間を占めるだろう。",
+    "note": "occupy, absorbと同義。take up an issue（問題を取り上げる）の用法も頻出。"
+  },
+  {
+    "id": 19,
+    "front": "take (   ) next spring (demand)",
+    "answer": "take off",
+    "preposition": "off",
+    "meaning": "（飛行機が）離陸する、（売上などが）急上昇する",
+    "example": "Demand for eco-friendly appliances is expected to take off next spring.",
+    "example_ja": "環境配慮型家電への需要は来春に急上昇すると予想されている。",
+    "note": "become successful, increase rapidlyと同義。リスニングの出張日程やPart 7の売上急伸記事で頻出。"
+  },
+  {
+    "id": 20,
+    "front": "take advantage (   ) this promotional rate",
+    "answer": "take advantage of",
+    "preposition": "of",
+    "meaning": "～を利用する、～を活用する",
+    "example": "We should take advantage of this promotional rate before it expires.",
+    "example_ja": "期限が切れる前に、このプロモーション特別料金を利用するべきです。",
+    "note": "utilize, make use of, leverageと同義。Part 7のセールス・広告案内で最頻出の表現。"
+  },
+  {
+    "id": 21,
+    "front": "take care (   ) your billing inquiry",
+    "answer": "take care of",
+    "preposition": "of",
+    "meaning": "～を処理する、～の面倒を見る",
+    "example": "Our customer support team will promptly take care of your billing inquiry.",
+    "example_ja": "当社のカスタマーサポートチームが請求に関するお問い合わせに迅速に対応いたします。",
+    "note": "handle, address, attend toと同義。ビジネスメールでの「対応・処理する」定番句。"
+  },
+  {
+    "id": 22,
+    "front": "look (   ) the shipping delay",
+    "answer": "look into",
+    "preposition": "into",
+    "meaning": "～を調査する、検討する",
+    "example": "The operations manager promised to look into the shipping delay immediately.",
+    "example_ja": "運行責任者は出荷の遅れについて直ちに調査することを約束した。",
+    "note": "investigate, examineと同義。苦情対応メールやトラブルシューティングで必出。"
+  },
+  {
+    "id": 23,
+    "front": "look (   ) the attached contract draft",
+    "answer": "look over",
+    "preposition": "over",
+    "meaning": "～にざっと目を通す、調べる",
+    "example": "Please look over the attached contract draft before our 2 PM conference.",
+    "example_ja": "午後2時の会議の前に、添付の契約書草案にざっと目を通してください。",
+    "note": "review, inspect, skimと同義。examine in detailよりも「全体を確認する」ニュアンス。"
+  },
+  {
+    "id": 24,
+    "front": "look forward (   ) working with your organization",
+    "answer": "look forward to",
+    "preposition": "to",
+    "meaning": "～を楽しみに待つ",
+    "example": "We look forward to working with your esteemed organization on the project.",
+    "example_ja": "私たちはそのプロジェクトで貴社とご一緒できることを楽しみに心待ちにしております。",
+    "note": "toは前置詞のため直後は名詞または動名詞(doing)。Part 5の文法問題で動詞原形との引っかけ超頻出。"
+  },
+  {
+    "id": 25,
+    "front": "look up (   ) Mr. Vance",
+    "answer": "look up to",
+    "preposition": "to",
+    "meaning": "～を尊敬する",
+    "example": "Many junior analysts look up to Mr. Vance for his ethical investment acumen.",
+    "example_ja": "多くの若手アナリストは倫理的な投資眼を持つヴァンス氏を尊敬している。",
+    "note": "respect, admireと同義。look down on（見下す）が対義語。人事評価や社内インタビューに登場。"
+  },
+  {
+    "id": 26,
+    "front": "put up (   ) the erratic heating system",
+    "answer": "put up with",
+    "preposition": "with",
+    "meaning": "～を我慢する、耐える",
+    "example": "The tenants could no longer put up with the building's erratic heating system.",
+    "example_ja": "テナントらはビルの不安定な暖房システムにもはや我慢できなかった。",
+    "note": "tolerate, endureと同義。Part 7の苦情レターやPart 3のオフィス環境への不満会話に登場。"
+  },
+  {
+    "id": 27,
+    "front": "put (   ) an impressive pitch deck",
+    "answer": "put together",
+    "preposition": "together",
+    "meaning": "（資料・計画などを）まとめる、組み立てる",
+    "example": "The creative director put together an impressive pitch deck for the investors.",
+    "example_ja": "クリエイティブディレクターは投資家向けに見事な提案用スライドをまとめ上げた。",
+    "note": "assemble, compile, createと同義。資料作成やチーム編成でビジネス最頻出。"
+  },
+  {
+    "id": 28,
+    "front": "put (   ) a comprehensive plan",
+    "answer": "put forward",
+    "preposition": "forward",
+    "meaning": "（提案・案を）提出する、提示する",
+    "example": "The committee put forward a comprehensive plan to streamline operations.",
+    "example_ja": "委員会は業務を合理化するための包括的な計画を提案した。",
+    "note": "propose, submit, suggestと同義。会議での動議や改善案の提示文脈で頻出。"
+  },
+  {
+    "id": 29,
+    "front": "put (   ) ten million yen",
+    "answer": "put aside",
+    "preposition": "aside",
+    "meaning": "（資金・時間を）取っておく、蓄える",
+    "example": "The board decided to put aside ten million yen for unforeseen contingencies.",
+    "example_ja": "取締役会は予期せぬ不測の事態に備えて1,000万円を確保しておくことを決定した。",
+    "note": "save, reserve, set asideと同義。予算策定や危機管理の文脈でよく使われる。"
+  },
+  {
+    "id": 30,
+    "front": "bring (   ) significant improvements",
+    "answer": "bring about",
+    "preposition": "about",
+    "meaning": "～をもたらす、引き起こす",
+    "example": "Technological advancements have brought about significant improvements in logistics.",
+    "example_ja": "技術の進歩は物流に著しい改善をもたらした。",
+    "note": "cause, produce, lead toと同義。変化や成果を説明するPart 7のプレスリリース定番。"
+  },
+  {
+    "id": 31,
+    "front": "bring (   ) the issue of overtime",
+    "answer": "bring up",
+    "preposition": "up",
+    "meaning": "（話題・問題を）持ち出す、提起する",
+    "example": "The union representative brought up the issue of overtime compensation.",
+    "example_ja": "労働組合の代表は時間外労働手当の問題を持ち出した。",
+    "note": "raise, mention, introduceと同義。bring up an issue/topicのコロケーションで多用。"
+  },
+  {
+    "id": 32,
+    "front": "bring (   ) over three million dollars",
+    "answer": "bring in",
+    "preposition": "in",
+    "meaning": "（収益などを）生み出す、（専門家を）招く",
+    "example": "The seasonal promotional campaign brought in over three million dollars.",
+    "example_ja": "季節のプロモーションキャンペーンは300万ドル以上の収益をもたらした。",
+    "note": "generate, yield, introduceと同義。売上創出や外部コンサルタント招致の文脈で登場。"
+  },
+  {
+    "id": 33,
+    "front": "bring (   ) the popular retro model",
+    "answer": "bring back",
+    "preposition": "back",
+    "meaning": "～を復活させる、戻す",
+    "example": "The manufacturer plans to bring back the popular retro model next winter.",
+    "example_ja": "その製造業者は来年の冬に人気だったレトロモデルを復活させる計画です。",
+    "note": "reintroduce, restoreと同義。廃番製品の再販や旧制度の復活で用いられる。"
+  },
+  {
+    "id": 34,
+    "front": "come up (   ) innovative marketing ideas",
+    "answer": "come up with",
+    "preposition": "with",
+    "meaning": "（アイデア・解決策を）思いつく、提案する",
+    "example": "The brainstorming session helped the team come up with innovative marketing ideas.",
+    "example_ja": "ブレインストーミングによってチームは革新的なマーケティング案を思いつくことができた。",
+    "note": "devise, produce, proposeと同義。Part 3/4の会議会話やPart 7の新製品企画記事で頻出。"
+  },
+  {
+    "id": 35,
+    "front": "come (   ) vital historical deeds",
+    "answer": "come across",
+    "preposition": "across",
+    "meaning": "～に偶然出くわす、見つける",
+    "example": "While researching archival records, the archivist came across vital historical deeds.",
+    "example_ja": "アーカイブ記録を調査している最中、記録係は極めて重要な歴史的権利証書を偶然見つけた。",
+    "note": "encounter, find by chanceと同義。Part 7の背景説明文脈などで登場。"
+  },
+  {
+    "id": 36,
+    "front": "come down (   ) the flu",
+    "answer": "come down with",
+    "preposition": "with",
+    "meaning": "（病気などに）かかる",
+    "example": "The lead presenter unfortunately came down with the flu right before the summit.",
+    "example_ja": "主任プレゼンターはサミットの直前にあいにくインフルエンザにかかってしまった。",
+    "note": "contract an illness, fall ill withと同義。出張や会議の欠席理由（リスニングPart 3/4）の定番。"
+  },
+  {
+    "id": 37,
+    "front": "go (   ) the revised agenda",
+    "answer": "go over",
+    "preposition": "over",
+    "meaning": "～を精査する、詳細に確認する",
+    "example": "Let us go over the revised agenda before opening the annual general meeting.",
+    "example_ja": "定時株主総会を開始する前に、改定された議題を詳細に確認しましょう。",
+    "note": "examine, review, inspect carefullyと同義。ビジネスミーティング前の確認で最頻出。"
+  },
+  {
+    "id": 38,
+    "front": "go (   ) rigorous legal scrutiny",
+    "answer": "go through",
+    "preposition": "through",
+    "meaning": "（困難などを）経験する、（手続き・書類を）通過する・調べる",
+    "example": "The merger proposal must go through rigorous legal scrutiny before approval.",
+    "example_ja": "合併提案は承認される前に厳格な法的精査を通過しなければならない。",
+    "note": "undergo, experience, search throughと同義。契約締結プロセスや苦境の克服に多用。"
+  },
+  {
+    "id": 39,
+    "front": "go ahead (   ) the development plan",
+    "answer": "go ahead with",
+    "preposition": "with",
+    "meaning": "～を（予定通り）進める、着手する",
+    "example": "The municipality decided to go ahead with the waterfront development plan.",
+    "example_ja": "自治体はウォーターフロント開発計画を進めることを決定した。",
+    "note": "proceed with, executeと同義。go-ahead（名詞：ゴーサイン・許可）の派生語も重要。"
+  },
+  {
+    "id": 40,
+    "front": "get (   ) initial supply disruptions",
+    "answer": "get over",
+    "preposition": "over",
+    "meaning": "（困難・損失・病気などを）乗り越える、克服する",
+    "example": "The retail division quickly got over its initial supply disruptions.",
+    "example_ja": "小売部門は当初の供給混乱を迅速に乗り切った。",
+    "note": "overcome, recover fromと同義。業績悪化からの立ち直り文脈で登場。"
+  },
+  {
+    "id": 41,
+    "front": "get (   ) to the help desk",
+    "answer": "get through",
+    "preposition": "through",
+    "meaning": "（仕事・難局を）終える、切り抜ける、（電話が）つながる",
+    "example": "I tried calling the help desk multiple times, but I could not get through.",
+    "example_ja": "ヘルプデスクに何度も電話をかけましたが、電話がつながりませんでした。",
+    "note": "finish, survive, reach by phoneと同義。リスニングの電話連絡トラブルで頻出。"
+  },
+  {
+    "id": 42,
+    "front": "get along (   ) all departments",
+    "answer": "get along with",
+    "preposition": "with",
+    "meaning": "～とうまくやっていく、良好な関係を保つ",
+    "example": "The new project manager gets along well with all cross-functional departments.",
+    "example_ja": "新任のプロジェクトマネージャーは部門横断のすべての部署とうまくやっている。",
+    "note": "have a good relationship withと同義。社内協調や人事推薦文でよく使われる。"
+  },
+  {
+    "id": 43,
+    "front": "get rid (   ) obsolete inventory",
+    "answer": "get rid of",
+    "preposition": "of",
+    "meaning": "～を処分する、排除する、取り除く",
+    "example": "The warehouse needs to get rid of obsolete inventory to make room for new models.",
+    "example_ja": "倉庫は新モデルのスペースを空けるため、時代遅れの在庫を処分する必要がある。",
+    "note": "dispose of, eliminate, discardと同義。不良在庫の処分や不要書類の廃棄文脈。"
+  },
+  {
+    "id": 44,
+    "front": "get in touch (   ) human resources",
+    "answer": "get in touch with",
+    "preposition": "with",
+    "meaning": "～と連絡を取る",
+    "example": "Please get in touch with the human resources department regarding your benefits.",
+    "example_ja": "福利厚生については人事部と連絡をお取りください。",
+    "note": "contact, communicate withと同義。ビジネスメールの結びや案内文で極めて一般的。"
+  },
+  {
+    "id": 45,
+    "front": "make (   ) nearly forty percent",
+    "answer": "make up",
+    "preposition": "up",
+    "meaning": "（割合を）構成する、～をでっち上げる、仲直りする",
+    "example": "Female executives make up nearly forty percent of our senior leadership team.",
+    "example_ja": "女性役員が当社のシニアリーダーシップ陣のほぼ40％を占めている（構成している）。",
+    "note": "constitute, comprise, formと同義。be made up of（～で構成される）やaccount forと言い換え可能。"
+  },
+  {
+    "id": 46,
+    "front": "make up (   ) the flight delay",
+    "answer": "make up for",
+    "preposition": "for",
+    "meaning": "～を埋め合わせる、補償する",
+    "example": "The airline offered complimentary vouchers to make up for the flight delay.",
+    "example_ja": "航空会社はフライトの遅延を埋め合わせるために無料のバウチャーを提供した。",
+    "note": "compensate for, offsetと同義。顧客クレーム対応や欠勤の埋め合わせで頻出。"
+  },
+  {
+    "id": 47,
+    "front": "make sure (   ) the shipment dimensions",
+    "answer": "make sure of",
+    "preposition": "of",
+    "meaning": "～を確かめる、確実にする",
+    "example": "Please make sure of the exact shipment dimensions before packing the crates.",
+    "example_ja": "木箱に梱包する前に、正確な出荷寸法を必ず確認してください。",
+    "note": "verify, ensure, confirmと同義。make sure that S Vの構文としてもPart 7の作業指示で頻出。"
+  },
+  {
+    "id": 48,
+    "front": "make (   ) the faded signature",
+    "answer": "make out",
+    "preposition": "out",
+    "meaning": "（判読しづらいものを）見分ける、理解する、（小切手などを）作成する",
+    "example": "The accountant could barely make out the faded signature on the vintage receipt.",
+    "example_ja": "会計士は年代物の領収書にあるかすれた署名をかろうじて判読することができた。",
+    "note": "decipher, understand, write out a checkと同義。書類の判読や小切手作成に登場。"
+  },
+  {
+    "id": 49,
+    "front": "keep up (   ) fast-changing market trends",
+    "answer": "keep up with",
+    "preposition": "with",
+    "meaning": "（進歩・変化などに）遅れずについていく",
+    "example": "Companies must innovate continually to keep up with fast-changing market trends.",
+    "example_ja": "企業は急速に変化する市場トレンドに遅れずについていくために絶えず革新しなければならない。",
+    "note": "stay abreast of, match pace withと同義。技術革新や市場競争の文脈で頻出。"
+  },
+  {
+    "id": 50,
+    "front": "keep track (   ) warehouse supplies",
+    "answer": "keep track of",
+    "preposition": "of",
+    "meaning": "～の経過を追う、記録・把握する",
+    "example": "The inventory software helps logistics staff keep track of warehouse supplies.",
+    "example_ja": "その在庫管理ソフトウェアは物流スタッフが倉庫の備品を把握するのに役立ちます。",
+    "note": "monitor, record, stay informed aboutと同義。経費・進捗・在庫の追跡管理の定番。"
+  },
+  {
+    "id": 51,
+    "front": "keep (   ) refining the prototype",
+    "answer": "keep on",
+    "preposition": "on",
+    "meaning": "～をし続ける",
+    "example": "Despite early setback, the research team kept on refining the battery prototype.",
+    "example_ja": "初期の挫折にもかかわらず、研究チームはバッテリー試作品の改良を続けた。",
+    "note": "continue, persist inと同義。keep on doingの形で動名詞を伴う。"
+  },
+  {
+    "id": 52,
+    "front": "hold (   ) on new acquisitions",
+    "answer": "hold off",
+    "preposition": "off",
+    "meaning": "（決定・行動などを）保留する、延期する",
+    "example": "The investment bank decided to hold off on new acquisitions until next fiscal year.",
+    "example_ja": "その投資銀行は来年度まで新規の企業買収を保留することを決定した。",
+    "note": "delay, postpone, withhold actionと同義。hold off on名詞/動名詞のパターン頻出。"
+  },
+  {
+    "id": 53,
+    "front": "hold (   ) the device launch",
+    "answer": "hold up",
+    "preposition": "up",
+    "meaning": "～を遅らせる、支える、持ちこたえる",
+    "example": "Unforeseen regulatory reviews held up the launch of the medical device for months.",
+    "example_ja": "予期せぬ規制審査により、その医療機器の発売が数か月間遅れた。",
+    "note": "delay, impede, sustainと同義。交通渋滞や物流遅延の文脈（リスニング）でも頻出。"
+  },
+  {
+    "id": 54,
+    "front": "hold on (   ) its market share",
+    "answer": "hold on to",
+    "preposition": "to",
+    "meaning": "～を手放さずに維持する、保持する",
+    "example": "The company managed to hold on to its market share despite intense competition.",
+    "example_ja": "その会社は激しい競争にもかかわらず市場シェアを手放さずに維持することができた。",
+    "note": "retain, keep, maintain possession ofと同義。シェア維持や資産保持の文脈。"
+  },
+  {
+    "id": 55,
+    "front": "hand (   ) weekly progress reports",
+    "answer": "hand in",
+    "preposition": "in",
+    "meaning": "～を提出する",
+    "example": "All interns are required to hand in their weekly progress reports every Friday.",
+    "example_ja": "すべてのインターン生は毎週金曜日に週次進捗報告書を提出することが求められます。",
+    "note": "submit, turn inと同義。提出物に関する社内アナウンスの最頻出語。代名詞はhand it in。"
+  },
+  {
+    "id": 56,
+    "front": "hand (   ) conference badges",
+    "answer": "hand out",
+    "preposition": "out",
+    "meaning": "～を配布する",
+    "example": "The receptionist handed out conference badges to all pre-registered visitors.",
+    "example_ja": "受付係は事前登録されたすべての来訪者に会議用バッジを配布した。",
+    "note": "distribute, give outと同義。handout（名詞：配布資料）の派生語も頻出。"
+  },
+  {
+    "id": 57,
+    "front": "hand (   ) confidential client files",
+    "answer": "hand over",
+    "preposition": "over",
+    "meaning": "～を引き渡す、権限を譲渡する",
+    "example": "The outgoing director handed over confidential client files to his successor.",
+    "example_ja": "退任する取締役は機密顧客ファイルを後任者に引き渡した。",
+    "note": "transfer, relinquish, deliver control ofと同義。人事異動や管轄引き渡しで多用。"
+  },
+  {
+    "id": 58,
+    "front": "break (   ) before the board briefing",
+    "answer": "break down",
+    "preposition": "down",
+    "meaning": "（機械が）故障する、（詳細に）分類・分析する",
+    "example": "The photocopier broke down right before the scheduled board briefing.",
+    "example_ja": "コピー機は予定されていた役員説明会の直前に故障してしまった。",
+    "note": "malfunction, stop working; itemize, analyzeと同義。機器故障や費用内訳（breakdown）で出題。"
+  },
+  {
+    "id": 59,
+    "front": "break (   ) in the storage facility",
+    "answer": "break out",
+    "preposition": "out",
+    "meaning": "（火災・戦争・感染症などが）発生する、勃発する",
+    "example": "A fire broke out in the storage facility, but all personnel evacuated safely.",
+    "example_ja": "保管施設で火災が発生したが、全職員が無事に避難した。",
+    "note": "erupt, occur suddenlyと同義。安全管理・緊急事態報告で登場。"
+  },
+  {
+    "id": 60,
+    "front": "cut back (   ) discretionary travel expenses",
+    "answer": "cut back on",
+    "preposition": "on",
+    "meaning": "～を削減する、縮小する",
+    "example": "The corporation plans to cut back on discretionary travel expenses this year.",
+    "example_ja": "その企業は今年度、裁量的な出張旅費を削減する計画です。",
+    "note": "reduce, curtail, scale downと同義。経費削減（cost-cutting）文脈で最重要の句動詞。"
+  },
+  {
+    "id": 61,
+    "front": "cut down (   ) unnecessary paper consumption",
+    "answer": "cut down on",
+    "preposition": "on",
+    "meaning": "～を減らす、抑える",
+    "example": "We are actively seeking ways to cut down on unnecessary paper consumption.",
+    "example_ja": "当社は不要な紙の消費量を減らす方法を積極的に模索しています。",
+    "note": "reduce, decreaseと同義。cut back onとほぼ同義で言い換え可能。"
+  },
+  {
+    "id": 62,
+    "front": "lay (   ) two hundred maintenance technicians",
+    "answer": "lay off",
+    "preposition": "off",
+    "meaning": "（業績悪化などを理由に一時的・恒久的に）解雇する",
+    "example": "The struggling airline had to lay off two hundred maintenance technicians.",
+    "example_ja": "経営難に陥った航空会社は保守技術者200名を解雇せざるを得なかった。",
+    "note": "dismiss, discharge, terminate employmentと同義。整理解雇の文脈で多用。名詞layoffも頻出。"
+  },
+  {
+    "id": 63,
+    "front": "draw (   ) the joint venture agreement",
+    "answer": "draw up",
+    "preposition": "up",
+    "meaning": "（文書・契約書などを）作成する、起草する",
+    "example": "Our legal counsel will draw up the formal joint venture agreement by tomorrow.",
+    "example_ja": "当社の弁護士が明日までに正式な合弁事業契約書を作成・起草いたします。",
+    "note": "draft, formulate, prepare in writingと同義。契約書作成（contract draft）で超頻出。"
+  },
+  {
+    "id": 64,
+    "front": "rule (   ) equipment failure",
+    "answer": "rule out",
+    "preposition": "out",
+    "meaning": "～を除外する、～の可能性を排除する",
+    "example": "Investigators have ruled out equipment failure as the cause of the power outage.",
+    "example_ja": "調査員らは停電の原因として機器の故障の可能性を除外した。",
+    "note": "exclude, eliminate from considerationと同義。ビジネス分析や原因究明の文脈。"
+  },
+  {
+    "id": 65,
+    "front": "phase (   ) conventional diesel engines",
+    "answer": "phase out",
+    "preposition": "out",
+    "meaning": "～を段階的に廃止する、撤退させる",
+    "example": "The automaker will gradually phase out conventional diesel engines by 2030.",
+    "example_ja": "その自動車メーカーは2030年までに従来のディーゼルエンジンを段階的に廃止する方針です。",
+    "note": "discontinue gradually, eliminate in stagesと同義。環境規制対応や製品世代交代で頻出。"
+  },
+  {
+    "id": 66,
+    "front": "back (   ) all project files",
+    "answer": "back up",
+    "preposition": "up",
+    "meaning": "（データを）バックアップする、（人を）支持・支援する",
+    "example": "Remember to back up all project files to the cloud server every evening.",
+    "example_ja": "毎晩すべてのプロジェクトファイルをクラウドサーバーにバックアップすることを忘れないでください。",
+    "note": "support, duplicate data for safetyと同義。IT安全対策や同僚の支援で登場。"
+  },
+  {
+    "id": 67,
+    "front": "follow up (   ) our wholesale purchase order",
+    "answer": "follow up on",
+    "preposition": "on",
+    "meaning": "～の進捗を確認する、追跡調査する",
+    "example": "I am calling to follow up on the status of our wholesale purchase order.",
+    "example_ja": "当社の大口購入注文のステータスについて進捗を確認したくお電話いたしました。",
+    "note": "investigate further, check progress onと同義。ビジネス電話・メールのフォローアップ最頻出。"
+  },
+  {
+    "id": 68,
+    "front": "step (   ) at the end of the fiscal year",
+    "answer": "step down",
+    "preposition": "down",
+    "meaning": "（役職・地位から）退く、辞任する",
+    "example": "The CEO announced plans to step down at the end of the current fiscal year.",
+    "example_ja": "最高経営責任者は今年度の末に退任する計画を発表した。",
+    "note": "resign, retire from officeと同義。step down from postの形で役員交代ニュースに頻出。"
+  },
+  {
+    "id": 69,
+    "front": "step (   ) production to meet demand",
+    "answer": "step up",
+    "preposition": "up",
+    "meaning": "～を強化する、促進する、（前に出て）役割を担う",
+    "example": "The plant must step up production to meet surging overseas consumer demand.",
+    "example_ja": "工場は急増する海外の個人消費需要に応えるため、生産を強化しなければならない。",
+    "note": "increase, intensify, accelerateと同義。生産拡大やセキュリティ強化で頻出。"
+  },
+  {
+    "id": 70,
+    "front": "sign up (   ) the weekend seminar",
+    "answer": "sign up for",
+    "preposition": "for",
+    "meaning": "（講座・会員・イベントに）登録する、申し込む",
+    "example": "Many employees signed up for the weekend professional leadership seminar.",
+    "example_ja": "多くの従業員が週末のプロフェッショナル向けリーダーシップ研修に申し込んだ。",
+    "note": "register for, enroll in, subscribe toと同義。研修参加やサービス申し込みで最頻出。"
+  },
+  {
+    "id": 71,
+    "front": "check (   ) two hours prior to departure",
+    "answer": "check in",
+    "preposition": "in",
+    "meaning": "（ホテル・空港などで）搭乗・宿泊手続きをする、到着を知らせる",
+    "example": "Flight passengers must check in at least two hours prior to international departure.",
+    "example_ja": "航空便の乗客は国際線の出発の少なくとも2時間前には搭乗手続きを行わなければならない。",
+    "note": "register upon arrival, report arrivalと同義。出張・旅行手配文脈で基本の句動詞。"
+  },
+  {
+    "id": 72,
+    "front": "check (   ) of their hotel rooms",
+    "answer": "check out",
+    "preposition": "out",
+    "meaning": "（ホテルなどを）引き払う、～を調べる、（本などを）借りる",
+    "example": "Guests are kindly reminded to check out of their hotel rooms by 11:00 AM.",
+    "example_ja": "ご宿泊のお客様は午前11時までに客室をチェックアウトいただくようお願いいたします。",
+    "note": "vacate hotel room; investigate, inspect, borrow booksと同義。出張アナウンスの定番。"
+  },
+  {
+    "id": 73,
+    "front": "pick (   ) the parcel from reception",
+    "answer": "pick up",
+    "preposition": "up",
+    "meaning": "～を車で迎えに行く、受け取る、（景気などが）好転する",
+    "example": "The courier will pick up the parcel from the reception desk around 3 PM.",
+    "example_ja": "配達員は午後3時頃に受付から小包を受け取る予定です。",
+    "note": "collect, retrieve; improve, gain momentumと同義。荷物の集荷、出迎え、景気回復で多義。"
+  },
+  {
+    "id": 74,
+    "front": "drop (   ) your registration documents",
+    "answer": "drop off",
+    "preposition": "off",
+    "meaning": "（荷物・人を）届ける、降ろす、（数量などが）減少する",
+    "example": "You may drop off your registration documents at our downtown branch office.",
+    "example_ja": "登録書類は当社のダウンタウン支社にお届け（提出）いただいて構いません。",
+    "note": "deliver, deposit; decline, decreaseと同義。荷物の持ち込みや売上減少で使われる。"
+  },
+  {
+    "id": 75,
+    "front": "pass (   ) this security memo",
+    "answer": "pass on",
+    "preposition": "on",
+    "meaning": "（情報・伝言などを）伝える、転送する、譲る",
+    "example": "Please pass on this memo regarding security protocols to your team members.",
+    "example_ja": "セキュリティ手順に関するこの通達をチームのメンバーにお伝えください。",
+    "note": "convey, transmit, relay informationと同義。連絡の伝達やコスト転嫁（pass on costs）で頻出。"
+  },
+  {
+    "id": 76,
+    "front": "stand (   ) among candidates",
+    "answer": "stand out",
+    "preposition": "out",
+    "meaning": "目立つ、際立つ、卓越している",
+    "example": "Her extensive background in international finance made her stand out among candidates.",
+    "example_ja": "国際金融における彼女の豊富な経歴は、応募者の中で彼女を際立たせた。",
+    "note": "be prominent, be distinguished, excelと同義。採用候補者の優秀さや製品の差別化で頻出。"
+  },
+  {
+    "id": 77,
+    "front": "stand (   ) in our corporate charter",
+    "answer": "stand for",
+    "preposition": "for",
+    "meaning": "（略語などが）～を表す、象徴する、支持する",
+    "example": "What does the acronym 'CSR' stand for in our corporate sustainability charter?",
+    "example_ja": "当社の企業の持続可能性憲章において、頭字語の「CSR」は何を表していますか。",
+    "note": "represent, signify, symbolizeと同義。略語の説明文脈でPart 5/7に頻出。"
+  },
+  {
+    "id": 78,
+    "front": "wear (   ) the specialized conveyor belts",
+    "answer": "wear out",
+    "preposition": "out",
+    "meaning": "擦り切れる、使い古す、疲れ果てさせる",
+    "example": "Heavy factory usage will quickly wear out the specialized conveyor belts.",
+    "example_ja": "工場での過酷な使用により、専用のコンベアベルトはすぐに摩耗してしまうだろう。",
+    "note": "deteriorate, exhaust, become unusable through frictionと同義。機器メンテで出題。"
+  },
+  {
+    "id": 79,
+    "front": "wrap (   ) the strategic planning meeting",
+    "answer": "wrap up",
+    "preposition": "up",
+    "meaning": "（会議・作業などを）締めくくる、完了する",
+    "example": "The chairperson hopes to wrap up the strategic planning meeting by 4 PM.",
+    "example_ja": "議長は午後4時までに戦略計画会議を締めくくりたいと考えている。",
+    "note": "conclude, finish, bring to a closeと同義。リスニングPart 3/4や社内会議で頻出。"
+  },
+  {
+    "id": 80,
+    "front": "sort (   ) database sync issues",
+    "answer": "sort out",
+    "preposition": "out",
+    "meaning": "～を整理する、うまく解決する",
+    "example": "Our IT technicians are working hard to sort out the database sync issues.",
+    "example_ja": "当社のIT技術者はデータベース同期の問題を解決するために懸命に作業している。",
+    "note": "resolve, organize, untangle problemsと同義。業務トラブルの解決でイギリス・米語問わず多用。"
+  },
+  {
+    "id": 81,
+    "front": "narrow (   ) the candidates to three",
+    "answer": "narrow down",
+    "preposition": "down",
+    "meaning": "（候補などを）絞り込む、限定する",
+    "example": "The search committee narrowed down the candidates to three final finalists.",
+    "example_ja": "選考委員会は候補者を3名の最終選考対象者に絞り込んだ。",
+    "note": "reduce, restrict, limit the scope of choicesと同義。採用・ベンダー選定で頻出。"
+  },
+  {
+    "id": 82,
+    "front": "iron (   ) remaining contractual details",
+    "answer": "iron out",
+    "preposition": "out",
+    "meaning": "（問題・意見の相違などを）解決する、円滑にする",
+    "example": "The delegates held an extra session to iron out remaining contractual details.",
+    "example_ja": "代表者らは契約の残された詳細を円滑に解決するために追加セッションを開催した。",
+    "note": "resolve, settle differences, smooth out difficultiesと同義。交渉・契約締結前の調整で頻出。"
+  },
+  {
+    "id": 83,
+    "front": "roll (   ) its updated cloud service",
+    "answer": "roll out",
+    "preposition": "out",
+    "meaning": "（新製品・新制度を）本格展開する、発売する",
+    "example": "The software firm will roll out its updated cloud service next Monday.",
+    "example_ja": "そのソフトウェア企業は来週月曜日に更新されたクラウドサービスを本格展開する。",
+    "note": "launch, introduce, unveil nationwideと同義。新サービス公開・新機能リリースの定番。"
+  },
+  {
+    "id": 84,
+    "front": "scale (   ) capital spending",
+    "answer": "scale back",
+    "preposition": "back",
+    "meaning": "（規模・予算などを）縮小する",
+    "example": "Management decided to scale back capital spending due to market uncertainty.",
+    "example_ja": "経営陣は市場の不確実性により設備投資支出を縮小することを決定した。",
+    "note": "reduce, cut down, downsize operationsと同義。予算調整や事業縮小文脈。"
+  },
+  {
+    "id": 85,
+    "front": "ramp (   ) production to meet chip demand",
+    "answer": "ramp up",
+    "preposition": "up",
+    "meaning": "（生産・事業などを）急増させる、拡大する",
+    "example": "The semiconductor plant is ramping up production to meet high chip demand.",
+    "example_ja": "半導体工場は高い半導体需要に応えるために生産を急ピッチで拡大している。",
+    "note": "increase, expand rapidly, boost outputと同義。増産・採用拡大のビジネス定番表現。"
+  },
+  {
+    "id": 86,
+    "front": "wind (   ) factory operations",
+    "answer": "wind down",
+    "preposition": "down",
+    "meaning": "（事業・活動などを）徐々に終わらせる、縮小する",
+    "example": "The factory will gradually wind down operations over the next six months.",
+    "example_ja": "その工場は今後6か月かけて徐々に操業を縮小・終了させる予定です。",
+    "note": "conclude gradually, bring to a close in stagesと同義。工場閉鎖や事業整理で登場。"
+  },
+  {
+    "id": 87,
+    "front": "sum (   ) the quarterly performance",
+    "answer": "sum up",
+    "preposition": "up",
+    "meaning": "～を要約する、まとめる",
+    "example": "To sum up, the quarterly performance shows robust recovery across all regions.",
+    "example_ja": "要約すると、四半期の業績は全地域にわたって力強い回復を示しています。",
+    "note": "summarize, recap, conclude conciselyと同義。プレゼンテーションの結びやレポート要約。"
+  },
+  {
+    "id": 88,
+    "front": "give (   ) to steep price demands",
+    "answer": "give in",
+    "preposition": "in",
+    "meaning": "（要求などに）屈する、譲歩する",
+    "example": "The procurement director refused to give in to the vendor's steep price demands.",
+    "example_ja": "調達責任者はベンダーの法外な価格要求に屈することを拒否した。",
+    "note": "surrender, yield, concede to pressureと同義。価格交渉や紛争解決で登場。"
+  },
+  {
+    "id": 89,
+    "front": "give (   ) its legal rights",
+    "answer": "give up",
+    "preposition": "up",
+    "meaning": "～を諦める、断念する、手放す",
+    "example": "The firm had to give up its legal rights to the disputed patent territory.",
+    "example_ja": "その会社は係争中の特許地域に対する法的権利を断念せざるを得なかった。",
+    "note": "relinquish, abandon, surrender claim toと同義。権利放棄や目標断念で出題。"
+  },
+  {
+    "id": 90,
+    "front": "give (   ) visitor passes",
+    "answer": "give out",
+    "preposition": "out",
+    "meaning": "～を配布する、（機械・体力などが）尽きる、停止する",
+    "example": "The orientation staff gave out visitor passes and promotional merchandise.",
+    "example_ja": "オリエンテーションのスタッフは来訪者用通行証と販促グッズを配布した。",
+    "note": "distribute, hand out; fail, become exhaustedと同義。配布（distribute）と同義語。"
+  },
+  {
+    "id": 91,
+    "front": "show (   ) for the mandatory workshop",
+    "answer": "show up",
+    "preposition": "up",
+    "meaning": "現れる、姿を見せる、出席する",
+    "example": "Several scheduled participants failed to show up for the mandatory workshop.",
+    "example_ja": "予定されていた参加者のうち数名が義務研修のワークショップに現れなかった。",
+    "note": "arrive, appear, attend in personと同義。turn upとも同義。出欠確認で頻出。"
+  },
+  {
+    "id": 92,
+    "front": "end (   ) going over budget",
+    "answer": "end up",
+    "preposition": "up",
+    "meaning": "最終的に～になる、結局～で終わる",
+    "example": "Without careful fiscal planning, the project could end up going over budget.",
+    "example_ja": "慎重な財政計画がなければ、プロジェクトは結局予算超過になってしまう可能性がある。",
+    "note": "end up doing / end up with名詞（結局～になる）。予期せぬ結果の叙述で頻出。"
+  },
+  {
+    "id": 93,
+    "front": "catch up (   ) unanswered emails",
+    "answer": "catch up on",
+    "preposition": "on",
+    "meaning": "（遅れなどを）取り戻す、たまっていた仕事をする",
+    "example": "I need to spend Saturday morning catching up on unanswered emails.",
+    "example_ja": "私は土曜の午前中を未返信のメールの処理（遅れの取り戻し）に充てる必要がある。",
+    "note": "become up to date on backlog, do overdue workと同義。遅れた業務の消化で頻出。"
+  },
+  {
+    "id": 94,
+    "front": "catch up (   ) leading market rivals",
+    "answer": "catch up with",
+    "preposition": "with",
+    "meaning": "（先に行く人・進度などに）追いつく",
+    "example": "Our local logistics network is quickly catching up with leading market rivals.",
+    "example_ja": "当社の地元の物流網は市場のトップ競合他社に急速に追いつきつつある。",
+    "note": "reach the same level as, overtake pace withと同義。競合比較や市場追随で頻出。"
+  },
+  {
+    "id": 95,
+    "front": "live up (   ) high consumer expectations",
+    "answer": "live up to",
+    "preposition": "to",
+    "meaning": "（期待・基準などに）応える、沿う",
+    "example": "The new product lineup failed to live up to high consumer expectations.",
+    "example_ja": "新製品ラインナップは消費者の高い期待に応えることができなかった。",
+    "note": "meet expectations, satisfy standards of excellenceと同義。評価・レビュー記事で頻出。"
+  },
+  {
+    "id": 96,
+    "front": "run (   ) unexpected regulatory hurdles",
+    "answer": "run into",
+    "preposition": "into",
+    "meaning": "（問題などに）直面する、（人に）偶然出会う",
+    "example": "The overseas construction team ran into unexpected regulatory hurdles.",
+    "example_ja": "海外の建設チームは予期せぬ規制上のハードル（問題）に直面した。",
+    "note": "encounter difficulties, bump into by chanceと同義。トラブル遭遇で頻出。"
+  },
+  {
+    "id": 97,
+    "front": "stick (   ) the agreed budget allocations",
+    "answer": "stick to",
+    "preposition": "to",
+    "meaning": "（規則・方針・計画などに）従う、固執する",
+    "example": "All department heads must stick to the agreed budget allocations.",
+    "example_ja": "すべての部門長は合意された予算配分に従わなければならない。",
+    "note": "adhere to, comply with, remain committed toと同義。方針堅持やスケジュール遵守。"
+  },
+  {
+    "id": 98,
+    "front": "clear (   ) lingering misunderstandings",
+    "answer": "clear up",
+    "preposition": "up",
+    "meaning": "（問題・誤解を）解決する、解明する、（天気が）晴れる",
+    "example": "The HR representative met with the union to clear up lingering misunderstandings.",
+    "example_ja": "人事担当者は残された誤解を解消するために労働組合と面談した。",
+    "note": "resolve, clarify, untangle confusionと同義。誤解の解消や疑問解決で頻出。"
+  },
+  {
+    "id": 99,
+    "front": "follow through (   ) all safety recommendations",
+    "answer": "follow through on",
+    "preposition": "on",
+    "meaning": "（公約・計画などを）最後までやり遂げる、実行する",
+    "example": "Management promised to follow through on all safety recommendations.",
+    "example_ja": "経営陣はすべての安全勧告を最後まで実行することを約束した。",
+    "note": "complete, execute fully, carry out to completionと同義。約束の履行や計画の完遂。"
+  },
+  {
+    "id": 100,
+    "front": "back (   ) during contract negotiations",
+    "answer": "back down",
+    "preposition": "down",
+    "meaning": "（主張・要求を）撤回する、引き下がる",
+    "example": "Neither party was willing to back down during the critical contract negotiations.",
+    "example_ja": "重要な契約交渉において、どちらの当事者も主張を撤回しようとはしなかった。",
+    "note": "withdraw demands, yield ground, concede positionと同義。交渉・紛争の局面で頻出。"
+  }
+]

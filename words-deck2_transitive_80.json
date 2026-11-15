@@ -1,0 +1,802 @@
+[
+  {
+    "id": 1,
+    "front": "provide new employees (   ) training manuals",
+    "answer": "provide A with B",
+    "preposition": "with",
+    "meaning": "AにBを提供する・支給する",
+    "example": "The company will provide all new employees with comprehensive training manuals.",
+    "example_ja": "会社はすべての新入社員に包括的な研修マニュアルを支給します。",
+    "note": "Part 5最頻出。受動態「A is provided with B」の形でも頻出。provide B for/to Aへの書き換えも注意。"
+  },
+  {
+    "id": 2,
+    "front": "supply the cafeteria (   ) fresh produce",
+    "answer": "supply A with B",
+    "preposition": "with",
+    "meaning": "AにBを供給する・補給する",
+    "example": "The local vendor agreed to supply the cafeteria with fresh organic produce.",
+    "example_ja": "地元の業者は社員食堂に新鮮な有機農作物を供給することに同意した。",
+    "note": "provide A with Bと同義。受動態「be supplied with B」。supply B to Aの語法もPart 5で出題される。"
+  },
+  {
+    "id": 3,
+    "front": "equip the conference hall (   ) audiovisual facilities",
+    "answer": "equip A with B",
+    "preposition": "with",
+    "meaning": "AにBを備え付ける・装備する",
+    "example": "The modern conference hall is equipped with state-of-the-art audiovisual facilities.",
+    "example_ja": "その近代的な会議場には最先端の音響映像設備が備え付けられている。",
+    "note": "受動態「be equipped with ～（～を備えている）」の形容詞的用法がPart 7の施設案内・求人票で頻出。"
+  },
+  {
+    "id": 4,
+    "front": "furnish the auditor (   ) financial statements",
+    "answer": "furnish A with B",
+    "preposition": "with",
+    "meaning": "AにB（家具や設備・情報）を備え付ける・提供する",
+    "example": "The agency furnished the auditor with all necessary financial statements.",
+    "example_ja": "その機関は監査人に必要なすべての財務諸表を提供した。",
+    "note": "「家具を備え付ける」に加えビジネスでは「情報・書類を提供する」意で頻出。受動態「be furnished with」。"
+  },
+  {
+    "id": 5,
+    "front": "present Mr. Henderson (   ) an award",
+    "answer": "present A with B",
+    "preposition": "with",
+    "meaning": "AにB（賞・証書など）を授与する・贈る",
+    "example": "The CEO presented Mr. Henderson with an award for his outstanding sales achievements.",
+    "example_ja": "CEOはヘンダーソン氏にその卓越した営業成績に対する賞を授与した。",
+    "note": "式典や表彰のPart 7文脈で定番。受動態「be presented with」。present B to Aの言い換えも可能。"
+  },
+  {
+    "id": 6,
+    "front": "replace outdated servers (   ) cloud solutions",
+    "answer": "replace A with B",
+    "preposition": "with",
+    "meaning": "AをBに取り替える・交換する",
+    "example": "The IT department will replace the outdated servers with high-speed cloud solutions.",
+    "example_ja": "IT部門は老朽化したサーバーを高速クラウドソリューションに交換する予定です。",
+    "note": "replace A with B＝substitute B for A。受動態「A is replaced with B」。withの選択がPart 5で問われる。"
+  },
+  {
+    "id": 7,
+    "front": "compare quarterly performance (   ) previous results",
+    "answer": "compare A with B",
+    "preposition": "with",
+    "meaning": "AをBと比較する",
+    "example": "Analysts compared this quarter's financial performance with that of the previous year.",
+    "example_ja": "アナリストらは今四半期の財務実績を前年の実績と比較した。",
+    "note": "compare A to B（なぞらえる・比較する）もあるが、客観的な比較ではwithが標準。受動態「compared with/to」。"
+  },
+  {
+    "id": 8,
+    "front": "associate the brand name (   ) reliability",
+    "answer": "associate A with B",
+    "preposition": "with",
+    "meaning": "AをBに関連づける・連想する",
+    "example": "Consumers naturally associate the brand name with reliability and superior quality.",
+    "example_ja": "消費者はそのブランド名を信頼性と優れた品質に自然と結びつけて考える。",
+    "note": "受動態「be associated with ～（～と関連している）」がPart 7の分析記事やPart 5で超頻出。"
+  },
+  {
+    "id": 9,
+    "front": "combine social media marketing (   ) print advertising",
+    "answer": "combine A with B",
+    "preposition": "with",
+    "meaning": "AをBと結合させる・組み合わせる",
+    "example": "The successful campaign combined social media marketing with traditional print advertising.",
+    "example_ja": "その成功したキャンペーンはソーシャルメディア広告と従来の印刷広告を組み合わせた。",
+    "note": "受動態「A is combined with B」。blend/mergeと同系統。Part 5で空所前置詞withを選ぶ問題頻出。"
+  },
+  {
+    "id": 10,
+    "front": "charge the manager (   ) overseeing the project",
+    "answer": "charge A with B",
+    "preposition": "with",
+    "meaning": "AにB（責任・任務）を課す・負わせる",
+    "example": "The executive board charged Ms. Patel with overseeing the global restructuring project.",
+    "example_ja": "取締役会はパテル氏にグローバルな事業再編プロジェクトを統括する任務を課した。",
+    "note": "「Aに任務を負わせる」受動態「be charged with doing/task」。「Aに金銭を請求する（charge A for B）」と峻別。"
+  },
+  {
+    "id": 11,
+    "front": "entrust the supervisor (   ) confidential data",
+    "answer": "entrust A with B",
+    "preposition": "with",
+    "meaning": "AにB（仕事・財産など）を託す・任せる",
+    "example": "The management entrusted the experienced supervisor with managing confidential client data.",
+    "example_ja": "経営陣はその経験豊富な主任に機密顧客データの管理を委ねた。",
+    "note": "entrust A with B＝entrust B to A。受動態「be entrusted with B」。Part 7の人事・業務委託で頻出。"
+  },
+  {
+    "id": 12,
+    "front": "acquaint new hires (   ) company policies",
+    "answer": "acquaint A with B",
+    "preposition": "with",
+    "meaning": "AにBを熟知させる・知らせる",
+    "example": "The orientation program is designed to acquaint new hires with company policies.",
+    "example_ja": "オリエンテーションプログラムは新入社員に会社の方針を周知させるよう設計されている。",
+    "note": "受動態「be acquainted with ～（～に精通している、～を熟知している）」がPart 5の語法で最頻出。"
+  },
+  {
+    "id": 13,
+    "front": "familiarize themselves (   ) the evacuation procedures",
+    "answer": "familiarize A with B",
+    "preposition": "with",
+    "meaning": "AをBに慣れさせる・習熟させる",
+    "example": "Employees should familiarize themselves with the updated evacuation procedures.",
+    "example_ja": "従業員は更新された避難手順をよく把握しておくべきです。",
+    "note": "再帰代名詞を伴う「familiarize oneself with ～」や受動態「be familiar with / be familiarized with」が頻出。"
+  },
+  {
+    "id": 14,
+    "front": "burden the team (   ) additional overtime",
+    "answer": "burden A with B",
+    "preposition": "with",
+    "meaning": "AにB（負担・荷）を負わせる",
+    "example": "Unexpected delays burdened the project team with additional overtime work.",
+    "example_ja": "予期せぬ遅延により、プロジェクトチームは追加の残業負担を背負わされた。",
+    "note": "受動態「be burdened with ～（～の重荷を背負っている）」。Part 7の業務負担・コスト増の文脈で登場。"
+  },
+  {
+    "id": 15,
+    "front": "credit the CEO (   ) the company's turnaround",
+    "answer": "credit A with B",
+    "preposition": "with",
+    "meaning": "AにB（功績・成果など）の功績を認める",
+    "example": "Industry experts credit the innovative CEO with turning the struggling company around.",
+    "example_ja": "業界の専門家らは、経営不振に陥っていた会社を好転させた功績はその革新的なCEOにあるとしている。",
+    "note": "受動態「A is credited with doing（Aは～したと評価されている）」がPart 5/7で極めて高い頻度で出題。"
+  },
+  {
+    "id": 16,
+    "front": "inform applicants (   ) the interview results",
+    "answer": "inform A of B",
+    "preposition": "of",
+    "meaning": "AにBを通知する・知らせる",
+    "example": "Human Resources will inform successful applicants of the interview results tomorrow.",
+    "example_ja": "人事部は明日、合格した応募者に面接結果を通知します。",
+    "note": "inform＋人＋of 事項 / inform＋人＋that節。「人に知らせる」型の代表格。受動態「be informed of」。"
+  },
+  {
+    "id": 17,
+    "front": "notify customer service (   ) address changes",
+    "answer": "notify A of B",
+    "preposition": "of",
+    "meaning": "AにBを正式に通知する・知らせる",
+    "example": "Please notify the customer service department of any address changes immediately.",
+    "example_ja": "住所変更があった場合は、直ちにカスタマーサービス部門にお知らせください。",
+    "note": "notify＋人＋of 事項 / notify＋人＋that節。notice（気づく・他動詞）との混同を狙うPart 5頻出語。"
+  },
+  {
+    "id": 18,
+    "front": "remind attendees (   ) the project deadline",
+    "answer": "remind A of B",
+    "preposition": "of",
+    "meaning": "AにBを思い出させる・気付かせる",
+    "example": "The email was sent to remind all attendees of the upcoming project deadline.",
+    "example_ja": "すべての出席者に近づくプロジェクトの期限を再確認させるためにメールが送信された。",
+    "note": "remind＋人＋of 事項 / remind＋人＋to do。受動態「be reminded of」。Part 7のリマインダーメール定番。"
+  },
+  {
+    "id": 19,
+    "front": "convince investors (   ) the project's viability",
+    "answer": "convince A of B",
+    "preposition": "of",
+    "meaning": "AにBを納得させる・確信させる",
+    "example": "The impressive sales figures convinced the investors of the project's viability.",
+    "example_ja": "印象的な売上実績の数字は、投資家にそのプロジェクトの実行可能性を確信させた。",
+    "note": "convince＋人＋of 事項 / convince＋人＋that節。受動態「be convinced of ～（～を確信している）」。"
+  },
+  {
+    "id": 20,
+    "front": "assure the client (   ) prompt resolution",
+    "answer": "assure A of B",
+    "preposition": "of",
+    "meaning": "AにBを保証する・請け合う",
+    "example": "The technical director assured the client of prompt resolution of the software glitch.",
+    "example_ja": "技術部長はクライアントにソフトウェアの不具合を迅速に解決することを保証した。",
+    "note": "assure＋人＋of 事項 / assure＋人＋that節。ensure（他動詞・直後に目的語）との構文差がPart 5の急所。"
+  },
+  {
+    "id": 21,
+    "front": "relieve the team (   ) clerical tasks",
+    "answer": "relieve A of B",
+    "preposition": "of",
+    "meaning": "AからB（負担・苦痛・任務）を取り除く",
+    "example": "The hiring of an administrative assistant relieved the team of tedious clerical tasks.",
+    "example_ja": "事務アシスタントの雇用により、チームから退屈な事務作業の負担が取り除かれた。",
+    "note": "受動態「be relieved of one's duties（職務を解かれる／負担が免除される）」。分離・剥奪のof。"
+  },
+  {
+    "id": 22,
+    "front": "rob small firms (   ) expansion opportunities",
+    "answer": "rob A of B",
+    "preposition": "of",
+    "meaning": "AからB（金品・機会など）を奪う",
+    "example": "The sudden economic downturn robbed many small firms of expansion opportunities.",
+    "example_ja": "突然の景気後退は、多くの小規模企業から事業拡大の機会を奪った。",
+    "note": "rob＋人・場所＋of 物 / steal＋物＋from 人。Part 5でstealとの使い分けを問う超頻出文法トラップ。"
+  },
+  {
+    "id": 23,
+    "front": "deprive the facility (   ) operational capacity",
+    "answer": "deprive A of B",
+    "preposition": "of",
+    "meaning": "AからB（権利・特権など）を奪う",
+    "example": "Power supply disruptions deprived the manufacturing facility of operational capacity.",
+    "example_ja": "電力供給の遮断により、製造施設から稼働能力が奪われた。",
+    "note": "受動態「be deprived of ～（～を奪われる）」。rob A of Bと同様に「分離・剥奪」を表す前置詞ofをとる。"
+  },
+  {
+    "id": 24,
+    "front": "suspect the accountant (   ) mismanaging funds",
+    "answer": "suspect A of B",
+    "preposition": "of",
+    "meaning": "AにBの嫌疑をかける・疑う",
+    "example": "Internal auditors suspected the former accountant of mismanaging corporate funds.",
+    "example_ja": "内部監査人らは前任の会計士が会社資金を不適切に管理していたのではないかと疑った。",
+    "note": "suspect A of doing / suspect that節。doubt（～でないと疑う）との意味の違いにも注意。"
+  },
+  {
+    "id": 25,
+    "front": "accuse the corporation (   ) misleading advertising",
+    "answer": "accuse A of B",
+    "preposition": "of",
+    "meaning": "AをB（不正・過失など）で非難する・告発する",
+    "example": "The regulatory agency accused the corporation of misleading advertising practices.",
+    "example_ja": "規制当局はその企業を誤解を招く広告活動を行ったとして告発した。",
+    "note": "accuse A of B＝charge A with B。前置詞がaccuseはof、chargeはwithになる対比がPart 5の頻出問題。"
+  },
+  {
+    "id": 26,
+    "front": "cure the department (   ) poor habits",
+    "answer": "cure A of B",
+    "preposition": "of",
+    "meaning": "AのB（悪癖・病気など）を治す・取り除く",
+    "example": "Thorough compliance training cured the sales department of poor record-keeping habits.",
+    "example_ja": "徹底したコンプライアンス研修により、営業部門の杜撰な記録管理の悪癖が改善された。",
+    "note": "「人から悪癖や病気を取り除く」分離のof。受動態「be cured of」。比喩的なビジネス文脈でも使用。"
+  },
+  {
+    "id": 27,
+    "front": "warn plant operators (   ) potential hazards",
+    "answer": "warn A of/about B",
+    "preposition": "of / about",
+    "meaning": "AにBを警告する・注意を促す",
+    "example": "Safety supervisors warned plant operators of potential chemical hazards in advance.",
+    "example_ja": "安全管理者は工場のオペレーターらに潜在的な化学的危険性について事前警告した。",
+    "note": "warn＋人＋of/about 名詞 / warn＋人＋that節 / warn＋人＋to do。Part 7の注意書き・社内通達で頻出。"
+  },
+  {
+    "id": 28,
+    "front": "clear the manager (   ) all allegations",
+    "answer": "clear A of B",
+    "preposition": "of",
+    "meaning": "AからB（容疑・障害物など）を取り除く・晴らす",
+    "example": "An independent investigation completely cleared the manager of all misconduct allegations.",
+    "example_ja": "独立調査により、そのマネージャーの不正疑惑は完全に晴らされた。",
+    "note": "受動態「be cleared of allegations/charges（容疑が晴れる）」。除去のof。ビジネス訴訟・調査文脈で出題。"
+  },
+  {
+    "id": 29,
+    "front": "prevent unauthorized personnel (   ) accessing data",
+    "answer": "prevent A from B(-ing)",
+    "preposition": "from",
+    "meaning": "AがB（するの）を防ぐ・妨げる",
+    "example": "Strict security protocols prevent unauthorized personnel from accessing sensitive data.",
+    "example_ja": "厳格なセキュリティプロトコルにより、権限のない人員が機密データにアクセスするのを防止している。",
+    "note": "「妨害・阻止」型動詞の最頻出語。fromの後は名詞または動名詞(-ing)。Part 5空所補充の定番。"
+  },
+  {
+    "id": 30,
+    "front": "keep the courier (   ) delivering packages",
+    "answer": "keep A from B(-ing)",
+    "preposition": "from",
+    "meaning": "AにB（するの）をさせない・防ぐ",
+    "example": "Heavy snowfall kept the courier service from delivering packages on schedule.",
+    "example_ja": "大雪のため、配送業者は荷物を予定通りに配達することができなかった。",
+    "note": "keep O from doing＝prevent O from doing。「keep O C（OをCの状態に保つ）」との構造の違いに注意。"
+  },
+  {
+    "id": 31,
+    "front": "stop the conflict (   ) escalating further",
+    "answer": "stop A from B(-ing)",
+    "preposition": "from",
+    "meaning": "AがB（するの）を止める・阻止する",
+    "example": "Timely intervention by the supervisor stopped the conflict from escalating further.",
+    "example_ja": "主任のタイムリーな介入により、対立がこれ以上悪化するのを食い止めた。",
+    "note": "stop O from doing。口語からビジネス文書まで広く登場。fromは省略されることもあるがTOEICではfrom頻出。"
+  },
+  {
+    "id": 32,
+    "front": "prohibit employees (   ) accepting expensive gifts",
+    "answer": "prohibit A from B(-ing)",
+    "preposition": "from",
+    "meaning": "AがB（するの）を法律・規則で禁止する",
+    "example": "Company policy strictly prohibits employees from accepting expensive gifts from clients.",
+    "example_ja": "社内規程により、従業員が顧客から高価な贈り物を受け取ることは厳格に禁じられている。",
+    "note": "受動態「be prohibited from doing」。forbid（forbid O to do）との語法の違いがPart 5で問われる。"
+  },
+  {
+    "id": 33,
+    "front": "ban the manufacturer (   ) exporting goods",
+    "answer": "ban A from B(-ing)",
+    "preposition": "from",
+    "meaning": "AをB（出入りや活動）から締め出す・禁止する",
+    "example": "The international body banned the non-compliant manufacturer from exporting goods.",
+    "example_ja": "その国際機関は、基準を満たしていないメーカーによる製品の輸出を禁止した。",
+    "note": "受動態「be banned from doing / be banned from 場所」。prohibitより公的な禁止の強いニュアンス。"
+  },
+  {
+    "id": 34,
+    "front": "discourage entrepreneurs (   ) taking out loans",
+    "answer": "discourage A from B(-ing)",
+    "preposition": "from",
+    "meaning": "AにB（すること）を思いとどまらせる",
+    "example": "Rising interest rates discouraged many entrepreneurs from taking out new commercial loans.",
+    "example_ja": "金利の上昇により、多くの起業家が新たな事業向け融資を受けることを思いとどまった。",
+    "note": "encourage O to do（Oに～するよう促す）の対義構造。discourage O from doingの形がPart 5で出題。"
+  },
+  {
+    "id": 35,
+    "front": "protect retail stores (   ) fire damage",
+    "answer": "protect A from B",
+    "preposition": "from",
+    "meaning": "AをB（危険・損害など）から保護する・守る",
+    "example": "Comprehensive insurance policies protect retail stores from substantial fire damage.",
+    "example_ja": "包括的な保険契約は、小売店を大規模な火災被害から守ります。",
+    "note": "protect A from [against] B。受動態「be protected from B」。Part 7の保険・セキュリティ約款で頻出。"
+  },
+  {
+    "id": 36,
+    "front": "shield the firm (   ) market volatility",
+    "answer": "shield A from B",
+    "preposition": "from",
+    "meaning": "AをB（批判・損害・光など）から遮る・保護する",
+    "example": "Diversifying the investment portfolio shielded the firm from market volatility.",
+    "example_ja": "投資ポートフォリオを分散させることで、市場の変動から会社を保護した。",
+    "note": "protect fromのフォーマル表現。受動態「be shielded from criticism/risk」。リスク管理文脈で登場。"
+  },
+  {
+    "id": 37,
+    "front": "save regional carriers (   ) bankruptcy",
+    "answer": "save A from B",
+    "preposition": "from",
+    "meaning": "AをB（破滅・危機・浪費など）から救う",
+    "example": "Emergency government subsidies saved several regional transport carriers from bankruptcy.",
+    "example_ja": "緊急の政府補助金により、複数の地方交通機関が破産から救われた。",
+    "note": "save A from ruin/collapse/bankruptcy。危機回避の文脈で登場。save A B（二重目的語）との違いに注意。"
+  },
+  {
+    "id": 38,
+    "front": "rescue the venture (   ) impending liquidation",
+    "answer": "rescue A from B",
+    "preposition": "from",
+    "meaning": "AをB（苦境・危険など）から救出する",
+    "example": "The capital injection rescued the technological venture from impending liquidation.",
+    "example_ja": "資本注入により、そのハイテクベンチャー企業は差し迫った会社清算の危機から救出された。",
+    "note": "rescue A from distress/insolvency。救済策・M&Aの文脈でPart 7によく出る語法。"
+  },
+  {
+    "id": 39,
+    "front": "exempt charitable institutions (   ) paying taxes",
+    "answer": "exempt A from B",
+    "preposition": "from",
+    "meaning": "AをB（義務・税・規則など）から免除する",
+    "example": "Charitable institutions are legally exempted from paying local property taxes.",
+    "example_ja": "慈善団体は法的に地方固定資産税の支払いを免除されている。",
+    "note": "受動態「be exempt(ed) from ～（～を免除されている）」がPart 5の超頻出語法。形容詞exemptも要チェック。"
+  },
+  {
+    "id": 40,
+    "front": "exclude accidental damage (   ) warranty coverage",
+    "answer": "exclude A from B",
+    "preposition": "from",
+    "meaning": "AをB（対象・リスト・範囲など）から除外する",
+    "example": "The warranty coverage specifically excludes damage resulting from improper device handling.",
+    "example_ja": "保証の対象範囲からは、不適切な機器の取り扱いに起因する破損が明確に除外されています。",
+    "note": "受動態「be excluded from B」。includeの対義語。Part 7の利用規約や保証書（Terms and Conditions）で定番。"
+  },
+  {
+    "id": 41,
+    "front": "excuse the keynote speaker (   ) attending the session",
+    "answer": "excuse A from B",
+    "preposition": "from",
+    "meaning": "AをB（義務・参加・責任など）から免除する",
+    "example": "The committee excused the keynote speaker from attending the morning breakfast session.",
+    "example_ja": "委員会は基調講演者に対し、午前の朝食セッションへの出席を免除した。",
+    "note": "excuse A from duty/attendance。受動態「be excused from ～（～を免除される）」。丁寧な配慮文脈。"
+  },
+  {
+    "id": 42,
+    "front": "separate executive meeting rooms (   ) the open-plan office",
+    "answer": "separate A from B",
+    "preposition": "from",
+    "meaning": "AをBから分離する・切り離す",
+    "example": "Clear glass partitions separate the executive meeting rooms from the open-plan office.",
+    "example_ja": "透明なガラスの間仕切りが、役員会議室とオープンオフィスを隔てている。",
+    "note": "separate A from B。受動態「be separated from」。Part 7のオフィス改装・設備案内の文脈で頻出。"
+  },
+  {
+    "id": 43,
+    "front": "distinguish our accounting software (   ) competitive products",
+    "answer": "distinguish A from B",
+    "preposition": "from",
+    "meaning": "AとBを区別する・見分ける",
+    "example": "Advanced features distinguish our accounting software from standard competitive products.",
+    "example_ja": "高度な機能により、当社の会計ソフトウェアは一般的な競合製品と一線を画している。",
+    "note": "distinguish A from B＝tell A from B＝differentiate A from B。受動態「be distinguished from」。"
+  },
+  {
+    "id": 44,
+    "front": "tell the authentic gemstone (   ) a synthetic imitation",
+    "answer": "tell A from B",
+    "preposition": "from",
+    "meaning": "AとBを見分ける・識別する",
+    "example": "Inexperienced appraisers can hardly tell the authentic gemstone from a synthetic imitation.",
+    "example_ja": "経験の浅い鑑定士には、本物の宝石と合成の模造品を見分けることはほぼできない。",
+    "note": "can tell A from Bで「AとBを区別できる」。fromの前置詞空所がPart 5で狙われる。tell A B（話す）と区別。"
+  },
+  {
+    "id": 45,
+    "front": "release the vendor (   ) further contractual obligations",
+    "answer": "release A from B",
+    "preposition": "from",
+    "meaning": "AをB（契約・拘束・義務など）から解放する・免除する",
+    "example": "The mutual agreement released the vendor from any further contractual obligations.",
+    "example_ja": "双方の合意により、ベンダーはそれ以降の契約上の義務から完全に解放された。",
+    "note": "release A from liability/contract。受動態「be released from」。契約解消・法務文脈の重要語法。"
+  },
+  {
+    "id": 46,
+    "front": "attribute record quarterly profits (   ) persistent dedication",
+    "answer": "attribute A to B",
+    "preposition": "to",
+    "meaning": "AをBの原因・おかげと考える・帰する",
+    "example": "The CEO attributed the record quarterly profits to the sales team's persistent dedication.",
+    "example_ja": "CEOは記録的な四半期利益を、営業チームの粘り強い献身のおかげであるとした。",
+    "note": "受動態「A is attributed to B（Aの原因はBにある）」がPart 5/7で最頻出。toは前置詞で名詞/動名詞が続く。"
+  },
+  {
+    "id": 47,
+    "front": "owe rapid market growth (   ) digital marketing tactics",
+    "answer": "owe A to B",
+    "preposition": "to",
+    "meaning": "A（成功など）はBのおかげである・AをBに負っている",
+    "example": "The startup owes its rapid market growth to innovative digital marketing tactics.",
+    "example_ja": "その新興企業は、急速な市場成長を革新的なデジタルマーケティング戦略の賜物としている。",
+    "note": "owe A to B。「AについてBに恩義がある／AはBのおかげ」。Part 5で前置詞toを選ばせる問題が定番。"
+  },
+  {
+    "id": 48,
+    "front": "dedicate substantial resources (   ) clean energy alternatives",
+    "answer": "dedicate A to B",
+    "preposition": "to",
+    "meaning": "A（時間・労力・資金）をBに捧げる・充てる",
+    "example": "The enterprise dedicated substantial resources to developing clean energy alternatives.",
+    "example_ja": "その企業はクリーンエネルギー代替案の開発に多大な資源を投入した。",
+    "note": "受動態「be dedicated to ～（～に献身・専念している）」。toは前置詞なので後ろは動名詞(doing)または名詞。"
+  },
+  {
+    "id": 49,
+    "front": "devote personal time (   ) community volunteer initiatives",
+    "answer": "devote A to B",
+    "preposition": "to",
+    "meaning": "A（時間・労力）をBに充てる・注ぎ込む",
+    "example": "Mr. Foster decided to devote more personal time to community volunteer initiatives.",
+    "example_ja": "フォスター氏は地域社会のボランティア活動により多くの個人時間を充てることに決めた。",
+    "note": "受動態「be devoted to doing/名詞」。dedicate A to Bと同義。Part 5で後ろに動名詞を選ぶ問題が頻出。"
+  },
+  {
+    "id": 50,
+    "front": "commit ten million dollars (   ) upgrading regional logistics",
+    "answer": "commit A to B",
+    "preposition": "to",
+    "meaning": "A（資金・時間）をBに投入する・委ねる",
+    "example": "Management committed an additional ten million dollars to upgrading regional logistics.",
+    "example_ja": "経営陣は地域物流網の刷新に追加で1000万ドルを投入することを約束・決定した。",
+    "note": "受動態「be committed to doing/名詞（～に全力を尽くす、傾倒する）」はPart 5の最頻出語法のひとつ。"
+  },
+  {
+    "id": 51,
+    "front": "confine presentation comments (   ) this fiscal year",
+    "answer": "confine A to B",
+    "preposition": "to",
+    "meaning": "AをB（範囲・限度）に限定する・閉じ込める",
+    "example": "Please confine your presentation comments to matters directly regarding this fiscal year.",
+    "example_ja": "プレゼンテーションへのコメントは、本会計年度に直接関わる事項に限定してください。",
+    "note": "confine A to B＝limit A to B。受動態「be confined to ～（～に限定されている）」。Part 7会議アナウンス。"
+  },
+  {
+    "id": 52,
+    "front": "limit conference attendance (   ) two registered delegates",
+    "answer": "limit A to B",
+    "preposition": "to",
+    "meaning": "AをB（数量・範囲など）に制限する",
+    "example": "Organizers limited the conference attendance to two registered delegates per affiliate.",
+    "example_ja": "主催者は会議の出席者を系列会社1社につき登録代表者2名までに制限した。",
+    "note": "受動態「be limited to ～（～に限定されている）」。toは前置詞。Part 7の定員やキャンペーン条件で頻出。"
+  },
+  {
+    "id": 53,
+    "front": "restrict access (   ) certified security staff",
+    "answer": "restrict A to B",
+    "preposition": "to",
+    "meaning": "AをB（特定の人・範囲など）に制限・規制する",
+    "example": "Access to the corporate data vault is strictly restricted to certified security staff.",
+    "example_ja": "企業のデータ保管庫へのアクセスは、認定されたセキュリティスタッフに厳格に制限されている。",
+    "note": "受動態「be restricted to ～」。limit toとほぼ同義。Part 7のアクセス権限や社内規定で頻出。"
+  },
+  {
+    "id": 54,
+    "front": "subject prototype components (   ) rigorous durability testing",
+    "answer": "subject A to B",
+    "preposition": "to",
+    "meaning": "AをB（検査・審査・変更など）にさらす・受けさせる",
+    "example": "The engineering lab subjects all prototype components to rigorous durability testing.",
+    "example_ja": "工学研究室はすべての試作部品に対して厳格な耐久試験を受けさせている。",
+    "note": "受動態「be subject to B（Bの対象となる、Bを受けやすい）」はPart 5の文法・語法問題の超頻出項目。"
+  },
+  {
+    "id": 55,
+    "front": "expose valuable merchandise (   ) moisture damage",
+    "answer": "expose A to B",
+    "preposition": "to",
+    "meaning": "AをB（危険・風潮・光など）にさらす",
+    "example": "Transporting cargo without protective wrap exposes valuable merchandise to moisture damage.",
+    "example_ja": "保護用包装なしで貨物を輸送すると、貴重な商品が湿気による被害にさらされる。",
+    "note": "受動態「be exposed to ～（～にさらされる）」。toは前置詞。Part 7の安全・物流トラブル文脈で頻出。"
+  },
+  {
+    "id": 56,
+    "front": "adapt the mobile interface (   ) international users' preferences",
+    "answer": "adapt A to B",
+    "preposition": "to",
+    "meaning": "AをB（新しい環境・仕様）に適応・適合させる",
+    "example": "Software developers adapted the mobile interface to the preferences of international users.",
+    "example_ja": "ソフトウェア開発者は、海外ユーザーの好みに合わせてモバイルインターフェースを適合させた。",
+    "note": "adapt A to B（他動詞）/ adapt to B（自動詞）。受動態「be adapted to」。adjust toと同系統。"
+  },
+  {
+    "id": 57,
+    "front": "adjust automated machinery (   ) revised tolerances",
+    "answer": "adjust A to B",
+    "preposition": "to",
+    "meaning": "AをB（基準・要望など）に合わせて調整する",
+    "example": "The technician adjusted the automated assembly machinery to the newly revised tolerances.",
+    "example_ja": "技術者は新たに改定された許容誤差に合わせて自動組立機械を調整した。",
+    "note": "adjust A to B。受動態「be adjusted to」。自動詞用法（adjust to the environment）と併せて出題される。"
+  },
+  {
+    "id": 58,
+    "front": "apply the promotional discount (   ) qualifying purchases",
+    "answer": "apply A to B",
+    "preposition": "to",
+    "meaning": "A（規則・技術・割引など）をBに適用する・塗る",
+    "example": "Cashiers will automatically apply the promotional discount to all qualifying purchases.",
+    "example_ja": "レジ担当者はすべての対象となる購入に対して自動的にプロモーション割引を適用します。",
+    "note": "apply A to B（AをBに適用する）/ apply for B（Bに応募・申請する）。前置詞の使い分けが狙われる。"
+  },
+  {
+    "id": 59,
+    "front": "attach the reimbursement voucher (   ) original expense receipts",
+    "answer": "attach A to B",
+    "preposition": "to",
+    "meaning": "AをBに添付する・取り付ける",
+    "example": "Please attach the completed reimbursement voucher to your original expense receipts.",
+    "example_ja": "記入済みの経費精算票を領収書の原本に添付してください。",
+    "note": "受動態「A is attached to B」。Part 7のビジネスメール「Attached to this email is...」の倒置構文も頻出。"
+  },
+  {
+    "id": 60,
+    "front": "connect the secondary generator (   ) the emergency grid",
+    "answer": "connect A to B",
+    "preposition": "to",
+    "meaning": "AをBに接続する・つなぐ",
+    "example": "The maintenance engineer connected the secondary generator to the emergency grid.",
+    "example_ja": "保守技術者は予備発電機を非常用送電網に接続した。",
+    "note": "connect A to [with] B。受動態「be connected to/with」。ITインフラや交通アクセスの文脈で頻出。"
+  },
+  {
+    "id": 61,
+    "front": "link employee work logs (   ) the corporate bank server",
+    "answer": "link A to B",
+    "preposition": "to",
+    "meaning": "AをBに関連付ける・連携させる",
+    "example": "The updated payroll system directly links employee work logs to the corporate bank server.",
+    "example_ja": "更新された給与システムは、従業員の勤務記録を企業の銀行サーバーに直接連動させている。",
+    "note": "受動態「be linked to B（Bに連動している、関連している）」。toは前置詞。システム連携文脈で頻出。"
+  },
+  {
+    "id": 62,
+    "front": "relate the theoretical model (   ) actual workplace scenarios",
+    "answer": "relate A to B",
+    "preposition": "to",
+    "meaning": "AをBに関連付ける",
+    "example": "The workshop speaker related the theoretical sales model to actual workplace scenarios.",
+    "example_ja": "ワークショップの講師は、理論的な販売モデルを実際の職場シナリオに関連付けて説明した。",
+    "note": "受動態「be related to ～（～に関連している）」。Part 5で関係詞や分詞構文として非常によく出る。"
+  },
+  {
+    "id": 63,
+    "front": "compare the corporate turnaround (   ) a high-stakes marathon",
+    "answer": "compare A to B",
+    "preposition": "to",
+    "meaning": "AをBにたとえる・見立てる",
+    "example": "In his keynote speech, the CEO compared the corporate turnaround to a high-stakes marathon.",
+    "example_ja": "基調講演において、CEOは企業の経営再建を一世一代のマラソンに例えた。",
+    "note": "比喩的に「AをBになぞらえる・例える」用法。客観的な「比較する」意味でもcompare A to Bは使われる。"
+  },
+  {
+    "id": 64,
+    "front": "prefer light rail transit (   ) driving personal cars",
+    "answer": "prefer A to B",
+    "preposition": "to",
+    "meaning": "BよりもAを好む",
+    "example": "Surveys indicate that most urban commuters prefer light rail transit to driving personal cars.",
+    "example_ja": "調査によると、大半の都市通勤者は自家用車の運転よりも軽量軌道交通（LRT）を好む。",
+    "note": "thanではなく前置詞toを用いるラテン比較変化の代表格。Part 5でtoを空所に選ばせる問題の定番。"
+  },
+  {
+    "id": 65,
+    "front": "introduce machine learning workflows (   ) local manufacturers",
+    "answer": "introduce A to B",
+    "preposition": "to",
+    "meaning": "AをBに導入する・紹介する",
+    "example": "The consulting firm introduced advanced machine learning workflows to local manufacturers.",
+    "example_ja": "そのコンサルティング会社は地元の製造業者に高度な機械学習ワークフローを導入した。",
+    "note": "introduce A to B。受動態「be introduced to」。新技術の導入や新任役員の紹介（Part 7）で頻出。"
+  },
+  {
+    "id": 66,
+    "front": "refer the prospective client (   ) the marketing director",
+    "answer": "refer A to B",
+    "preposition": "to",
+    "meaning": "A（人・案件）をB（専門家・窓口など）に照会する・送る",
+    "example": "The front desk clerk referred the prospective client to the regional marketing director.",
+    "example_ja": "受付係は見込み顧客を地域マーケティングディレクターに紹介・照会した。",
+    "note": "refer A to B（AをBに照会・紹介する）/ refer to B（Bを参照・言及する）。自動詞・他動詞の区別が問われる。"
+  },
+  {
+    "id": 67,
+    "front": "assign forecast preparation (   ) Senior Analyst Davis",
+    "answer": "assign A to B",
+    "preposition": "to",
+    "meaning": "A（業務・役職など）をB（人）に割り当てる",
+    "example": "The project lead assigned the preparation of the financial forecast to Senior Analyst Davis.",
+    "example_ja": "プロジェクトリーダーは財務予測の作成業務をシニアアナリストのデイビス氏に割り当てた。",
+    "note": "assign A to B＝assign B A（二重目的語）。受動態「be assigned to ～（～に配属・割り当てられる）」。"
+  },
+  {
+    "id": 68,
+    "front": "allocate fifty million yen (   ) revamping the riverwalk",
+    "answer": "allocate A to B",
+    "preposition": "to",
+    "meaning": "A（予算・資源など）をBに配分する・割り振る",
+    "example": "The municipal council allocated fifty million yen to revamping the downtown riverwalk.",
+    "example_ja": "市議会は繁華街のリバーウォーク改修に5000万円を配分した。",
+    "note": "受動態「be allocated to B」。予算配分やリソース管理の文脈でPart 5/7で極めて高い出題頻度。"
+  },
+  {
+    "id": 69,
+    "front": "thank loyal shareholders (   ) their unwavering patience",
+    "answer": "thank A for B",
+    "preposition": "for",
+    "meaning": "A（人）にB（好意・協力など）のことで感謝する",
+    "example": "We would like to thank our loyal shareholders for their unwavering patience and support.",
+    "example_ja": "揺るぎないご忍耐とご支援を賜りました忠実な株主の皆様に心より感謝申し上げます。",
+    "note": "thank＋人＋for 理由 / appreciate＋事柄。「感謝する」対象の文法構造の違いがPart 5で頻出。"
+  },
+  {
+    "id": 70,
+    "front": "blame inadequate warehouse management (   ) holiday delivery delays",
+    "answer": "blame A for B",
+    "preposition": "for",
+    "meaning": "AをB（不手際・失敗）の責任として責める",
+    "example": "Critics blamed inadequate warehouse management for the severe holiday delivery delays.",
+    "example_ja": "批評家らはホリデーシーズンの深刻な配送遅延の原因は不十分な倉庫管理にあると非難した。",
+    "note": "blame A for B＝blame B on A。受動態「be blamed for ～（～の責任を負わされる）」。Part 5の急所。"
+  },
+  {
+    "id": 71,
+    "front": "criticize the chemical company (   ) missing emissions targets",
+    "answer": "criticize A for B",
+    "preposition": "for",
+    "meaning": "AをB（欠点・方針など）のことで批判する",
+    "example": "Environmental groups criticized the chemical company for falling behind emissions targets.",
+    "example_ja": "環境保護団体は、排出目標の達成に遅れをとっているとしてその化学会社を批判した。",
+    "note": "受動態「be criticized for doing/名詞」。Part 7のニュース記事や社説でよく見られる重要語法。"
+  },
+  {
+    "id": 72,
+    "front": "praise the design crew (   ) meeting product specifications",
+    "answer": "praise A for B",
+    "preposition": "for",
+    "meaning": "AをB（業績・成果など）のことで賞賛する・褒める",
+    "example": "Senior management praised the design crew for meeting all demanding product specifications.",
+    "example_ja": "経営陣はすべての厳しい製品仕様を満たしたことについてデザイン班を称賛した。",
+    "note": "praise A for B＝commend A for B。受動態「be praised for ～」。表彰・評価の社内アナウンス定番。"
+  },
+  {
+    "id": 73,
+    "front": "reward sales executives (   ) exceeding annual quotas",
+    "answer": "reward A for B",
+    "preposition": "for",
+    "meaning": "AにB（努力・成果）に対して報いる・報酬を与える",
+    "example": "The performance incentive scheme rewards sales executives for exceeding annual quotas.",
+    "example_ja": "業績報奨制度は、年間ノルマを超過達成した営業幹部に報奨金を与えて報いる。",
+    "note": "reward A with B（AにBを与える）とreward A for B（Bの理由で報いる）の前置詞使い分けに注意。"
+  },
+  {
+    "id": 74,
+    "front": "compensate displaced travelers (   ) hotel and meal expenses",
+    "answer": "compensate A for B",
+    "preposition": "for",
+    "meaning": "AにB（損失・残業など）の埋め合わせ・補償をする",
+    "example": "The airline will compensate displaced travelers for their hotel and meal expenses.",
+    "example_ja": "航空会社は搭乗できなかった旅行者に対し、宿泊費および食事代を補償します。",
+    "note": "compensate A for B＝make up for B。受動態「be compensated for」。遅延補償や残業手当文脈で頻出。"
+  },
+  {
+    "id": 75,
+    "front": "reimburse employees (   ) official travel outlays",
+    "answer": "reimburse A for B",
+    "preposition": "for",
+    "meaning": "AにB（立替経費など）を払い戻す・返金する",
+    "example": "The accounting department will promptly reimburse employees for official travel outlays.",
+    "example_ja": "経理部門は従業員に対し、公式な出張費用の立替分を速やかに払い戻します。",
+    "note": "reimburse A for B。受動態「be reimbursed for」。Part 7の経費精算ガイドラインで最頻出語。"
+  },
+  {
+    "id": 76,
+    "front": "charge customers an annual fee (   ) technical support",
+    "answer": "charge A for B",
+    "preposition": "for",
+    "meaning": "A（人）にB（商品・サービス代）として請求する",
+    "example": "The software vendor will charge customers an annual maintenance fee for technical support.",
+    "example_ja": "そのソフトウェアベンダーは顧客に対し、技術サポート代として年間保守費用を請求する。",
+    "note": "charge A for B（B代としてAに請求する）とcharge A with B（Aに責任・罪を課す）の区別が超重要。"
+  },
+  {
+    "id": 77,
+    "front": "fine the building operator (   ) safety code violations",
+    "answer": "fine A for B",
+    "preposition": "for",
+    "meaning": "AにB（違反など）の理由で罰金を科す",
+    "example": "Municipal authorities fined the commercial building operator for safety code violations.",
+    "example_ja": "市当局は安全規定違反を理由にその商業ビル管理会社に罰金を科した。",
+    "note": "fine A for B。名詞fine（罰金）とともにビジネス法令遵守・査察文脈でPart 7によく出る。"
+  },
+  {
+    "id": 78,
+    "front": "mistake the annex building (   ) the main corporate hall",
+    "answer": "mistake A for B",
+    "preposition": "for",
+    "meaning": "AをBと間違える・誤認する",
+    "example": "Visitors often mistake the newly constructed annex building for the main corporate hall.",
+    "example_ja": "来訪者は新設された別館の建物を本館とよく間違える。",
+    "note": "mistake A for B＝confuse A with B。前置詞forを選択させる問題がPart 5で狙われる。"
+  },
+  {
+    "id": 79,
+    "front": "exchange unused merchandise (   ) store credit",
+    "answer": "exchange A for B",
+    "preposition": "for",
+    "meaning": "AをBと交換する・両替する",
+    "example": "Customers may exchange unused merchandise for store credit within thirty days of purchase.",
+    "example_ja": "顧客は購入から30日以内であれば、未使用の商品を店舗クレジットと交換することができます。",
+    "note": "exchange A for B。受動態「be exchanged for」。返品・交換ポリシー（Part 7）の最重要表現。"
+  },
+  {
+    "id": 80,
+    "front": "substitute almond milk (   ) dairy products",
+    "answer": "substitute A for B",
+    "preposition": "for",
+    "meaning": "Bの代わりにAを用いる・代用する",
+    "example": "The chef substituted almond milk for dairy products to cater to vegan customers.",
+    "example_ja": "シェフはヴィーガンの顧客のニーズに応えるため、乳製品の代わりにアーモンドミルクを用いた。",
+    "note": "substitute A for B（Bの代わりにAを使う）＝replace B with A。主語・目的語の入れ替わりに注意。"
+  }
+]

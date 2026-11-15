@@ -1,0 +1,1002 @@
+[
+  {
+    "id": 1,
+    "front": "account (   ) over 40% of revenue",
+    "answer": "account for",
+    "preposition": "for",
+    "meaning": "～の割合を占める、～を説明する",
+    "example": "Online sales account for over 40% of the company's total annual revenue.",
+    "example_ja": "オンライン売上は会社の年間総売上の40％以上を占めている。",
+    "note": "Part 5/7超頻出。「占める」「説明する」の2義。自動詞のため直後にforが必要。"
+  },
+  {
+    "id": 2,
+    "front": "comply (   ) the safety regulations",
+    "answer": "comply with",
+    "preposition": "with",
+    "meaning": "～に従う、～を遵守する",
+    "example": "All employees must comply with the new safety regulations in the warehouse.",
+    "example_ja": "全従業員は倉庫内の新しい安全規則を遵守しなければならない。",
+    "note": "Part 5頻出。comply with＝follow＝observe＝conform to。後ろにrulesやregulationsが続く。"
+  },
+  {
+    "id": 3,
+    "front": "refrain (   ) taking photographs",
+    "answer": "refrain from",
+    "preposition": "from",
+    "meaning": "～を控える、～を遠慮する",
+    "example": "Attendees are kindly requested to refrain from taking photographs during the seminar.",
+    "example_ja": "セミナー中の写真撮影はご遠慮くださいますようお願いいたします。",
+    "note": "fromの後ろは動名詞(V-ing)または名詞。Part 7のアナウンスや注意書きで頻出。"
+  },
+  {
+    "id": 4,
+    "front": "specialize (   ) corporate mergers",
+    "answer": "specialize in",
+    "preposition": "in",
+    "meaning": "～を専門にする、～を専攻する",
+    "example": "Our law firm specializes in corporate mergers and intellectual property rights.",
+    "example_ja": "当法律事務所は企業の合併および知的財産権を専門としています。",
+    "note": "specializeは自動詞でinを伴う。会社概要・求人票(Part 7)で頻出の自己紹介表現。"
+  },
+  {
+    "id": 5,
+    "front": "dispose (   ) confidential documents",
+    "answer": "dispose of",
+    "preposition": "of",
+    "meaning": "～を処分する、～を廃棄する",
+    "example": "Please dispose of all confidential documents in the designated shredding bin.",
+    "example_ja": "すべての機密書類は指定された細断用ゴミ箱に廃棄してください。",
+    "note": "ofの発音とスペルに注意(offではない)。discard, get rid ofと同義。Part 5の前置詞選択で頻出。"
+  },
+  {
+    "id": 6,
+    "front": "inquire (   ) wholesale pricing",
+    "answer": "inquire about",
+    "preposition": "about",
+    "meaning": "～について問い合わせる",
+    "example": "A potential client called to inquire about our wholesale pricing structure.",
+    "example_ja": "見込み顧客から当社の卸売価格体系について問い合わせの電話があった。",
+    "note": "inquire about＋事項 / inquire into＋事件の調査。他動詞のask aboutと同義。"
+  },
+  {
+    "id": 7,
+    "front": "apologize (   ) the delay",
+    "answer": "apologize for",
+    "preposition": "for",
+    "meaning": "～のことで謝罪する",
+    "example": "We sincerely apologize for the delay in processing your recent order.",
+    "example_ja": "先日のご注文の処理に遅れが生じましたことを心よりお詫び申し上げます。",
+    "note": "apologize for＋理由 / apologize to＋人。Part 7のビジネスメールでお詫びの定型句。"
+  },
+  {
+    "id": 8,
+    "front": "adhere (   ) the code of conduct",
+    "answer": "adhere to",
+    "preposition": "to",
+    "meaning": "～を遵守する、～に固執する",
+    "example": "Strict adherence to the company's code of conduct is required at all times.",
+    "example_ja": "常に会社の行動規範を厳格に遵守することが求められます。",
+    "note": "toは前置詞なので名詞/動名詞が続く。comply with, stick toと同義。名詞形adherence toも頻出。"
+  },
+  {
+    "id": 9,
+    "front": "conform (   ) international quality standards",
+    "answer": "conform to",
+    "preposition": "to",
+    "meaning": "～に適合する、～に準拠する",
+    "example": "The newly manufactured components conform to international quality standards.",
+    "example_ja": "新たに製造された部品は国際的な品質基準に適合している。",
+    "note": "conform with/toで「規格・基準に合致する」。comply withと同義語。"
+  },
+  {
+    "id": 10,
+    "front": "abide (   ) the contract terms",
+    "answer": "abide by",
+    "preposition": "by",
+    "meaning": "～に従う、～を守る",
+    "example": "Both parties agreed to abide by the terms outlined in the employment contract.",
+    "example_ja": "双方は雇用契約書に概説された条件に従うことに合意した。",
+    "note": "abide by＋rules/decision/terms。Part 5の語法問題でbyを選択させる問題が頻出。"
+  },
+  {
+    "id": 11,
+    "front": "participate (   ) the trade conference",
+    "answer": "participate in",
+    "preposition": "in",
+    "meaning": "～に参加する",
+    "example": "Several senior managers will participate in the international trade conference.",
+    "example_ja": "数名のシニアマネージャーが国際貿易会議に参加する予定です。",
+    "note": "participate in＝take part in＝attend。attendは他動詞で前置詞不要な点との対比が頻出。"
+  },
+  {
+    "id": 12,
+    "front": "engage (   ) intensive consumer research",
+    "answer": "engage in",
+    "preposition": "in",
+    "meaning": "～に従事する、～に関与する",
+    "example": "The marketing team is currently engaged in intensive consumer research.",
+    "example_ja": "マーケティングチームは現在、集中的な消費者調査に従事している。",
+    "note": "be engaged in ～（～に従事している）の受動態・形容詞的用法もPart 5/7で極めて頻出。"
+  },
+  {
+    "id": 13,
+    "front": "result (   ) improved productivity",
+    "answer": "result in",
+    "preposition": "in",
+    "meaning": "～という結果になる、～をもたらす",
+    "example": "The software upgrade resulted in a noticeable improvement in productivity.",
+    "example_ja": "ソフトウェアのアップグレードにより、生産性に著しい向上がもたらされた。",
+    "note": "result in＋結果 / result from＋原因。因果関係の取り違えを狙うPart 5の引っかけ定番。"
+  },
+  {
+    "id": 14,
+    "front": "result (   ) an unexpected decline",
+    "answer": "result from",
+    "preposition": "from",
+    "meaning": "～に起因する、～が原因で生じる",
+    "example": "The budget deficit resulted from an unexpected decline in quarterly sales.",
+    "example_ja": "予算の赤字は、四半期売上の予期せぬ落ち込みに起因していた。",
+    "note": "result from＋原因。「～から生じる」。因果関係を把握するPart 7の文脈問題で鍵となる。"
+  },
+  {
+    "id": 15,
+    "front": "lead (   ) further shipping delays",
+    "answer": "lead to",
+    "preposition": "to",
+    "meaning": "～につながる、～を引き起こす",
+    "example": "Ongoing supply chain disruptions could lead to further shipping delays.",
+    "example_ja": "供給網の混乱が続くと、さらなる出荷遅延につながる可能性がある。",
+    "note": "toは前置詞（不定詞ではないため名詞・動名詞が続く）。cause, bring aboutと同義。"
+  },
+  {
+    "id": 16,
+    "front": "contribute (   ) workplace safety",
+    "answer": "contribute to",
+    "preposition": "to",
+    "meaning": "～に貢献する、～の一因となる",
+    "example": "Regular employee training contributes significantly to workplace safety.",
+    "example_ja": "定期的な従業員研修は職場の安全に大いに貢献する。",
+    "note": "toは前置詞で名詞・動名詞が続く。Part 5でcontribute to doingの動名詞選択が超頻出。"
+  },
+  {
+    "id": 17,
+    "front": "object (   ) the proposed acquisition",
+    "answer": "object to",
+    "preposition": "to",
+    "meaning": "～に反対する",
+    "example": "Several board members objected to the proposed acquisition of the rival firm.",
+    "example_ja": "数名の取締役が、ライバル企業の買収提案に反対した。",
+    "note": "toは前置詞。「～に反対する」意味ではobject to名詞/動名詞。oppose（他動詞）との違いに注意。"
+  },
+  {
+    "id": 18,
+    "front": "respond (   ) customer inquiries",
+    "answer": "respond to",
+    "preposition": "to",
+    "meaning": "～に対応する、～に返信する",
+    "example": "Customer support strives to respond to inquiries within 24 business hours.",
+    "example_ja": "カスタマーサポートは24営業時間以内に問い合わせに対応するよう努めています。",
+    "note": "respond to＋名詞。answer（他動詞）との混同に注意。Part 7メール対応の定番。"
+  },
+  {
+    "id": 19,
+    "front": "reply (   ) this email",
+    "answer": "reply to",
+    "preposition": "to",
+    "meaning": "～に返事をする、～に返信する",
+    "example": "Please reply to this email to confirm your attendance at tomorrow's orientation.",
+    "example_ja": "明日のオリエンテーションへの出席を確認するため、このメールにご返信ください。",
+    "note": "reply to＋名詞。answer（他動詞）は前置詞不要だがreplyはtoが必須。"
+  },
+  {
+    "id": 20,
+    "front": "refer (   ) the user manual",
+    "answer": "refer to",
+    "preposition": "to",
+    "meaning": "～を参照する、～に言及する",
+    "example": "Please refer to page 12 of the user manual for installation instructions.",
+    "example_ja": "設置手順については、取扱説明書の12ページをご参照ください。",
+    "note": "refer to A as B（AをBと呼ぶ）や「参照する」の意味でPart 5/7で頻出。"
+  },
+  {
+    "id": 21,
+    "front": "apply (   ) the managerial position",
+    "answer": "apply for",
+    "preposition": "for",
+    "meaning": "（職や許可などに）応募する、申請する",
+    "example": "Qualified applicants are encouraged to apply for the managerial position.",
+    "example_ja": "資格を満たす応募者は、管理職のポストに応募することが推奨されます。",
+    "note": "apply for＋地位・許可・助成金（対象）/ apply to＋機関・組織（提出先）。求人票の最頻出語。"
+  },
+  {
+    "id": 22,
+    "front": "apply (   ) all registered organizations",
+    "answer": "apply to",
+    "preposition": "to",
+    "meaning": "（組織などに）申し込む、～に適用される",
+    "example": "The corporate discount rate applies to all registered non-profit organizations.",
+    "example_ja": "法人割引率は、登録されているすべての非営利団体に適用されます。",
+    "note": "apply to＋組織（宛先）または「～に適用される」の意。toは前置詞。"
+  },
+  {
+    "id": 23,
+    "front": "rely (   ) dependable IT infrastructure",
+    "answer": "rely on",
+    "preposition": "on",
+    "meaning": "～に頼る、～を信頼する",
+    "example": "Small enterprises heavily rely on dependable IT infrastructure for daily operations.",
+    "example_ja": "中小企業は日々の業務において信頼できるIT基盤に大きく依存している。",
+    "note": "rely on/upon＝depend on＝count on。信頼性(reliable/reliance)の派生語も重要。"
+  },
+  {
+    "id": 24,
+    "front": "depend (   ) the trial outcome",
+    "answer": "depend on",
+    "preposition": "on",
+    "meaning": "～に頼る、～次第である",
+    "example": "The launch date of the product will depend on the outcome of clinical trials.",
+    "example_ja": "製品の発売日は臨床試験の結果次第となる。",
+    "note": "depend on/upon。「～次第である」「～に依存する」。Part 5で副詞とのコロケーション(heavily depend on)頻出。"
+  },
+  {
+    "id": 25,
+    "front": "count (   ) the logistics team",
+    "answer": "count on",
+    "preposition": "on",
+    "meaning": "～を当てにする、～を頼りにする",
+    "example": "You can always count on our dedicated logistics team to deliver on time.",
+    "example_ja": "時間通りの配達については、当社の専任物流チームをいつでも当てにしていただけます。",
+    "note": "count on人 to do（人が～することを当てにする）。口語・社内メールで頻出。"
+  },
+  {
+    "id": 26,
+    "front": "focus (   ) international expansion strategies",
+    "answer": "focus on",
+    "preposition": "on",
+    "meaning": "～に焦点を当てる、～に集中する",
+    "example": "The upcoming presentation will focus on international expansion strategies.",
+    "example_ja": "次回のプレゼンテーションは、国際展開戦略に焦点を当てます。",
+    "note": "focus on＝concentrate on。focusは自動詞としてonを伴う用法がTOEICで圧倒的多数。"
+  },
+  {
+    "id": 27,
+    "front": "concentrate (   ) improving battery efficiency",
+    "answer": "concentrate on",
+    "preposition": "on",
+    "meaning": "～に集中する、～に専念する",
+    "example": "The R&D department needs to concentrate on improving battery efficiency.",
+    "example_ja": "研究開発部門はバッテリー効率の向上に専念する必要がある。",
+    "note": "concentrate on＋名詞/動名詞。focus onと同義。"
+  },
+  {
+    "id": 28,
+    "front": "insist (   ) a face-to-face meeting",
+    "answer": "insist on",
+    "preposition": "on",
+    "meaning": "～を強く主張する、～と言ってきかない",
+    "example": "The client insisted on having a face-to-face meeting before signing the contract.",
+    "example_ja": "クライアントは契約書に署名する前に対面での会議を行うことを強く求めた。",
+    "note": "insist on＋動名詞(doing)。insist that S (should) doのthat節の構文と並び頻出。"
+  },
+  {
+    "id": 29,
+    "front": "elaborate (   ) the environmental benefits",
+    "answer": "elaborate on",
+    "preposition": "on",
+    "meaning": "～について詳細に説明する",
+    "example": "The architect was asked to elaborate on the environmental benefits of the design.",
+    "example_ja": "建築家はその設計の環境上の利点について詳細に説明するよう求められた。",
+    "note": "elaborate on＝explain in detail。explainは他動詞だがelaborateは自動詞でonを要する。"
+  },
+  {
+    "id": 30,
+    "front": "comment (   ) the merger negotiations",
+    "answer": "comment on",
+    "preposition": "on",
+    "meaning": "～についてコメントする、意見を述べる",
+    "example": "The spokesperson declined to comment on the ongoing merger negotiations.",
+    "example_ja": "報道担当者は進行中の合併交渉についてコメントすることを控えた。",
+    "note": "comment on＋話題。Part 5で前置詞onを空所に選ばせる問題が多い。"
+  },
+  {
+    "id": 31,
+    "front": "agree (   ) the budget proposal",
+    "answer": "agree on",
+    "preposition": "on",
+    "meaning": "（合意事項・条件について）合意する",
+    "example": "After hours of deliberation, the committee finally agreed on the budget proposal.",
+    "example_ja": "何時間もの審議の末、委員会はついに予算案について合意に達した。",
+    "note": "agree on＋議題・条件 / agree with＋人 / agree to＋提案・計画。使い分けが問われる。"
+  },
+  {
+    "id": 32,
+    "front": "agree (   ) your assessment",
+    "answer": "agree with",
+    "preposition": "with",
+    "meaning": "（人の意見・考え）に同意する",
+    "example": "I completely agree with your assessment regarding the target market trends.",
+    "example_ja": "ターゲット市場の動向に関するあなたのご意見・評価に完全に同意します。",
+    "note": "agree with＋人・意見。Part 3/4の会話やPart 5の語法問題で基本。"
+  },
+  {
+    "id": 33,
+    "front": "agree (   ) the revised terms",
+    "answer": "agree to",
+    "preposition": "to",
+    "meaning": "（提案・計画など）に同意・承諾する",
+    "example": "The supplier has agreed to the revised terms of delivery and payment.",
+    "example_ja": "サプライヤーは改定された納期および支払条件に同意した。",
+    "note": "agree to＋提案・条件(proposal, plan, terms)。toは前置詞。"
+  },
+  {
+    "id": 34,
+    "front": "deal (   ) customer complaints",
+    "answer": "deal with",
+    "preposition": "with",
+    "meaning": "～を処理する、～に対処する",
+    "example": "The customer service representative dealt with complaints quickly and courteously.",
+    "example_ja": "カスタマーサービス担当者は苦情に迅速かつ礼儀正しく対処した。",
+    "note": "deal with＝handle＝cope with＝address。Part 5/7で苦情処理や問題解決の文脈で最頻出。"
+  },
+  {
+    "id": 35,
+    "front": "cope (   ) rising energy expenses",
+    "answer": "cope with",
+    "preposition": "with",
+    "meaning": "（困難などに）うまく対処する、乗り切る",
+    "example": "Many local businesses struggled to cope with rising energy expenses.",
+    "example_ja": "多くの地元企業は、光熱費・エネルギー費の上昇への対処に苦慮した。",
+    "note": "cope with＋困難・問題(difficulties, stress, rising costs)。deal with successfullyのニュアンス。"
+  },
+  {
+    "id": 36,
+    "front": "interfere (   ) normal business operations",
+    "answer": "interfere with",
+    "preposition": "with",
+    "meaning": "～を邪魔する、～に支障をきたす",
+    "example": "Routine maintenance will not interfere with normal business operations.",
+    "example_ja": "定期メンテナンスが通常の業務に支障をきたすことはありません。",
+    "note": "interfere with＋業務・進行・計画。告知文やPart 7のアナウンスで頻出。"
+  },
+  {
+    "id": 37,
+    "front": "coincide (   ) the annual tech expo",
+    "answer": "coincide with",
+    "preposition": "with",
+    "meaning": "～と同時に起こる、～と一致する",
+    "example": "The official product release is scheduled to coincide with the annual tech expo.",
+    "example_ja": "公式な製品発売は、年次テクノロジー博覧会と時期を合わせるよう予定されている。",
+    "note": "coincide with＋イベント・日時。スケジュール調整文脈でPart 7によく出る。"
+  },
+  {
+    "id": 38,
+    "front": "collaborate (   ) external software engineers",
+    "answer": "collaborate with",
+    "preposition": "with",
+    "meaning": "～と協力・共同作業する",
+    "example": "Our design department is collaborating with external software engineers.",
+    "example_ja": "当社のデザイン部門は社外のソフトウェアエンジニアと共同作業を行っている。",
+    "note": "collaborate with＋人・組織 / collaborate on＋プロジェクト。work togetherと同義。"
+  },
+  {
+    "id": 39,
+    "front": "cooperate (   ) flight attendants",
+    "answer": "cooperate with",
+    "preposition": "with",
+    "meaning": "～に協力する",
+    "example": "Passengers are requested to cooperate with flight attendants during boarding.",
+    "example_ja": "搭乗中は客室乗務員にご協力くださいますようお願い申し上げます。",
+    "note": "cooperate with＋人・組織。名詞形cooperationもPart 7アナウンスで定番。"
+  },
+  {
+    "id": 40,
+    "front": "negotiate (   ) prospective vendors",
+    "answer": "negotiate with",
+    "preposition": "with",
+    "meaning": "～と交渉する",
+    "example": "Procurement managers met to negotiate with vendors for lower bulk rates.",
+    "example_ja": "調達マネージャーらは大口割引料金を求めてベンダーと交渉するために会合を持った。",
+    "note": "negotiate with＋相手 / negotiate for＋求める条件。Part 5で前置詞の組み合わせが問われる。"
+  },
+  {
+    "id": 41,
+    "front": "consult (   ) a tax accountant",
+    "answer": "consult with",
+    "preposition": "with",
+    "meaning": "（専門家など）と相談・協議する",
+    "example": "You should consult with an accountant before submitting your tax returns.",
+    "example_ja": "確定申告書を提出する前に、会計士に相談することをお勧めします。",
+    "note": "consult with＋人（専門家と協議する）。consult＋本・資料（参照する）との用法比較が重要。"
+  },
+  {
+    "id": 42,
+    "front": "communicate (   ) our overseas branches",
+    "answer": "communicate with",
+    "preposition": "with",
+    "meaning": "～と連絡を取る、意志疎通する",
+    "example": "We use video conferencing tools to communicate with our overseas branches.",
+    "example_ja": "当社は海外支店と連絡を取るためにビデオ会議ツールを使用しています。",
+    "note": "communicate with＋相手。Part 5で前置詞withを伴う自動詞の代表例。"
+  },
+  {
+    "id": 43,
+    "front": "compete (   ) low-cost international imports",
+    "answer": "compete with",
+    "preposition": "with",
+    "meaning": "～と競争する、競合する",
+    "example": "Domestic manufacturers must compete with low-cost international imports.",
+    "example_ja": "国内メーカーは低価格の海外輸入品と競争しなければならない。",
+    "note": "compete with/against＋競合相手 / compete for＋賞・市場。"
+  },
+  {
+    "id": 44,
+    "front": "proceed (   ) the expansion project",
+    "answer": "proceed with",
+    "preposition": "with",
+    "meaning": "～を（計画通りに）進める、続行する",
+    "example": "The board gave permission to proceed with the warehouse expansion project.",
+    "example_ja": "取締役会は倉庫拡張プロジェクトを進める許可を与えた。",
+    "note": "proceed with＋計画・作業。「続行する」。go ahead withと同義でPart 5/7で極めて頻出。"
+  },
+  {
+    "id": 45,
+    "front": "experiment (   ) organic ingredients",
+    "answer": "experiment with",
+    "preposition": "with",
+    "meaning": "～の実験をする、～を試みる",
+    "example": "The culinary team is experimenting with organic ingredients for the new menu.",
+    "example_ja": "料理チームは新メニューのために有機食材を試作・実験している。",
+    "note": "experiment with＋新手法・材料。experimentは自動詞。"
+  },
+  {
+    "id": 46,
+    "front": "consist (   ) five industry experts",
+    "answer": "consist of",
+    "preposition": "of",
+    "meaning": "～から構成されている、～から成る",
+    "example": "The evaluation panel will consist of five independent industry experts.",
+    "example_ja": "評価委員会は5名の独立した業界専門家で構成されます。",
+    "note": "consist of＝be composed of＝be made up of。進行形・受動態にできない点に注意（Part 5の罠）。"
+  },
+  {
+    "id": 47,
+    "front": "approve (   ) the marketing expenditure",
+    "answer": "approve of",
+    "preposition": "of",
+    "meaning": "～を承認する、～に賛成する",
+    "example": "The executive board did not approve of the proposed marketing expenditure.",
+    "example_ja": "役員会は提案されたマーケティング支出案を承認しなかった。",
+    "note": "approve of＋名詞/動名詞。approveは他動詞（直接目的語をとる）もあるが、ofを伴う自動詞用法も出題。"
+  },
+  {
+    "id": 48,
+    "front": "disapprove (   ) the unilateral decision",
+    "answer": "disapprove of",
+    "preposition": "of",
+    "meaning": "～に不賛成である、難色を示す",
+    "example": "Management strongly disapproved of the unilateral decision made by the branch.",
+    "example_ja": "経営陣は支社によって下された一方的な決定に難色を示した。",
+    "note": "approve ofの対義語。ofが必要な自動詞表現。"
+  },
+  {
+    "id": 49,
+    "front": "complain (   ) severe back pain",
+    "answer": "complain of",
+    "preposition": "of",
+    "meaning": "（苦痛・不調など）を訴える",
+    "example": "Several warehouse workers complained of severe back pain from heavy lifting.",
+    "example_ja": "数名の倉庫作業員が重量物の持ち上げによる激しい腰痛を訴えた。",
+    "note": "complain of＋症状・不調 / complain about＋不満事項。微妙な前置詞の使い分け。"
+  },
+  {
+    "id": 50,
+    "front": "complain (   ) public transit delays",
+    "answer": "complain about",
+    "preposition": "about",
+    "meaning": "～について不満・苦情を言う",
+    "example": "Frequent commuters complained about the unreliability of public transit.",
+    "example_ja": "頻繁に利用する通勤客らは公共交通機関の不確かさについて不満を述べた。",
+    "note": "complain about＋不満の対象。make a complaint aboutと同義。"
+  },
+  {
+    "id": 51,
+    "front": "boast (   ) stunning ocean views",
+    "answer": "boast of",
+    "preposition": "of",
+    "meaning": "～を誇る、～を自慢する",
+    "example": "The flagship resort boasts of stunning ocean views and first-class amenities.",
+    "example_ja": "その旗艦リゾートは素晴らしい海の眺望と一流の設備を誇っている。",
+    "note": "boast of/about＝brag about。boastは他動詞として直接目的語を取ることも多い。"
+  },
+  {
+    "id": 52,
+    "front": "speak (   ) the application's popularity",
+    "answer": "speak of",
+    "preposition": "of",
+    "meaning": "～について話す、～を物語る",
+    "example": "The rapid growth of subscribers speaks of the mobile application's popularity.",
+    "example_ja": "加入者の急激な増加は、そのモバイルアプリの人気の高さを物語っている。",
+    "note": "speak of＝indicate, show。「～を物語る、証拠となる」の意味でもPart 7で登場。"
+  },
+  {
+    "id": 53,
+    "front": "hear (   ) this European corporation",
+    "answer": "hear of",
+    "preposition": "of",
+    "meaning": "～の噂・存在を耳にする",
+    "example": "Have you ever heard of this European renewable energy corporation?",
+    "example_ja": "このヨーロッパの再生可能エネルギー企業について耳にしたことがありますか。",
+    "note": "hear of＋存在を知っている / hear about＋詳細を聞く / hear from＋連絡をもらう。"
+  },
+  {
+    "id": 54,
+    "front": "hear (   ) the human resources manager",
+    "answer": "hear from",
+    "preposition": "from",
+    "meaning": "～から連絡・便りをもらう",
+    "example": "We anticipate hearing from the human resources manager by Friday morning.",
+    "example_ja": "金曜の午前中までに人事マネージャーから連絡があることを見込んでいます。",
+    "note": "hear from＋人。receive communication fromと同義。ビジネス連絡文脈の定番。"
+  },
+  {
+    "id": 55,
+    "front": "hear (   ) your promotion",
+    "answer": "hear about",
+    "preposition": "about",
+    "meaning": "～について（事情や詳細を）聞く",
+    "example": "I was excited to hear about your promotion to regional marketing director.",
+    "example_ja": "あなたが地域マーケティングディレクターに昇進されたと聞いて大変嬉しく思いました。",
+    "note": "hear about＋出来事・詳細。お祝いメールの書き出しで頻出。"
+  },
+  {
+    "id": 56,
+    "front": "benefit (   ) the upcoming summit",
+    "answer": "benefit from",
+    "preposition": "from",
+    "meaning": "～から恩恵を受ける、～で得をする",
+    "example": "Local retailers will greatly benefit from the upcoming international summit.",
+    "example_ja": "地元の小売業者は、近づく国際サミットから大いに恩恵を受けるだろう。",
+    "note": "benefit from＋恩恵の源泉。Part 5で自動詞＋fromの組み合わせが頻出。"
+  },
+  {
+    "id": 57,
+    "front": "suffer (   ) major production delays",
+    "answer": "suffer from",
+    "preposition": "from",
+    "meaning": "（病気・不振など）に苦しむ、悩まされる",
+    "example": "The factory suffered from major production delays due to material shortages.",
+    "example_ja": "その工場は資材不足による大幅な生産遅延に見舞われ苦しんだ。",
+    "note": "suffer from＋苦痛・損害・不振。Part 7の業績報告やトラブル文脈で頻出。"
+  },
+  {
+    "id": 58,
+    "front": "recover (   ) the severe downturn",
+    "answer": "recover from",
+    "preposition": "from",
+    "meaning": "（打撃・不況など）から回復する",
+    "example": "The regional economy is steadily recovering from the severe downturn.",
+    "example_ja": "地域経済は深刻な景気後退から着実に回復しつつある。",
+    "note": "recover from＋景気低迷(downturn)・損失(losses)。bounce back fromと同義。"
+  },
+  {
+    "id": 59,
+    "front": "emerge (   ) the competitive challenge",
+    "answer": "emerge from",
+    "preposition": "from",
+    "meaning": "～から脱する、～から現れる",
+    "example": "The tech startup emerged from the competitive challenge as an industry leader.",
+    "example_ja": "その新興IT企業は厳しい競争の試練を脱し業界のリーダーとして頭角を現した。",
+    "note": "emerge from＋危機・困難。「～から抜け出る、台頭する」。"
+  },
+  {
+    "id": 60,
+    "front": "stem (   ) recent staffing cutbacks",
+    "answer": "stem from",
+    "preposition": "from",
+    "meaning": "～に起因する、～から生じる",
+    "example": "The decline in customer satisfaction stems from recent staffing cutbacks.",
+    "example_ja": "顧客満足度の低下は、最近の人員削減に起因している。",
+    "note": "stem from＝originate from＝result from。「～から生じる」。原因を示す重要表現。"
+  },
+  {
+    "id": 61,
+    "front": "differ (   ) the preliminary blueprint",
+    "answer": "differ from",
+    "preposition": "from",
+    "meaning": "～と異なる",
+    "example": "The finalized architectural plan differs from the preliminary blueprint.",
+    "example_ja": "最終決定された建築計画は、予備の青写真とは異なっている。",
+    "note": "differ from＝be different from。differ in（～の点で異なる）との前置詞使い分けも問われる。"
+  },
+  {
+    "id": 62,
+    "front": "graduate (   ) an accredited university",
+    "answer": "graduate from",
+    "preposition": "from",
+    "meaning": "～を卒業する",
+    "example": "Candidates must have graduated from an accredited four-year university.",
+    "example_ja": "応募者は公認の4年制大学を卒業していなければなりません。",
+    "note": "graduate from＋学校。graduateは自動詞なので学校名が直接続かない（fromが必須）。"
+  },
+  {
+    "id": 63,
+    "front": "abstain (   ) voting",
+    "answer": "abstain from",
+    "preposition": "from",
+    "meaning": "～を控える、棄権する",
+    "example": "Committee members were asked to abstain from voting due to conflicts of interest.",
+    "example_ja": "委員会のメンバーは利益相反のため投票を棄権するよう求められた。",
+    "note": "abstain from＝refrain from。投票や特定の行動を控える場面で使われる。"
+  },
+  {
+    "id": 64,
+    "front": "withdraw (   ) the unprofitable market",
+    "answer": "withdraw from",
+    "preposition": "from",
+    "meaning": "～から撤退する、脱退する",
+    "example": "The firm decided to withdraw from the unprofitable overseas market.",
+    "example_ja": "その会社は不採算の海外市場から撤退することを決定した。",
+    "note": "withdraw from＋市場・競技会・役職。他動詞（預金を引き出す）との区別に注意。"
+  },
+  {
+    "id": 65,
+    "front": "resign (   ) the executive post",
+    "answer": "resign from",
+    "preposition": "from",
+    "meaning": "～を辞任する、退職する",
+    "example": "Mr. Tanaka announced his intention to resign from the post of Chief Executive.",
+    "example_ja": "田中氏は最高経営責任者の職を辞任する意向を表明した。",
+    "note": "resign from＋役職・地位。step down fromと同義。Part 7人事異動ニュースの定番。"
+  },
+  {
+    "id": 66,
+    "front": "revert (   ) its default settings",
+    "answer": "revert to",
+    "preposition": "to",
+    "meaning": "（元の状態・設定）に戻る",
+    "example": "If technical issues persist, the system will revert to its default settings.",
+    "example_ja": "技術的な問題が解決しない場合、システムはデフォルト設定に戻ります。",
+    "note": "revert to＋元の状態・設定。ITトラブルシューティングや契約条項で頻出。"
+  },
+  {
+    "id": 67,
+    "front": "depend (   ) seamless departmental coordination",
+    "answer": "depend upon",
+    "preposition": "upon",
+    "meaning": "～に頼る、～次第である",
+    "example": "Successful implementation will depend upon seamless departmental coordination.",
+    "example_ja": "導入の成功は、部門間の円滑な連携にかかっている。",
+    "note": "depend onのフォーマルな同義形。Part 5でuponが正解選択肢になる場合あり。"
+  },
+  {
+    "id": 68,
+    "front": "count (   ) steady quarterly dividends",
+    "answer": "count upon",
+    "preposition": "upon",
+    "meaning": "～を当てにする、期待する",
+    "example": "Investors can count upon steady quarterly dividends from the utility firm.",
+    "example_ja": "投資家はその公益企業からの安定した四半期配当を当てにすることができる。",
+    "note": "count onと同義。uponを用いた格調高い表現。"
+  },
+  {
+    "id": 69,
+    "front": "look (   ) experienced system administrators",
+    "answer": "look for",
+    "preposition": "for",
+    "meaning": "～を探す、探求する",
+    "example": "The recruiting agency is actively looking for experienced system administrators.",
+    "example_ja": "人材紹介会社は経験豊富なシステム管理者を積極的に探している。",
+    "note": "search for, seekと同義。自動詞look＋for。求人・購買の基本動詞句。"
+  },
+  {
+    "id": 70,
+    "front": "look (   ) the shipment error",
+    "answer": "look into",
+    "preposition": "into",
+    "meaning": "～を調査する、検討する",
+    "example": "The quality assurance supervisor promised to look into the shipment error.",
+    "example_ja": "品質保証責任者は出荷ミスについて調査することを約束した。",
+    "note": "look into＝investigate。Part 5/7で苦情調査や問題原因の追及で頻出。"
+  },
+  {
+    "id": 71,
+    "front": "look (   ) the corporate retreat",
+    "answer": "look after",
+    "preposition": "after",
+    "meaning": "～の世話をする、～を管理する",
+    "example": "A caretaker was hired to look after the corporate retreat during the winter.",
+    "example_ja": "冬季の間、企業の保養所を管理するために管理人が雇われた。",
+    "note": "look after＝take care of。施設管理や顧客対応の文脈で登場。"
+  },
+  {
+    "id": 72,
+    "front": "care (   ) some refreshments",
+    "answer": "care for",
+    "preposition": "for",
+    "meaning": "～を好む、～の世話をする",
+    "example": "Would you care for some refreshments before the executive meeting starts?",
+    "example_ja": "役員会議が始まる前に軽食はいかがでしょうか。",
+    "note": "Would you care for ～?（～はいかがですか）の丁寧な申し出表現でリスニングPart 2頻出。"
+  },
+  {
+    "id": 73,
+    "front": "search (   ) billing discrepancies",
+    "answer": "search for",
+    "preposition": "for",
+    "meaning": "～を探す、捜索する",
+    "example": "Investigators conducted an internal audit to search for billing discrepancies.",
+    "example_ja": "調査員らは請求書の不一致を探すために内部監査を実施した。",
+    "note": "search for＋探す対象 / search＋場所（場所を捜索する）。Part 5の区別問題。"
+  },
+  {
+    "id": 74,
+    "front": "call (   ) decisive leadership",
+    "answer": "call for",
+    "preposition": "for",
+    "meaning": "～を必要とする、～を要求する",
+    "example": "The worsening economic situation calls for decisive leadership from the board.",
+    "example_ja": "悪化する経済情勢は、取締役会による断固としたリーダーシップを必要としている。",
+    "note": "call for＝require＝demand。「～を必要とする」。社説やビジネス分析記事で頻出。"
+  },
+  {
+    "id": 75,
+    "front": "wait (   ) the maintenance crew",
+    "answer": "wait for",
+    "preposition": "for",
+    "meaning": "～を待つ",
+    "example": "Commuters had to wait for the maintenance crew to repair the signaling system.",
+    "example_ja": "通勤客らは保守員が信号システムを修理するのを待たなければならなかった。",
+    "note": "wait for人 to do（人が～するのを待つ）。await（他動詞で前置詞不要）との対比が頻出。"
+  },
+  {
+    "id": 76,
+    "front": "hope (   ) strong consumer spending",
+    "answer": "hope for",
+    "preposition": "for",
+    "meaning": "～を望む、期待する",
+    "example": "Retailers are hoping for strong consumer spending during the holiday season.",
+    "example_ja": "小売業者はホリデーシーズン中の旺盛な個人消費を期待している。",
+    "note": "hope for＋名詞 / hope to do。wishやexpectとの文法構造の違いに注意。"
+  },
+  {
+    "id": 77,
+    "front": "wish (   ) better weather",
+    "answer": "wish for",
+    "preposition": "for",
+    "meaning": "～を願う、望む",
+    "example": "The organizers could not have wished for better weather for the outdoor gala.",
+    "example_ja": "主催者らは野外ガラ祝賀会にとってこれ以上の好天を望むことはできなかった。",
+    "note": "wish for＋名詞。Part 7のイベント御礼レターなどで使われる。"
+  },
+  {
+    "id": 78,
+    "front": "apologize (   ) all affected passengers",
+    "answer": "apologize to",
+    "preposition": "to",
+    "meaning": "（人）に謝罪する",
+    "example": "The airline representative personally apologized to all affected passengers.",
+    "example_ja": "航空会社の担当者は影響を受けたすべての乗客に直接謝罪した。",
+    "note": "apologize to＋人 / apologize for＋理由。Part 5で前置詞の使い分けを問う頻出問題。"
+  },
+  {
+    "id": 79,
+    "front": "attend (   ) urgent administrative tasks",
+    "answer": "attend to",
+    "preposition": "to",
+    "meaning": "～を処理する、～の対応をする",
+    "example": "The office manager must attend to several urgent administrative tasks today.",
+    "example_ja": "オフィス責任者は本日、いくつかの緊急の総務タスクを処理しなければならない。",
+    "note": "attend to＝take care of, deal with。attend（出席する：他動詞）との意味・語法の違いが狙われる。"
+  },
+  {
+    "id": 80,
+    "front": "cater (   ) business travelers",
+    "answer": "cater to",
+    "preposition": "to",
+    "meaning": "（需要・客層）に応じる、配慮する",
+    "example": "The newly renovated hotel aims to cater to business travelers and tourists alike.",
+    "example_ja": "新装オープンしたそのホテルは、ビジネス客と観光客の双方のニーズに応えることを目指している。",
+    "note": "cater to＋ニーズ・特定の顧客層。Part 7のサービス紹介・広告で超頻出。"
+  },
+  {
+    "id": 81,
+    "front": "subscribe (   ) the monthly report",
+    "answer": "subscribe to",
+    "preposition": "to",
+    "meaning": "（定期刊行物やサービス）を購読・契約する",
+    "example": "Many corporate clients subscribe to our monthly financial analysis report.",
+    "example_ja": "多くの法人顧客が当社の月刊財務分析レポートを定期購読しています。",
+    "note": "subscribe to＋雑誌・有料サービス。Part 7のサブスクリプション案内で頻出。"
+  },
+  {
+    "id": 82,
+    "front": "adapt (   ) shifting environmental standards",
+    "answer": "adapt to",
+    "preposition": "to",
+    "meaning": "～に適応する、順応する",
+    "example": "Manufacturing facilities must quickly adapt to shifting environmental standards.",
+    "example_ja": "製造施設は変化する環境基準に素早く適応しなければならない。",
+    "note": "adapt to＝adjust to。toは前置詞のため動名詞や名詞が続く。"
+  },
+  {
+    "id": 83,
+    "front": "adjust (   ) the corporate culture",
+    "answer": "adjust to",
+    "preposition": "to",
+    "meaning": "～に慣れる、～に適応・調整する",
+    "example": "New employees usually take a few weeks to adjust to the corporate culture.",
+    "example_ja": "新入社員が企業文化に慣れるには通常数週間かかります。",
+    "note": "adjust to＋新環境・条件。adapt toと同義語。"
+  },
+  {
+    "id": 84,
+    "front": "resort (   ) staff layoffs",
+    "answer": "resort to",
+    "preposition": "to",
+    "meaning": "（最後の手段として）～に訴える、頼る",
+    "example": "Management decided not to resort to staff layoffs despite the budget crisis.",
+    "example_ja": "経営陣は予算の危機にもかかわらず、人員解雇に訴えない（頼らない）ことを決定した。",
+    "note": "resort to＋名詞/動名詞。「（最後の手段として）～に頼る」。toは前置詞。"
+  },
+  {
+    "id": 85,
+    "front": "belong (   ) the research department",
+    "answer": "belong to",
+    "preposition": "to",
+    "meaning": "～に所属する、～のものである",
+    "example": "These proprietary blueprints belong to the engineering research department.",
+    "example_ja": "これらの専売特許の設計図は工学研究部門に帰属します。",
+    "note": "belong to＋組織・人。進行形にできない状態動詞（Part 5の文法トラップ）。"
+  },
+  {
+    "id": 86,
+    "front": "consent (   ) the medical procedure",
+    "answer": "consent to",
+    "preposition": "to",
+    "meaning": "～に同意・承諾する",
+    "example": "The patient signed a waiver to consent to the recommended medical procedure.",
+    "example_ja": "患者は推奨された治療処置に同意するため承諾書に署名した。",
+    "note": "consent to＋名詞/動名詞。agree toと同義。"
+  },
+  {
+    "id": 87,
+    "front": "listen (   ) customer feedback",
+    "answer": "listen to",
+    "preposition": "to",
+    "meaning": "～に耳を傾ける、～を聞く",
+    "example": "Managers are strongly encouraged to listen to customer feedback attentively.",
+    "example_ja": "管理職は顧客からのフィードバックに注意深く耳を傾けることが強く推奨される。",
+    "note": "hear（他動詞・知覚）とlisten to（自動詞＋前置詞・意識的）の対比。"
+  },
+  {
+    "id": 88,
+    "front": "relate (   ) sustainable business practices",
+    "answer": "relate to",
+    "preposition": "to",
+    "meaning": "～に関連する、～に共感する",
+    "example": "The keynote address will relate directly to modern sustainable business practices.",
+    "example_ja": "基調講演は現代の持続可能なビジネス慣行に直接関連するものとなります。",
+    "note": "relate to＝be connected with。be related to（関連している）の能動態表現。"
+  },
+  {
+    "id": 89,
+    "front": "appeal (   ) younger consumers",
+    "answer": "appeal to",
+    "preposition": "to",
+    "meaning": "～に訴えかける、～の気に入る",
+    "example": "The modern branding campaign is designed to appeal to younger consumers.",
+    "example_ja": "その現代的なブランディングキャンペーンは、より若い消費者層に訴求するよう企画されている。",
+    "note": "appeal to＋人（魅力的に映る、訴求する）。Part 7の広告文・マーケティング記事で頻出。"
+  },
+  {
+    "id": 90,
+    "front": "yield (   ) pressure from management",
+    "answer": "yield to",
+    "preposition": "to",
+    "meaning": "～に屈する、～に譲る",
+    "example": "The union representatives refused to yield to pressure from management.",
+    "example_ja": "労働組合の代表者らは経営陣からの圧力に屈することを拒否した。",
+    "note": "yield to＝give in to。他動詞（～を生み出す、産出する）との意味の違いにも注意。"
+  },
+  {
+    "id": 91,
+    "front": "correspond (   ) the invoice details",
+    "answer": "correspond with",
+    "preposition": "with",
+    "meaning": "～と一致する、～と連絡を取り合う",
+    "example": "The serial numbers on the packages correspond with those on the invoice.",
+    "example_ja": "荷物のシリアル番号は請求書に記載されているものと一致している。",
+    "note": "correspond with/to。「～と一致する」「～と文通する」。照合作業の文脈で頻出。"
+  },
+  {
+    "id": 92,
+    "front": "sympathize (   ) the affected residents",
+    "answer": "sympathize with",
+    "preposition": "with",
+    "meaning": "～に同情する、～に共感する",
+    "example": "We sympathize with the local residents affected by the factory relocation.",
+    "example_ja": "当社は工場の移転により影響を受けた地域住民の方々に同情・共感いたします。",
+    "note": "sympathize with＋人。共感やお見舞いの手紙で用いられる。"
+  },
+  {
+    "id": 93,
+    "front": "collide (   ) a road barrier",
+    "answer": "collide with",
+    "preposition": "with",
+    "meaning": "～と衝突する、～と対立する",
+    "example": "The delivery van collided with a road barrier due to slippery icy conditions.",
+    "example_ja": "凍結した道路状況のため、配達用バンが道路の防護柵に衝突した。",
+    "note": "collide with＋対象。事故報告書や保険クレームの文脈（Part 7）で登場。"
+  },
+  {
+    "id": 94,
+    "front": "part (   ) vintage mechanical timepieces",
+    "answer": "part with",
+    "preposition": "with",
+    "meaning": "～を手放す",
+    "example": "Collectors are often reluctant to part with vintage mechanical timepieces.",
+    "example_ja": "コレクターはヴィンテージの機械式時計を手放すことを渋ることが多い。",
+    "note": "part with＋所有物。「～を手放す、手離す」。ビジネス資産の売却でも使用。"
+  },
+  {
+    "id": 95,
+    "front": "side (   ) the contractor in dispute",
+    "answer": "side with",
+    "preposition": "with",
+    "meaning": "～の側につく、～を支持する",
+    "example": "The arbitration committee decided to side with the contractor in the dispute.",
+    "example_ja": "仲裁委員会は紛争において請負業者側の味方をする（支持する）決定を下した。",
+    "note": "side with＋人・陣営＝support。法律・紛争解決の文脈で出題。"
+  },
+  {
+    "id": 96,
+    "front": "dispense (   ) manual data entry",
+    "answer": "dispense with",
+    "preposition": "with",
+    "meaning": "～なしで済ます、～を省く",
+    "example": "The revised process will dispense with the need for manual data entry.",
+    "example_ja": "改定されたプロセスにより、手動でのデータ入力の必要性が省かれることになる。",
+    "note": "dispense with＝do without, get rid of。効率化の文脈で頻出の難関語法。"
+  },
+  {
+    "id": 97,
+    "front": "reckon (   ) additional tariff increases",
+    "answer": "reckon with",
+    "preposition": "with",
+    "meaning": "～を考慮に入れる、～に対処する",
+    "example": "The planning board must reckon with the possibility of additional tariff increases.",
+    "example_ja": "企画委員会はさらなる関税引き上げの可能性を考慮に入れなければならない。",
+    "note": "reckon with＝take into account。ビジネスリスク評価で登場。"
+  },
+  {
+    "id": 98,
+    "front": "grapple (   ) software integration challenges",
+    "answer": "grapple with",
+    "preposition": "with",
+    "meaning": "（難問など）に取り組む、苦闘する",
+    "example": "The engineering team continues to grapple with software integration challenges.",
+    "example_ja": "エンジニアリングチームはソフトウェア統合の課題に引き続き取り組んでいる。",
+    "note": "grapple with＝struggle with, tackle。難局への取り組みを表す表現。"
+  },
+  {
+    "id": 99,
+    "front": "deviate (   ) the technical specifications",
+    "answer": "deviate from",
+    "preposition": "from",
+    "meaning": "～から逸脱する、外れる",
+    "example": "The contractor must not deviate from the technical specifications in the contract.",
+    "example_ja": "請負業者は契約書に記載された技術仕様から逸脱してはならない。",
+    "note": "deviate from＋仕様・計画。規則遵守・品質管理の文脈で超頻出。"
+  },
+  {
+    "id": 100,
+    "front": "originate (   ) an artisanal practice",
+    "answer": "originate from",
+    "preposition": "from",
+    "meaning": "～に由来する、～から生じる",
+    "example": "The tradition originated from an artisanal practice among local craftspeople.",
+    "example_ja": "その伝統は地元の職人たちの間の手作業の慣行に由来している。",
+    "note": "originate from/in＝come from, stem from。Part 7の歴史・背景説明で頻出。"
+  }
+]

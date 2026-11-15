@@ -99,6 +99,9 @@
           <option value="words-hold.json">基本動詞: hold</option>
           <option value="words-give.json">基本動詞: give</option>
           <option value="words-verbs.json">重要動詞まとめ (混合版)</option>
+          <option value="words-deck1_intransitive_100.json">群動詞①：自動詞＋前置詞 (100選)</option>
+          <option value="words-deck2_transitive_80.json">群動詞②：他動詞＋O＋前置詞 (80選)</option>
+          <option value="words-deck3_basic_100.json">群動詞③：基本動詞＋副詞・前置詞 (100選)</option>
         </select>
       </div>
 
@@ -123,8 +126,9 @@
     
     <!-- サブコントロールバー -->
     <div class="w-full flex items-center justify-between mb-2.5 text-xs px-1">
-      <div class="flex items-center gap-2 font-mono">
+      <div class="flex items-center gap-1.5 sm:gap-2 font-mono">
         <span class="text-[#CD2D2D] font-bold text-sm" id="progressIndex">0 / 0</span>
+        <span class="text-[11px] text-slate-500 font-sans font-bold" id="totalCorpusCount">(全--問)</span>
         <span class="text-slate-300">|</span>
         <label for="deckSizeSelect" class="text-slate-500 font-sans font-medium">出題:</label>
         <select id="deckSizeSelect" onchange="changeDeckSize(this.value)" 
@@ -208,10 +212,13 @@
           </div>
 
           <!-- 解答本体 -->
-          <div class="my-auto py-2 w-full space-y-3.5 text-left">
+          <div class="my-auto py-2 w-full space-y-3 text-left">
             <div>
+              <div id="cardAnswerBox" class="hidden mb-1.5">
+                <span class="text-[11px] font-bold text-[#102542] bg-[#F4F7FB] border border-[#DCE4EE] px-2.5 py-0.5 rounded-md font-mono" id="cardAnswerPhrase">--</span>
+              </div>
               <div class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">意味・訳語</div>
-              <div id="cardMeaning" class="text-2xl sm:text-3xl font-black text-[#CD2D2D] tracking-wide leading-tight">
+              <div id="cardMeaning" class="text-xl sm:text-2xl font-black text-[#CD2D2D] tracking-wide leading-tight">
                 --
               </div>
             </div>
@@ -226,6 +233,10 @@
               </div>
               <div id="cardExampleJa" class="text-xs sm:text-sm text-slate-600 leading-relaxed pt-1 border-t border-[#DCE4EE]">
                 --
+              </div>
+              <div id="cardNoteBox" class="hidden text-[11px] text-[#102542] bg-amber-50/80 border border-amber-200/80 rounded-lg p-2 mt-1.5 leading-relaxed">
+                <span class="font-bold text-amber-800"><i class="fa-solid fa-graduation-cap mr-1"></i>攻略ポイント:</span>
+                <span id="cardNoteText">--</span>
               </div>
             </div>
 
@@ -369,13 +380,73 @@
     const cardExampleJa = document.getElementById("cardExampleJa");
     const timerStatusText = document.getElementById("timerStatusText");
     const progressIndex = document.getElementById("progressIndex");
+    const totalCorpusCount = document.getElementById("totalCorpusCount");
+    const cardAnswerBox = document.getElementById("cardAnswerBox");
+    const cardAnswerPhrase = document.getElementById("cardAnswerPhrase");
+    const cardNoteBox = document.getElementById("cardNoteBox");
+    const cardNoteText = document.getElementById("cardNoteText");
     const unmasteredBadge = document.getElementById("unmasteredBadge");
     const listModal = document.getElementById("listModal");
     const btnOpenList = document.getElementById("btnOpenList");
     const btnCloseList = document.getElementById("btnCloseList");
 
+    const ALL_DICT_FILES = [
+      { file: "words.json", label: "一般ビジネス・頻出コロケーション", defaultCat: "COLLOCATION" },
+      { file: "words-run.json", label: "基本動詞: run", defaultCat: "VERB: RUN" },
+      { file: "words-take.json", label: "基本動詞: take", defaultCat: "VERB: TAKE" },
+      { file: "words-get.json", label: "基本動詞: get", defaultCat: "VERB: GET" },
+      { file: "words-make.json", label: "基本動詞: make", defaultCat: "VERB: MAKE" },
+      { file: "words-have.json", label: "基本動詞: have", defaultCat: "VERB: HAVE" },
+      { file: "words-hold.json", label: "基本動詞: hold", defaultCat: "VERB: HOLD" },
+      { file: "words-give.json", label: "基本動詞: give", defaultCat: "VERB: GIVE" },
+      { file: "words-verbs.json", label: "重要動詞まとめ (混合版)", defaultCat: "IMPORTANT VERBS" },
+      { file: "words-deck1_intransitive_100.json", label: "群動詞①：自動詞＋前置詞", defaultCat: "群動詞① 自動詞＋前置詞" },
+      { file: "words-deck2_transitive_80.json", label: "群動詞②：他動詞＋O＋前置詞", defaultCat: "群動詞② 他動詞＋O＋前置詞" },
+      { file: "words-deck3_basic_100.json", label: "群動詞③：基本動詞＋副詞・前置詞", defaultCat: "群動詞③ 句動詞" }
+    ];
+
+    let dictionaryCache = {};
+
+    async function fetchSingleDict(entry, cacheBuster) {
+      if (dictionaryCache[entry.file]) return dictionaryCache[entry.file];
+      try {
+        const res = await fetch(entry.file + cacheBuster);
+        if (!res.ok) return [];
+        const raw = await res.json();
+        const normalized = Array.isArray(raw) ? raw.map(item => ({
+          ...item,
+          category: item.category || entry.defaultCat
+        })) : [];
+        dictionaryCache[entry.file] = normalized;
+        return normalized;
+      } catch {
+        return [];
+      }
+    }
+
+    async function refreshTotalCounts() {
+      const cacheBuster = '?t=' + new Date().getTime();
+      let grandTotal = 0;
+      await Promise.all(ALL_DICT_FILES.map(async (entry) => {
+        const items = await fetchSingleDict(entry, cacheBuster);
+        grandTotal += items.length;
+        const opt = dictSelect.querySelector(`option[value="${entry.file}"]`);
+        if (opt && items.length > 0) {
+          opt.textContent = `${entry.label} (${items.length}語)`;
+        }
+      }));
+      const allOpt = dictSelect.querySelector('option[value="ALL"]');
+      if (allOpt && grandTotal > 0) {
+        allOpt.textContent = `★ すべての辞書を結合 (全${grandTotal}語収録)`;
+      }
+      if (totalCorpusCount) {
+        totalCorpusCount.textContent = grandTotal > 0 ? `(全${grandTotal}語収録)` : '';
+      }
+    }
+
     async function initApp() {
       applyFontClasses();
+      await refreshTotalCounts();
       await loadDictionary(dictSelect.value);
     }
 
@@ -385,25 +456,13 @@
       try {
         let list = [];
         if (filename === "ALL") {
-          const files = [
-            "words.json", "words-run.json", "words-take.json", "words-get.json",
-            "words-make.json", "words-have.json", "words-hold.json", "words-give.json",
-            "words-verbs.json"
-          ];
-          const promises = files.map(f => 
-            fetch(f + cacheBuster)
-              .then(r => r.ok ? r.json() : [])
-              .catch(() => [])
+          const results = await Promise.all(
+            ALL_DICT_FILES.map(entry => fetchSingleDict(entry, cacheBuster))
           );
-          const results = await Promise.all(promises);
           list = results.flat();
         } else {
-          const res = await fetch(filename + cacheBuster);
-          if (res.ok) {
-            list = await res.json();
-          } else {
-            console.warn(`File not found or failed to load: ${filename}`);
-          }
+          const entry = ALL_DICT_FILES.find(d => d.file === filename) || { file: filename, defaultCat: "COLLOCATION" };
+          list = await fetchSingleDict(entry, cacheBuster);
         }
 
         currentWords = Array.isArray(list) ? list : [];
@@ -439,7 +498,7 @@
 
       if (filterMode === 'review') {
         pool = pool.filter(item => {
-          const wordText = item.word || item.phrase || item.english || "";
+          const wordText = item.front || item.word || item.phrase || item.english || "";
           return !masteredSet.has(wordText);
         });
       }
@@ -459,7 +518,7 @@
     function updateUnmasteredCount() {
       let unmasteredCount = 0;
       currentWords.forEach(item => {
-        const wordText = item.word || item.phrase || item.english || "";
+        const wordText = item.front || item.word || item.phrase || item.english || "";
         if (!masteredSet.has(wordText)) unmasteredCount++;
       });
       unmasteredBadge.textContent = unmasteredCount;
@@ -491,10 +550,12 @@
       }
 
       const item = activeDeck[index];
-      const wordText = item.word || item.phrase || item.english || "";
+      const wordText = item.front || item.word || item.phrase || item.english || "";
+      const answerText = item.answer || "";
       const meanText = item.meaning || item.japanese || item.translation || "";
       const exEn = item.example || item.example_en || "";
       const exJa = item.example_ja || item.example_jp || "";
+      const noteText = item.note || "";
 
       cardCategoryBadge.textContent = item.category || "COLLOCATION";
       cardWord.textContent = wordText;
@@ -502,6 +563,20 @@
       cardExampleEnBack.textContent = exEn ? `"${exEn}"` : "--";
       cardMeaning.textContent = meanText || "--";
       cardExampleJa.textContent = exJa || "--";
+
+      if (answerText) {
+        cardAnswerPhrase.textContent = answerText;
+        cardAnswerBox.classList.remove('hidden');
+      } else {
+        cardAnswerBox.classList.add('hidden');
+      }
+
+      if (noteText) {
+        cardNoteText.textContent = noteText;
+        cardNoteBox.classList.remove('hidden');
+      } else {
+        cardNoteBox.classList.add('hidden');
+      }
 
       const isMastered = masteredSet.has(wordText);
       if (!isMastered) {
@@ -567,7 +642,7 @@
     function handleGrade(isMastered) {
       if (activeDeck.length === 0) return;
       const currentItem = activeDeck[currentIndex];
-      const wordText = currentItem.word || currentItem.phrase || currentItem.english || "";
+      const wordText = currentItem.front || currentItem.word || currentItem.phrase || currentItem.english || "";
 
       if (isMastered) {
         masteredSet.add(wordText);
@@ -603,7 +678,7 @@
       if (e) e.stopPropagation();
       if (activeDeck.length === 0) return;
       const currentItem = activeDeck[currentIndex];
-      const textToRead = currentItem.word || currentItem.phrase || currentItem.english || "";
+      const textToRead = currentItem.example || currentItem.word || currentItem.phrase || "";
       if (!textToRead) return;
       const uttr = new SpeechSynthesisUtterance(textToRead);
       uttr.lang = 'en-US';
@@ -625,7 +700,7 @@
     function filterList() {
       const q = document.getElementById('listSearchInput').value.toLowerCase();
       const filtered = currentWords.filter(item => {
-        const w = (item.word || item.phrase || item.english || "").toLowerCase();
+        const w = ((item.front || item.word || item.phrase || item.english || "") + " " + (item.answer || "")).toLowerCase();
         const m = (item.meaning || item.japanese || "").toLowerCase();
         const ex = (item.example || item.example_en || "").toLowerCase();
         return w.includes(q) || m.includes(q) || ex.includes(q);
@@ -644,7 +719,7 @@
       }
 
       items.forEach((item, idx) => {
-        const wordText = item.word || item.phrase || item.english || "";
+        const wordText = item.front || item.word || item.phrase || item.english || "";
         const meanText = item.meaning || item.japanese || "";
         const exEn = item.example || item.example_en || "";
         const isMastered = masteredSet.has(wordText);
@@ -660,7 +735,7 @@
               ${isMastered ? '<span class="text-[9px] px-1.5 py-0.2 rounded bg-emerald-50 text-emerald-700 border border-emerald-300 font-bold">習得済</span>' : '<span class="text-[9px] px-1.5 py-0.2 rounded bg-red-50 text-[#CD2D2D] border border-red-200 font-bold">要復習</span>'}
             </div>
           </div>
-          <div class="text-sm font-bold text-[#102542]">${wordText}</div>
+          <div class="text-sm font-bold text-[#102542]">${wordText} ${item.answer ? `<span class="ml-1.5 text-[11px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded">${item.answer}</span>` : ''}</div>
           <div class="text-xs font-bold text-[#CD2D2D]">${meanText}</div>
           ${exEn ? `<div class="text-[11px] text-slate-600 bg-white p-2 rounded-lg border border-[#DCE4EE] italic font-semibold">${exEn}</div>` : ''}
         `;
@@ -668,7 +743,7 @@
           filterMode = 'all';
           document.getElementById('deckSizeSelect').value = 'all';
           rebuildDeck();
-          const matchIndex = activeDeck.findIndex(it => (it.word || it.phrase || it.english) === wordText);
+          const matchIndex = activeDeck.findIndex(it => (it.front || it.word || it.phrase || it.english) === wordText);
           if (matchIndex !== -1) {
             currentIndex = matchIndex;
             loadCard(currentIndex);
