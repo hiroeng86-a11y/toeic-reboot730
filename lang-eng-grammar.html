@@ -1,4 +1,4 @@
-<!-- 対象ファイル: lang-eng-grammar.html -->
+<!-- 対象ファイル: lang-eng-grammar.html (インスタ風ミニマル・リメイク版) -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,9 +9,7 @@
   <meta http-equiv="Expires" content="0">
   <title>英文法論点特訓（全1,150問・完全無料） | TOEIC RE:BOOT 730</title>
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,272 +21,272 @@
       background-color: #F4F7FB;
       color: #102542;
       user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
     .font-chakra { font-family: 'Chakra Petch', sans-serif; }
-    .perspective-1000 { perspective: 1000px; }
+    .perspective-1000 { perspective: 1200px; }
     .transform-style-3d { transform-style: preserve-3d; }
-    .backface-hidden { backface-visibility: hidden; }
+    .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
     .rotate-y-180 { transform: rotateY(180deg); }
 
     .kobe-navy { color: #102542; }
-    .kobe-bg-navy { background-color: #102542; }
     .kobe-red { color: #CD2D2D; }
-    .kobe-bg-red { background-color: #CD2D2D; }
 
-    .card-frame {
+    .card-surface {
       background: #FFFFFF;
       border: 1px solid #DCE4EE;
-      box-shadow: 0 4px 12px -2px rgba(16, 37, 66, 0.06);
+      box-shadow: 0 12px 28px -6px rgba(16, 37, 66, 0.08), 0 4px 10px -2px rgba(16, 37, 66, 0.04);
     }
     .kobe-btn-glow {
       transition: all 0.2s ease;
     }
     .kobe-btn-glow:hover {
       border-color: #CD2D2D;
-      box-shadow: 0 0 14px rgba(205, 45, 45, 0.25);
+      box-shadow: 0 0 14px rgba(205, 45, 45, 0.2);
     }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between antialiased selection:bg-blue-100 selection:text-blue-900">
 
-  <!-- ヘッダー（神戸タータン仕様：上部に赤ライン） -->
+  <!-- スリムヘッダー（神戸タータン仕様） -->
   <header class="border-b border-[#DCE4EE] bg-white/95 backdrop-blur sticky top-0 z-40">
     <div class="h-[3px] bg-[#CD2D2D] w-full"></div>
-    <div class="max-w-xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+    <div class="max-w-lg mx-auto px-4 h-14 flex items-center justify-between gap-2">
       <!-- 左：戻る + タイトル -->
-      <div class="flex items-center gap-2.5 shrink-0">
-        <a href="index.html" class="text-slate-500 hover:text-[#CD2D2D] transition text-base p-1" title="自習システムトップへ">
-          <i class="fa-solid fa-arrow-left"></i>
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="index.html" class="w-8 h-8 rounded-full flex items-center justify-center text-slate-500 hover:text-[#CD2D2D] hover:bg-[#F4F7FB] transition" title="トップへ戻る">
+          <i class="fa-solid fa-arrow-left text-sm"></i>
         </a>
-        <h1 class="text-base sm:text-lg font-black tracking-wide text-[#102542] flex items-center gap-2">
-          <span class="text-[#CD2D2D]"><i class="fa-solid fa-layer-group"></i></span>
-          <span>文法論点特訓</span>
+        <h1 class="text-sm sm:text-base font-black tracking-wide text-[#102542]">
+          文法論点特訓
         </h1>
       </div>
 
-      <!-- 右：文字サイズ + 一覧ボタン -->
+      <!-- 右：設定ドロワー開閉 + 一覧 -->
       <div class="flex items-center gap-1.5 shrink-0">
-        <div class="flex items-center bg-[#F4F7FB] border border-[#DCE4EE] rounded-lg overflow-hidden text-xs">
-          <button onclick="adjustFontSize(-1)" class="px-2.5 py-1.5 text-slate-600 hover:text-[#102542] hover:bg-white transition font-bold">A-</button>
-          <button onclick="adjustFontSize(1)" class="px-2.5 py-1.5 text-slate-600 hover:text-[#102542] hover:bg-white transition border-l border-[#DCE4EE] font-bold">A+</button>
-        </div>
-        <button onclick="openListModal()" class="px-3 py-1.5 rounded-lg bg-white hover:bg-[#F4F7FB] border border-[#DCE4EE] text-[#102542] hover:text-[#CD2D2D] text-xs font-bold flex items-center gap-1 shadow-sm transition">
-          <i class="fa-solid fa-list-ul text-[#CD2D2D]"></i> 一覧
+        <button onclick="toggleSettingsDrawer()" class="px-2.5 py-1.5 rounded-lg bg-[#F4F7FB] hover:bg-slate-200/70 border border-[#DCE4EE] text-[#102542] text-xs font-bold flex items-center gap-1.5 transition">
+          <i class="fa-solid fa-sliders text-[#CD2D2D]"></i>
+          <span>設定</span>
         </button>
+        <button onclick="openListModal()" class="px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#F4F7FB] border border-[#DCE4EE] text-[#102542] hover:text-[#CD2D2D] text-xs font-bold flex items-center gap-1 shadow-2xs transition">
+          <i class="fa-solid fa-list-ul text-[#CD2D2D]"></i>
+          <span>一覧</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 引き出し式・設定パネル（普段は隠れていて画面を圧迫しない） -->
+    <div id="settingsDrawer" class="hidden border-t border-[#DCE4EE] bg-white px-4 py-3.5 shadow-lg">
+      <div class="max-w-lg mx-auto space-y-3 text-xs">
+        <!-- ジャンル選択 -->
+        <div class="space-y-1">
+          <label for="categorySelect" class="font-bold text-slate-500 flex items-center gap-1">
+            <i class="fa-solid fa-layer-group text-[#CD2D2D]"></i> 1. 大分類ジャンル
+          </label>
+          <select id="categorySelect" onchange="onCategoryChange(this.value)" class="w-full bg-[#F4F7FB] text-[#102542] border border-[#DCE4EE] rounded-xl px-3 py-2 text-xs font-bold focus:outline-none focus:border-[#CD2D2D]">
+            <option value="all">★ 全1,150問一括ランダム特訓</option>
+            <option value="cat1">1. 基礎 (5文型・名詞・代名詞・前置詞)</option>
+            <option value="cat2">2. 動詞 (時制・受動態・仮定法)</option>
+            <option value="cat3">3. 準動詞 (不定詞・動名詞・分詞)</option>
+            <option value="cat4">4. 複文 (接続詞・関係代名詞・名詞節)</option>
+            <option value="cat5">5. 発展構文 (比較・倒置・強調否定)</option>
+            <option value="cat6">6. 語法・群前置詞・接続副詞</option>
+          </select>
+        </div>
+
+        <!-- 論点ブロック選択 -->
+        <div class="space-y-1">
+          <label for="chapterSelect" class="font-bold text-slate-500 flex items-center gap-1">
+            <i class="fa-solid fa-bookmark text-[#CD2D2D]"></i> 2. 論点ブロック
+          </label>
+          <select id="chapterSelect" onchange="changeChapter(this.value, true)" class="w-full bg-[#F4F7FB] text-[#102542] border border-[#DCE4EE] rounded-xl px-3 py-2 text-xs font-bold focus:outline-none focus:border-[#CD2D2D]">
+            <!-- JSで動的生成 -->
+          </select>
+        </div>
+
+        <!-- 出題数 & 文字サイズ -->
+        <div class="flex items-center justify-between gap-3 pt-1 border-t border-[#DCE4EE]">
+          <div class="flex items-center gap-2">
+            <label for="deckSizeSelect" class="font-bold text-slate-500">出題数:</label>
+            <select id="deckSizeSelect" onchange="changeDeckSize()" class="bg-[#F4F7FB] text-[#102542] border border-[#DCE4EE] rounded-lg px-2.5 py-1 text-xs font-bold focus:outline-none">
+              <option value="10">10問</option>
+              <option value="20">20問</option>
+              <option value="50">50問</option>
+              <option value="all" selected>全問</option>
+            </select>
+          </div>
+
+          <div class="flex items-center gap-1.5">
+            <span class="font-bold text-slate-500">文字:</span>
+            <div class="flex items-center bg-[#F4F7FB] border border-[#DCE4EE] rounded-lg overflow-hidden">
+              <button onclick="adjustFontSize(-1)" class="px-2.5 py-1 text-slate-600 hover:bg-white font-bold">小</button>
+              <button onclick="adjustFontSize(1)" class="px-2.5 py-1 text-slate-600 hover:bg-white border-l border-[#DCE4EE] font-bold">大</button>
+            </div>
+          </div>
+
+          <button onclick="toggleSettingsDrawer()" class="px-3 py-1.5 rounded-lg bg-[#102542] text-white font-bold">
+            完了
+          </button>
+        </div>
       </div>
     </div>
   </header>
 
-  <!-- 直感的セレクター（2段セレクト） -->
-  <section class="w-full max-w-xl mx-auto px-3 pt-3 pb-1 space-y-2.5">
-    <div class="bg-white p-3.5 rounded-2xl border border-[#DCE4EE] space-y-2.5 shadow-sm">
-      <!-- 1段目：大分類カテゴリ選択 -->
-      <div class="flex items-center gap-2">
-        <label for="categorySelect" class="text-xs text-[#102542] font-bold shrink-0 w-16">
-          <i class="fa-solid fa-layer-group mr-1 text-[#CD2D2D]"></i>ジャンル:
-        </label>
-        <select id="categorySelect" onchange="onCategoryChange(this.value)" 
-          class="bg-[#F4F7FB] text-[#102542] border border-[#DCE4EE] rounded-xl px-3 py-2 text-xs sm:text-sm font-bold focus:outline-none focus:border-[#CD2D2D] flex-1">
-          <option value="all">★ 全1,150問一括ランダム特訓</option>
-          <option value="cat1">1. 基礎 (5文型・名詞・代名詞・前置詞)</option>
-          <option value="cat2">2. 動詞 (時制・受動態・仮定法)</option>
-          <option value="cat3">3. 準動詞 (不定詞・動名詞・分詞)</option>
-          <option value="cat4">4. 複文 (接続詞・関係代名詞・名詞節)</option>
-          <option value="cat5">5. 発展構文 (比較・倒置・強調否定)</option>
-          <option value="cat6">6. 語法・群前置詞・接続副詞</option>
-        </select>
+  <!-- メイン学習エリア -->
+  <main class="w-full max-w-lg mx-auto px-4 py-3 flex flex-col flex-1 justify-between">
+
+    <!-- ミニマル進捗＆フィルターバー（1行完結） -->
+    <div class="space-y-2 mb-2">
+      <div class="flex items-center justify-between text-xs">
+        <div class="flex items-center gap-2">
+          <span class="font-chakra font-bold text-sm text-[#102542]" id="progressIndex">0 / 0</span>
+          <span id="currentChapterLabel" class="text-[11px] text-slate-400 truncate max-w-[150px]">全1,150問</span>
+        </div>
+
+        <!-- すべて / 未習得 切り替えピル -->
+        <div class="inline-flex rounded-full bg-white p-0.5 border border-[#DCE4EE]">
+          <button onclick="setFilterMode('all')" id="btnFilterAll" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#102542] text-white transition">
+            すべて
+          </button>
+          <button onclick="setFilterMode('review')" id="btnFilterReview" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold text-slate-500 hover:text-[#CD2D2D] transition">
+            未習得 <span id="unmasteredBadge" class="font-chakra">0</span>
+          </button>
+        </div>
       </div>
 
-      <!-- 2段目：論点ブロック選択 -->
-      <div class="flex items-center gap-2">
-        <label for="chapterSelect" class="text-xs text-[#CD2D2D] font-bold shrink-0 w-16">
-          <i class="fa-solid fa-bookmark mr-1"></i>論点集:
-        </label>
-        <select id="chapterSelect" onchange="changeChapter(this.value)" 
-          class="bg-[#F4F7FB] text-[#102542] border border-[#DCE4EE] rounded-xl px-3 py-2 text-xs sm:text-sm font-bold focus:outline-none focus:border-[#CD2D2D] flex-1 truncate">
-          <!-- JSで動的生成 -->
-        </select>
-      </div>
-    </div>
-  </section>
-
-  <!-- メインエリア -->
-  <main class="w-full max-w-xl mx-auto my-auto px-3 py-1 flex flex-col items-center flex-1 justify-center">
-    
-    <!-- サブコントロールバー -->
-    <div class="w-full flex items-center justify-between mb-2.5 text-xs px-1">
-      <div class="flex items-center gap-2 font-mono">
-        <span class="text-[#CD2D2D] font-bold text-sm" id="progressIndex">1 / 50</span>
-        <span class="text-slate-300">|</span>
-        <label for="deckSizeSelect" class="text-slate-500 font-sans font-medium">出題:</label>
-        <select id="deckSizeSelect" onchange="changeDeckSize(this.value)" 
-          class="bg-white text-[#102542] border border-[#DCE4EE] rounded-lg px-2 py-1 text-xs focus:outline-none font-bold">
-          <option value="10">10問</option>
-          <option value="20">20問</option>
-          <option value="50">50問</option>
-          <option value="all" selected>全問</option>
-        </select>
-      </div>
-
-      <div class="flex items-center gap-1.5">
-        <button onclick="setFilterMode('all')" id="btnFilterAll" 
-          class="px-3 py-1 rounded-lg text-xs font-bold bg-[#102542] text-white transition">
-          すべて
-        </button>
-        <button onclick="setFilterMode('review')" id="btnFilterReview" 
-          class="px-2.5 py-1 rounded-lg text-xs font-bold bg-white border border-[#DCE4EE] text-slate-500 hover:text-[#CD2D2D] transition flex items-center gap-1">
-          <i class="fa-solid fa-xmark text-[#CD2D2D]"></i> 未習得 (<span id="unmasteredBadge">0</span>)
-        </button>
+      <!-- インスタストーリー風プログレスバー -->
+      <div class="w-full h-1 bg-[#DCE4EE] rounded-full overflow-hidden">
+        <div id="progressBarFill" class="h-full bg-[#CD2D2D] transition-all duration-300" style="width: 0%"></div>
       </div>
     </div>
 
-    <!-- 3Dカード本体 -->
-    <div class="w-full min-h-[410px] sm:min-h-[420px] perspective-1000 cursor-pointer" onclick="flipCard()">
-      <div id="flashCard" class="w-full h-full relative transform-style-3d transition-transform duration-500 rounded-2xl">
+    <!-- 3Dフラッシュカード本体（スワイプ＆タップ対応） -->
+    <div id="cardTouchArea" class="w-full flex-1 min-h-[370px] sm:min-h-[410px] max-h-[500px] perspective-1000 cursor-pointer my-1" onclick="flipCard()">
+      <div id="flashCard" class="w-full h-full relative transform-style-3d transition-transform duration-500 rounded-3xl">
 
-        <!-- 【表面】論点・例文・問題文 -->
-        <div class="card-frame rounded-2xl p-5 sm:p-6 flex flex-col justify-between items-center text-center min-h-[410px] sm:min-h-[420px]">
-          <!-- 上部バッジ行 -->
+        <!-- ==========================================
+             【表面】シンプル＆集中（問題文と選択肢のみ）
+             ========================================== -->
+        <div class="card-surface rounded-3xl p-5 sm:p-6 flex flex-col justify-between text-left h-full min-h-[370px] sm:min-h-[410px]">
+          <!-- 上部：極小ブロックバッジ & 未習得タグ -->
           <div class="w-full flex items-center justify-between gap-2">
-            <span id="cardCategoryBadge" class="text-xs font-bold px-3 py-1 rounded-full bg-[#F4F7FB] text-[#102542] border border-[#DCE4EE] truncate max-w-[240px]">
+            <span id="cardCategoryBadge" class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#F4F7FB] text-slate-600 border border-[#DCE4EE] truncate max-w-[220px]">
               文法論点
             </span>
-            <div class="flex items-center gap-2 shrink-0">
-              <button onclick="playSpeech(event)" class="text-slate-400 hover:text-[#CD2D2D] transition text-base p-1" title="音声再生">
-                <i class="fa-solid fa-volume-high"></i>
-              </button>
-              <span id="cardStatusBadge" class="text-xs font-bold px-2 py-0.5 rounded bg-red-50 text-[#CD2D2D] border border-red-200 hidden">
-                未習得
-              </span>
+            <span id="cardStatusBadge" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-red-50 text-[#CD2D2D] border border-red-200 hidden">
+              未習得
+            </span>
+          </div>
+
+          <!-- 中央：Part 5 問題文 ＆ 選択肢のみをスッキリ配置 -->
+          <div class="my-auto py-4 w-full space-y-5">
+            <div id="cardQuestion" class="font-extrabold text-[#102542] text-lg sm:text-xl tracking-tight leading-relaxed transition-all duration-200">
+              読み込み中...
+            </div>
+
+            <!-- 選択肢カード -->
+            <div id="cardOptions" class="p-3.5 rounded-2xl bg-[#F4F7FB] border border-[#DCE4EE] text-xs sm:text-sm font-mono text-[#102542] text-center tracking-wide font-bold leading-relaxed">
+              [ - ]
             </div>
           </div>
 
-          <!-- 中央：例文 ＆ 問題文 -->
-          <div class="my-auto py-2 w-full space-y-3.5">
-            <!-- 例文エリア -->
-            <div class="bg-[#F4F7FB] rounded-xl p-3 sm:p-3.5 border border-[#DCE4EE] text-left space-y-1.5">
-              <div class="text-xs text-[#CD2D2D] font-bold uppercase tracking-wider flex items-center gap-1.5">
-                <i class="fa-solid fa-lightbulb"></i> <span id="cardTopicTitle">コア論点</span>
-              </div>
-              <div id="cardExampleEn" class="text-sm sm:text-base font-semibold text-[#102542] leading-relaxed italic">
-                "Example sentence in English."
-              </div>
-              <div id="cardExampleJa" class="text-xs sm:text-sm text-slate-500 leading-normal">
-                例文の日本語訳
-              </div>
-            </div>
-
-            <!-- 問題文エリア -->
-            <div class="space-y-2 pt-1 text-left">
-              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                <i class="fa-solid fa-crosshairs mr-1 text-[#CD2D2D]"></i> Part 5 実践問題:
-              </div>
-              <div id="cardQuestion" class="font-bold text-[#102542] text-base sm:text-lg tracking-tight leading-relaxed transition-all duration-200">
-                Loading question...
-              </div>
-              <div id="cardOptions" class="block p-2.5 rounded-xl bg-[#F4F7FB] border border-[#DCE4EE] text-xs sm:text-sm font-mono text-[#102542] text-center tracking-wide font-semibold">
-                [ - ]
-              </div>
-            </div>
-          </div>
-
-          <!-- 最下部操作案内 -->
-          <div class="text-xs text-slate-400 font-semibold">
-            <i class="fa-solid fa-rotate mr-1 text-[#CD2D2D]"></i> タップして解説・解答を確認
+          <!-- 下部：ドットインジケーター（表面＝左が濃い） -->
+          <div class="w-full flex justify-center items-center gap-1.5">
+            <span class="w-4 h-1.5 rounded-full bg-[#102542]"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-[#DCE4EE]"></span>
           </div>
         </div>
 
-        <!-- 【裏面】解答・解法ルール -->
-        <div class="absolute inset-0 backface-hidden rotate-y-180 card-frame rounded-2xl p-5 sm:p-6 flex flex-col justify-between items-center text-center min-h-[410px] sm:min-h-[420px] border-2 border-[#102542] bg-white">
-          <div class="w-full flex items-center justify-between pb-2 border-b border-[#DCE4EE]">
-            <span class="text-xs font-bold text-emerald-700 uppercase tracking-widest flex items-center gap-1.5">
-              <i class="fa-solid fa-circle-check text-emerald-600"></i> 正解 ＆ 解法ルール
+        <!-- ==========================================
+             【裏面】充実の解説・正解・論点・例文
+             ========================================== -->
+        <div class="absolute inset-0 backface-hidden rotate-y-180 card-surface rounded-3xl p-5 sm:p-6 flex flex-col justify-between text-left h-full min-h-[370px] sm:min-h-[410px] border-2 border-[#102542] overflow-y-auto">
+          <!-- 上部：ラベル & 完成文音声ボタン -->
+          <div class="w-full flex items-center justify-between pb-2.5 border-b border-[#DCE4EE]">
+            <span class="text-[11px] font-bold text-emerald-700 flex items-center gap-1">
+              <i class="fa-solid fa-circle-check"></i> ANSWER &amp; LOGIC
             </span>
-            <span class="text-xs text-slate-400">タップで問題面へ戻る</span>
+            <button onclick="playSpeech(event)" class="px-2.5 py-1 rounded-full bg-[#F4F7FB] hover:bg-red-50 border border-[#DCE4EE] text-[#102542] hover:text-[#CD2D2D] text-xs font-bold flex items-center gap-1 transition">
+              <i class="fa-solid fa-volume-high text-[#CD2D2D]"></i> 完成文音声
+            </button>
           </div>
 
-          <!-- 解答本体 -->
-          <div class="my-auto py-2 w-full space-y-3 text-left">
+          <!-- 中央：正解 ＋ 判断基準 ＋ コア論点＆例文 -->
+          <div class="my-auto py-2.5 space-y-3.5">
+            <!-- 1. 正解 & 完成文 -->
             <div>
-              <div class="text-xs text-slate-500 font-bold uppercase tracking-wider mb-0.5">正解</div>
+              <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">正解</div>
               <div id="cardAnswer" class="text-2xl sm:text-3xl font-black text-[#CD2D2D] font-mono tracking-wide">
                 -
               </div>
-            </div>
-
-            <!-- 解法ルール -->
-            <div class="bg-[#F4F7FB] p-3 sm:p-4 rounded-xl border border-[#DCE4EE] space-y-1">
-              <div class="text-xs text-[#102542] font-bold uppercase tracking-wider flex items-center gap-1.5">
-                <i class="fa-solid fa-key text-[#CD2D2D]"></i> 10秒で見切る判断基準:
-              </div>
-              <div id="cardRule" class="text-sm sm:text-base font-bold text-slate-700 leading-relaxed">
+              <div id="cardFullSentence" class="text-xs text-slate-600 italic mt-1 leading-relaxed">
                 -
               </div>
             </div>
 
-            <!-- 完成文 -->
-            <div class="bg-white p-2.5 rounded-xl border border-[#DCE4EE]">
-              <div class="text-[11px] text-slate-500 font-bold mb-0.5">完成した文:</div>
-              <div id="cardFullSentence" class="text-xs sm:text-sm text-[#102542] italic leading-relaxed">
+            <!-- 2. 10秒で見切る判断基準 -->
+            <div class="bg-[#F4F7FB] p-3.5 rounded-xl border border-[#DCE4EE] space-y-1">
+              <div class="text-[10px] text-[#102542] font-bold uppercase tracking-wider flex items-center gap-1">
+                <i class="fa-solid fa-key text-[#CD2D2D]"></i> 10秒で見切る判断基準
+              </div>
+              <div id="cardRule" class="text-xs sm:text-sm font-bold text-slate-800 leading-relaxed">
+                -
+              </div>
+            </div>
+
+            <!-- 3. コア論点 & 例文 -->
+            <div class="bg-[#F4F7FB] p-3.5 rounded-xl border border-[#DCE4EE] space-y-1.5">
+              <div class="text-[10px] text-[#CD2D2D] font-bold uppercase tracking-wider flex items-center gap-1">
+                <i class="fa-solid fa-lightbulb"></i> <span id="cardTopicTitle">コア論点</span>
+              </div>
+              <div id="cardExampleEn" class="text-xs font-bold text-[#102542] italic leading-relaxed">
+                -
+              </div>
+              <div id="cardExampleJa" class="text-[11px] text-slate-600 leading-relaxed pt-1 border-t border-[#DCE4EE]">
                 -
               </div>
             </div>
           </div>
 
-          <div class="text-xs text-slate-500 font-semibold">
-            下のボタンで自己評価してください
+          <!-- 下部：ドットインジケーター（裏面＝右が濃い） -->
+          <div class="w-full flex items-center justify-between pt-1">
+            <span class="text-[11px] text-slate-400">タップで問題面へ</span>
+            <div class="flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#DCE4EE]"></span>
+              <span class="w-4 h-1.5 rounded-full bg-[#CD2D2D]"></span>
+            </div>
           </div>
         </div>
 
       </div>
     </div>
 
-    <!-- 判定ボタン -->
-    <div class="w-full grid grid-cols-2 gap-3 mt-3.5">
-      <button onclick="handleGrade(false)" 
-        class="py-4 px-4 rounded-2xl bg-white hover:bg-red-50 border border-[#DCE4EE] hover:border-[#CD2D2D] text-[#CD2D2D] font-black text-sm sm:text-base transition flex items-center justify-center gap-2 shadow-sm active:scale-95">
-        <i class="fa-solid fa-xmark text-lg"></i>
-        <span>できなかった (↓)</span>
-      </button>
-      <button onclick="handleGrade(true)" 
-        class="py-4 px-4 rounded-2xl bg-white hover:bg-emerald-50 border border-[#DCE4EE] hover:border-emerald-600 text-emerald-700 font-black text-sm sm:text-base transition flex items-center justify-center gap-2 shadow-sm active:scale-95">
-        <i class="fa-solid fa-check text-lg"></i>
-        <span>できた (↑)</span>
-      </button>
-    </div>
-
-    <!-- ナビゲーション操作ボタン -->
-    <div class="w-full flex items-center justify-center gap-3 mt-2.5 mb-4">
-      <button onclick="prevCard()" class="px-5 py-3 rounded-xl bg-white hover:bg-[#F4F7FB] border border-[#102542] text-[#102542] text-xs sm:text-sm font-bold transition flex items-center gap-1.5 active:scale-95 kobe-btn-glow">
-        <i class="fa-solid fa-chevron-left text-xs"></i> 前へ
-      </button>
-      <button onclick="flipCard()" class="flex-1 max-w-[200px] py-3 rounded-xl bg-[#102542] hover:bg-[#1a3860] border border-[#102542] hover:border-[#CD2D2D] text-white text-xs sm:text-sm font-black transition flex items-center justify-center gap-2 shadow-sm active:scale-95 kobe-btn-glow">
-        <i class="fa-solid fa-rotate text-red-400"></i> めくる (Space)
-      </button>
-      <button onclick="nextCard()" class="px-5 py-3 rounded-xl bg-white hover:bg-[#F4F7FB] border border-[#102542] text-[#102542] text-xs sm:text-sm font-bold transition flex items-center gap-1.5 active:scale-95 kobe-btn-glow">
-        次へ <i class="fa-solid fa-chevron-right text-xs"></i>
-      </button>
-    </div>
-
-    <!-- 教材導線バナー -->
-    <div class="w-full p-4 rounded-2xl bg-white border border-[#DCE4EE] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs shadow-sm">
-      <div class="space-y-1 text-center sm:text-left">
-        <div class="flex items-center justify-center sm:justify-start gap-1.5 text-[#CD2D2D] font-bold">
-          <i class="fa-solid fa-book-bookmark"></i>
-          <span>1,000問超を紙とペンで体系周回するなら</span>
-        </div>
-        <p class="text-slate-600 text-[11px] leading-relaxed">
-          当ツールの1,150問を解きつつ、机上で全論点を網羅するなら『でる1000問』が定番にして最強の演習書です。
-        </p>
+    <!-- スマート下部アクションエリア（表と裏でボタンが切り替わる1段設計） -->
+    <div class="w-full pt-2 pb-3">
+      <!-- ① 表面のときの操作バー -->
+      <div id="frontActionBar" class="flex items-center gap-2.5">
+        <button onclick="prevCard()" class="w-12 py-3.5 rounded-2xl bg-white hover:bg-[#F4F7FB] border border-[#DCE4EE] text-slate-600 flex items-center justify-center transition active:scale-95" title="前の問題">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button onclick="flipCard()" class="flex-1 py-3.5 px-5 rounded-2xl bg-[#102542] hover:bg-[#1a3860] text-white font-black text-sm sm:text-base transition flex items-center justify-center gap-2 shadow-md active:scale-95 kobe-btn-glow">
+          <span>答え・解説を見る</span>
+          <i class="fa-solid fa-rotate text-red-400 text-xs"></i>
+        </button>
+        <button onclick="nextCard()" class="w-12 py-3.5 rounded-2xl bg-white hover:bg-[#F4F7FB] border border-[#DCE4EE] text-slate-600 flex items-center justify-center transition active:scale-95" title="次の問題">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
       </div>
-      <div class="flex items-center gap-2 shrink-0">
-        <a href="recommend.html" class="px-3 py-2 rounded-xl bg-[#F4F7FB] hover:bg-slate-200 border border-[#DCE4EE] text-[#102542] font-bold transition">
-          解説を見る
-        </a>
-        <a href="https://link.amazon/B0iwl6Np1" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-[#102542] hover:bg-[#1a3860] border border-[#102542] hover:border-[#CD2D2D] text-white font-bold transition flex items-center gap-1.5 shadow-sm kobe-btn-glow">
-          <span>Amazonで確認</span>
-          <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-red-400"></i>
-        </a>
+
+      <!-- ② 裏面のときの自己評価バー（2択に集中） -->
+      <div id="backActionBar" class="hidden grid grid-cols-2 gap-3">
+        <button onclick="handleGrade(false)" class="py-3.5 px-4 rounded-2xl bg-white hover:bg-red-50 border-2 border-[#CD2D2D]/30 hover:border-[#CD2D2D] text-[#CD2D2D] font-black text-sm sm:text-base transition flex items-center justify-center gap-2 shadow-sm active:scale-95">
+          <i class="fa-solid fa-xmark text-lg"></i>
+          <span>まだ（未習得）</span>
+        </button>
+        <button onclick="handleGrade(true)" class="py-3.5 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm sm:text-base transition flex items-center justify-center gap-2 shadow-md active:scale-95">
+          <i class="fa-solid fa-check text-lg"></i>
+          <span>できた！</span>
+        </button>
       </div>
     </div>
 
@@ -296,7 +294,7 @@
 
   <!-- 問題・答えの一覧モーダル -->
   <div id="listModal" class="fixed inset-0 bg-[#102542]/70 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 z-50">
-    <div class="max-w-xl w-full h-[85vh] bg-white rounded-2xl p-4 sm:p-5 flex flex-col border border-[#DCE4EE] shadow-2xl overflow-hidden">
+    <div class="max-w-lg w-full h-[85vh] bg-white rounded-2xl p-4 sm:p-5 flex flex-col border border-[#DCE4EE] shadow-2xl overflow-hidden">
       <div class="flex items-center justify-between pb-3 border-b border-[#DCE4EE]">
         <div class="flex items-center gap-2">
           <i class="fa-solid fa-layer-group text-[#CD2D2D]"></i>
@@ -320,14 +318,15 @@
     </div>
   </div>
 
-  <!-- フッター -->
-  <footer class="border-t border-[#DCE4EE] bg-white py-6 text-center text-xs text-slate-500 space-y-1.5">
+  <!-- コンパクトフッター -->
+  <footer class="border-t border-[#DCE4EE] bg-white py-4 text-center text-[11px] text-slate-400 space-y-1">
     <p class="font-semibold text-[#102542]">© 2026 TOEIC RE:BOOT 730<a href="ura_index.html" class="text-slate-400 hover:text-slate-600">.</a></p>
-    <p>50代からのスコア奪還 自習システム</p>
-    <p class="text-[11px] text-slate-400">
-      Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。
-      <span class="mx-1.5 text-slate-300">|</span>
-      <a href="contact.html" class="hover:text-[#CD2D2D] transition-colors">不具合・誤字報告</a>
+    <p>
+      Amazonアソシエイト参加中
+      <span class="mx-1.5">|</span>
+      <a href="recommend.html" class="hover:text-[#CD2D2D] underline">おすすめ教材</a>
+      <span class="mx-1.5">|</span>
+      <a href="contact.html" class="hover:text-[#CD2D2D]">不具合報告</a>
     </p>
   </footer>
 
@@ -407,14 +406,13 @@
     let filterMode = 'all';
 
     const fontSizes = [
-      { q: 'text-base sm:text-lg', opt: 'text-xs' },
-      { q: 'text-lg sm:text-xl', opt: 'text-xs sm:text-sm' },
-      { q: 'text-xl sm:text-2xl', opt: 'text-sm sm:text-base' }
+      'text-base sm:text-lg',
+      'text-lg sm:text-xl',
+      'text-xl sm:text-2xl'
     ];
     let currentFontIndex = parseInt(localStorage.getItem('grammar_font_level') || '1', 10);
     let stats = JSON.parse(localStorage.getItem('eng_grammar_stats') || '{"mastered":{}, "review":{}}');
 
-    const categorySelect = document.getElementById('categorySelect');
     const chapterSelect = document.getElementById('chapterSelect');
     const flashCard = document.getElementById('flashCard');
     const cardCategoryBadge = document.getElementById('cardCategoryBadge');
@@ -428,25 +426,38 @@
     const cardRule = document.getElementById('cardRule');
     const cardFullSentence = document.getElementById('cardFullSentence');
     const progressIndex = document.getElementById('progressIndex');
+    const progressBarFill = document.getElementById('progressBarFill');
+    const currentChapterLabel = document.getElementById('currentChapterLabel');
     const unmasteredBadge = document.getElementById('unmasteredBadge');
+    const frontActionBar = document.getElementById('frontActionBar');
+    const backActionBar = document.getElementById('backActionBar');
     const listModal = document.getElementById('listModal');
+
+    function toggleSettingsDrawer() {
+      document.getElementById('settingsDrawer').classList.toggle('hidden');
+    }
 
     async function initApp() {
       applyFontClasses();
-      onCategoryChange('all');
+      onCategoryChange('all', false);
     }
 
-    function onCategoryChange(catKey) {
+    function onCategoryChange(catKey, autoClose = false) {
       const items = CATEGORIES[catKey] || [];
       chapterSelect.innerHTML = items.map(item => `<option value="${item.key}">${item.label}</option>`).join('');
       if (items.length > 0) {
-        changeChapter(items[0].key);
+        changeChapter(items[0].key, autoClose);
       }
     }
 
-    async function changeChapter(key) {
+    async function changeChapter(key, autoClose = false) {
       const cacheBuster = '?t=' + new Date().getTime();
       allData = [];
+
+      const selectedOpt = chapterSelect.options[chapterSelect.selectedIndex];
+      if (selectedOpt && currentChapterLabel) {
+        currentChapterLabel.textContent = selectedOpt.text.replace(/\s*\(\d+問\)/, '').replace('★ ', '');
+      }
 
       try {
         if (key === 'all') {
@@ -467,9 +478,10 @@
       }
 
       rebuildDeck();
+      if (autoClose) toggleSettingsDrawer();
     }
 
-    function changeDeckSize(val) {
+    function changeDeckSize() {
       rebuildDeck();
     }
 
@@ -479,11 +491,11 @@
       const btnRev = document.getElementById('btnFilterReview');
 
       if (mode === 'all') {
-        btnAll.className = 'px-3 py-1 rounded-lg text-xs font-bold bg-[#102542] text-white transition';
-        btnRev.className = 'px-2.5 py-1 rounded-lg text-xs font-bold bg-white border border-[#DCE4EE] text-slate-500 hover:text-[#CD2D2D] transition flex items-center gap-1';
+        btnAll.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#102542] text-white transition';
+        btnRev.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold text-slate-500 hover:text-[#CD2D2D] transition';
       } else {
-        btnRev.className = 'px-2.5 py-1 rounded-lg text-xs font-bold bg-[#CD2D2D] text-white transition flex items-center gap-1';
-        btnAll.className = 'px-3 py-1 rounded-lg text-xs font-bold bg-white border border-[#DCE4EE] text-slate-500 hover:text-[#102542] transition';
+        btnRev.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#CD2D2D] text-white transition';
+        btnAll.className = 'px-2.5 py-0.5 rounded-full text-[11px] font-bold text-slate-500 hover:text-[#102542] transition';
       }
       rebuildDeck();
     }
@@ -512,15 +524,30 @@
       unmasteredBadge.textContent = reviewCount;
     }
 
+    function syncActionBars() {
+      if (isFlipped) {
+        frontActionBar.classList.add('hidden');
+        backActionBar.classList.remove('hidden');
+      } else {
+        frontActionBar.classList.remove('hidden');
+        backActionBar.classList.add('hidden');
+      }
+    }
+
     function loadCard(index) {
+      isFlipped = false;
+      flashCard.classList.remove('rotate-y-180');
+      syncActionBars();
+
       if (!activeDeck || activeDeck.length === 0) {
         progressIndex.textContent = "0 / 0";
-        cardCategoryBadge.textContent = "なし";
+        progressBarFill.style.width = "0%";
+        cardCategoryBadge.textContent = "完了";
         cardTopicTitle.textContent = "対象の論点はありません";
-        cardExampleEn.textContent = "問題データが見つからないか、すべて習得済みです。";
+        cardExampleEn.textContent = "-";
         cardExampleJa.textContent = "";
-        cardQuestion.textContent = "上のジャンルや論点集から別の出題を選択してください。";
-        cardOptions.textContent = "[ - ]";
+        cardQuestion.textContent = "すべて習得済みか、問題データが見つかりません。";
+        cardOptions.textContent = "[ 設定から別のジャンルを選択してください ]";
         cardAnswer.textContent = "-";
         cardRule.textContent = "-";
         cardFullSentence.textContent = "-";
@@ -528,12 +555,9 @@
         return;
       }
 
-      isFlipped = false;
-      flashCard.classList.remove('rotate-y-180');
-
       const item = activeDeck[index];
       cardCategoryBadge.textContent = item.block || item.category || "文法論点";
-      cardTopicTitle.textContent = item.topic;
+      cardTopicTitle.textContent = item.topic || "コア論点";
       cardExampleEn.textContent = item.example_en ? `"${item.example_en}"` : "";
       cardExampleJa.textContent = item.example_ja || "";
       cardQuestion.textContent = item.question;
@@ -549,31 +573,27 @@
       }
 
       progressIndex.textContent = `${index + 1} / ${activeDeck.length}`;
+      const percent = Math.round(((index + 1) / activeDeck.length) * 100);
+      progressBarFill.style.width = `${percent}%`;
     }
 
     function flipCard() {
       if (activeDeck.length === 0) return;
       isFlipped = !isFlipped;
       flashCard.classList.toggle('rotate-y-180', isFlipped);
+      syncActionBars();
     }
 
     function prevCard() {
       if (activeDeck.length === 0) return;
-      if (currentIndex > 0) {
-        currentIndex--;
-        loadCard(currentIndex);
-      }
+      currentIndex = (currentIndex > 0) ? currentIndex - 1 : activeDeck.length - 1;
+      loadCard(currentIndex);
     }
 
     function nextCard() {
       if (activeDeck.length === 0) return;
-      if (currentIndex < activeDeck.length - 1) {
-        currentIndex++;
-        loadCard(currentIndex);
-      } else {
-        currentIndex = 0;
-        loadCard(0);
-      }
+      currentIndex = (currentIndex < activeDeck.length - 1) ? currentIndex + 1 : 0;
+      loadCard(currentIndex);
     }
 
     function handleGrade(isMastered) {
@@ -592,11 +612,10 @@
       localStorage.setItem('eng_grammar_stats', JSON.stringify(stats));
       updateUnmasteredCount();
 
-      if (currentIndex < activeDeck.length - 1) {
-        currentIndex++;
-        loadCard(currentIndex);
+      if (filterMode === 'review' && isMastered) {
+        rebuildDeck();
       } else {
-        loadCard(currentIndex);
+        nextCard();
       }
     }
 
@@ -610,9 +629,9 @@
     }
 
     function applyFontClasses() {
-      const allQ = fontSizes.map(f => f.q.split(' ')).flat();
+      const allQ = fontSizes.map(f => f.split(' ')).flat();
       cardQuestion.classList.remove(...allQ);
-      cardQuestion.classList.add(...fontSizes[currentFontIndex].q.split(' '));
+      cardQuestion.classList.add(...fontSizes[currentFontIndex].split(' '));
     }
 
     function playSpeech(e) {
@@ -620,11 +639,31 @@
       if (activeDeck.length === 0) return;
       const currentItem = activeDeck[currentIndex];
       const textToRead = currentItem.question.replace('______', currentItem.answer);
+      window.speechSynthesis.cancel();
       const uttr = new SpeechSynthesisUtterance(textToRead);
       uttr.lang = 'en-US';
       uttr.rate = 0.88;
       window.speechSynthesis.speak(uttr);
     }
+
+    // スマホ左右スワイプ操作
+    let touchStartX = 0;
+    let touchStartY = 0;
+    const cardTouchArea = document.getElementById('cardTouchArea');
+    cardTouchArea.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    cardTouchArea.addEventListener('touchend', (e) => {
+      const diffX = e.changedTouches[0].screenX - touchStartX;
+      const diffY = e.changedTouches[0].screenY - touchStartY;
+      if (Math.abs(diffX) > 60 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
+        e.stopPropagation();
+        if (diffX < 0) nextCard();
+        else prevCard();
+      }
+    }, { passive: true });
 
     function openListModal() {
       renderList(allData);
@@ -661,7 +700,7 @@
         const isMastered = stats.mastered[item.id];
         const isReview = stats.review[item.id];
         const row = document.createElement('div');
-        row.className = 'p-3 rounded-xl bg-[#F4F7FB] border border-[#DCE4EE] space-y-1.5 hover:border-[#102542] transition';
+        row.className = 'p-3 rounded-xl bg-[#F4F7FB] border border-[#DCE4EE] space-y-1.5 hover:border-[#102542] transition cursor-pointer';
         row.innerHTML = `
           <div class="flex items-center justify-between gap-2">
             <span class="text-[10px] font-mono text-[#102542] font-bold px-2 py-0.5 rounded bg-white border border-[#DCE4EE]">
@@ -673,16 +712,23 @@
             </div>
           </div>
           <div class="text-xs font-bold text-[#CD2D2D]">${item.topic}</div>
-          <div class="text-[11px] text-slate-600 bg-white p-2 rounded-lg border border-[#DCE4EE]">
-            <span class="text-[#102542] font-semibold">${item.example_en || ''}</span><br>
-            <span class="text-slate-500">${item.example_ja || ''}</span>
-          </div>
           <div class="text-xs font-bold text-[#102542] pt-0.5">${item.question}</div>
           <div class="text-xs font-mono font-bold text-emerald-700">正解: ${item.answer}</div>
           <div class="text-[11px] text-slate-600 bg-white p-2 rounded-lg border border-[#DCE4EE]">
             <strong class="text-[#CD2D2D]">論点:</strong> ${item.rule}
           </div>
         `;
+        row.addEventListener('click', () => {
+          filterMode = 'all';
+          document.getElementById('deckSizeSelect').value = 'all';
+          rebuildDeck();
+          const matchIndex = activeDeck.findIndex(it => it.id === item.id);
+          if (matchIndex !== -1) {
+            currentIndex = matchIndex;
+            loadCard(currentIndex);
+          }
+          closeListModal();
+        });
         container.appendChild(row);
       });
     }
@@ -700,6 +746,7 @@
     initApp();
   </script>
 
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "bbb557a7347f45f2a4758e1eb4e53301"}'></script><!-- End Cloudflare Web Analytics -->
+  <!-- Cloudflare Web Analytics -->
+  <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "bbb557a7347f45f2a4758e1eb4e53301"}'></script>
 </body>
 </html>
