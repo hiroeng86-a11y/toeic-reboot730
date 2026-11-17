@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文法・品詞判定 資料室 | TOEIC RE:BOOT 730</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Inter:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+      background-color: #F4F7FB;
+      color: #102542;
+    }
+    .font-chakra { font-family: 'Chakra Petch', sans-serif; }
+    
+    .kobe-navy { color: #102542; }
+    .kobe-bg-navy { background-color: #102542; }
+    .kobe-red { color: #CD2D2D; }
+    .kobe-bg-red { background-color: #CD2D2D; }
+
+    .kobe-card-glow {
+      border: 1px solid #DCE4EE;
+      box-shadow: 0 4px 6px -1px rgba(16, 37, 66, 0.05);
+      transition: all 0.25s ease;
+    }
+    .kobe-card-glow:hover {
+      border-color: rgba(205, 45, 45, 0.5);
+      box-shadow: 0 10px 25px -3px rgba(16, 37, 66, 0.12), 0 0 18px rgba(205, 45, 45, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .kobe-btn-glow {
+      transition: all 0.2s ease;
+    }
+    .kobe-btn-glow:hover {
+      border-color: #CD2D2D;
+      box-shadow: 0 0 14px rgba(205, 45, 45, 0.25);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-blue-100 selection:text-blue-900">
+
+  <!-- ヘッダー（統一仕様：赤のアクセントライン ＋ 神戸ネイビー） -->
+  <header class="border-b border-[#DCE4EE] bg-white/95 backdrop-blur sticky top-0 z-50">
+    <div class="h-[3px] bg-[#CD2D2D] w-full"></div>
+    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <span class="w-3 h-3 rounded-full bg-[#CD2D2D] shadow-[0_0_10px_rgba(205,45,45,0.4)] animate-pulse"></span>
+        <a href="index.html" class="font-chakra text-xl font-bold tracking-wider text-[#102542] hover:opacity-90 transition">
+          TOEIC RE:BOOT <span class="kobe-red">730</span>
+        </a>
+      </div>
+      <nav class="flex items-center gap-5 text-sm font-semibold text-slate-600">
+        <a href="index.html" class="hover:text-[#CD2D2D] transition-colors flex items-center gap-1.5">
+          <i class="fa-solid fa-house text-xs"></i>
+          <span>トップへ戻る</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- タイトルセクション -->
+  <section class="border-b border-[#DCE4EE] py-10 md:py-12 bg-gradient-to-b from-white via-white to-[#F4F7FB]">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-red-50 text-[#CD2D2D] border border-red-200 mb-3">
+        <i class="fa-solid fa-book-bookmark text-[#CD2D2D]"></i> Part 5 瞬殺のための構造判定ライブラリ
+      </div>
+      <h1 class="text-2xl md:text-4xl font-extrabold tracking-tight text-[#102542] leading-tight">
+        TOEIC 文法・品詞判定 <span class="text-[#CD2D2D]">資料室</span>
+      </h1>
+      <p class="text-sm md:text-base text-slate-600 mt-3 leading-relaxed max-w-2xl">
+        「勘」で解くのをやめ、腹落ちするロジックで回答を導く。10秒で正解を射抜くための特化資料アーカイブです。開発者が730点取るまでに必要と感じたものから重要論点を視覚的にまとめました。
+      </p>
+    </div>
+  </section>
+
+  <!-- メインリスト -->
+  <main class="max-w-4xl mx-auto px-4 py-10 space-y-6 flex-1 w-full">
+
+    <!-- 資料カード 1: 副詞・副詞句・副詞節 -->
+    <article class="bg-white rounded-2xl p-6 md:p-8 border border-[#DCE4EE] kobe-card-glow relative overflow-hidden">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+        <span class="text-xs font-bold text-[#CD2D2D] uppercase tracking-widest font-chakra flex items-center gap-1.5">
+          <i class="fa-solid fa-star text-[#CD2D2D]"></i> ESSENTIAL GUIDE 01
+        </span>
+        <span class="text-xs px-2.5 py-0.5 rounded-full bg-red-50 text-[#CD2D2D] border border-red-200 font-bold">出題頻度 ★★★★★</span>
+      </div>
+
+      <h2 class="text-xl md:text-2xl font-bold text-[#102542] mb-3">
+        正解の肢として出される「副詞・副詞句・副詞節」から極める！
+      </h2>
+      <p class="text-xs md:text-sm text-slate-600 mb-5 leading-relaxed">
+        「副詞・副詞句・副詞節」。付随して一部「前置詞 vs 接続詞」の峻別フローを掲載。
+      </p>
+
+      <!-- 特徴タグ -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 text-xs text-slate-700">
+        <div class="bg-[#F4F7FB] p-3 rounded-xl border border-[#DCE4EE]">
+          <div class="font-bold text-[#102542] mb-0.5"><i class="fa-solid fa-cube text-[#CD2D2D] mr-1"></i>副詞の本質と4修飾</div>
+          <p class="text-[11px] text-slate-500">動詞・形容詞・副詞・文全体への働き</p>
+        </div>
+        <div class="bg-[#F4F7FB] p-3 rounded-xl border border-[#DCE4EE]">
+          <div class="font-bold text-[#102542] mb-0.5"><i class="fa-solid fa-code-compare text-blue-600 mr-1"></i>前置詞 vs 接続詞</div>
+          <p class="text-[11px] text-slate-500">despite/although 等の最頻出ペア対比</p>
+        </div>
+        <div class="bg-[#F4F7FB] p-3 rounded-xl border border-[#DCE4EE]">
+          <div class="font-bold text-[#102542] mb-0.5"><i class="fa-solid fa-triangle-exclamation text-amber-500 mr-1"></i>落とし穴・例外4選</div>
+          <p class="text-[11px] text-slate-500">costly等の形容詞、while -ing分詞構文</p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end pt-2 border-t border-[#DCE4EE]">
+        <a href="lang-eng-siryoroom-hukusi.html" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#102542] hover:bg-[#1a3860] border border-[#102542] hover:border-[#CD2D2D] text-white font-bold text-xs transition kobe-btn-glow group">
+          <span>解説を見る</span>
+          <i class="fa-solid fa-arrow-right text-xs text-red-400 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+
+    <!-- 資料カード 2: 動詞の原形（Base Form）完全攻略 -->
+    <article class="bg-white rounded-2xl p-6 md:p-8 border border-[#DCE4EE] kobe-card-glow relative overflow-hidden">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+        <span class="text-xs font-bold text-[#CD2D2D] uppercase tracking-widest font-chakra flex items-center gap-1.5">
+          <i class="fa-solid fa-star text-[#CD2D2D]"></i> ESSENTIAL GUIDE 02
+        </span>
+        <span class="text-xs px-2.5 py-0.5 rounded-full bg-red-50 text-[#CD2D2D] border border-red-200 font-bold">出題頻度 ★★★★☆</span>
+      </div>
+
+      <h2 class="text-xl md:text-2xl font-bold text-[#102542] mb-3">
+        正解の肢として出される「動詞の原形（Base Form）」完全攻略
+      </h2>
+      <p class="text-xs md:text-sm text-slate-600 mb-5 leading-relaxed">
+        三単現の -s や過去形（-ed）の引っかけを無力化する「動詞の原形」が必須となる全9パターンを徹底整理。助動詞の隙間から仮定法現在、使役・知覚・helpの原形不定詞までを完全網羅。
+      </p>
+
+      <!-- 特徴タグ -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 text-xs text-slate-700">
+        <div class="bg-[#F4F7FB] p-3 rounded-xl border border-[#DCE4EE]">
+          <div class="font-bold text-[#102542] mb-0.5"><i class="fa-solid fa-sitemap text-[#CD2D2D] mr-1"></i>原形必須の全9パターン</div>
+          <p class="text-[11px] text-slate-500">助動詞・命令文から使役・知覚構文まで</p>
+        </div>
+        <div class="bg-[#F4F7FB] p-3 rounded-xl border border-[#DCE4EE]">
+          <div class="font-bold text-[#102542] mb-0.5"><i class="fa-solid fa-hand-holding-hand text-blue-600 mr-1"></i>help の二面性と動詞連続</div>
+          <p class="text-[11px] text-slate-500">to省略による原形配置・第3/第5文型</p>
+        </div>
+        <div class="bg-[#F4F7FB] p-3 rounded-xl border border-[#DCE4EE]">
+          <div class="font-bold text-[#102542] mb-0.5"><i class="fa-solid fa-scale-unbalanced text-amber-500 mr-1"></i>仮定法現在＆対比表</div>
+          <p class="text-[11px] text-slate-500">that節内の原形・notice vs request</p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end pt-2 border-t border-[#DCE4EE]">
+        <a href="lang-eng-siryoroom-genkei.html" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#102542] hover:bg-[#1a3860] border border-[#102542] hover:border-[#CD2D2D] text-white font-bold text-xs transition kobe-btn-glow group">
+          <span>解説を見る</span>
+          <i class="fa-solid fa-arrow-right text-xs text-red-400 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+
+    <!-- 資料カード 3: 代名詞・疑問詞・関係詞の定義深掘りマップ -->
+    <article class="bg-white rounded-2xl p-6 md:p-8 border border-[#DCE4EE] kobe-card-glow relative overflow-hidden">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+        <span class="text-xs font-bold text-[#CD2D2D] uppercase tracking-widest font-chakra flex items-center gap-1.5">
+          <i class="fa-solid fa-star text-[#CD2D2D]"></i> ESSENTIAL GUIDE 03
+        </span>
+        <span class="text-xs px-2.5 py-0.5 rounded-full bg-red-50 text-[#CD2D2D] border border-red-200 font-bold">出題頻度 ★★★★★</span>
+      </div>
+
+      <h2 class="text-xl md:text-2xl font-bold text-[#102542] mb-3">
+        品詞と構造の根幹「代名詞・疑問詞・関係詞」定義深掘りマップ
+      </h2>
+      <p class="text-xs md:text-sm text-slate-600 mb-5 leading-relaxed">
+        普通の「代名詞」に特殊能力が合体して「疑問詞」「関係詞」へ進化する仕組みを徹底図解。関係代名詞（不完全文）と関係副詞（完全文）の判別フローを掲載。
+      </p>
+
+      <!-- 特徴タグ -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 text-xs text-slate-700">
+        <div class="bg-[#F4F7FB] p-3 rounded-xl border border-[#DCE4EE]">
+          <div class="font-bold text-[#102542] mb-0.5"><i class="fa-solid fa-cubes text-[#CD2D2D] mr-1"></i>代名詞の4定位置と進化</div>
+          <p class="text-[11px] text-slate-500">質問力・接着剤が合体するメカニズム</p>
+        </div>
+        <div class="bg-[#F4F7FB] p-3 rounded-xl border border-[#DCE4EE]">
+          <div class="font-bold text-[#102542] mb-0.5"><i class="fa-solid fa-magnifying-glass-chart text-blue-600 mr-1"></i>関係副詞の深掘り解説</div>
+          <p class="text-[11px] text-slate-500">なぜ後ろが完全文になるか＆4種整理</p>
+        </div>
+        <div class="bg-[#F4F7FB] p-3 rounded-xl border border-[#DCE4EE]">
+          <div class="font-bold text-[#102542] mb-0.5"><i class="fa-solid fa-code-branch text-amber-500 mr-1"></i>YES/NO 3秒判定フロー</div>
+          <p class="text-[11px] text-slate-500">先行詞の有無と完全・不完全文の走査</p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end pt-2 border-t border-[#DCE4EE]">
+        <a href="lang-eng-siryoroom-pronoun-base.html" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#102542] hover:bg-[#1a3860] border border-[#102542] hover:border-[#CD2D2D] text-white font-bold text-xs transition kobe-btn-glow group">
+          <span>解説を見る</span>
+          <i class="fa-solid fa-arrow-right text-xs text-red-400 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+
+    <!-- 資料カード 4: 「what」の用法・全パターン完全攻略 -->
+    <article class="bg-white rounded-2xl p-6 md:p-8 border border-[#DCE4EE] kobe-card-glow relative overflow-hidden">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+        <span class="text-xs font-bold text-[#CD2D2D] uppercase tracking-widest font-chakra flex items-center gap-1.5">
+          <i class="fa-solid fa-star text-[#CD2D2D]"></i> ESSENTIAL GUIDE 04
+        </span>
+        <span class="text-xs px-2.5 py-0.5 rounded-full bg-red-50 text-[#CD2D2D] border border-red-200 font-bold">出題頻度 ★★★★☆</span>
+      </div>
+
+      <h2 class="text-xl md:text-2xl font-bold text-[#102542] mb-3">
+        1語で4役をこなす「what」の全用法・全イディオム完全攻略
+      </h2>
+      <p class="text-xs md:text-sm text-slate-600 mb-5 leading-relaxed">
+        疑問詞・関係詞・感嘆文・頻出イディオムまで、同じスペル「what」が文中で果たす役割を完全体系化。関係代名詞 what が作る名詞節の4ポジションと慣用表現データベースを網羅。
+      </p>
+
+      <!-- 特徴タグ -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 text-xs text-slate-700">
+        <div class="bg-[#F4F7FB] p-3 rounded-xl border border-[#DCE4EE]">
+          <div class="font-bold text-[#102542] mb-0.5"><i class="fa-solid fa-layer-group text-[#CD2D2D] mr-1"></i>what の4大カテゴリー</div>
+          <p class="text-[11px] text-slate-500">疑問詞・関係詞・感嘆文・慣用表現</p>
+        </div>
+        <div class="bg-[#F4F7FB] p-3 rounded-xl border border-[#DCE4EE]">
+          <div class="font-bold text-[#102542] mb-0.5"><i class="fa-solid fa-box-open text-blue-600 mr-1"></i>名詞節の4ポジション</div>
+          <p class="text-[11px] text-slate-500">S・O・C・前置詞の目的語になる配置</p>
+        </div>
+        <div class="bg-[#F4F7FB] p-3 rounded-xl border border-[#DCE4EE]">
+          <div class="font-bold text-[#102542] mb-0.5"><i class="fa-solid fa-database text-amber-500 mr-1"></i>頻出イディオム11選</div>
+          <p class="text-[11px] text-slate-500">what is more / A is to B what C is to D 等</p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end pt-2 border-t border-[#DCE4EE]">
+        <a href="lang-eng-siryoroom-what.html" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#102542] hover:bg-[#1a3860] border border-[#102542] hover:border-[#CD2D2D] text-white font-bold text-xs transition kobe-btn-glow group">
+          <span>解説を見る</span>
+          <i class="fa-solid fa-arrow-right text-xs text-red-400 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+    </article>
+
+    <!-- 今後追加予定の案内枠（シンプル化） -->
+    <div class="p-5 rounded-2xl border border-dashed border-[#DCE4EE] bg-white/60 text-center">
+      <p class="text-xs font-semibold text-slate-500 flex items-center justify-center gap-2">
+        <i class="fa-solid fa-clock text-slate-400"></i>
+        <span>随時追加予定</span>
+      </p>
+    </div>
+
+  </main>
+
+  <!-- フッター（同一仕様統一） -->
+  <footer class="border-t border-[#DCE4EE] bg-white py-6 text-center text-xs text-slate-500 space-y-1.5">
+    <p class="font-semibold text-[#102542]">© 2026 TOEIC RE:BOOT 730<a href="ura_index.html" class="text-slate-400 hover:text-slate-600">.</a></p>
+    <p>50代からのスコア奪還 自習システム</p>
+    <p class="text-[11px] text-slate-400">
+      Amazonのアソシエイトとして、当サイトは適格販売により収入を得ています。
+      <span class="mx-1.5 text-slate-300">|</span>
+      <a href="contact.html" class="hover:text-[#CD2D2D] transition-colors">不具合・誤字報告</a>
+    </p>
+  </footer>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "bbb557a7347f45f2a4758e1eb4e53301"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "doc-what",
+    "category": "疑問詞・関係詞",
+    "badge": "全4役・全イディオム",
+    "title": "1語で4役をこなす「what」の全用法・全イディオム完全攻略",
+    "summary": "疑問詞・関係詞・感嘆文・頻出イディオムまで、文中の配置と語順で役割を見抜く実践リファレンス",
+    "url": "lang-eng-siryoroom-what.html",
+    "note": "空欄の直前に「先行詞（名詞）」があるかないかで、関係代名詞 what か which/where かを3秒で切り分けます。"
+  },
+  {
+    "id": "doc-pronoun",
+    "category": "疑問詞・関係詞",
+    "badge": "英文法コア理論",
+    "title": "品詞と構造の根幹「代名詞・疑問詞・関係詞」定義深掘りマップ",
+    "summary": "代名詞に特殊能力が合体する仕組みから、関係代名詞と関係副詞（不完全文 vs 完全文）の判定ロジックまでを体系化",
+    "url": "lang-eng-siryoroom-pronoun-base.html",
+    "note": "後ろの文に S や O が欠けていれば関係代名詞、S・V・O が揃った完全文なら関係副詞（where / when）を選びます。"
+  },
+  {
+    "id": "doc-genkei",
+    "category": "動詞・文型",
+    "badge": "全9パターン網羅",
+    "title": "正解の肢として出される「動詞の原形（Base Form）」完全攻略",
+    "summary": "助動詞の隙間から仮定法現在（request that）、使役・知覚・helpの原形不定詞まで三単現・過去形の引っかけを無力化",
+    "url": "lang-eng-siryoroom-genkei.html",
+    "note": "request / suggest that S (should) 原形の仮定法現在や、helps の直後に動詞の原形が続く第3文型が頻出です。"
+  },
+  {
+    "id": "doc-hukusi",
+    "category": "品詞・修飾構造",
+    "badge": "句 vs 節 3秒判定",
+    "title": "正解の肢として出される「副詞・副詞句・副詞節」完全攻略",
+    "summary": "単体の副詞の3大頻出位置から、前置詞（副詞句）と接続詞（副詞節）の峻別フロー、受験生の盲点4選までを網羅",
+    "url": "lang-eng-siryoroom-hukusi.html",
+    "note": "空欄の後ろに「述語動詞（V）」があれば接続詞（although / because / while）、なければ前置詞（despite / due to / during）を選びます。"
+  }
+]
