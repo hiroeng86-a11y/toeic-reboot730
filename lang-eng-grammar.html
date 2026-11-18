@@ -85,7 +85,7 @@
           </label>
           <select id="categorySelect" onchange="onCategoryChange(this.value)" class="w-full bg-[#F4F7FB] text-[#102542] border border-[#DCE4EE] rounded-xl px-3 py-2 text-xs font-bold focus:outline-none focus:border-[#CD2D2D]">
             <option value="all">★ 全1,150問一括ランダム特訓</option>
-            <option value="cat1">1. 基礎 (5文型・名詞・代名詞・前置詞)</option>
+            <option value="cat1" selected>1. 基礎 (5文型・名詞・代名詞・前置詞)</option>
             <option value="cat2">2. 動詞 (時制・受動態・仮定法)</option>
             <option value="cat3">3. 準動詞 (不定詞・動名詞・分詞)</option>
             <option value="cat4">4. 複文 (接続詞・関係代名詞・名詞節)</option>
@@ -109,7 +109,7 @@
           <div class="flex items-center gap-2">
             <label for="deckSizeSelect" class="font-bold text-slate-500">出題数:</label>
             <select id="deckSizeSelect" onchange="changeDeckSize()" class="bg-[#F4F7FB] text-[#102542] border border-[#DCE4EE] rounded-lg px-2.5 py-1 text-xs font-bold focus:outline-none">
-              <option value="10">10問</option>
+              <option value="10" selected>10問</option>
               <option value="20">20問</option>
               <option value="50">50問</option>
               <option value="all" selected>全問</option>
@@ -439,7 +439,7 @@
 
     async function initApp() {
       applyFontClasses();
-      onCategoryChange('all', false);
+      onCategoryChange('cat1', false);
     }
 
     function onCategoryChange(catKey, autoClose = false) {
