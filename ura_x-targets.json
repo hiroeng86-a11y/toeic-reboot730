@@ -1,0 +1,42 @@
+{
+  "search_presets": [
+    {
+      "title": "TOEIC 学習中のアクティブ層",
+      "note": "「TOEIC」を含みいいね3以上の元ポスト。返信が活発な人をリストに追加する。",
+      "query": "TOEIC min_faves:3 -filter:replies lang:ja",
+      "btn_label": "最新順で探す"
+    },
+    {
+      "title": "社会人・同世代の英語勉強垢",
+      "note": "「やり直し英語 / 大人の英語」など、共感ベースで繋がりやすい層を発掘。",
+      "query": "(やり直し英語 OR 大人の英語 OR 英語学習) min_faves:3 -filter:replies lang:ja",
+      "btn_label": "最新順で探す"
+    }
+  ],
+  "accounts": [
+    {
+      "id": "sample_user_1",
+      "name": "アカウントA（TOEIC文法系）",
+      "added": "2026-11-15",
+      "note": "引用リポストで補足を入れると反応が良い"
+    },
+    {
+      "id": "sample_user_2",
+      "name": "アカウントB（50代英語学習）",
+      "added": "2026-11-10",
+      "note": "同世代の積み上げ仲間。朝の挨拶・いいね用"
+    },
+    {
+      "id": "sample_user_3",
+      "name": "アカウントC（リスニング・音読）",
+      "added": "2026-09-20",
+      "note": "※45日経過サンプル：最近更新が止まっていれば入替"
+    },
+    {
+      "id": "sample_user_4",
+      "name": "アカウントD（英語学習コミュニティ）",
+      "added": "2026-11-18",
+      "note": "フォロワーが多くリプ欄が見られやすい"
+    }
+  ]
+}

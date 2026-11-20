@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>X 巡回・リスト管理ボード</title>
+<style>
+  :root {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --sub: #475569;
+    --border: #e2e8f0;
+    --accent: #0f172a;
+    --warn-bg: #fef3c7;
+    --warn-text: #92400e;
+    --err-bg: #fee2e2;
+    --err-text: #991b1b;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 20px;
+    max-width: 860px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  h1 { font-size: 18px; margin: 0; }
+  .shuffle-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .shuffle-btn:hover { opacity: 0.9; }
+  .section-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--sub);
+    margin: 22px 0 10px;
+    letter-spacing: 0.05em;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .card-title { font-size: 14px; font-weight: 700; margin: 0; }
+  .badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: #f1f5f9;
+    color: var(--sub);
+    white-space: nowrap;
+  }
+  .badge.old {
+    background: var(--warn-bg);
+    color: var(--warn-text);
+  }
+  .card-note { font-size: 12px; color: var(--sub); margin: 0 0 12px; }
+  .btn-group { display: flex; gap: 6px; }
+  .link-btn {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 7px 8px;
+    border-radius: 6px;
+    background: var(--accent);
+    color: #fff;
+  }
+  .link-btn.sub {
+    background: #f1f5f9;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .error-box {
+    background: var(--err-bg);
+    color: var(--err-text);
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 16px;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <div>
+      <h1>X 巡回・リスト管理ボード</h1>
+      <span style="font-size:12px; color:var(--sub);">開くたびに順序をシャッフルし、偏りとマンネリを防止</span>
+    </div>
+    <button class="shuffle-btn" onclick="renderAccounts(true)">順序をシャッフルする</button>
+  </div>
+
+  <div id="error-box" class="error-box"></div>
+
+  <!-- 01. 新規リスト補充用 -->
+  <div class="section-title">01. 新規アカウント発掘（リスト入れ替え候補探し）</div>
+  <div class="grid" id="search-list"></div>
+
+  <!-- 02. 固定巡回リスト -->
+  <div class="section-title">02. 巡回ターゲット一覧（黄色バッジ＝登録から45日経過・入替検討）</div>
+  <div class="grid" id="account-list"></div>
+
+<script>
+  let cachedAccounts = [];
+
+  async function initBoard() {
+    try {
+      // キャッシュを防いで常に最新のJSONを読み込む
+      const response = await fetch(`./x-targets.json?t=${Date.now()}`);
+      if (!response.ok) {
+        throw new Error(`HTTPエラー: ${response.status}`);
+      }
+      const data = await response.json();
+
+      renderSearchPresets(data.search_presets || []);
+      cachedAccounts = data.accounts || [];
+      renderAccounts(true);
+
+    } catch (err) {
+      const errBox = document.getElementById("error-box");
+      errBox.style.display = "block";
+      errBox.innerHTML = `<strong>x-targets.json の読み込みに失敗しました:</strong> ${err.message}<br><small>※ローカル環境では VS Code の Live Server 等で開いてください。JSONの末尾カンマ抜けにもご注意ください。</small>`;
+    }
+  }
+
+  function renderSearchPresets(presets) {
+    const searchEl = document.getElementById("search-list");
+    searchEl.innerHTML = "";
+
+    presets.forEach(item => {
+      // query文字列を自動でURLエンコードして検索URLを生成
+      const encodedQuery = encodeURIComponent(item.query);
+      const searchUrl = `https://x.com/search?q=${encodedQuery}&src=typed_query&f=live`;
+
+      searchEl.insertAdjacentHTML("beforeend", `
+        <div class="card">
+          <div>
+            <div class="card-head"><h2 class="card-title">${item.title}</h2></div>
+            <p class="card-note">${item.note}</p>
+          </div>
+          <div class="btn-group">
+            <a class="link-btn" href="${searchUrl}" target="_blank" rel="noopener">${item.btn_label || "最新順で探す"}</a>
+          </div>
+        </div>
+      `);
+    });
+  }
+
+  function renderAccounts(shuffle = true) {
+    const listEl = document.getElementById("account-list");
+    listEl.innerHTML = "";
+
+    const list = [...cachedAccounts];
+    if (shuffle) {
+      for (let i = list.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [list[i], list[j]] = [list[j], list[i]];
+      }
+    }
+
+    const today = new Date();
+
+    list.forEach(acc => {
+      const addedDate = new Date(acc.added);
+      const diffDays = Math.floor((today - addedDate) / (1000 * 60 * 60 * 24));
+      const isOld = !isNaN(diffDays) && diffDays >= 45;
+
+      const cleanUrl = `https://x.com/search?q=from%3A${encodeURIComponent(acc.id)}%20-filter%3Areplies&src=typed_query&f=live`;
+      const profileUrl = `https://x.com/${encodeURIComponent(acc.id)}`;
+
+      listEl.insertAdjacentHTML("beforeend", `
+        <div class="card">
+          <div>
+            <div class="card-head">
+              <h2 class="card-title">${acc.name}</h2>
+              <span class="badge ${isOld ? 'old' : ''}">${isOld ? '入替検討 (' + diffDays + '日)' : acc.added}</span>
+            </div>
+            <p class="card-note">@${acc.id} / ${acc.note}</p>
+          </div>
+          <div class="btn-group">
+            <a class="link-btn" href="${cleanUrl}" target="_blank" rel="noopener">元ポストのみ</a>
+            <a class="link-btn sub" href="${profileUrl}" target="_blank" rel="noopener">プロフ</a>
+          </div>
+        </div>
+      `);
+    });
+  }
+
+  initBoard();
+</script>
+
+</body>
+</html>
