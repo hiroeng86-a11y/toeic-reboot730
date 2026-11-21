@@ -19,33 +19,54 @@
     .glass-card:active {
       transform: scale(0.992);
     }
+    /* カスタムスクロールバー（タブバー用） */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-white">
 
   <!-- ヘッダー -->
-  <header class="p-4 md:p-6 max-w-2xl mx-auto w-full flex items-center justify-between border-b border-slate-800/80">
+  <header class="p-4 md:p-5 max-w-3xl mx-auto w-full flex items-center justify-between border-b border-slate-800/80">
     <div class="flex items-center gap-2.5">
       <div class="h-6 w-1 bg-cyan-400 rounded-full"></div>
-      <h1 class="text-base md:text-lg font-bold tracking-tight text-white">コロケーション例文カード</h1>
+      <div>
+        <h1 class="text-base md:text-lg font-bold tracking-tight text-white">コロケーション例文カード</h1>
+        <p id="total-progress" class="text-[11px] text-slate-400">全体進捗: 0 / 0 学習済</p>
+      </div>
     </div>
     <a href="ura_index.html" class="text-xs text-slate-300 hover:text-cyan-300 px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-900/70 hover:bg-slate-800 transition-all flex items-center gap-1.5">
       <i class="fa-solid fa-arrow-left"></i>ハブへ戻る
     </a>
   </header>
 
+  <!-- 50問区切りタブバー -->
+  <nav class="max-w-3xl mx-auto w-full px-4 pt-3">
+    <div id="chunk-tabs" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-2">
+      <!-- JSで動的生成（1-50, 51-100, ...） -->
+    </div>
+  </nav>
+
   <!-- メインコンテンツ -->
-  <main class="flex-1 flex flex-col justify-center max-w-2xl mx-auto w-full px-4 py-6">
+  <main class="flex-1 flex flex-col justify-center max-w-3xl mx-auto w-full px-4 py-4">
 
     <!-- 進捗 & 操作バー -->
-    <div class="flex items-center justify-between text-xs text-slate-400 mb-3 px-1">
-      <span id="progress" class="font-mono text-sm text-cyan-400 font-semibold">読み込み中...</span>
-      <div class="flex items-center gap-2">
+    <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400 mb-3 px-1">
+      <div class="flex items-center gap-3">
+        <span id="progress" class="font-mono text-sm text-cyan-400 font-semibold">読み込み中...</span>
+        <span id="chunk-learned-badge" class="text-[11px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          この区間: 0 / 50 済
+        </span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <button id="filter-unlearned-btn" onclick="toggleUnlearnedOnly()" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 hover:border-amber-500/50 text-slate-300 hover:text-white transition-all">
+          <i class="fa-solid fa-filter mr-1"></i>未学習のみ
+        </button>
         <button onclick="shuffleDeck()" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 hover:border-cyan-500/50 text-slate-300 hover:text-white transition-all">
           <i class="fa-solid fa-shuffle mr-1"></i>シャッフル
         </button>
-        <button onclick="resetDeck()" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 hover:border-cyan-500/50 text-slate-300 hover:text-white transition-all">
-          <i class="fa-solid fa-rotate-left mr-1"></i>最初から
+        <button onclick="openListModal()" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-cyan-500/40 hover:bg-cyan-500/10 text-cyan-300 font-semibold transition-all">
+          <i class="fa-solid fa-list mr-1"></i>一覧
         </button>
       </div>
     </div>
@@ -53,6 +74,16 @@
     <!-- フラッシュカード本体（表：例文 / 裏：訳） -->
     <div id="card" onclick="flipCard()" class="glass-card rounded-2xl p-7 md:p-10 min-h-[280px] flex flex-col justify-center items-center text-center cursor-pointer transition-all select-none relative">
       
+      <!-- 学習済ステータスバッジ（右上） -->
+      <div id="card-status-tag" class="absolute top-4 right-4 hidden">
+        <span class="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+          <i class="fa-solid fa-check"></i>学習済
+        </span>
+      </div>
+
+      <!-- カード番号（左上） -->
+      <span id="card-id-tag" class="absolute top-4 left-5 font-mono text-xs text-slate-500">#1</span>
+
       <!-- 表面（英語例文） -->
       <div id="front-face" class="w-full">
         <span class="inline-block text-[11px] font-semibold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-5">
@@ -82,53 +113,232 @@
 
     </div>
 
-    <!-- 前へ / 次へボタン -->
-    <div class="grid grid-cols-2 gap-3 mt-5">
+    <!-- 操作ボタン（前へ / 学習済トグル / 次へ） -->
+    <div class="grid grid-cols-3 gap-2.5 mt-5">
       <button onclick="prevCard()" class="py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-sm transition-all">
-        <i class="fa-solid fa-chevron-left mr-1.5"></i>前へ
+        <i class="fa-solid fa-chevron-left mr-1"></i>前へ
+      </button>
+      <button id="learned-btn" onclick="toggleLearnedCurrent()" class="py-3.5 rounded-xl bg-slate-800 hover:bg-emerald-600/30 border border-emerald-500/40 text-emerald-300 font-bold text-sm transition-all">
+        <i class="fa-regular fa-square-check mr-1"></i>学習済にする
       </button>
       <button onclick="nextCard()" class="py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-sm shadow-lg shadow-cyan-500/20 transition-all">
-        次へ<i class="fa-solid fa-chevron-right ml-1.5"></i>
+        次へ<i class="fa-solid fa-chevron-right ml-1"></i>
       </button>
     </div>
 
     <p class="text-center text-[11px] text-slate-500 mt-4">
-      キーボード操作: [Space] 表裏切替 / [←][→] 前後移動
+      キーボード: [Space] 表裏切替 / [←][→] 移動 / [Enter] 学習済切替
     </p>
   </main>
+
+  <!-- 一覧モーダル -->
+  <div id="list-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 md:p-6">
+    <div class="bg-[#0f172a] border border-slate-700 rounded-2xl w-full max-w-3xl max-h-[88vh] flex flex-col shadow-2xl">
+      <!-- モーダルヘッダー -->
+      <div class="p-4 md:p-5 border-b border-slate-800 flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <h2 id="modal-title" class="text-base md:text-lg font-bold text-white">例文一覧（1〜50）</h2>
+          <p class="text-xs text-slate-400">行をクリックするとそのカードへ移動・チェックで学習済を切替</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="resetChunkLearned()" class="text-xs px-2.5 py-1.5 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 transition-all">
+            この区間の学習済をリセット
+          </button>
+          <button onclick="closeListModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- 検索・フィルタバー -->
+      <div class="px-4 py-2.5 bg-slate-900/60 border-b border-slate-800 flex items-center gap-2">
+        <i class="fa-solid fa-magnifying-glass text-slate-500 text-xs"></i>
+        <input type="text" id="list-search" oninput="renderListTable()" placeholder="英語・日本語で絞り込み..."
+          class="w-full bg-transparent text-xs text-white focus:outline-none placeholder-slate-500">
+      </div>
+
+      <!-- 一覧リスト本体 -->
+      <div id="list-container" class="flex-1 overflow-y-auto divide-y divide-slate-800/70">
+        <!-- JSで動的生成 -->
+      </div>
+    </div>
+  </div>
 
   <footer class="p-4 text-center text-[11px] text-slate-600">
     &copy; Knowledge & Training Hub Archive
   </footer>
 
   <script>
+    const CHUNK_SIZE = 50;
+    const STORAGE_KEY = 'ura_collocation_learned_ids_v1';
+
     let originalData = [];
+    let currentChunkIndex = 0;
     let deck = [];
     let currentIndex = 0;
     let isFlipped = false;
+    let unlearnedOnly = false;
+    let learnedSet = new Set();
+
+    function loadLearned() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        learnedSet = new Set(saved);
+      } catch (e) {
+        learnedSet = new Set();
+      }
+    }
+
+    function saveLearned() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify([...learnedSet]));
+    }
 
     async function init() {
+      loadLearned();
       try {
         const res = await fetch('collocation-sentences.json');
         if (!res.ok) throw new Error('JSON読み込み失敗');
         originalData = await res.json();
-        deck = [...originalData];
-        render();
+        buildChunkTabs();
+        selectChunk(0);
       } catch (err) {
         document.getElementById('en-text').textContent = 'collocation-sentences.json が読み込めませんでした。';
         document.getElementById('progress').textContent = 'ERROR';
       }
     }
 
+    function getChunkItems(chunkIdx) {
+      const start = chunkIdx * CHUNK_SIZE;
+      return originalData.slice(start, start + CHUNK_SIZE);
+    }
+
+    function buildChunkTabs() {
+      const tabsEl = document.getElementById('chunk-tabs');
+      tabsEl.innerHTML = '';
+      const totalChunks = Math.ceil(originalData.length / CHUNK_SIZE);
+
+      for (let i = 0; i < totalChunks; i++) {
+        const startNum = i * CHUNK_SIZE + 1;
+        const endNum = Math.min((i + 1) * CHUNK_SIZE, originalData.length);
+        const items = getChunkItems(i);
+        const doneCount = items.filter(item => learnedSet.has(item.id)).length;
+        const isAllDone = doneCount === items.length && items.length > 0;
+
+        const btn = document.createElement('button');
+        const isActive = i === currentChunkIndex;
+        btn.className = isActive
+          ? 'shrink-0 px-3 py-1.5 rounded-lg text-xs font-bold bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20 transition-all'
+          : 'shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-900 text-slate-300 border border-slate-800 hover:border-cyan-500/40 transition-all';
+
+        btn.innerHTML = `${startNum}-${endNum} <span class="ml-1 text-[10px] opacity-80">(${doneCount}/${items.length})</span>` + (isAllDone ? ' ✓' : '');
+        btn.onclick = () => selectChunk(i);
+        tabsEl.appendChild(btn);
+      }
+      updateGlobalProgress();
+    }
+
+    function updateGlobalProgress() {
+      document.getElementById('total-progress').textContent = `全体進捗: ${learnedSet.size} / ${originalData.length} 学習済`;
+    }
+
+    function selectChunk(chunkIdx, targetId = null) {
+      currentChunkIndex = chunkIdx;
+      const items = getChunkItems(chunkIdx);
+      deck = unlearnedOnly ? items.filter(it => !learnedSet.has(it.id)) : [...items];
+
+      if (targetId !== null) {
+        const foundIdx = deck.findIndex(it => it.id === targetId);
+        currentIndex = foundIdx >= 0 ? foundIdx : 0;
+      } else {
+        currentIndex = 0;
+      }
+
+      buildChunkTabs();
+      render();
+    }
+
     function render() {
-      if (deck.length === 0) return;
+      const items = getChunkItems(currentChunkIndex);
+      const doneCount = items.filter(item => learnedSet.has(item.id)).length;
+      document.getElementById('chunk-learned-badge').textContent = `この区間: ${doneCount} / ${items.length} 済`;
+
+      if (deck.length === 0) {
+        isFlipped = false;
+        document.getElementById('front-face').classList.remove('hidden');
+        document.getElementById('back-face').classList.add('hidden');
+        document.getElementById('card-status-tag').classList.add('hidden');
+        document.getElementById('card-id-tag').textContent = '-';
+        document.getElementById('progress').textContent = '0 / 0';
+        document.getElementById('en-text').textContent = unlearnedOnly
+          ? '🎉 この区間の未学習カードはすべて完了しました！'
+          : 'データがありません';
+        updateLearnedButton(false);
+        return;
+      }
+
+      if (currentIndex >= deck.length) currentIndex = 0;
       const item = deck[currentIndex];
+      const isLearned = learnedSet.has(item.id);
+
       isFlipped = false;
       document.getElementById('front-face').classList.remove('hidden');
       document.getElementById('back-face').classList.add('hidden');
       document.getElementById('progress').textContent = `${currentIndex + 1} / ${deck.length}`;
+      document.getElementById('card-id-tag').textContent = `#${item.id}`;
       document.getElementById('en-text').textContent = item.en;
       document.getElementById('ja-text').textContent = item.ja;
+
+      if (isLearned) {
+        document.getElementById('card-status-tag').classList.remove('hidden');
+      } else {
+        document.getElementById('card-status-tag').classList.add('hidden');
+      }
+      updateLearnedButton(isLearned);
+    }
+
+    function updateLearnedButton(isLearned) {
+      const btn = document.getElementById('learned-btn');
+      if (isLearned) {
+        btn.className = 'py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/20 transition-all';
+        btn.innerHTML = '<i class="fa-solid fa-check mr-1"></i>学習済（解除）';
+      } else {
+        btn.className = 'py-3.5 rounded-xl bg-slate-800 hover:bg-emerald-600/30 border border-emerald-500/40 text-emerald-300 font-bold text-sm transition-all';
+        btn.innerHTML = '<i class="fa-regular fa-square-check mr-1"></i>学習済にする';
+      }
+    }
+
+    function toggleLearnedCurrent() {
+      if (deck.length === 0) return;
+      const item = deck[currentIndex];
+      if (learnedSet.has(item.id)) {
+        learnedSet.delete(item.id);
+        saveLearned();
+        buildChunkTabs();
+        render();
+      } else {
+        learnedSet.add(item.id);
+        saveLearned();
+        buildChunkTabs();
+        if (unlearnedOnly) {
+          deck.splice(currentIndex, 1);
+          if (currentIndex >= deck.length) currentIndex = 0;
+          render();
+        } else {
+          // 学習済にしたら自動で次のカードへ進む
+          nextCard();
+        }
+      }
+    }
+
+    function toggleUnlearnedOnly() {
+      unlearnedOnly = !unlearnedOnly;
+      const btn = document.getElementById('filter-unlearned-btn');
+      if (unlearnedOnly) {
+        btn.className = 'px-2.5 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold transition-all';
+      } else {
+        btn.className = 'px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 hover:border-amber-500/50 text-slate-300 hover:text-white transition-all';
+      }
+      selectChunk(currentChunkIndex);
     }
 
     function flipCard() {
@@ -164,12 +374,6 @@
       render();
     }
 
-    function resetDeck() {
-      deck = [...originalData];
-      currentIndex = 0;
-      render();
-    }
-
     function speakEn(e) {
       e.stopPropagation();
       if (!window.speechSynthesis || deck.length === 0) return;
@@ -180,7 +384,82 @@
       window.speechSynthesis.speak(uttr);
     }
 
+    // 一覧モーダル関連
+    function openListModal() {
+      const startNum = currentChunkIndex * CHUNK_SIZE + 1;
+      const endNum = Math.min((currentChunkIndex + 1) * CHUNK_SIZE, originalData.length);
+      document.getElementById('modal-title').textContent = `例文一覧（#${startNum} 〜 #${endNum}）`;
+      document.getElementById('list-search').value = '';
+      renderListTable();
+      document.getElementById('list-modal').classList.remove('hidden');
+    }
+
+    function closeListModal() {
+      document.getElementById('list-modal').classList.add('hidden');
+    }
+
+    function renderListTable() {
+      const container = document.getElementById('list-container');
+      const query = document.getElementById('list-search').value.trim().toLowerCase();
+      const items = getChunkItems(currentChunkIndex).filter(it =>
+        !query || it.en.toLowerCase().includes(query) || it.ja.toLowerCase().includes(query)
+      );
+
+      container.innerHTML = items.map(item => {
+        const isLearned = learnedSet.has(item.id);
+        return `
+          <div class="p-3.5 md:px-5 flex items-start gap-3 hover:bg-slate-800/50 transition-colors ${isLearned ? 'opacity-65' : ''}">
+            <button onclick="toggleLearnedFromList(${item.id})" class="mt-0.5 text-base ${isLearned ? 'text-emerald-400' : 'text-slate-600 hover:text-slate-400'}" title="学習済切替">
+              <i class="${isLearned ? 'fa-solid fa-square-check' : 'fa-regular fa-square'}"></i>
+            </button>
+            <div onclick="jumpToCard(${item.id})" class="flex-1 cursor-pointer">
+              <div class="flex items-center gap-2 mb-0.5">
+                <span class="font-mono text-[11px] text-cyan-400">#${item.id}</span>
+                ${isLearned ? '<span class="text-[10px] px-1.5 py-0.2 rounded bg-emerald-500/15 text-emerald-400">学習済</span>' : ''}
+              </div>
+              <p class="text-sm font-semibold text-white leading-snug">${item.en}</p>
+              <p class="text-xs text-slate-400 mt-1">${item.ja}</p>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleLearnedFromList(id) {
+      if (learnedSet.has(id)) {
+        learnedSet.delete(id);
+      } else {
+        learnedSet.add(id);
+      }
+      saveLearned();
+      buildChunkTabs();
+      renderListTable();
+      selectChunk(currentChunkIndex);
+    }
+
+    function jumpToCard(id) {
+      closeListModal();
+      if (unlearnedOnly && learnedSet.has(id)) {
+        unlearnedOnly = false;
+        document.getElementById('filter-unlearned-btn').className = 'px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 hover:border-amber-500/50 text-slate-300 hover:text-white transition-all';
+      }
+      selectChunk(currentChunkIndex, id);
+    }
+
+    function resetChunkLearned() {
+      const items = getChunkItems(currentChunkIndex);
+      items.forEach(it => learnedSet.delete(it.id));
+      saveLearned();
+      buildChunkTabs();
+      renderListTable();
+      selectChunk(currentChunkIndex);
+    }
+
     document.addEventListener('keydown', (e) => {
+      if (!document.getElementById('list-modal').classList.contains('hidden')) {
+        if (e.code === 'Escape') closeListModal();
+        return;
+      }
       if (e.code === 'Space') {
         e.preventDefault();
         flipCard();
@@ -188,6 +467,9 @@
         nextCard();
       } else if (e.code === 'ArrowLeft') {
         prevCard();
+      } else if (e.code === 'Enter') {
+        e.preventDefault();
+        toggleLearnedCurrent();
       }
     });
 
