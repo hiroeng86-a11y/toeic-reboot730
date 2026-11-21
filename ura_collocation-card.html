@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>コロケーション例文フラッシュカード | Knowledge & Training Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body { background-color: #0a0e17; color: #f8fafc; font-family: system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+    }
+    .glass-card:active {
+      transform: scale(0.992);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-white">
+
+  <!-- ヘッダー -->
+  <header class="p-4 md:p-6 max-w-2xl mx-auto w-full flex items-center justify-between border-b border-slate-800/80">
+    <div class="flex items-center gap-2.5">
+      <div class="h-6 w-1 bg-cyan-400 rounded-full"></div>
+      <h1 class="text-base md:text-lg font-bold tracking-tight text-white">コロケーション例文カード</h1>
+    </div>
+    <a href="ura_index.html" class="text-xs text-slate-300 hover:text-cyan-300 px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-900/70 hover:bg-slate-800 transition-all flex items-center gap-1.5">
+      <i class="fa-solid fa-arrow-left"></i>ハブへ戻る
+    </a>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="flex-1 flex flex-col justify-center max-w-2xl mx-auto w-full px-4 py-6">
+
+    <!-- 進捗 & 操作バー -->
+    <div class="flex items-center justify-between text-xs text-slate-400 mb-3 px-1">
+      <span id="progress" class="font-mono text-sm text-cyan-400 font-semibold">読み込み中...</span>
+      <div class="flex items-center gap-2">
+        <button onclick="shuffleDeck()" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 hover:border-cyan-500/50 text-slate-300 hover:text-white transition-all">
+          <i class="fa-solid fa-shuffle mr-1"></i>シャッフル
+        </button>
+        <button onclick="resetDeck()" class="px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 hover:border-cyan-500/50 text-slate-300 hover:text-white transition-all">
+          <i class="fa-solid fa-rotate-left mr-1"></i>最初から
+        </button>
+      </div>
+    </div>
+
+    <!-- フラッシュカード本体（表：例文 / 裏：訳） -->
+    <div id="card" onclick="flipCard()" class="glass-card rounded-2xl p-7 md:p-10 min-h-[280px] flex flex-col justify-center items-center text-center cursor-pointer transition-all select-none relative">
+      
+      <!-- 表面（英語例文） -->
+      <div id="front-face" class="w-full">
+        <span class="inline-block text-[11px] font-semibold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-5">
+          EXAMPLE
+        </span>
+        <p id="en-text" class="text-xl md:text-2xl font-bold leading-relaxed text-white">
+          Loading...
+        </p>
+        <div class="mt-6 flex items-center justify-center gap-3">
+          <button onclick="speakEn(event)" class="text-xs px-3.5 py-1.5 rounded-full bg-slate-800/90 hover:bg-slate-700 text-cyan-300 border border-slate-700 transition-all">
+            <i class="fa-solid fa-volume-high mr-1.5"></i>音声
+          </button>
+        </div>
+        <p class="text-[11px] text-slate-500 mt-5">タップして訳を表示</p>
+      </div>
+
+      <!-- 裏面（日本語訳） -->
+      <div id="back-face" class="w-full hidden">
+        <span class="inline-block text-[11px] font-semibold tracking-wider uppercase px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-5">
+          TRANSLATION
+        </span>
+        <p id="ja-text" class="text-lg md:text-xl font-bold leading-relaxed text-emerald-300">
+          ...
+        </p>
+        <p class="text-[11px] text-slate-500 mt-6">タップして例文に戻る</p>
+      </div>
+
+    </div>
+
+    <!-- 前へ / 次へボタン -->
+    <div class="grid grid-cols-2 gap-3 mt-5">
+      <button onclick="prevCard()" class="py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-sm transition-all">
+        <i class="fa-solid fa-chevron-left mr-1.5"></i>前へ
+      </button>
+      <button onclick="nextCard()" class="py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-sm shadow-lg shadow-cyan-500/20 transition-all">
+        次へ<i class="fa-solid fa-chevron-right ml-1.5"></i>
+      </button>
+    </div>
+
+    <p class="text-center text-[11px] text-slate-500 mt-4">
+      キーボード操作: [Space] 表裏切替 / [←][→] 前後移動
+    </p>
+  </main>
+
+  <footer class="p-4 text-center text-[11px] text-slate-600">
+    &copy; Knowledge & Training Hub Archive
+  </footer>
+
+  <script>
+    let originalData = [];
+    let deck = [];
+    let currentIndex = 0;
+    let isFlipped = false;
+
+    async function init() {
+      try {
+        const res = await fetch('collocation-sentences.json');
+        if (!res.ok) throw new Error('JSON読み込み失敗');
+        originalData = await res.json();
+        deck = [...originalData];
+        render();
+      } catch (err) {
+        document.getElementById('en-text').textContent = 'collocation-sentences.json が読み込めませんでした。';
+        document.getElementById('progress').textContent = 'ERROR';
+      }
+    }
+
+    function render() {
+      if (deck.length === 0) return;
+      const item = deck[currentIndex];
+      isFlipped = false;
+      document.getElementById('front-face').classList.remove('hidden');
+      document.getElementById('back-face').classList.add('hidden');
+      document.getElementById('progress').textContent = `${currentIndex + 1} / ${deck.length}`;
+      document.getElementById('en-text').textContent = item.en;
+      document.getElementById('ja-text').textContent = item.ja;
+    }
+
+    function flipCard() {
+      if (deck.length === 0) return;
+      isFlipped = !isFlipped;
+      if (isFlipped) {
+        document.getElementById('front-face').classList.add('hidden');
+        document.getElementById('back-face').classList.remove('hidden');
+      } else {
+        document.getElementById('front-face').classList.remove('hidden');
+        document.getElementById('back-face').classList.add('hidden');
+      }
+    }
+
+    function nextCard() {
+      if (deck.length === 0) return;
+      currentIndex = (currentIndex + 1) % deck.length;
+      render();
+    }
+
+    function prevCard() {
+      if (deck.length === 0) return;
+      currentIndex = (currentIndex - 1 + deck.length) % deck.length;
+      render();
+    }
+
+    function shuffleDeck() {
+      for (let i = deck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [deck[j], deck[i]];
+      }
+      currentIndex = 0;
+      render();
+    }
+
+    function resetDeck() {
+      deck = [...originalData];
+      currentIndex = 0;
+      render();
+    }
+
+    function speakEn(e) {
+      e.stopPropagation();
+      if (!window.speechSynthesis || deck.length === 0) return;
+      window.speechSynthesis.cancel();
+      const uttr = new SpeechSynthesisUtterance(deck[currentIndex].en);
+      uttr.lang = 'en-US';
+      uttr.rate = 0.95;
+      window.speechSynthesis.speak(uttr);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        flipCard();
+      } else if (e.code === 'ArrowRight') {
+        nextCard();
+      } else if (e.code === 'ArrowLeft') {
+        prevCard();
+      }
+    });
+
+    init();
+  </script>
+</body>
+</html>
