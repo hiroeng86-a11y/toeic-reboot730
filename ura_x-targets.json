@@ -15,28 +15,28 @@
   ],
   "accounts": [
     {
-      "id": "sample_user_1",
-      "name": "アカウントA（TOEIC文法系）",
-      "added": "2026-11-15",
-      "note": "引用リポストで補足を入れると反応が良い"
+      "id": "Mezase990",
+      "name": "@Mezase990",
+      "added": "2026-11-21",
+      "note": "TOEIC学習アカウント（巡回・交流用）"
     },
     {
-      "id": "sample_user_2",
-      "name": "アカウントB（50代英語学習）",
-      "added": "2026-11-10",
-      "note": "同世代の積み上げ仲間。朝の挨拶・いいね用"
+      "id": "Ichinari15",
+      "name": "@Ichinari15",
+      "added": "2026-11-21",
+      "note": "英語・TOEIC学習アカウント（巡回・交流用）"
     },
     {
-      "id": "sample_user_3",
-      "name": "アカウントC（リスニング・音読）",
-      "added": "2026-09-20",
-      "note": "※45日経過サンプル：最近更新が止まっていれば入替"
+      "id": "harukichi_PAPA",
+      "name": "@harukichi_PAPA",
+      "added": "2026-11-21",
+      "note": "パパ・社会人学習アカウント（巡回・交流用）"
     },
     {
-      "id": "sample_user_4",
-      "name": "アカウントD（英語学習コミュニティ）",
-      "added": "2026-11-18",
-      "note": "フォロワーが多くリプ欄が見られやすい"
+      "id": "kentotz9s",
+      "name": "@kentotz9s",
+      "added": "2026-11-21",
+      "note": "英語・TOEIC学習アカウント（巡回・交流用）"
     }
   ]
 }
