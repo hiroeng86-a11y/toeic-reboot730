@@ -1,4 +1,4 @@
-<!-- 対象ファイル: lang-flashcard.html (学習優先度最適化・初見ガイド・未習得デフォルト版) -->
+<!-- 対象ファイル: lang-flashcard.html (学習優先度最適化・初見ガイド・未習得デフォルト・フリップチラつき防止版) -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -244,7 +244,7 @@
         <!-- ==========================================
              【裏面】充実の解説・意味・例文・発音
              ========================================== -->
-        <div class="absolute inset-0 backface-hidden rotate-y-180 card-surface rounded-3xl p-5 sm:p-6 flex flex-col justify-between text-left h-full min-h-[360px] sm:min-h-[400px] border-2 border-[#102542] overflow-y-auto">
+        <div id="cardBackFace" class="absolute inset-0 backface-hidden rotate-y-180 card-surface rounded-3xl p-5 sm:p-6 flex flex-col justify-between text-left h-full min-h-[360px] sm:min-h-[400px] border-2 border-[#102542] overflow-y-auto">
           <!-- 上部：ラベル & 発音ボタン -->
           <div class="w-full flex items-center justify-between pb-2.5 border-b border-[#DCE4EE]">
             <span class="text-[11px] font-bold text-emerald-700 flex items-center gap-1">
@@ -447,6 +447,7 @@
     const dictSelect = document.getElementById("dictSelect");
     const timerSelect = document.getElementById("timerSelect");
     const flashCard = document.getElementById("flashCard");
+    const cardBackFace = document.getElementById("cardBackFace");
     const cardCategoryBadge = document.getElementById("cardCategoryBadge");
     const cardStatusBadge = document.getElementById("cardStatusBadge");
     const cardWord = document.getElementById("cardWord");
@@ -527,7 +528,6 @@
           if (items.length > 0) {
             opt.textContent = `${entry.label} (${items.length}語)`;
           } else {
-            // ファイルが存在しない（0件）場合は選択肢を非表示にする
             opt.hidden = true;
             opt.disabled = true;
           }
@@ -537,7 +537,6 @@
       if (allOpt && grandTotal > 0) {
         allOpt.textContent = `⑫ すべての辞書を結合 (全${grandTotal}語)`;
       }
-      // もしデフォルト選択中の辞書が空だった場合、有効な先頭辞書に自動フォールバック
       const selectedOpt = dictSelect.querySelector(`option[value="${dictSelect.value}"]`);
       if (selectedOpt && selectedOpt.disabled) {
         const firstValid = Array.from(dictSelect.options).find(o => !o.disabled && o.value !== "ALL");
@@ -547,7 +546,6 @@
 
     async function initApp() {
       applyFontClasses();
-      // 初回訪問時は操作ガイドを自動表示
       if (!localStorage.getItem(HELP_SEEN_KEY)) {
         openHelpModal();
       }
@@ -611,7 +609,6 @@
           const wordText = item.front || item.word || item.phrase || item.english || "";
           return !masteredSet.has(wordText);
         });
-        // 全問習得済みで未習得が0件になった場合は自動で「すべて」へ切り替え
         if (unmasteredPool.length === 0 && pool.length > 0) {
           filterMode = 'all';
           syncFilterButtons();
@@ -660,8 +657,20 @@
 
     function loadCard(index) {
       clearTimer();
+
+      // 裏面から次のカードへ切り替える際、次の答えが一瞬見えないよう即座に表面（0度）へリセット
+      if (isFlipped) {
+        flashCard.style.transition = 'none';
+        flashCard.classList.remove('rotate-y-180');
+        cardBackFace.classList.add('invisible');
+        void flashCard.offsetWidth;
+        flashCard.style.transition = '';
+        setTimeout(() => {
+          cardBackFace.classList.remove('invisible');
+        }, 60);
+      }
+
       isFlipped = false;
-      flashCard.classList.remove('rotate-y-180');
       syncActionBars();
       timerStatusText.textContent = "タップで表面へ戻る";
 
@@ -690,7 +699,6 @@
       cardMeaning.textContent = meanText || "--";
       cardExampleJa.textContent = exJa || "--";
 
-      // 裏面のフレーズ確認ボックス（穴埋め問題なら正解、通常なら元の英語フレーズを表示）
       cardAnswerPhrase.textContent = answerText ? answerText : wordText;
 
       const isMastered = masteredSet.has(wordText);
@@ -707,6 +715,7 @@
 
     function flipCard() {
       if (activeDeck.length === 0) return;
+      cardBackFace.classList.remove('invisible');
       isFlipped = !isFlipped;
       flashCard.classList.toggle('rotate-y-180', isFlipped);
       syncActionBars();
